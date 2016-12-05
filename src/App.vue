@@ -20,19 +20,7 @@
 
 <script>
 
-  import vSwitch from './components/switch';
-  import vPower from './components/power';
-
-  import vPanel from './components/panel';
-
-
   export default {
-
-    components: {
-      vSwitch,
-      vPower,
-      vPanel,
-    },
 
     data() {
       return {

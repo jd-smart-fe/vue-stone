@@ -10,7 +10,7 @@
 <script>
 
   export default {
-
+    name: 'v-panel',
     props: {
       cls: {
         type: String,

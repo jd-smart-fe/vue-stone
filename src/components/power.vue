@@ -10,7 +10,7 @@
 <script>
 
   export default {
-
+    name: 'v-power',
     props: {
       value: {
         type: Boolean,
