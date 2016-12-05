@@ -18,3 +18,11 @@
 .u-ofh {
   overflow: hidden;
 }
+
+.u-hidden {
+  display: none !important;
+}
+
+.u-vis-hidden {
+  visibility: hidden;
+}

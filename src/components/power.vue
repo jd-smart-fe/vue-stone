@@ -3,6 +3,8 @@
   <div
     :class="['c-power', disabled ? 'is-disabled' : '', value ? 'is-on' : 'is-off']"
     @click="handle">
+    <input v-model="_value" :disabled="disabled"
+      type="checkbox" class="u-hidden c-power-checkbox" />
     <span class="c-power-icon"></span>
   </div>
 </template>
@@ -24,8 +26,14 @@
     },
 
     computed: {
-      _value() {
-        return this.value;
+      _value: {
+        get() {
+          return this.value;
+        },
+        set(val) {
+          this.$emit('input', val);
+          this.$emit('change', val);
+        },
       },
     },
 
@@ -35,12 +43,13 @@
     },
 
     methods: {
+
       handle() {
         // state: disabled
         if (this.disabled) {
           return;
         }
-        this.$emit('input', !this.value);
+        this._value = !this.value;
       },
     },
   };

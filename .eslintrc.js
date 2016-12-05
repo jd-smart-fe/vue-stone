@@ -30,6 +30,7 @@ module.exports = {
     "no-unused-vars": 1,
 
     "no-console": 0,
+    "no-underscore-dangle": 0,
     "arrow-parens": 0,
     "no-param-reassign": 0,
     "no-unused-expressions": 0,

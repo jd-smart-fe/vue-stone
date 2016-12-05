@@ -36,6 +36,11 @@
       this.$refs.switch.$on('change', (state) => {
         this.state = state;
       });
+
+      this.$refs.power.$on('change', (state) => {
+        console.log(`设备当前状态: ${state}`);
+      });
+
     },
   };
 </script>
@@ -44,6 +49,8 @@
 
   @import './styles/normalize.css';
   @import './styles/default-theme/variables.css';
+
+  @import './styles/utils.css';
 
   body {
     font-size: $font-size-base;
