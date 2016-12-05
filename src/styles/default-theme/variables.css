@@ -2,8 +2,18 @@
 
 
 $grid-size: 0.26rem;    /* 12 grid */
-$main-width: 3.12rem;
+$main-width: 3.12rem;   /* 0.26 * 12 */
 $main-color: #59B8FC;
+
+/********************  grid  ********************/
+@for $i from 1 to 12 {
+  .col-$i {
+    width: calc($grid-size * $i);
+  }
+  .row-$i {
+    height: calc($grid-size * $i);
+  }
+}
 
 /********************  font size  ********************/
 $font-size-base: 14px; 
