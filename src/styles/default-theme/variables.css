@@ -1,0 +1,48 @@
+
+
+
+$grid-size: 0.26rem;    /* 12 grid */
+$main-width: 3.12rem;
+$main-color: #59B8FC;
+
+/********************  font size  ********************/
+$font-size-base: 14px; 
+$font-size-lg:   16px;
+$font-size-xl:   18px;
+$font-size-sm:   12px;
+$font-size-xs:   10px;
+
+
+
+/********************  color  ********************/
+$gray-dark: #333;
+$gray: #666;
+$gray-light: #999;
+$gray-lighter: #ccc;
+$gray-lightest: #eee;
+$white: #fff;
+
+
+/********************  component theme  ********************/
+/****  switch   ****/
+
+$switch-width: 0.53rem;
+$swtich-height: 0.26rem;
+$swtich-button-size: 0.1rem;
+$switch-button-padding-x: 0.08rem;
+
+$t-switch-oncolor: $main-color;
+$t-switch-offcolor: $gray-lighter;
+
+/****  power   ****/
+$power-width: 0.45rem;
+$power-height: 0.45rem;
+
+$t-power-oncolor: #fff;
+$t-power-offcolor: $main-color;
+
+/****  panel   ****/
+$panel-width: $main-width;
+
+
+

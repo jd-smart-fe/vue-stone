@@ -1,0 +1,20 @@
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.u-fl {
+  float: left;
+}
+
+.u-fr {
+  float: right;
+}
+
+.u-ofh {
+  overflow: hidden;
+}

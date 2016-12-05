@@ -1,0 +1,16 @@
+
+/*@define-extend border {
+  border-width: 1px;
+  border-style: solid;  
+}
+*/
+
+@define-mixin border $width: 1px, $style: solid {
+  border-width: 1px;
+  border-style: solid;
+}
+
+@define-mixin transition $prop: all, $duration: 0.3s, $delay: 0s {
+  transition: $prop $duration $delay;
+  transition-timing-function: ease;
+}
