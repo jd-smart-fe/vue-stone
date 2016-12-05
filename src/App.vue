@@ -1,15 +1,15 @@
 <template>
   <div id="app">
 
-    <div class="o-panel">
-      <div class="title">Switch: </div>
-      <v-switch :disabled="false" :state="state" ref="switch"></v-switch>
-    </div>
+    <v-panel>
+      <div slot="title" class="c-panel-title">Switch: </div>
+      <v-switch slot="main" :disabled="false" :state="state" ref="switch"></v-switch>
+    </v-panel>
 
-    <div class="o-panel o-panel-lg">
-      <div class="title">Power: </div>
-      <v-power v-model="pstate" ref="power"></v-power>
-    </div>
+    <v-panel cls="c-panel-lg">
+      <div slot="title" class="c-panel-title">Power: </div>
+      <v-power slot="main" v-model="pstate" ref="power"></v-power>
+    </v-panel>
 
     <v-panel>
       <div slot="title" class="c-panel-title">Switch2: </div>
@@ -71,6 +71,8 @@
     margin-top: 60px;
   }
 
+  /* 废弃代码, 后期可以删除*/
+  /*
   .o-panel {
     height: calc($grid-size * 2);
 
@@ -100,6 +102,7 @@
       height: calc($grid-size * 3);
     }
   }
+  */
 
 
 </style>

@@ -1,6 +1,6 @@
 <template>
 
-  <div class="c-panel">
+  <div :class="['c-panel', cls]">
     <slot name="title"></slot>
     <slot name="main"></slot>
     
@@ -12,6 +12,10 @@
   export default {
 
     props: {
+      cls: {
+        type: String,
+        default: '',
+      },
       title: {
         type: String,
         default: 'Panel Title',
