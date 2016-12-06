@@ -10,7 +10,20 @@
   border-style: solid;
 }
 
+@define-mixin border-top-radius $radius: 3px {
+  border-top-right-radius: $radius;
+  border-top-left-radius: $radius;
+}
+@define-mixin border-bottom-radius $radius: 3px {
+  border-bottom-right-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+
 @define-mixin transition $prop: all, $duration: 0.3s, $delay: 0s {
   transition: $prop $duration $delay;
   transition-timing-function: ease;
 }
+
+
+

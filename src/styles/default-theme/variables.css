@@ -5,6 +5,12 @@ $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 $main-color: #59B8FC;
 
+/********************  length  ********************/
+$l-radius: 3px;
+
+
+
+
 /********************  grid  ********************/
 @for $i from 1 to 12 {
   .col-$i {
