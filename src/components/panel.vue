@@ -1,9 +1,9 @@
 <template>
 
   <div :class="['c-panel', cls]">
-    <slot name="title"></slot>
-    <slot name="main"></slot>
-    
+    <slot name="header"></slot>
+    <slot name="body"></slot>
+    <slot name="footer"></slot>
   </div>
 </template>
 
@@ -30,33 +30,41 @@
   @import '../styles/mixins.css';
 
   .c-panel {
-    height: calc($grid-size * 2);
     width: $panel-width;
     margin: auto;
     box-sizing: border-box;
 
-    padding-left: 0.12rem;
-    padding-right: 0.12rem;
-
     font-size: $font-size-lg;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
 
     background: #fff;
 
     @mixin border;
+    @mixin box-shadow;
     border-color: #eee;
-    border-radius: 3px;
+    border-radius: $l-radius;
 
     &:not(:first-child) {
       margin-top: 10px;
     }
-
-    &.c-panel-lg {
-      height: calc($grid-size * 3);
-    }
   }
+
+  .c-panel-header {
+    padding-left: 0.12rem;
+    padding-right: 0.12rem;
+
+    height: calc(2 * $grid-size);
+    border-bottom: 1px solid #eee;
+
+    font-size: $font-size-lg;
+    color: $gray-dark;
+    box-sizing: border-box;
+  }
+  .c-panel-body {
+    padding-left: 0.12rem;
+    padding-right: 0.12rem;
+  }
+  .c-panel-footer {
+
+  }
+
 </style>

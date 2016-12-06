@@ -26,3 +26,10 @@
 .u-vis-hidden {
   visibility: hidden;
 }
+
+.u-va-middle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
