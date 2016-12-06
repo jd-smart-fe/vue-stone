@@ -1,13 +1,8 @@
 import Vue from 'vue';
 import App from './App';
+import Store from './store';
 
-import Switch from './components/switch';
-import Power from './components/power';
-import Panel from './components/panel';
-
-Vue.component(Switch.name, Switch);
-Vue.component(Power.name, Power);
-Vue.component(Panel.name, Panel);
+Store.install(Vue);
 
 /* eslint-disable no-new */
 new Vue({
