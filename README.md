@@ -1,27 +1,27 @@
 # stone
 
-> A Vue.js project
+Store, 基于 vue 的组件库
 
-## Build Setup
+## Build
 
 ``` bash
-# install dependencies
+# 安装依赖
 npm install
 
-# serve with hot reload at localhost:8080
+# 本地开发调试
 npm run dev
 
-# build for production with minification
+# 基于生产环境的构建（静态资源压缩）
 npm run build
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
+# 启动单元测试
 npm test
 ```
 
+备注：暂时未用到 e2e 测试 （npm run e2e）。
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Resource
+
+* [Thoughtful CSS Architecture](https://seesparkbox.com/foundry/thoughtful_css_architecture)
