@@ -3,17 +3,17 @@
 
     <v-panel>
       <div slot="title" class="c-panel-title">Switch: </div>
-      <v-switch slot="main" :disabled="false" :state="state" ref="switch"></v-switch>
+      <v-switch slot="main" v-model="switch_state" ref="switch"></v-switch>
     </v-panel>
 
     <v-panel cls="c-panel-lg">
       <div slot="title" class="c-panel-title">Power: </div>
-      <v-power slot="main" v-model="pstate" ref="power"></v-power>
+      <v-power slot="main" v-model="power_state" ref="power"></v-power>
     </v-panel>
 
     <v-panel>
-      <div slot="title" class="c-panel-title">Switch2: </div>
-      <v-switch slot="main" :state="state2" ></v-switch>
+      <div slot="title" class="c-panel-title">Switch With Disabled: </div>
+      <v-switch slot="main" :disabled="true" v-model="switch_dis_state" ></v-switch>
     </v-panel>
   </div>
 </template>
@@ -24,21 +24,19 @@
 
     data() {
       return {
-        disabled: true,
-        state: 'on',
-        state2: 'off',
-
-        pstate: true,
+        switch_state: true,
+        switch_dis_state: false,
+        power_state: true,
       };
     },
 
     mounted() {
       this.$refs.switch.$on('change', (state) => {
-        this.state = state;
+        console.log(`设备当前switch状态: ${state}`);
       });
 
       this.$refs.power.$on('change', (state) => {
-        console.log(`设备当前状态: ${state}`);
+        console.log(`设备当前power状态: ${state}`);
       });
 
     },

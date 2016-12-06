@@ -1,7 +1,7 @@
 <template>
 
 	<div
-    :class="['c-switch', disabled ? 'is-disabled' : '', state === 'on' ? 'is-on' : 'is-off']"
+    :class="['c-switch', disabled ? 'is-disabled' : '', value ? 'is-on' : 'is-off']"
     @click="handle">
 		<span class="c-switch-button"></span>
 	</div>
@@ -12,11 +12,12 @@
   export default {
     name: 'v-switch',
     props: {
-      state: {
-        required: false,
-        type: String,
-        default: 'off', // on, off
+
+      value: {
+        type: Boolean,
+        default: false,
       },
+
       disabled: {
         required: false,
         type: Boolean,
@@ -24,15 +25,8 @@
       },
     },
 
-    computed: {
-      value() {
-        return this.state;
-      },
-    },
-
     data() {
-      return {
-      };
+      return {};
     },
 
     methods: {
@@ -41,7 +35,9 @@
         if (this.disabled) {
           return;
         }
-        this.$emit('change', this.value === 'on' ? 'off' : 'on');
+        const val = !this.value;
+        this.$emit('input', val);
+        this.$emit('change', val);
       },
     },
   };
