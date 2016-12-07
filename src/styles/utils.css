@@ -27,9 +27,28 @@
   visibility: hidden;
 }
 
-.u-va-middle {
+.u-cross-center {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
+
+/********************  padding  ********************/
+.u-without-main-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.u-without-cross-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.u-without-padding {
+  padding: 0 !important;
+}
+
+
+
+

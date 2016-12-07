@@ -3,9 +3,12 @@
 
 $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
+
 $main-color: #59B8FC;
 $press-color: #efefef; /* 按钮按下底色 */
 
+
+$c-primary: #59B8FC;
 /********************  length  ********************/
 $l-radius: 3px;
 
@@ -48,7 +51,7 @@ $swtich-height: 0.26rem;
 $swtich-button-size: 0.1rem;
 $switch-button-padding-x: 0.08rem;
 
-$t-switch-oncolor: $main-color;
+$t-switch-oncolor: $c-primary;
 $t-switch-offcolor: $gray-lighter;
 
 /****  power   ****/
@@ -56,7 +59,7 @@ $power-width: 0.45rem;
 $power-height: 0.45rem;
 
 $t-power-oncolor: #fff;
-$t-power-offcolor: $main-color;
+$t-power-offcolor: $c-primary;
 
 /**** incDec ****/
 $incDec-width: 1.03rem;

@@ -2,20 +2,21 @@
   <div id="app">
 
     <v-panel >
-      <div slot="body" class="c-panel-body row-2 u-va-middle">
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title">Switch: </div>
         <v-switch slot="main" v-model="switch_state" ref="switch"></v-switch>
       </div>
     </v-panel>
 
     <v-panel>
-      <div slot="body" class="c-panel-body row-3 u-va-middle">
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">Power: </div>
         <v-power slot="main" v-model="power_state" ref="power"></v-power>
       </div>
     </v-panel>
 
     <v-panel>
+
       <div slot="body" class="c-panel-body row-3 u-va-middle">
         <div slot="title" class="c-panel-title ">incDec: </div>
         <v-incDec slot="main" ref="incDec"></v-incDec>
@@ -23,11 +24,11 @@
     </v-panel>
 
     <v-panel>
-      <div slot="header" class="c-panel-header u-va-middle">
+      <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">模式</div>
       </div>
-      <div slot="body" class="c-panel-body row-3 u-va-middle">
-        TODO
+      <div slot="body" class="c-panel-body row-3 u-without-padding">
+
       </div>
     </v-panel>
 
@@ -71,7 +72,7 @@
 
   @import './styles/normalize.css';
   @import './styles/default-theme/variables.css';
-
+  @import './styles/mixins.css';
   @import './styles/utils.css';
 
   body {

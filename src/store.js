@@ -10,6 +10,7 @@ const install = (Vue, options = {}) => {
   Vue.component(Switch.name, Switch);
   Vue.component(Power.name, Power);
   Vue.component(Panel.name, Panel);
+  install.installed = true;
 };
 install.installed = false;
 
