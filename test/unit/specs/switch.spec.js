@@ -20,13 +20,12 @@ describe('Switch.vue', () => {
   it('should render component with `on` state', () => {
     const vm = Vue.create({}, {
       props: {
-        state: 'on',
+        value: true,
       },
       ref: 'switch',
     });
 
-    const list = helper.convertNodelist(vm.$el.classList);
-    expect(list).to.include('is-on');
+    expect(vm.$el.classList.contains('is-on')).to.be.true;
   });
 
   it('should render component with `disabled` state', () => {

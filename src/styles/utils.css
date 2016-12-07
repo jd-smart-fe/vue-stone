@@ -1,3 +1,5 @@
+
+/********************  Clearfix, Float  ********************/
 .clearfix:before,
 .clearfix:after {
   content: " ";
@@ -15,6 +17,7 @@
   float: right;
 }
 
+/********************  Show, Hide  ********************/
 .u-ofh {
   overflow: hidden;
 }
@@ -27,6 +30,7 @@
   visibility: hidden;
 }
 
+/********************  Center  ********************/
 .u-cross-center {
   display: flex;
   flex-direction: row;
@@ -34,7 +38,7 @@
   justify-content: space-between;
 }
 
-/********************  padding  ********************/
+/********************  Padding  ********************/
 .u-without-main-padding {
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -47,6 +51,11 @@
 
 .u-without-padding {
   padding: 0 !important;
+}
+
+/********************  Others  ********************/
+.space {
+  height: 10px;
 }
 
 

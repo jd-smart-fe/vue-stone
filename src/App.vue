@@ -27,7 +27,11 @@
         <div class="c-panel-title">模式</div>
       </div>
       <div slot="body" class="c-panel-body u-without-padding">
-        <v-grid :number_per_line="4" :items="grid_data"></v-grid>
+        <v-grid :number_per_line="2" :items="grid_data_2"></v-grid>
+        <div class="space"></div>
+        <v-grid :number_per_line="3" :items="grid_data_3"></v-grid>
+        <div class="space"></div>
+        <v-grid :number_per_line="4" :items="grid_data_4"></v-grid>
       </div>
     </v-panel>
 
@@ -41,16 +45,48 @@
 
     data() {
       return {
-        grid_data: [{
+        grid_data_2: [{
+          text: '修改Wifi密码',
+          icon: 'mode-holiday',
+          id: 1,
+        }, {
+          text: '黑名单管理',
+          icon: 'mode-freeze',
+          id: 2,
+        }],
+
+        grid_data_3: [{
           text: '标准加热',
+          icon: 'mode-holiday',
           id: 1,
         }, {
           text: '半胆加热',
+          icon: 'mode-freeze',
           id: 2,
         }, {
           text: '正胆加热',
+          icon: 'mode-cool',
           id: 3,
         }],
+
+        grid_data_4: [{
+          text: '智能模式',
+          icon: 'mode-smart',
+          id: 1,
+        }, {
+          text: '速冷模式',
+          icon: 'mode-cool',
+          id: 2,
+        }, {
+          text: '速冻模式',
+          icon: 'mode-freeze',
+          id: 3,
+        }, {
+          text: '假日模式',
+          icon: 'mode-holiday',
+          id: 4,
+        }],
+
 
         switch_state: true,
         switch_dis_state: false,
@@ -98,6 +134,7 @@
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     margin-top: 60px;
+    margin-bottom: 60px;
   }
 
   /* 废弃代码, 后期可以删除*/
