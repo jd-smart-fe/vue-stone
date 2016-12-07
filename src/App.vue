@@ -85,6 +85,8 @@
   @import './styles/mixins.css';
   @import './styles/utils.css';
 
+  @import './styles/iconfont.css';
+
   body {
     font-size: $font-size-base;
     background-color: #efefef;
