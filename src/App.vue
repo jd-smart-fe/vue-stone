@@ -27,7 +27,7 @@
         <div class="c-panel-title">模式</div>
       </div>
       <div slot="body" class="c-panel-body row-3 u-without-padding">
-
+        <v-grid></v-grid>
       </div>
     </v-panel>
 
