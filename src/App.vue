@@ -16,8 +16,7 @@
     </v-panel>
 
     <v-panel>
-
-      <div slot="body" class="c-panel-body row-3 u-va-middle">
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">incDec: </div>
         <v-incDec slot="main" ref="incDec"></v-incDec>
       </div>
