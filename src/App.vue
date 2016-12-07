@@ -16,6 +16,13 @@
     </v-panel>
 
     <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-va-middle">
+        <div slot="title" class="c-panel-title ">incDec: </div>
+        <v-incDec slot="main" ref="incDec"></v-incDec>
+      </div>
+    </v-panel>
+
+    <v-panel>
       <div slot="header" class="c-panel-header u-va-middle">
         <div class="c-panel-title">模式</div>
       </div>
@@ -49,6 +56,13 @@
         console.log(`设备当前power状态: ${state}`);
       });
 
+      this.$refs.incDec.$on('inc', () => {
+        console.log('触发inc事件');
+      });
+
+      this.$refs.incDec.$on('dec', () => {
+        console.log('触发dec事件');
+      });
     },
   };
 </script>
