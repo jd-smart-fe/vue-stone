@@ -5,6 +5,9 @@
 ******* 禁用按钮后不会触发 change 事件。
 ******* longTap === true 时，开启长按功能，按下按钮 1000ms 后，每 150ms 触发一次 change 事件。
 *******
+******* 对于 switch 型按钮，
+******* 若想改变其 isOn 可直接通过 ref 拿到该组件实例，直接更改实例下的 isOn 属性即可。
+*******
  -->
 
 <template>
@@ -15,7 +18,7 @@
             isActive ? 'is-active' : '',
             isOn ? 'is-on' : '',
             /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
-            size === 'switch' ? 'is-transition' : ''
+            type === 'switch' ? 'is-transition' : ''
           ]"
   :text="text"
   :type="type"
@@ -38,8 +41,8 @@ export default {
   data() {
     return {
       isActive: false,
-      isOn: false,
       longTapFlag: false,
+      isOn: false,
     };
   },
 
@@ -105,6 +108,10 @@ export default {
         that.$emit('change');
       }, 150);
     },
+
+    isOn() {
+      this.$emit('change', this.isOn);
+    },
   },
 
   methods: {
@@ -126,7 +133,6 @@ export default {
         return;
       }
       this.isActive = false;
-      this.$emit('change', !this.isOn);
 
       if (this.longTap) {
         window.clearInterval(longTapFlagInterval);
@@ -135,10 +141,12 @@ export default {
       }
 
       if (this.type === 'click') {
+        this.$emit('change');
         return;
       }
 
       this.isOn = !this.isOn;
+      // isOn 相关事件通过 watcher 分发
     },
   },
 };
