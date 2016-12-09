@@ -135,11 +135,11 @@
       });
 
       this.$refs.incDec.$on('increase', () => {
-        console.log('触发inc事件');
+        console.log('触发increase事件');
       });
 
       this.$refs.incDec.$on('decrease', () => {
-        console.log('触发dec事件');
+        console.log('触发decrease事件');
       });
     },
   };
