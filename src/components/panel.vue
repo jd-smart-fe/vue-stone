@@ -24,12 +24,14 @@
   };
 </script>
 
-<style scoped>
+<style>
 
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  .c-panel {
+  $prefix: .c-panel;
+
+  $prefix {
     width: $panel-width;
     margin: auto;
     box-sizing: border-box;
@@ -48,7 +50,7 @@
     }
   }
 
-  .c-panel-header {
+  $(prefix)-header {
     padding-left: 0.12rem;
     padding-right: 0.12rem;
 
@@ -59,11 +61,13 @@
     color: $gray-dark;
     box-sizing: border-box;
   }
-  .c-panel-body {
+
+  $(prefix)-body {
     padding-left: 0.12rem;
     padding-right: 0.12rem;
   }
-  .c-panel-footer {
+
+  $(prefix)-footer {
 
   }
 
