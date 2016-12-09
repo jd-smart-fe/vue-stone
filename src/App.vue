@@ -23,6 +23,27 @@
     </v-panel>
 
     <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <div slot="title" class="c-panel-title ">btn-disabled: </div>
+        <v-button slot="main" @change="btnClickHandle" ref="button" size="lg" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <div slot="title" class="c-panel-title ">btn-click: </div>
+        <v-button slot="main" @change="btnClickHandle" size="lg" text="单极性" type="click"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <div slot="title" class="c-panel-title ">btn-switch: </div>
+        <v-button slot="main" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">模式</div>
       </div>
@@ -94,6 +115,16 @@
       };
     },
 
+    methods: {
+      btnSwitchHandle(state) {
+        console.log(`开关按钮状态：${state}`);
+      },
+
+      btnClickHandle() {
+        console.log('触发按钮点击事件');
+      },
+    },
+
     mounted() {
       this.$refs.switch.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
@@ -103,11 +134,11 @@
         console.log(`设备当前power状态: ${state}`);
       });
 
-      this.$refs.incDec.$on('inc', () => {
+      this.$refs.incDec.$on('increase', () => {
         console.log('触发inc事件');
       });
 
-      this.$refs.incDec.$on('dec', () => {
+      this.$refs.incDec.$on('decrease', () => {
         console.log('触发dec事件');
       });
     },

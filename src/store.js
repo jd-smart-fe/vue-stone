@@ -3,6 +3,7 @@ import Power from './components/power';
 import Panel from './components/panel';
 import IncDec from './components/incDec';
 import Grid from './components/grid';
+import Button from './components/button';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -13,6 +14,7 @@ const install = (Vue, options = {}) => {
   Vue.component(Panel.name, Panel);
   Vue.component(IncDec.name, IncDec);
   Vue.component(Grid.name, Grid);
+  Vue.component(Button.name, Button);
   install.installed = true;
 };
 install.installed = false;
