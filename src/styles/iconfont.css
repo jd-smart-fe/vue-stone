@@ -23,6 +23,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-minus:before {
+  content: "\e906";
+}
+.icon-plus:before {
+  content: "\e907";
+}
+.icon-pull-up:before {
+  content: "\e904";
+}
+.icon-pull-down:before {
+  content: "\e905";
+}
 .icon-mode-smart:before {
   content: "\e900";
 }

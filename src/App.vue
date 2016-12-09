@@ -66,16 +66,39 @@
       </div>
     </v-panel>
 
+    
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
-        <div class="c-panel-title">模式</div>
+        <div class="c-panel-title">Panel Header</div>
+        <div class="c-panel-extra">
+          <span class='icon icon-mode-smart'></span>
+        </div>
+      </div>
+      <div slot="body" class="c-panel-body">
+        Panel Body Content
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">模式设置</div>
       </div>
       <div slot="body" class="c-panel-body u-without-padding">
-        <v-grid :number_per_line="2" :items="grid_data_2"></v-grid>
+
+        <!--  <v-modes v-model="grid_active_id" ref="modes"
+          :numberal="2" more="更多设置" :items="grid_data_2"
+        ></v-modes>
+        <div class="space"></div> -->
+
+        <v-modes v-model="grid_active_id" ref="modes"
+          :numberal="3" more="更多设置" :items="grid_data_3"
+        ></v-modes>
         <div class="space"></div>
-        <v-grid :number_per_line="3" :items="grid_data_3"></v-grid>
-        <div class="space"></div>
-        <v-grid :number_per_line="4" :items="grid_data_4"></v-grid>
+
+        <!--
+        <v-modes v-model="grid_active_id" ref="modes"
+          :numberal="4"  :items="grid_data_4"></v-modes>
+        -->
       </div>
     </v-panel>
 
@@ -89,6 +112,7 @@
 
     data() {
       return {
+        grid_active_id: 2,
         grid_data_2: [{
           text: '修改Wifi密码',
           icon: 'mode-holiday',
@@ -97,6 +121,14 @@
           text: '黑名单管理',
           icon: 'mode-freeze',
           id: 2,
+        }, {
+          text: '修改Wifi密码',
+          icon: 'mode-holiday',
+          id: 3,
+        }, {
+          text: '黑名单管理',
+          icon: 'mode-freeze',
+          id: 4,
         }],
 
         grid_data_3: [{
@@ -111,6 +143,18 @@
           text: '正胆加热',
           icon: 'mode-cool',
           id: 3,
+        }, {
+          text: '标准加热',
+          icon: 'mode-holiday',
+          id: 4,
+        }, {
+          text: '半胆加热',
+          icon: 'mode-freeze',
+          id: 5,
+        }, {
+          text: '正胆加热',
+          icon: 'mode-cool',
+          id: 6,
         }],
 
         grid_data_4: [{
@@ -129,6 +173,22 @@
           text: '假日模式',
           icon: 'mode-holiday',
           id: 4,
+        }, {
+          text: '智能模式',
+          icon: 'mode-smart',
+          id: 5,
+        }, {
+          text: '速冷模式',
+          icon: 'mode-cool',
+          id: 6,
+        }, {
+          text: '速冻模式',
+          icon: 'mode-freeze',
+          id: 7,
+        }, {
+          text: '假日模式',
+          icon: 'mode-holiday',
+          id: 8,
         }],
 
 
@@ -169,6 +229,10 @@
 
       this.$refs.incDec.$on('decrease', () => {
         console.log('触发decrease事件');
+      });
+
+      this.$refs.modes.$on('change', (state) => {
+        console.log(`设备当前所选模式id: ${state}`);
       });
     },
   };
