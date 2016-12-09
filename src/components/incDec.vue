@@ -1,19 +1,19 @@
 <template>
   <div class="c-incDec">
-    <div
-      :class="['c-inc', incActive ? 'is-active': '']"
-      @touchstart="incStart"
-      @touchend="incEnd"
-      >
-      <i>+</i>
-    </div>
-    <div
-      :class="['c-dec', decActive ? 'is-active': '']"
-      @touchstart="decStart"
-      @touchend="decEnd"
-      >
-      <i>-</i>
-    </div>
+    <v-button
+      class="c-theme-black c-incDec-inc"
+      type="click"
+      icon="mode-holiday"
+      :longTap="true"
+      @change="incHandle"
+      ></v-button>
+    <v-button
+      class="c-theme-black c-incDec-dec"
+      type="click"
+      icon="mode-holiday"
+      :longTap="true"
+      @change="decHandle"
+      ></v-button>
   </div>
 </template>
 
@@ -23,25 +23,15 @@ export default {
 
   data() {
     return {
-      incActive: false,
-      decActive: false,
     };
   },
 
   methods: {
-    incStart() {
-      this.incActive = true;
+    incHandle() {
+      this.$emit('increase');
     },
-    incEnd() {
-      this.incActive = false;
-      this.$emit('inc');
-    },
-    decStart() {
-      this.decActive = true;
-    },
-    decEnd() {
-      this.decActive = false;
-      this.$emit('dec');
+    decHandle() {
+      this.$emit('decrease');
     },
   },
 };
@@ -68,12 +58,18 @@ export default {
     border-color: $gray-lighter;
     border-radius: calc($incDec-height / 2);
 
-    .c-inc {
+    > div{
+      width: 50%;
+      height: 100%;
+      border: none;
+      border-radius: 0;
+    }
+
+    .c-incDec-inc {
       display: flex;
       justify-content: center;
       align-items: center;
 
-      width: 50%;
       border-right: 1px solid $gray-lighter;
 
       i {
@@ -81,12 +77,10 @@ export default {
       }
     }
 
-    .c-dec {
+    .c-incDec-dec {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      width: 50%;
 
       i {
         font-style: normal;
