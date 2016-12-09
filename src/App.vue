@@ -1,6 +1,18 @@
 <template>
   <div id="app">
 
+    <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range</div>
+      <div slot="body" class="c-panel-body u-cross-center">
+        <v-range slot="main" ref="range"
+          v-model="range_value" 
+          :step="5"
+          :showStep="true"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
     <v-panel >
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title">Switch: </div>
@@ -120,6 +132,7 @@
         }],
 
 
+        range_value: 16,
         switch_state: true,
         switch_dis_state: false,
         power_state: true,
@@ -138,6 +151,10 @@
     },
 
     mounted() {
+      this.$refs.range.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value}`);
+      });
+
       this.$refs.switch.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
       });
