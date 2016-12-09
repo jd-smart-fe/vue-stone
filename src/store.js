@@ -1,9 +1,10 @@
 import Switch from './components/switch';
 import Power from './components/power';
 import Panel from './components/panel';
-import IncDec from './components/incDec';
+import ButtonIncDec from './components/buttonIncDec';
 import Grid from './components/grid';
 import Button from './components/button';
+import ButtonGroup from './components/buttonGroup';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -12,9 +13,10 @@ const install = (Vue, options = {}) => {
   Vue.component(Switch.name, Switch);
   Vue.component(Power.name, Power);
   Vue.component(Panel.name, Panel);
-  Vue.component(IncDec.name, IncDec);
-  Vue.component(Grid.name, Grid);
+  Vue.component(ButtonIncDec.name, ButtonIncDec);
   Vue.component(Button.name, Button);
+  Vue.component(ButtonGroup.name, ButtonGroup);
+  Vue.component(Grid.name, Grid);
   install.installed = true;
 };
 install.installed = false;

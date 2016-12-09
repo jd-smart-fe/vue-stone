@@ -18,7 +18,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">incDec: </div>
-        <v-incDec slot="main" ref="incDec"></v-incDec>
+        <v-button-incdec slot="main" ref="incDec"></v-button-incdec>
       </div>
     </v-panel>
 
@@ -32,14 +32,25 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" size="lg" text="单极性" type="click"></v-button>
+        <v-button slot="main" @change="btnClickHandle" size="lg" text="联动按钮" type="click"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-switch: </div>
-        <v-button slot="main" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle"></v-button>
+        <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">按钮组</div>
+      </div>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <v-button-group>
+
+        </v-button-group>
       </div>
     </v-panel>
 
@@ -122,6 +133,7 @@
 
       btnClickHandle() {
         console.log('触发按钮点击事件');
+        this.$refs.btnSwitch.active = !this.$refs.btnSwitch.active;
       },
     },
 

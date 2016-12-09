@@ -6,7 +6,7 @@
 ******* longTap === true 时，开启长按功能，按下按钮 1000ms 后，每 150ms 触发一次 change 事件。
 *******
 ******* 对于 switch 型按钮，
-******* 若想改变其 isOn 可直接通过 ref 拿到该组件实例，直接更改实例下的 isOn 属性即可。
+******* 若想改变其 active 可直接通过 ref 拿到该组件实例，直接更改实例下的 active 属性即可。
 *******
  -->
 
@@ -15,8 +15,8 @@
   :class="[ 'c-button',
             `c-${size}`,
             disabled ? 'is-disabled' : '',
-            isActive ? 'is-active' : '',
-            isOn ? 'is-on' : '',
+            isPress ? 'is-press' : '',
+            active ? 'is-active' : '',
             /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
             type === 'switch' ? 'is-transition' : ''
           ]"
@@ -40,9 +40,9 @@ export default {
 
   data() {
     return {
-      isActive: false,
+      isPress: false,
       longTapFlag: false,
-      isOn: false,
+      active: false,
     };
   },
 
@@ -54,7 +54,11 @@ export default {
       default: 'switch',
       validator(value) {
         const list = ['switch', 'click'];
-        return list.indexOf(value) >= 0;
+        if (list.indexOf(value) < 0) {
+          console.error("[v-button] prop 'type' error: yon pass an invalid value, please pass a value in 'switch' 'click'");
+          return false;
+        }
+        return true;
       },
     },
     // 按钮大小
@@ -64,7 +68,11 @@ export default {
       default: 'base',
       validator(value) {
         const list = ['sm', 'base', 'lg'];
-        return list.indexOf(value) >= 0;
+        if (list.indexOf(value) < 0) {
+          console.error("[v-button] prop 'size' error: yon pass an invalid value, please pass a value in 'sm' 'base' 'lg'");
+          return false;
+        }
+        return true;
       },
     },
     // 按钮文本
@@ -109,8 +117,8 @@ export default {
       }, 150);
     },
 
-    isOn() {
-      this.$emit('change', this.isOn);
+    active() {
+      this.$emit('change', this.active);
     },
   },
 
@@ -119,7 +127,7 @@ export default {
       if (this.disabled) {
         return;
       }
-      this.isActive = true;
+      this.isPress = true;
 
       if (this.longTap) {
         longTapFlagInterval = window.setInterval(() => {
@@ -132,7 +140,7 @@ export default {
       if (this.disabled) {
         return;
       }
-      this.isActive = false;
+      this.isPress = false;
 
       if (this.longTap) {
         window.clearInterval(longTapFlagInterval);
@@ -145,8 +153,8 @@ export default {
         return;
       }
 
-      this.isOn = !this.isOn;
-      // isOn 相关事件通过 watcher 分发
+      this.active = !this.active;
+      // active 相关事件通过 watcher 分发
     },
   },
 };
@@ -185,15 +193,15 @@ export default {
     /*解决触控板点击click型按钮没有颜色反馈，后期可取消注释*/
     /*@mixin transition;*/
 
-    &.is-active{
+    &.is-press{
       background: $btn-press;
 
-      &.is-on{
+      &.is-active{
         background-color: $c-primary-on;
       }
     }
 
-    &.is-on{
+    &.is-active{
       color: $white;
       background-color: $blue;
     }
