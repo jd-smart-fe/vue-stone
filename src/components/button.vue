@@ -160,7 +160,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
