@@ -5,7 +5,6 @@ import Panel from './components/panel';
 import ButtonIncDec from './components/buttonIncDec';
 import Button from './components/button';
 import ButtonGroup from './components/buttonGroup';
-import IncDec from './components/incDec';
 import Modes from './components/modes';
 
 
