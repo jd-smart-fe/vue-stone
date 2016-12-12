@@ -1,3 +1,5 @@
+import './components/_style';
+
 import Range from './components/range';
 import Switch from './components/switch';
 import Power from './components/power';

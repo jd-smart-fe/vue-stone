@@ -11,16 +11,6 @@ $c-primary-on: #2c99e6;
 /********************  length  ********************/
 $l-radius: 3px;
 
-/********************  grid  ********************/
-@for $i from 1 to 12 {
-  .col-$i {
-    width: calc($grid-size * $i);
-  }
-  .row-$i {
-    height: calc($grid-size * $i);
-  }
-}
-
 /********************  font size  ********************/
 $font-size-xs:   10px;
 $font-size-sm:   12px;
