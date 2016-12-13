@@ -251,8 +251,6 @@
         console.log('触发rightBtn事件');
       });
     },
-    methods: {
-    },
   };
 </script>
 
