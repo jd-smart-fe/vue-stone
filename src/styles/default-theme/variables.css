@@ -80,3 +80,6 @@ $incDec-height: 0.35rem;
 
 /****  panel   ****/
 $panel-width: $main-width;
+
+/*modal**/
+$modal-title: #ff6375

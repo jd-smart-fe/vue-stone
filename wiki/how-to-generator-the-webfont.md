@@ -9,3 +9,37 @@
 完成以上三步，此时应该是会得到一个压缩包，包含了*字体文件*，demo，更新后的`selection.json`以及更新后的`style.css`。将*字体文件*，`selection.json`，`style.css`中新增的内容拷贝至本项目对应目录。
 
 如果操作正常，那么此时应当是可以使用新添加进来的图标。
+
+---
+
+## Mask参数及事件
+
+### 参数
+
+shown：true显示，false隐藏
+
+## 事件
+
+input：点击mask触发
+
+## Modal参数及事件
+
+---
+
+### 参数
+
+title：标题
+
+message：内容信息
+
+leftBtnText：左按钮文本
+
+rightBtnText：右按钮文本
+
+buttons：按钮数量（目前只支持1-2个按钮）
+
+### 事件
+
+leftBtn：左按钮点击事件
+
+rightBtn：右按钮点击事件

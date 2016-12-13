@@ -2,7 +2,7 @@
   <div>
     <v-mask :shown="shown" ref="mask">      
     </v-mask>
-    <div :class="[showModal ? 'modal' : 'hiddenModal']">
+    <div :class="[showModal ? 'modal' : 'u-hidden']">
      <h4 class="modal-title">{{title}}</h4>
      <div class="modal-body">
         <div>
@@ -10,9 +10,8 @@
         </div> 
      </div>         
      <div class="modal-buttons" :class="[buttons==2?'modal-button-2':'modal-button-1']">
-       
-       <a href="#" @click.prevent="leftBtn">{{leftBtnText}}</a>
-       <a href="#" v-if="buttons==2" @click.prevent="rightBtn">{{rightBtnText}}</a>
+       <a href="#" @click.prevent="leftBtn">{{buttonData.leftBtnText}}</a>
+       <a href="#" v-if="buttons==2" @click.prevent="rightBtn">{{buttonData.rightBtnText}}</a> 
      </div>
     </div>
   </div>   
@@ -24,8 +23,8 @@
     name: 'v-modal',
     data() {
       return {
-        shown: true,
-        showModal: true,
+        shown: false,
+        showModal: false,
       };
     },
     props: {
@@ -37,13 +36,14 @@
         type: String,
         default: '点击查看详情可查看设备情况',
       },
-      leftBtnText: {
-        type: String,
-        default: '查看详情',
-      },
-      rightBtnText: {
-        type: String,
-        default: '确定',
+      buttonData: {
+        type: Object,
+        default() {
+          return {
+            leftBtnText: '查看详情',
+            rightBtnText: '确定',
+          };
+        },
       },
       buttons: {
         type: Number,
@@ -58,7 +58,7 @@
         this.$data.showModal = false;
       });
       if (this.shown) {
-        document.body.classList.add('b-hidden');
+        document.body.classList.add('u-ofh');
       }
     },
     methods: {
@@ -75,9 +75,9 @@
     watch: {
       shown() {
         if (this.$data.shown) {
-          document.body.classList.add('b-hidden');
+          document.body.classList.add('u-ofh');
         } else {
-          document.body.classList.remove('b-hidden');
+          document.body.classList.remove('u-ofh');
         }
       },
     },
@@ -92,7 +92,7 @@
       max-height: 2rem;      
       position: fixed;
       z-index: 101;
-      background-color: #fff;
+      background-color: $white;
       top: 50%;      
       left: 50%;      
       padding: 0.3rem 0 0.4rem; 
@@ -101,7 +101,7 @@
       border-radius:0.02rem;
       .modal-title{
       text-align: center;
-      color: #FF6477;
+      color: $modal-title;
       margin:0 0 0.3rem;       
       }
       > .modal-body{
@@ -110,7 +110,7 @@
             max-height: 0.48rem;
             overflow: auto;              
             > p{
-            color:#A1A1A1;
+            color:$gray-light ;
             text-align: center;           
             margin:0;             
           }
@@ -123,35 +123,25 @@
         width: 100%;        
         height: 0.40rem;
         line-height: 0.40rem;
-        border-top: 0.01rem #ccc solid;
+        border-top: 0.01rem $gray-lighter solid;
         > a{
           display: block;
-          height: 100%;
-         
+          height: 100%;         
           float: left;
           text-align: center;
           text-decoration: none ;
-          color:#666;      
+          color:$gray;      
         }
         a+a{
-            border-left: 0.01rem #ccc solid;
+            border-left: 0.01rem $gray-lighter solid;
           }
       }
     }
-    /*隐藏模态框*/
-    .hiddenModal{
-        display: none;
-    }
+    /*隐藏模态框*/    
     .modal-button-1 > a{
       width: 100%;
     }
     .modal-button-2 > a{
       width: 49.8%;
     }
-</style>
-<style>
-  /*禁止滑动*/
-  .b-hidden{
-    overflow: hidden;
-  }
 </style>
