@@ -23,6 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-power:before {
+  content: "\e908";
+}
 .icon-minus:before {
   content: "\e906";
 }
