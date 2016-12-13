@@ -2,13 +2,41 @@
   <div id="app">
 
     <v-panel>
-      <div slot="header" class="c-panel-header row-1 u-cross-center">range</div>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : value is a Number</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
-        <v-range slot="main" ref="range"
-          v-model="range_data.value"
-          :unit="range_data.unit"
-          :isStep="range_data.isStep"
-          :dots="range_data.dots"
+        <v-range slot="main" ref="rangeNumber"
+          v-model="range_data_number.value" 
+          :min="range_data_number.min"
+          :max="range_data_number.max"
+          :unit="range_data_number.unit"
+          :isStep="range_data_number.isStep"
+          :dots="range_data_number.dots"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is an Array</div>
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
+        <v-range slot="main" ref="rangeArray"
+          v-model="range_data_array.value" 
+          :unit="range_data_array.unit"
+          :isStep="range_data_array.isStep"
+          :dots="range_data_array.dots"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is a JSON object</div>
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
+        <v-range slot="main" ref="rangeJson"
+          v-model="range_data_json.value" 
+          :unit="range_data_json.unit"
+          :isStep="range_data_json.isStep"
+          :dots="range_data_json.dots"
         >
         </v-range>
       </div>
@@ -224,13 +252,40 @@
           },
         ],
 
-
-        range_data: {
-          value: '2档',
+        range_data_number: {
+          value: 100,
+          min: 0,
+          max: 1000,
           unit: '°C',
-          showInfos: true,
+          dots: ['低温', '高温'],
+        },
+
+        range_data_array: {
+          value: '2档',
           isStep: true,
           dots: ['1档', '2档', '3档', '4档'],
+        },
+
+        range_data_json: {
+          value: {
+            value: 30,
+            text: '高档',
+          },
+          isStep: true,
+          dots: [
+            {
+              value: 10,
+              text: '低档',
+            },
+            {
+              value: 20,
+              text: '中档',
+            },
+            {
+              value: 30,
+              text: '高档',
+            },
+          ],
         },
         switch_state: true,
         switch_dis_state: false,
@@ -253,7 +308,15 @@
     },
 
     mounted() {
-      this.$refs.range.$on('change', (value) => {
+      this.$refs.rangeArray.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value}`);
+      });
+
+      this.$refs.rangeJson.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value.text}`);
+      });
+
+      this.$refs.rangeNumber.$on('change', (value) => {
         console.log(`当前滑杆的值: ${value}`);
       });
 

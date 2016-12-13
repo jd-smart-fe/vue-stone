@@ -1,19 +1,22 @@
 <template>
   <div :class="['c-range']">
     <!-- <input type="text" 
-      :value="processValue"
+      :value="currentValue"
     > -->
     <div class="c-range-slider"
       ref="range-slider"
       @touchstart="startHandle_" 
       @touchmove="moveHandle_" 
       @touchend="endHandle_"
+      @touchcancel="endHandle_"
     >
       <div class="c-range-slider-line">
         <div class="c-range-slider-process" ref="range-process" 
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
-            <em v-show="showCurrentValue && showCurrentValueState" class="text">{{processValue}}{{unit}}</em>
+            <transition name="fadetip">
+              <em v-show="showCurrentValue && showCurrentValueState" class="text">{{currentValue | pickText}}{{unit}}</em>
+            </transition>
           </span>
         </div>
         <div v-if="isStep" class="c-range-slider-step">
@@ -22,8 +25,7 @@
       </div>
     </div>
     <div v-if="dots.length > 0" class="c-range-infos">
-      <!-- <span v-for="(info, index) in dotInfoList" class="info-item" :style="info.styleCss">{{info.name}}</span> -->
-      <span v-for="(info, index) in dotInfoList" class="info-item" :style="{left : info.left + '%'}">{{info.name}}</span>
+      <span v-for="(info, index) in dotInfoList" class="info-item" :style="{left : info.left + '%'}">{{info.text}}</span>
     </div>
   </div>
 </template>
@@ -34,7 +36,11 @@
     name: 'v-range',
 
     props: {
-      // 使用者所使用
+      // 使用者所使用;
+      // 在 有级 状态下 value可以传入一个json对象;
+      // 其属性必须是一一对应的 value 及 text;
+      // 例:{ value: 20, text: '中档'};
+      // 这种情况下 滑动改变值后 返回的值也是一个如上格式的json对象;
       value: {
         type: [Number, String, Object],
         default: 0,
@@ -47,24 +53,26 @@
       // 无级时的最大值
       max: {
         type: Number,
-        default: 100,
-      },
-      // 显示展示给用户的当前的值
-      showCurrentValue: {
-        type: Boolean,
-        default: true,
+        default: 50,
       },
       // 单位
       unit: {
         type: String,
         default: '',
       },
-      // 是否是有级
+      // 滑动时是否显示当前的值 默认显示
+      showCurrentValue: {
+        type: Boolean,
+        default: true,
+      },
+      // 是否是有级 默认是无级
       isStep: {
         type: Boolean,
         default: false,
       },
-      // 级别的信息 以此来判断份几级
+      // 滑杆下面的文字信息列表,有级时 以此来判断份几级
+      // 在 有级 时,如果value传入的是一个json对象,dots也应该是一组json对象组成的数组;
+      // 例: [{value: 10, text: '低档'},{value: 20, text: '中档'}];
       dots: {
         type: Array,
         default() {
@@ -75,10 +83,11 @@
 
     data() {
       return {
+        valueIsJSON: false,
         sliderWidth: 0,
         sliderOffsetLeft: 0,
         processPercent: 0,
-        processValue: null,
+        currentValue: null,
         startX: 0,
         currentX: 0,
         dotsLength: this.dots.length,
@@ -91,36 +100,54 @@
     computed: {
       // dots信息
       dotInfoList() {
-        let aInfos = [];
+        const aInfos = [];
         const dotsLength = this.dots.length;
         if (dotsLength > 0) {
           const oneStepPercent = 100 / (dotsLength - 1);
 
           for (let i = 0; i < dotsLength; i += 1) {
+
+            let aInfo = {};
+
             if (i === (dotsLength - 1)) {
-              const aInfo = {
+              aInfo = Object.assign({}, aInfo, {
                 left: 100,
-                name: this.dots[i],
-              };
-              aInfos.push(aInfo);
+              });
             } else {
               const pos = oneStepPercent * i;
-              const aInfo = {
+              aInfo = Object.assign({}, aInfo, {
                 left: pos,
-                name: this.dots[i],
-              };
-              aInfos.push(aInfo);
+              });
             }
 
+
+            // 判断 dots[i] 是否是json对象
+            if (typeof this.dots[i] === 'object' &&
+              Object.prototype.toString.call(this.dots[i]).toLowerCase() === '[object object]' &&
+              !this.dots[i].length) {
+
+              aInfo = Object.assign({}, aInfo, {
+                text: this.dots[i].text,
+                value: this.dots[i].value,
+              });
+
+            } else {
+              aInfo = Object.assign({}, aInfo, {
+                text: this.dots[i],
+              });
+            }
+
+            aInfos.push(aInfo);
+
           }
-          console.log(aInfos);
+
         }
         return aInfos;
       },
     },
 
     watch: {
-      value(newVal, oldVal) {
+      value(newVal) {
         // 根据值更新位置
         this.updateProcess(newVal);
       },
@@ -128,9 +155,14 @@
 
     created() {
 
+      // TODO
+      this.valueIsJSON = (typeof this.value === 'object' &&
+          Object.prototype.toString.call(this.value).toLowerCase() === '[object object]' &&
+          !this.value.length);
+
       this.updateProcess(this.value);
 
-      this.processValue = this.value;
+      this.currentValue = this.value;
 
     },
 
@@ -139,10 +171,46 @@
       this.sliderOffsetLeft = parseFloat(this.$refs['range-slider'].getBoundingClientRect().left);
     },
 
+    filters: {
+      // 过滤出text;
+      pickText(val) {
+        let currentValue = val;
+        const isJSON = (typeof currentValue === 'object') &&
+          (Object.prototype.toString.call(currentValue).toLowerCase() === '[object object]') &&
+          (!currentValue.length);
+        if (isJSON) {
+          currentValue = val.text;
+        }
+        return currentValue;
+      },
+    },
+
     methods: {
       updateProcess(val) {
-        // 通过对比value 与 this.processValue 是否一致;
-        if (val !== this.processValue) {
+
+        // value 与 this.currentValue 是否一致;
+        let isSame = true;
+        // 判断val是否是json对象
+        if (this.valueIsJSON) {
+
+          // 判断this.currentValue是否是json对象
+          if (Object.prototype.toString.call(this.currentValue).toLowerCase() !== '[object object]') {
+
+            isSame = false;
+
+          } else {
+            // 通过对比value 与 this.currentValue 是否一致;
+            isSame = (val.text === this.currentValue.text) || (val.value === this.currentValue.value);
+
+          }
+        } else {
+          // 通过对比value 与 this.currentValue 是否一致;
+          isSame = val === this.currentValue;
+
+        }
+        // 如果不一致 执行更新方法;
+        if (!isSame) {
+
           // 无级
           if (!this.isStep) {
 
@@ -154,26 +222,29 @@
               return;
             }
 
-            if (val === 0) {
-              this.processPercent = 0;
-            } else if (val === 100) {
-              this.processPercent = 100;
-            }
-
             this.processPercent = (val - this.min) * (100 / (this.max - this.min));
           } else {
 
             let currentStepInd = 0;
-            for (let [index, elem] of (this.dots).entries()) {
-              if (this.value === elem) {
-                currentStepInd = index;
+            if (this.valueIsJSON) {
+              for (const [index, elem] of (this.dots).entries()) {
+                if ((this.value.text !== 'undefined' && this.value.text === elem.text) ||
+                  (this.value.value !== 'undefined' && this.value.value === elem.value)) {
+                  currentStepInd = index;
+                }
+              }
+            } else {
+              for (const [index, elem] of (this.dots).entries()) {
+                if (this.value === elem) {
+                  currentStepInd = index;
+                }
               }
             }
-            console.log(this.dotInfoList);
+
             this.processPercent = this.dotInfoList[currentStepInd].left;
           }
 
-          this.processValue = val;
+          this.currentValue = val;
         }
       },
 
@@ -186,7 +257,7 @@
 
       setProcessPercent(processPercent) {
 
-        let processValue = null;
+        let currentValue = null;
 
         // 无级
         if (!this.isStep) {
@@ -195,13 +266,13 @@
 
           if (processPercent <= 0) {
             processPercent = 0;
-            processValue = this.min;
+            currentValue = this.min;
           } else if (processPercent >= 100) {
             processPercent = 100;
-            processValue = this.max;
+            currentValue = this.max;
           } else {
             // this.processPercent = processPercent;
-            processValue = parseInt(this.min + ((valueDiff * processPercent) / 100), 10);
+            currentValue = parseInt(this.min + ((valueDiff * processPercent) / 100), 10);
           }
 
         } else {
@@ -216,12 +287,12 @@
           }
 
           processPercent = this.dotInfoList[currentStep - 1].left;
-          processValue = this.dots[currentStep - 1];
+          currentValue = this.dots[currentStep - 1];
 
         }
 
         this.processPercent = processPercent;
-        this.processValue = processValue;
+        this.currentValue = currentValue;
 
       },
 
@@ -252,8 +323,8 @@
           const processPercent = ((this.currentX - this.sliderOffsetLeft) / this.sliderWidth) * 100;
           this.setProcessPercent(processPercent);
         }
-        this.$emit('input', this.processValue);
-        this.$emit('change', this.processValue);
+        this.$emit('input', this.currentValue);
+        this.$emit('change', this.currentValue);
 
         // 如果用户设置了显示当前值得话 在滑动结束时隐藏其层;
         if (this.showCurrentValue) {
@@ -261,9 +332,6 @@
             this.showCurrentValueState = false;
           }, 1000);
         }
-      },
-
-      cancelHandle_() {
       },
 
     },
@@ -322,6 +390,14 @@
       font-size: $font-size-base;
       font-style: normal;
       white-space: nowrap;
+    }
+    .fadetip-enter-active,
+    .fadetip-leave-active{
+      transition: opacity 0.2s ease;
+    }
+    .fadetip-enter,
+    .fadetip-leave-active{
+      opacity: 0;
     }
   }
   .c-range-slider-step{
