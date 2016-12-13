@@ -39,5 +39,6 @@ module.exports = {
     "no-unused-expressions": 0,
     "padded-blocks": 0,
     "prefer-const": 1,
+    "linebreak-style":0
   }
 }

@@ -16,7 +16,6 @@
   export default {
     name: 'v-grid',
     props: {
-
       items: {
         type: Array,
         required: true,

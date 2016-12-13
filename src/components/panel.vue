@@ -24,7 +24,7 @@
   };
 </script>
 
-<style>
+<style scoped>
 
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';

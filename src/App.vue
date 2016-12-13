@@ -34,8 +34,11 @@
         <v-grid :number_per_line="4" :items="grid_data_4"></v-grid>
       </div>
     </v-panel>
+    <!--<v-mask :shown="shown" ref="mask">
+    </v-mask>-->
+    <v-modal ref="modal">
 
-
+    </v-modal>
   </div>
 </template>
 
@@ -110,6 +113,14 @@
       this.$refs.incDec.$on('dec', () => {
         console.log('触发dec事件');
       });
+      this.$refs.modal.$on('leftBtn', () => {
+        console.log('触发leftBtn事件');
+      });
+      this.$refs.modal.$on('rightBtn', () => {
+        console.log('触发rightBtn事件');
+      });
+    },
+    methods: {
     },
   };
 </script>
