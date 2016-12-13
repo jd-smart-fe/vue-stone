@@ -74,9 +74,9 @@ $btn-height-lg: 0.42rem;
 $btn-disabled: #efefef;
 $btn-press: #efefef; /* 按钮按下底色 */
 
-/**** incDec ****/
-$incDec-width: 1.03rem;
-$incDec-height: 0.35rem;
+/**** counter ****/
+$counter-width: 1.03rem;
+$counter-height: 0.35rem;
 
 /****  panel   ****/
 $panel-width: $main-width;

@@ -5,7 +5,7 @@
       <div slot="header" class="c-panel-header row-1 u-cross-center">range</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="range"
-          v-model="range_data.value" 
+          v-model="range_data.value"
           :unit="range_data.unit"
           :isStep="range_data.isStep"
           :dots="range_data.dots"
@@ -13,7 +13,7 @@
         </v-range>
       </div>
     </v-panel>
-
+    
     <v-panel >
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title">Switch: </div>
@@ -30,8 +30,12 @@
 
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <div slot="title" class="c-panel-title ">incDec: </div>
-        <v-button-incdec slot="main" ref="incDec"></v-button-incdec>
+        <div slot="title" class="c-panel-title ">counter:
+          <div class="">
+            {{ countNumber }}
+          </div>
+        </div>
+        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="2" v-model=" countNumber "></v-button-counter>
       </div>
     </v-panel>
 
@@ -45,29 +49,41 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" size="lg" text="联动按钮" type="click"></v-button>
+        <v-button slot="main" @change="btnClickHandle" size="lg" text="联动按钮"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-switch: </div>
-        <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle"></v-button>
+        <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
-        <div class="c-panel-title">按钮组</div>
+        <div class="c-panel-title">互斥按钮组</div>
       </div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-button-group>
-
+        <v-button-group @change="exclusiveChangeHandle">
+          <v-button type="toggle" text="左风向"></v-button>
+          <v-button type="toggle" text="右风向"></v-button>
+          <v-button type="toggle" text="上风向"></v-button>
         </v-button-group>
       </div>
     </v-panel>
 
-    
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">互斥按钮组</div>
+      </div>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <v-button-group-new :items="newG">
+        </v-button-group-new>
+      </div>
+    </v-panel>
+
+
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">Panel Header</div>
@@ -116,6 +132,7 @@
 
     data() {
       return {
+        countNumber: 10,
         grid_active_id: 2,
         grid_data_2: [{
           text: '修改Wifi密码',
@@ -195,6 +212,18 @@
           id: 8,
         }],
 
+        newG: [
+          {
+            text: '第一个',
+          },
+          {
+            text: '第二个',
+          },
+          {
+            text: '第三个',
+          },
+        ],
+
 
         range_data: {
           value: '2档',
@@ -212,11 +241,17 @@
     methods: {
       btnSwitchHandle(state) {
         console.log(`开关按钮状态：${state}`);
+        // console.log(this.$refs.btnSwitch.status);
       },
 
       btnClickHandle() {
         console.log('触发按钮点击事件');
-        this.$refs.btnSwitch.active = !this.$refs.btnSwitch.active;
+        this.$refs.btnSwitch.hold = !this.$refs.btnSwitch.hold;
+        console.log(this.$refs.btnSwitch);
+      },
+
+      exclusiveChangeHandle(index) {
+        console.log(`第${index + 1}个按钮被激活`);
       },
     },
 
@@ -233,12 +268,14 @@
         console.log(`设备当前power状态: ${state}`);
       });
 
-      this.$refs.incDec.$on('increase', () => {
+      this.$refs.counter.$on('increase', () => {
         console.log('触发increase事件');
+        console.log('触发change事件');
       });
 
-      this.$refs.incDec.$on('decrease', () => {
+      this.$refs.counter.$on('decrease', () => {
         console.log('触发decrease事件');
+        console.log('触发change事件');
       });
 
       this.$refs.modes.$on('change', (state) => {

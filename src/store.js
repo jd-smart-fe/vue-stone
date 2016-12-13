@@ -6,9 +6,10 @@ import Power from './components/power';
 import Panel from './components/panel';
 import Grid from './components/grid';
 import Modal from './components/modal';
-import ButtonIncDec from './components/buttonIncDec';
 import Button from './components/button';
-import ButtonGroup from './components/buttonGroup';
+import Counter from './components/counter';
+import ButtonGroup from './components/button-group';
+import ButtonGroupNew from './components/button-group-new';
 import Modes from './components/modes';
 
 const install = (Vue, options = {}) => {
@@ -22,10 +23,12 @@ const install = (Vue, options = {}) => {
   Vue.component(Grid.name, Grid);
   Vue.component(Modal.name, Modal);
 
-  Vue.component(ButtonIncDec.name, ButtonIncDec);
   Vue.component(Button.name, Button);
+  Vue.component(Counter.name, Counter);
   Vue.component(ButtonGroup.name, ButtonGroup);
+  Vue.component(ButtonGroupNew.name, ButtonGroupNew);
   Vue.component(Modes.name, Modes);
+
   install.installed = true;
 };
 install.installed = false;

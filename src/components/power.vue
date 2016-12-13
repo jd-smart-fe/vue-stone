@@ -5,7 +5,7 @@
     @click="handle">
     <input v-model="_value" :disabled="disabled"
       type="checkbox" class="u-hidden c-power-checkbox" />
-    <span class="c-power-icon"></span>
+    <span class="c-power-icon icon-power"></span>
   </div>
 </template>
 
@@ -60,10 +60,15 @@
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  .c-power {
+  $prefix: .c-power;
+
+  $prefix {
 
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: $power-width;
     height: $power-height;
     box-sizing: border-box;
@@ -76,20 +81,21 @@
 
     background-color: $t-power-offcolor;
 
-    &.is-disable {
-
+    $(prefix)-icon {
+      color: #fff;
     }
 
+    &.is-disable {}
+
     &.is-on {
-
       background-color: $t-power-oncolor;
-      .c-power-icon {
-
+      $(prefix)-icon {
+        color: $t-power-offcolor;
       }
     }
 
-    &.is-off {
-
-    }
+    &.is-off {}
   }
+
+
 </style>
