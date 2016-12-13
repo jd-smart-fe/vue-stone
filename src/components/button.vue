@@ -43,13 +43,8 @@ export default {
     return {
       isPress: false,
       longTapFlag: false,
+      status: this.initStatus,
     };
-  },
-
-  computed: {
-    status() {
-      return this.initStatus;
-    },
   },
 
   props: {

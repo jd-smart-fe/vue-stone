@@ -142,12 +142,15 @@ export default {
 
     border-color: $gray-lighter;
     border-radius: calc($counter-height / 2);
+    
+    color: #999;
 
     > .c-btn{
       width: 50%;
       height: 100%;
       border: none;
       border-radius: 0;
+      color: $gray;
     }
 
     .c-counter-inc {
@@ -172,9 +175,9 @@ export default {
       }
     }
 
-    .is-active {
+    /*.is-active {
       background-color: $press-color;
-    }
+    }*/
   }
 
 </style>

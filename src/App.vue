@@ -49,13 +49,13 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" size="lg" text="联动按钮"></v-button>
+        <v-button slot="main" @change="btnClickHandle" size="lg" icon="mode-holiday"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <div slot="title" class="c-panel-title ">btn-switch: </div>
+        <div slot="title" class="c-panel-title ">btn-toggle: </div>
         <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
       </div>
     </v-panel>
@@ -241,13 +241,10 @@
     methods: {
       btnSwitchHandle(state) {
         console.log(`开关按钮状态：${state}`);
-        // console.log(this.$refs.btnSwitch.status);
       },
 
       btnClickHandle() {
         console.log('触发按钮点击事件');
-        this.$refs.btnSwitch.hold = !this.$refs.btnSwitch.hold;
-        console.log(this.$refs.btnSwitch);
       },
 
       exclusiveChangeHandle(index) {
