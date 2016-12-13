@@ -5,33 +5,18 @@ $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
 $main-color: #59B8FC;
-$press-color: #efefef; /* 按钮按下底色 */
-
 
 $c-primary: #59B8FC;
+$c-primary-on: #2c99e6;
 /********************  length  ********************/
 $l-radius: 3px;
 
-
-
-
-/********************  grid  ********************/
-@for $i from 1 to 12 {
-  .col-$i {
-    width: calc($grid-size * $i);
-  }
-  .row-$i {
-    height: calc($grid-size * $i);
-  }
-}
-
 /********************  font size  ********************/
+$font-size-xs:   10px;
+$font-size-sm:   12px;
 $font-size-base: 14px;
 $font-size-lg:   16px;
 $font-size-xl:   18px;
-$font-size-sm:   12px;
-$font-size-xs:   10px;
-
 
 
 /********************  color  ********************/
@@ -41,9 +26,22 @@ $gray-light: #999;
 $gray-lighter: #ccc;
 $gray-lightest: #eee;
 $white: #fff;
+$blue: #59B8FC;
+$orange: #f76b46;
 
 
 /********************  component theme  ********************/
+/****  range  ****/
+$range-padding-y: 0.16rem;
+$range-slide-height: 0.02rem;
+$range-slide-block-size: 0.24rem;
+$range-padding-x: calc($range-slide-block-size/2);
+$range-slide-block-border: 0.02rem;
+$range-slide-stepdot-size: 0.04rem;
+
+$t-range-defcolor: $gray-lighter;
+$t-range-lightcolor: $c-primary;
+
 /****  switch   ****/
 
 $switch-width: 0.53rem;
@@ -60,6 +58,21 @@ $power-height: 0.45rem;
 
 $t-power-oncolor: #fff;
 $t-power-offcolor: $c-primary;
+
+/****  button  ****/
+$btn-width-sm: 0.75rem;
+$btn-height-sm: 0.28rem;
+
+$btn-width-base: 0.86rem;
+$btn-height-base: 0.28rem;
+
+$btn-width-lg: 1.29rem;
+$btn-height-lg: 0.42rem;
+
+
+/**** button status ****/
+$btn-disabled: #efefef;
+$btn-press: #efefef; /* 按钮按下底色 */
 
 /**** incDec ****/
 $incDec-width: 1.03rem;

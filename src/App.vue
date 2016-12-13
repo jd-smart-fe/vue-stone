@@ -1,6 +1,19 @@
 <template>
   <div id="app">
 
+    <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range</div>
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
+        <v-range slot="main" ref="range"
+          v-model="range_data.value" 
+          :unit="range_data.unit"
+          :isStep="range_data.isStep"
+          :dots="range_data.dots"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
     <v-panel >
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title">Switch: </div>
@@ -18,20 +31,75 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">incDec: </div>
-        <v-incDec slot="main" ref="incDec"></v-incDec>
+        <v-button-incdec slot="main" ref="incDec"></v-button-incdec>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <div slot="title" class="c-panel-title ">btn-disabled: </div>
+        <v-button slot="main" @change="btnClickHandle" ref="button" size="lg" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <div slot="title" class="c-panel-title ">btn-click: </div>
+        <v-button slot="main" @change="btnClickHandle" size="lg" text="联动按钮" type="click"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <div slot="title" class="c-panel-title ">btn-switch: </div>
+        <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
-        <div class="c-panel-title">模式</div>
+        <div class="c-panel-title">按钮组</div>
+      </div>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <v-button-group>
+
+        </v-button-group>
+      </div>
+    </v-panel>
+
+    
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">Panel Header</div>
+        <div class="c-panel-extra">
+          <span class='icon icon-mode-smart'></span>
+        </div>
+      </div>
+      <div slot="body" class="c-panel-body">
+        Panel Body Content
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">模式设置</div>
       </div>
       <div slot="body" class="c-panel-body u-without-padding">
-        <v-grid :number_per_line="2" :items="grid_data_2"></v-grid>
+
+        <!--  <v-modes v-model="grid_active_id" ref="modes"
+          :numberal="2" more="更多设置" :items="grid_data_2"
+        ></v-modes>
+        <div class="space"></div> -->
+
+        <v-modes v-model="grid_active_id" ref="modes"
+          :numberal="3" more="更多设置" :items="grid_data_3"
+        ></v-modes>
         <div class="space"></div>
-        <v-grid :number_per_line="3" :items="grid_data_3"></v-grid>
-        <div class="space"></div>
-        <v-grid :number_per_line="4" :items="grid_data_4"></v-grid>
+
+        <!--
+        <v-modes v-model="grid_active_id" ref="modes"
+          :numberal="4"  :items="grid_data_4"></v-modes>
+        -->
       </div>
     </v-panel>
     <!--<v-mask :shown="shown" ref="mask">
@@ -48,6 +116,7 @@
 
     data() {
       return {
+        grid_active_id: 2,
         grid_data_2: [{
           text: '修改Wifi密码',
           icon: 'mode-holiday',
@@ -56,6 +125,14 @@
           text: '黑名单管理',
           icon: 'mode-freeze',
           id: 2,
+        }, {
+          text: '修改Wifi密码',
+          icon: 'mode-holiday',
+          id: 3,
+        }, {
+          text: '黑名单管理',
+          icon: 'mode-freeze',
+          id: 4,
         }],
 
         grid_data_3: [{
@@ -70,6 +147,18 @@
           text: '正胆加热',
           icon: 'mode-cool',
           id: 3,
+        }, {
+          text: '标准加热',
+          icon: 'mode-holiday',
+          id: 4,
+        }, {
+          text: '半胆加热',
+          icon: 'mode-freeze',
+          id: 5,
+        }, {
+          text: '正胆加热',
+          icon: 'mode-cool',
+          id: 6,
         }],
 
         grid_data_4: [{
@@ -88,16 +177,54 @@
           text: '假日模式',
           icon: 'mode-holiday',
           id: 4,
+        }, {
+          text: '智能模式',
+          icon: 'mode-smart',
+          id: 5,
+        }, {
+          text: '速冷模式',
+          icon: 'mode-cool',
+          id: 6,
+        }, {
+          text: '速冻模式',
+          icon: 'mode-freeze',
+          id: 7,
+        }, {
+          text: '假日模式',
+          icon: 'mode-holiday',
+          id: 8,
         }],
 
 
+        range_data: {
+          value: '2档',
+          unit: '°C',
+          showInfos: true,
+          isStep: true,
+          dots: ['1档', '2档', '3档', '4档'],
+        },
         switch_state: true,
         switch_dis_state: false,
         power_state: true,
       };
     },
 
+    methods: {
+      btnSwitchHandle(state) {
+        console.log(`开关按钮状态：${state}`);
+      },
+
+      btnClickHandle() {
+        console.log('触发按钮点击事件');
+        this.$refs.btnSwitch.active = !this.$refs.btnSwitch.active;
+      },
+    },
+
     mounted() {
+      this.$refs.range.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value}`);
+      });
+
       this.$refs.switch.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
       });
@@ -106,12 +233,16 @@
         console.log(`设备当前power状态: ${state}`);
       });
 
-      this.$refs.incDec.$on('inc', () => {
-        console.log('触发inc事件');
+      this.$refs.incDec.$on('increase', () => {
+        console.log('触发increase事件');
       });
 
-      this.$refs.incDec.$on('dec', () => {
-        console.log('触发dec事件');
+      this.$refs.incDec.$on('decrease', () => {
+        console.log('触发decrease事件');
+      });
+
+      this.$refs.modes.$on('change', (state) => {
+        console.log(`设备当前所选模式id: ${state}`);
       });
       this.$refs.modal.$on('leftBtn', () => {
         console.log('触发leftBtn事件');
@@ -132,7 +263,7 @@
   @import './styles/mixins.css';
   @import './styles/utils.css';
 
-  @import './styles/iconfont.css';
+  /*@import './styles/iconfont.css';*/
 
   body {
     font-size: $font-size-base;

@@ -62,10 +62,21 @@
     box-sizing: border-box;
   }
 
-  $(prefix)-body {
-    padding-left: 0.12rem;
-    padding-right: 0.12rem;
+  $(prefix)-extra {
+    width: calc(2 * $grid-size);
+    text-align: right;
+    .icon {
+      font-size: $font-size-xl;
+      display: inline-block;
+    }
   }
+
+  $(prefix)-body {
+    padding: 0.12rem;
+    
+/*    padding-left: 0.12rem;
+    padding-right: 0.12rem;
+*/  }
 
   $(prefix)-footer {
 
