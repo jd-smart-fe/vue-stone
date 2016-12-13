@@ -13,11 +13,11 @@
 
 <template>
   <div
-  :class="[ 'c-button',
-            `c-${size}`,
+  :class="[ 'c-btn',
+            `c-btn-${size}`,
             disabled ? 'c-btn-disabled' : '',
             isPress ? hoverClass : '',
-            status ? 'is-on' : '',
+            status ? 'c-btn-on' : '',
             /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
             type === 'toggle' ? 'is-transition' : ''
           ]"
@@ -26,7 +26,7 @@
   @touchstart="touchstartHandle"
   @touchend="touchendHandle"
   >
-    <span v-if="icon !== '' " :class="['c-button-icon', `icon-${icon}`]"></span>
+    <span v-if="icon !== '' " :class="['c-btn-icon', `icon-${icon}`]"></span>
     <span v-if="text !== '' " >{{ text }}</span>
   </div>
 </template>
@@ -43,8 +43,13 @@ export default {
     return {
       isPress: false,
       longTapFlag: false,
-      status: this.initStatus,
     };
+  },
+
+  computed: {
+    status() {
+      return this.initStatus;
+    },
   },
 
   props: {
@@ -88,23 +93,23 @@ export default {
       required: false,
       default: '',
     },
-    // 按钮初始状态
-    initStatus: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     // 是否禁用按钮
     disabled: {
       type: Boolean,
       reuqired: false,
       default: false,
     },
+    // 按钮初始状态
+    initStatus: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     // 指定按钮按下去的样式类
     hoverClass: {
       type: String,
       required: false,
-      default: 'is-press',
+      default: 'c-btn-press',
     },
     // 是否开启长按功能
     longTap: {
@@ -121,12 +126,16 @@ export default {
   },
 
   watch: {
+    hold(val) {
+      console.log(`button:__${val}`);
+    },
+
     longTapFlag(val) {
       if (longTapInterval) {
         window.clearInterval(longTapInterval);
         longTapInterval = null;
       }
-      if (!val) {
+      if (val === false) {
         return;
       }
 
@@ -136,18 +145,12 @@ export default {
       }, 150);
     },
 
-    initStatus(val) {
-      this.status = val;
-      // 从外部改变 status 后通过 watcher 及时更新内部 status 状态。
-      // 然后通过 status 的watcher来分发change事件。
-    },
-
     // status 放在 watcher 中是为了保证只要 status 状态发生了变化就会触发 change 事件。
     status() {
-      this.$emit('change', this.status, this);
+      this.$emit('change', this.status);
 
       if (this.status) {
-        this.$emit('turnOn', this.status, this);
+        this.$emit('turnOn', this.status);
       } else {
         this.$emit('turnOff', this.status);
       }
@@ -156,32 +159,35 @@ export default {
 
   methods: {
     touchstartHandle() {
-      if (this.disabled) {
-        return;
-      }
-      this.isPress = true;
-
       // longTap功能
       if (this.longTap) {
         longTapFlagInterval = window.setInterval(() => {
           this.longTapFlag = true;
         }, 1000);
       }
+      // 按钮被禁用
+      if (this.disabled) {
+        this.isPress = false;
+        return;
+      }
+      this.isPress = true;
     },
 
     touchendHandle() {
-      if (this.disabled) {
-        return;
-      }
-      // 解除按下状态
-      this.isPress = false;
-
       // longTap功能开启
       if (this.longTap) {
         window.clearInterval(longTapFlagInterval);
         this.longTapFlag = false;
         longTapFlagInterval = null;
       }
+      // 按钮禁用状态
+      if (this.disabled) {
+        // 按钮禁用后解除按下的状态
+        this.isPress = false;
+        return;
+      }
+      // 解除按下状态
+      this.isPress = false;
 
       // click 型按钮，无需改变status值，直接分发change事件
       if (this.type === 'click') {
@@ -206,18 +212,7 @@ export default {
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  /*@define-mixin theme $color{
-    border-color: $color;
-    color: $color;
-  }
-
-  @each $item in (blue, orange, lg){
-    .c-theme-$(item){
-      @mixin theme $($(item));
-    }
-  }*/
-
-  $prefix: c-button;
+  $prefix: c-btn;
 
   .$prefix {
     display: flex;
@@ -235,17 +230,38 @@ export default {
     /*解决触控板点击click型按钮没有颜色反馈，后期可取消注释*/
     /*@mixin transition;*/
 
-    &.is-press{
+    &.c-btn-press{
       background: $btn-press;
 
-      &.is-on{
+      &.c-btn-on{
         background-color: $c-primary-on;
       }
     }
 
-    &.is-on{
+    &.c-btn-on{
       color: $white;
       background-color: $blue;
+    }
+    
+    &.c-btn-base {
+      width: $btn-width-base;
+      height: $btn-height-base;
+      
+      border-radius: @width;
+    }
+    
+    &.c-btn-sm {
+      width: $btn-width-sm;
+      height: $btn-height-sm;
+      
+      border-radius: @width;
+    }
+    
+    &.c-btn-lg {
+      width: $btn-width-lg;
+      height: $btn-height-lg;
+      
+      border-radius: @width;
     }
 
     span + span{
@@ -254,26 +270,6 @@ export default {
     }
   }
 
-  .c-btn-base {
-    width: $btn-width-base;
-    height: $btn-height-base;
-
-    border-radius: @width;
-  }
-
-  .c-btn-sm {
-    width: $btn-width-sm;
-    height: $btn-height-sm;
-
-    border-radius: @width;
-  }
-
-  .c-btn-lg {
-    width: $btn-width-lg;
-    height: $btn-height-lg;
-
-    border-radius: @width;
-  }
 
   .c-btn-disabled {
     color: $btn-disabled;

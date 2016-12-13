@@ -1,8 +1,8 @@
 <template>
-  <div class="c-incDec">
+  <div class="c-counter">
     <v-button
       ref="inc"
-      class="c-theme-black c-incDec-inc"
+      class="c-counter-inc"
       type="click"
       icon="plus"
       :longTap="true"
@@ -11,7 +11,7 @@
       ></v-button>
     <v-button
       ref="dec"
-      class="c-theme-black c-incDec-dec"
+      class="c-theme-black c-counter-dec"
       type="click"
       icon="minus"
       :longTap="true"
@@ -23,47 +23,41 @@
 
 <script>
 export default {
-  name: 'v-button-incdec',
+  name: 'v-counter',
 
   data() {
     return {
-      hasRange: false,
-      number: false,
       incDisabled: false,
       decDisabled: false,
     };
   },
 
   props: {
-    begin: {
+    value: {
       type: Number,
-      default: null,
+      required: false,
+      default: 0,
     },
     max: {
       type: Number,
-      default: null,
+      default: Infinity,
     },
     min: {
       type: Number,
-      default: null,
+      default: -Infinity,
+    },
+    step: {
+      type: Number,
+      required: false,
+      default: 1,
     },
   },
 
   created() {
     // 验证数字区间是否正确
-    function verification(begin, max, min) {
-      // 没有传入任何参数则返回false，并且不打印错误信息。
-      if (max === null && min === null && begin === null) {
-        return false;
-      }
-
-      if (begin === null) {
-        console.error('You must pass a number in begin value');
-        return false;
-      }
-
-      if (begin > max || begin < min) {
-        console.error('The begin number must be between the max value and min value');
+    function verification(current, max, min) {
+      if (current > max || current < min) {
+        console.error('The current number must be between the max value and min value');
         return false;
       }
 
@@ -72,22 +66,24 @@ export default {
     }
 
     // 验证传入数字是否正确
-    verification(this.begin, this.max, this.min);
+    verification(this.current, this.max, this.min);
 
-    // 初始化 初始值 number
-    if (typeof begin === 'number') {
-      this.number = this.begin;
+    if (this.value >= this.max) {
+      console.log(this.value);
+      this.incDisabled = true;
     }
-
+    if (this.value <= this.min) {
+      this.decDisabled = true;
+    }
   },
 
   watch: {
-    number(val) {
-      if (this.max !== null && val >= this.max) {
+    value(val) {
+      if (val >= this.max) {
         this.incDisabled = true;
         return;
       }
-      if (this.min !== null && val <= this.min) {
+      if (val <= this.min) {
         this.decDisabled = true;
         return;
       }
@@ -103,10 +99,24 @@ export default {
 
   methods: {
     incHandle() {
-      this.$emit('increase');
+      let value = this.value + this.step;
+      if (value >= this.max) {
+        value = this.max;
+      }
+
+      this.$emit('increase', value);
+      this.$emit('change', value);
+      this.$emit('input', value);
     },
     decHandle() {
-      this.$emit('decrease');
+      let value = this.value - this.step;
+      if (value <= this.min) {
+        value = this.min;
+      }
+
+      this.$emit('decrease', value);
+      this.$emit('change', value);
+      this.$emit('input', value);
     },
   },
 };
@@ -120,27 +130,27 @@ export default {
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  .c-incDec {
+  .c-counter {
 
     display: flex;
 
-    width: $incDec-width;
-    height: $incDec-height;
+    width: $counter-width;
+    height: $counter-height;
     overflow: hidden;
 
     @mixin border;
 
     border-color: $gray-lighter;
-    border-radius: calc($incDec-height / 2);
+    border-radius: calc($counter-height / 2);
 
-    > div{
+    > .c-btn{
       width: 50%;
       height: 100%;
       border: none;
       border-radius: 0;
     }
 
-    .c-incDec-inc {
+    .c-counter-inc {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -152,7 +162,7 @@ export default {
       }
     }
 
-    .c-incDec-dec {
+    .c-counter-dec {
       display: flex;
       justify-content: center;
       align-items: center;

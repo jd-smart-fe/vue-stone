@@ -4,19 +4,23 @@
               ref="btn"
               type="toggle"
               :text="item.text"
-              :hold="false"
-              @turnOn="turnOnHandle"
+              :initStatus="initStatusaa"
+              :hold="hold[index]"
+              @turnOn="turnOnHandle(index)"
               ></v-button>
   </div>
 </template>
 
 <script>
 export default {
+
   name: 'v-button-group-new',
 
   data() {
     return {
-      list: [],
+      hold: [],
+      initStatus: [],
+      initStatusaa: true,
     };
   },
 
@@ -33,22 +37,33 @@ export default {
   },
 
   mounted() {
-    this.list = Object.values(this.$children);
-    // 将item里的属性合并到v-button上
-    this.list.forEach((val, index) => {
-      Object.assign(val, this.items[index]);
-    });
-    console.log(this.list[0].hold);
+
+    // this.list = Object.values(this.$children);
+    // console.log(this.list);
+    // // 将item里的属性合并到v-button上
+    // this.list.forEach((val, index) => {
+    //   this.list = Object.assign({}, val, this.items[index]);
+    // });
+
+    // 初始化hold数组
+    const list = Array(this.$children.length).fill(false);
+    list[0] = true;
+    this.initStatus = list;
   },
 
   methods: {
-    turnOnHandle(status, vm) {
-      if (vm.hold === false) {
-        this.$refs.btn[0].hold = true;
-        console.log(this.$refs.btn[0]);
-        return;
-      }
-      vm.hold = false;
+    turnOnHandle() {
+      // 按钮被按下后就会保持hold状态
+      // if (this.hold[index] === false) {
+      //   this.hold[index] = true;
+      //   this.hold.filter((ele, i) => i !== index).forEach(val => {
+      //     val = false;
+      //   });
+      //   return;
+      // }
+      // this.hold[index] = false;
+      // console.log(this.hold);
+      // console.log(this.hold)
     },
   },
 };

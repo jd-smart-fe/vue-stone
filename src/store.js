@@ -7,7 +7,7 @@ import Panel from './components/panel';
 import Grid from './components/grid';
 import Modal from './components/modal';
 import Button from './components/button';
-import ButtonCounter from './components/button-counter';
+import Counter from './components/counter';
 import ButtonGroup from './components/button-group';
 import ButtonGroupNew from './components/button-group-new';
 import Modes from './components/modes';
@@ -24,7 +24,7 @@ const install = (Vue, options = {}) => {
   Vue.component(Modal.name, Modal);
 
   Vue.component(Button.name, Button);
-  Vue.component(ButtonCounter.name, ButtonCounter);
+  Vue.component(Counter.name, Counter);
   Vue.component(ButtonGroup.name, ButtonGroup);
   Vue.component(ButtonGroupNew.name, ButtonGroupNew);
   Vue.component(Modes.name, Modes);
