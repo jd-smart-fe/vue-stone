@@ -1,12 +1,13 @@
 <!--
 *******
 ******* Tips：
-******* 点击按钮会触发 change 事件， switch型按钮会额外携带一个包含当前开关状态的参数。
+******* 点击按钮会触发 change 事件. toggle型按钮会额外携带一个包含当前开关状态的参数, 同时会触发turnOn 或 turnOff 事件
 ******* 禁用按钮后不会触发 change 事件。
 ******* longTap === true 时，开启长按功能，按下按钮 1000ms 后，每 150ms 触发一次 change 事件。
 *******
-******* 对于 switch 型按钮，
-******* 若想改变其 active 可直接通过 ref 拿到该组件实例，直接更改实例下的 active 属性即可。
+******* 应用 toggle 型按钮时，
+******* 通过传入 initStatus 属性来决定组件初始 的 status。
+******* 若想通过非点击方式改变 status， 可直接更改实例下的 status 属性即可。
 *******
  -->
 
@@ -14,11 +15,11 @@
   <div
   :class="[ 'c-button',
             `c-${size}`,
-            disabled ? 'is-disabled' : '',
-            isPress ? 'is-press' : '',
-            active ? 'is-active' : '',
+            disabled ? 'c-btn-disabled' : '',
+            isPress ? hoverClass : '',
+            status ? 'is-on' : '',
             /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
-            type === 'switch' ? 'is-transition' : ''
+            type === 'toggle' ? 'is-transition' : ''
           ]"
   :text="text"
   :type="type"
@@ -42,7 +43,7 @@ export default {
     return {
       isPress: false,
       longTapFlag: false,
-      active: false,
+      status: this.initStatus,
     };
   },
 
@@ -50,12 +51,12 @@ export default {
     // 按钮类型
     type: {
       type: String,
-      required: false,
-      default: 'switch',
+      // required: false,
+      default: 'click',
       validator(value) {
-        const list = ['switch', 'click'];
+        const list = ['toggle', 'click'];
         if (list.indexOf(value) < 0) {
-          console.error("[v-button] prop 'type' error: yon pass an invalid value, please pass a value in 'switch' 'click'");
+          console.error("[v-button] prop 'type' error: yon pass an invalid value, please pass a value in 'toggle' 'click'");
           return false;
         }
         return true;
@@ -64,7 +65,7 @@ export default {
     // 按钮大小
     size: {
       type: String,
-      required: false,
+      // required: false,
       default: 'base',
       validator(value) {
         const list = ['sm', 'base', 'lg'];
@@ -87,14 +88,32 @@ export default {
       required: false,
       default: '',
     },
+    // 按钮初始状态
+    initStatus: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
     // 是否禁用按钮
     disabled: {
       type: Boolean,
       reuqired: false,
       default: false,
     },
+    // 指定按钮按下去的样式类
+    hoverClass: {
+      type: String,
+      required: false,
+      default: 'is-press',
+    },
     // 是否开启长按功能
     longTap: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    // 保持当前status，类似与disabled, 再次点击后不会改变status， 但是hold会分发出事件，而disabled不会。
+    hold: {
       type: Boolean,
       required: false,
       default: false,
@@ -117,8 +136,21 @@ export default {
       }, 150);
     },
 
-    active() {
-      this.$emit('change', this.active);
+    initStatus(val) {
+      this.status = val;
+      // 从外部改变 status 后通过 watcher 及时更新内部 status 状态。
+      // 然后通过 status 的watcher来分发change事件。
+    },
+
+    // status 放在 watcher 中是为了保证只要 status 状态发生了变化就会触发 change 事件。
+    status() {
+      this.$emit('change', this.status, this);
+
+      if (this.status) {
+        this.$emit('turnOn', this.status, this);
+      } else {
+        this.$emit('turnOff', this.status);
+      }
     },
   },
 
@@ -129,6 +161,7 @@ export default {
       }
       this.isPress = true;
 
+      // longTap功能
       if (this.longTap) {
         longTapFlagInterval = window.setInterval(() => {
           this.longTapFlag = true;
@@ -142,19 +175,25 @@ export default {
       }
       this.isPress = false;
 
+      // longTap功能
       if (this.longTap) {
         window.clearInterval(longTapFlagInterval);
         this.longTapFlag = false;
         longTapFlagInterval = null;
       }
 
+      // click 型按钮，无需改变status值，直接分发change事件
       if (this.type === 'click') {
         this.$emit('change');
         return;
       }
+      if (this.hold === true) {
+        this.$emit('change', this.status);
+        return;
+      }
 
-      this.active = !this.active;
-      // active 相关事件通过 watcher 分发
+      this.status = !this.status;
+      // status 相关事件通过 watcher 分发
     },
   },
 };
@@ -196,12 +235,12 @@ export default {
     &.is-press{
       background: $btn-press;
 
-      &.is-active{
+      &.is-on{
         background-color: $c-primary-on;
       }
     }
 
-    &.is-active{
+    &.is-on{
       color: $white;
       background-color: $blue;
     }
@@ -212,28 +251,28 @@ export default {
     }
   }
 
-  .c-base {
+  .c-btn-base {
     width: $btn-width-base;
     height: $btn-height-base;
 
     border-radius: @width;
   }
 
-  .c-sm {
+  .c-btn-sm {
     width: $btn-width-sm;
     height: $btn-height-sm;
 
     border-radius: @width;
   }
 
-  .c-lg {
+  .c-btn-lg {
     width: $btn-width-lg;
     height: $btn-height-lg;
 
     border-radius: @width;
   }
 
-  .is-disabled {
+  .c-btn-disabled {
     color: $btn-disabled;
     /*background-color: $btn-disabled;*/
     border-color: $btn-disabled;

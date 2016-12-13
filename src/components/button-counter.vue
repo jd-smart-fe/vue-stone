@@ -36,70 +36,60 @@ export default {
 
   props: {
     begin: {
-      default: false,
-      validator(val) {
-        if (typeof val === 'number' || val === false) {
-          return true;
-        }
-        console.error('please pass a number');
-        return false;
-      },
+      type: Number,
+      default: null,
     },
     max: {
-      required: false,
-      default: false,
-      validator(val) {
-        if (typeof val === 'number' || val === false) {
-          return true;
-        }
-        console.error('please pass a number');
-        return false;
-      },
+      type: Number,
+      default: null,
     },
     min: {
-      required: false,
-      default: false,
-      validator(val) {
-        if (typeof val === 'number' || val === false) {
-          return true;
-        }
-        console.error('please pass a number');
-        return false;
-      },
+      type: Number,
+      default: null,
     },
   },
 
   created() {
-    // 验证传入数字是否正确
-    if (this.max || this.min) {
-      if (this.begin) {
-        if (this.begin <= this.max && this.begin >= this.min) {
-          // return true;
-        }
-        console.error('The begin number must be between the max value and min value');
-        this.begin = false;
-        // return false;
+    // 验证数字区间是否正确
+    function verification(begin, max, min) {
+      // 没有传入任何参数则返回false，并且不打印错误信息。
+      if (max === null && min === null && begin === null) {
+        return false;
       }
 
-      console.error('You must pass a number in begin value');
-      this.begin = false;
-      // return false;
+      if (begin === null) {
+        console.error('You must pass a number in begin value');
+        return false;
+      }
+
+      if (begin > max || begin < min) {
+        console.error('The begin number must be between the max value and min value');
+        return false;
+      }
+
+      // 通过验证 返回 true。
+      return true;
     }
 
+    // 验证传入数字是否正确
+    verification(this.begin, this.max, this.min);
 
     // 初始化 初始值 number
     if (typeof begin === 'number') {
       this.number = this.begin;
     }
+
   },
 
   watch: {
     number(val) {
-      if (this.max !== false && val >= this.max) {
+      if (this.max !== null && val >= this.max) {
         this.incDisabled = true;
+        return;
       }
-      if (this.min !== false && val >= this.min) {
+      if (this.min !== null && val <= this.min) {
         this.decDisabled = true;
+        return;
       }
 
       if (this.incDisabled) {
