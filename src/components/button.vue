@@ -99,12 +99,6 @@ export default {
       reuqired: false,
       default: false,
     },
-    // 按钮初始状态
-    initStatus: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
     // 指定按钮按下去的样式类
     hoverClass: {
       type: String,
@@ -113,6 +107,12 @@ export default {
     },
     // 是否开启长按功能
     longTap: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    // 按钮初始状态
+    initStatus: {
       type: Boolean,
       required: false,
       default: false,
