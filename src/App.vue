@@ -3,11 +3,12 @@
 
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range</div>
-      <div slot="body" class="c-panel-body u-cross-center">
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="range"
-          v-model="range_value" 
-          :step="5"
-          :showStep="true"
+          v-model="range_data.value" 
+          :unit="range_data.unit"
+          :isStep="range_data.isStep"
+          :dots="range_data.dots"
         >
         </v-range>
       </div>
@@ -192,7 +193,13 @@
         }],
 
 
-        range_value: 16,
+        range_data: {
+          value: '2档',
+          unit: '°C',
+          showInfos: true,
+          isStep: true,
+          dots: ['1档', '2档', '3档', '4档'],
+        },
         switch_state: true,
         switch_dis_state: false,
         power_state: true,

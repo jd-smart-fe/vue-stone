@@ -32,7 +32,7 @@ $orange: #f76b46;
 
 /********************  component theme  ********************/
 /****  range  ****/
-$range-padding-y: 0.12rem;
+$range-padding-y: 0.16rem;
 $range-slide-height: 0.02rem;
 $range-slide-block-size: 0.24rem;
 $range-padding-x: calc($range-slide-block-size/2);
