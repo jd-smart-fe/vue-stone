@@ -173,9 +173,10 @@ export default {
       if (this.disabled) {
         return;
       }
+      // 解除按下状态
       this.isPress = false;
 
-      // longTap功能
+      // longTap功能开启
       if (this.longTap) {
         window.clearInterval(longTapFlagInterval);
         this.longTapFlag = false;
@@ -187,6 +188,8 @@ export default {
         this.$emit('change');
         return;
       }
+
+      // hold === true 时，也要保证能够分发出change事件。
       if (this.hold === true) {
         this.$emit('change', this.status);
         return;

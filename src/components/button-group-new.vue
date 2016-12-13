@@ -34,7 +34,7 @@ export default {
 
   mounted() {
     this.list = Object.values(this.$children);
-    // 自动添加属性
+    // 将item里的属性合并到v-button上
     this.list.forEach((val, index) => {
       Object.assign(val, this.items[index]);
     });
@@ -43,7 +43,6 @@ export default {
 
   methods: {
     turnOnHandle(status, vm) {
-      console.log('statatata');
       if (vm.hold === false) {
         this.$refs.btn[0].hold = true;
         console.log(this.$refs.btn[0]);
