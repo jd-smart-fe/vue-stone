@@ -1,14 +1,14 @@
 <template>
-  <div class="c-btnGroup">
-    <v-button class="c-btnGroup-btn" v-for="(item, index) in items"
-              ref="btn"
-              type="toggle"
-              :text="item.text"
-              :initStatus="initStatus[index]"
-              :hold="holds[index]"
-              @turnOn="turnOnHandle(index)"
-              @touchend.native="touchendHandle(index)"
-              ></v-button>
+  <div :class="['c-btnGroup', wrap ? 'c-btnGroup-wrap': '']">
+      <v-button class="c-btnGroup-btn" v-for="(item, index) in items"
+      ref="btn"
+      type="toggle"
+      :text="item.text"
+      :initStatus="initStatus[index]"
+      :hold="holds[index]"
+      @turnOn="turnOnHandle(index)"
+      @touchend.native="touchendHandle(index)"
+      ></v-button>
   </div>
 </template>
 
@@ -34,9 +34,13 @@ export default {
       required: false,
       default: true,
     },
-    line: {
-      type: Number,
-      default: 3,
+    wrap: {
+      type: Boolean,
+      default: false,
+    },
+    size: {
+      type: String,
+      default: 'base',
     },
   },
 
@@ -54,7 +58,6 @@ export default {
     if (!flag) {
       list[0] = true;
     }
-    console.log(list);
     // 初始化hold数组
     this.holds = list;
     this.initStatus = list;
@@ -84,15 +87,21 @@ export default {
 </script>
 
 <style>
+  @import '../styles/base.css';
+
   .c-btnGroup{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: raw;
-
-    width: 100%;
+    overflow: hidden;
   }
-  .c-btnGroup-btn{
-    margin: 0px 2px;
+
+  /*.c-btnGroup-wrap{
+    flex-wrap: wrap;
+    flex: none;
+  }*/
+
+  .c-btnGroup-btn + .c-btnGroup-btn{
+    margin-left: 16px;
   }
 </style>

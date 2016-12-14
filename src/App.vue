@@ -84,31 +84,31 @@
     </v-panel>
 
     <v-panel>
-      <div slot="body" class="c-panel-body row-3 u-cross-center">
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-disabled: </div>
-        <v-button slot="main" @change="btnClickHandle" ref="button" size="lg" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
+        <v-button slot="main" @change="btnClickHandle" ref="button" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
-      <div slot="body" class="c-panel-body row-3 u-cross-center">
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" size="lg" icon="mode-holiday"></v-button>
+        <v-button slot="main" @change="btnClickHandle" icon="mode-holiday"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
-      <div slot="body" class="c-panel-body row-3 u-cross-center">
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-toggle: </div>
         <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="true"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
-      <div slot="header" class="c-panel-header u-cross-center">
-        <div class="c-panel-title">互斥按钮组</div>
-      </div>
-      <div slot="body" class="c-panel-body row-3 u-cross-center">
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div class="">
+          互斥
+        </div>
         <v-button-group :items="buttonGroup" @change="exclusiveChangeHandle">
         </v-button-group>
       </div>
@@ -249,15 +249,6 @@
           {
             text: '第二个',
             initStatus: true,
-          },
-          {
-            text: '第三个',
-          },
-          {
-            text: '第4个',
-          },
-          {
-            text: '第5个',
           },
         ],
 
