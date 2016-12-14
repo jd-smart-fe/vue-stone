@@ -15,7 +15,7 @@
   <div
   :class="[ 'c-btn',
             `c-btn-${size}`,
-            disabled ? 'c-btn-disabled' : '',
+            disabled ? disabledClass : '',
             isPress ? hoverClass : '',
             status ? 'c-btn-on' : '',
             /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
@@ -99,6 +99,12 @@ export default {
       type: String,
       required: false,
       default: 'c-btn-press',
+    },
+    // 指定disabled的样式类
+    disabledClass: {
+      type: String,
+      required: false,
+      default: 'c-btn-disabled',
     },
     // 是否开启长按功能
     longTap: {
@@ -207,9 +213,8 @@ export default {
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  $prefix: c-btn;
 
-  .$prefix {
+  .c-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,7 +271,7 @@ export default {
   }
 
 
-  .c-btn-disabled {
+  #app .c-btn-disabled {
     color: $btn-disabled;
     /*background-color: $btn-disabled;*/
     border-color: $btn-disabled;
@@ -277,7 +282,7 @@ export default {
     @mixin transition;
   }
 
-  .$prefix-icon{
-    font-size: calc($font-size-base + 6px);
+  .c-btn-icon{
+    font-size: calc($font-size-base + 4px);
   }
 </style>

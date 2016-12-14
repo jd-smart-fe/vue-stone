@@ -1,4 +1,4 @@
-##基础组件：
+##按钮类组件：
 
 ### button
 
@@ -14,6 +14,7 @@ text  | String  | ''  |  定义按钮文本。
 icon  | String  | ''  |  定义按钮图标。
 disabled | Boolean | false | 是否禁用按钮。
 hoverClass | String | c-btn-press | 定义按钮按下去的样式类。
+disabledClass | String | c-btn-disabled | 定义disabled的样式类。
 longTap   | Boolean | false | 是否开启长按功能。
 initStatus | Boolean |  false |  按钮初始状态，当值为true时，按钮处于激活状态。只支持type值为toggle的按钮。
 hold | Boolean | false | 按钮是否维持住当前状态。值为true时，点击按钮不会改变按钮的状态，会触发change事件。

@@ -3,6 +3,7 @@
     <v-button
       ref="inc"
       class="c-counter-inc"
+      disabledClass="c-counter-disabled"
       type="click"
       icon="plus"
       :longTap="true"
@@ -11,8 +12,9 @@
       ></v-button>
     <v-button
       ref="dec"
-      class="c-theme-black c-counter-dec"
+      class="c-counter-dec"
       type="click"
+      disabledClass="c-counter-disabled"
       icon="minus"
       :longTap="true"
       :disabled="decDisabled"
@@ -142,8 +144,6 @@ export default {
 
     border-color: $gray-lighter;
     border-radius: calc($counter-height / 2);
-    
-    color: #999;
 
     > .c-btn{
       width: 50%;
@@ -174,10 +174,10 @@ export default {
         font-style: normal;
       }
     }
-
-    /*.is-active {
-      background-color: $press-color;
-    }*/
+    
+    .c-counter-disabled{
+      color: $btn-disabled;
+    }
   }
 
 </style>
