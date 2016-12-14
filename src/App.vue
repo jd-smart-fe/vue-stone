@@ -2,6 +2,23 @@
   <div id="app">
 
     <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : dots is objects</div>
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
+        <v-range slot="main" ref="range"
+          v-model="range_data.value"
+          :min="range_data.min"
+          :max="range_data.max"
+          :unit="range_data.unit"
+          :isStep="range_data.isStep"
+          :dots="range_data.dots"
+          :showIconDots="range_data.showIconDots"
+          :showTextDots="range_data.showTextDots"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
+    <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : value is a Number</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="rangeNumber"
@@ -246,18 +263,58 @@
           },
         ],
 
+        range_data: {
+          value: 100,
+          min: 0,
+          max: 1000,
+          unit: '°C',
+          showIconDots: true,
+          showTextDots: false,
+          dots: [
+            {
+              icon: 'mode-holiday',
+              text: '低温',
+            },
+            {
+              icon: 'mode-freeze',
+              text: '高温',
+            },
+          ],
+        },
+
         range_data_number: {
           value: 100,
           min: 0,
           max: 1000,
           unit: '°C',
-          dots: ['低温', '高温'],
+          dots: [
+            {
+              text: '低温',
+            },
+            {
+              text: '高温',
+            },
+          ],
         },
 
         range_data_array: {
           value: '2档',
           isStep: true,
-          dots: ['1档', '2档', '3档', '4档'],
+          dots: [
+            {
+              icon: 'model',
+              text: '1档',
+            },
+            {
+              text: '2档',
+            },
+            {
+              text: '3档',
+            },
+            {
+              text: '4档',
+            },
+          ],
         },
 
         range_data_json: {

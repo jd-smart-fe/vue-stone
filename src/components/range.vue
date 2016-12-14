@@ -25,7 +25,18 @@
       </div>
     </div>
     <div v-if="dots.length > 0" class="c-range-dots">
-      <span v-for="(info, index) in dotInfoList" class="dot-item" :style="{left : info.left + '%'}">{{info.text}}</span>
+      <template v-if="showIconDots">
+        <span v-for="(info, index) in dotInfoList" 
+          :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]" 
+          :style="{left : info.left + '%'}">
+        </span>
+      </template>
+      <template v-if="showTextDots">
+        <span v-for="(info, index) in dotInfoList" 
+          class="dot-item" 
+          :style="{left : info.left + '%'}"
+        >{{info.text}}</span>
+      </template>
     </div>
   </div>
 </template>
@@ -36,11 +47,12 @@
     name: 'v-range',
 
     props: {
-      // 使用者所使用;
-      // 在 有级 状态下 value可以传入一个json对象;
-      // 其属性必须是一一对应的 value 及 text;
-      // 例:{ value: 20, text: '中档'};
-      // 这种情况下 滑动改变值后 返回的值也是一个如上格式的json对象;
+      /**
+       * 使用者所使用;
+       * 在 有级 状态下 value可以传入一个json对象;
+       * 其属性必须是一一对应的 value 及 text;
+       * 例:{ value: 20, text: '中档'};这种情况下 滑动改变值后 返回的值也是一个如上格式的json对象;
+      **/
       value: {
         type: [Number, String, Object],
         default: 0,
@@ -70,14 +82,27 @@
         type: Boolean,
         default: false,
       },
-      // 滑杆下面的文字信息列表,有级时 以此来判断份几级
-      // 在 有级 时,如果value传入的是一个json对象,dots也应该是一组json对象组成的数组;
-      // 例: [{value: 10, text: '低档'},{value: 20, text: '中档'}];
+      /**
+       * 滑杆下面的文字信息列表,有级时 以此来判断份几级
+       * dots是一组json对象组成的数组;
+       * 包含的字段: value、text、icon;
+       * 例: [{value: 10, text: '低档', icon: model-cool},{value: 20, text: '中档', icon: model-cool}];
+      **/
       dots: {
         type: Array,
         default() {
           return [];
         },
+      },
+      // 显示图标dots
+      showIconDots: {
+        type: Boolean,
+        default: false,
+      },
+      // 显示文字dots
+      showTextDots: {
+        type: Boolean,
+        default: true,
       },
     },
 
@@ -107,7 +132,17 @@
 
           for (let i = 0; i < dotsLength; i += 1) {
 
-            let aInfo = {};
+            let aInfo = {
+              icon: '',
+            };
+
+            const hasIcon = !!this.dots[i].icon;
+
+            if (hasIcon) {
+              aInfo = Object.assign({}, aInfo, {
+                icon: this.dots[i].icon,
+              });
+            }
 
             if (i === (dotsLength - 1)) {
               aInfo = Object.assign({}, aInfo, {
@@ -120,22 +155,10 @@
               });
             }
 
-
-            // 判断 dots[i] 是否是json对象
-            if (typeof this.dots[i] === 'object' &&
-              Object.prototype.toString.call(this.dots[i]).toLowerCase() === '[object object]' &&
-              !this.dots[i].length) {
-
-              aInfo = Object.assign({}, aInfo, {
-                text: this.dots[i].text,
-                value: this.dots[i].value,
-              });
-
-            } else {
-              aInfo = Object.assign({}, aInfo, {
-                text: this.dots[i],
-              });
-            }
+            aInfo = Object.assign({}, aInfo, {
+              text: this.dots[i].text,
+              value: this.dots[i].value,
+            });
 
             aInfos.push(aInfo);
 
@@ -155,7 +178,7 @@
 
     created() {
 
-      // TODO
+      // 判断传入的value类型是否是json object;
       this.valueIsJSON = (typeof this.value === 'object' &&
           Object.prototype.toString.call(this.value).toLowerCase() === '[object object]' &&
           !this.value.length);
@@ -235,7 +258,7 @@
               }
             } else {
               for (const [index, elem] of (this.dots).entries()) {
-                if (this.value === elem) {
+                if (this.value === elem.text) {
                   currentStepInd = index;
                 }
               }
@@ -287,7 +310,13 @@
           }
 
           processPercent = this.dotInfoList[currentStep - 1].left;
-          currentValue = this.dots[currentStep - 1];
+          // dots是json objects组成的Array 所以dots[i]肯定都是json object;
+          // 为保证传入value时的类型不变 所以在value类型不是object时, currentValue = dots[i].text;
+          if (this.valueIsJSON) {
+            currentValue = this.dots[currentStep - 1];
+          } else {
+            currentValue = this.dots[currentStep - 1].text;
+          }
 
         }
 
@@ -427,6 +456,7 @@
     width:100%;
     height: $range-slide-dot-size;
     box-sizing: border-box;
+    .dot-icon,
     .dot-item{
       display:inline-block;
       position: absolute;
@@ -442,6 +472,9 @@
       &:last-child{
         transform: translateX(-100%);
       }
+    }
+    .dot-icon{
+      font-size:0.22rem;
     }
   }
 </style>

@@ -5,6 +5,7 @@
   "author": "zhengyuelin zhengyuelin@jd.com",
   "private": true,
   "scripts": {
+    "deploy": "scp -r dist/static root@192.168.202.48:/home/admin/static.360buyimg.com/vue-stone/",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",
