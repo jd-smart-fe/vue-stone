@@ -71,7 +71,6 @@ export default {
     verification(this.current, this.max, this.min);
 
     if (this.value >= this.max) {
-      console.log(this.value);
       this.incDisabled = true;
     }
     if (this.value <= this.min) {

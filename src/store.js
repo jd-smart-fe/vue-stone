@@ -9,7 +9,6 @@ import Modal from './components/modal';
 import Button from './components/button';
 import Counter from './components/counter';
 import ButtonGroup from './components/button-group';
-import ButtonGroupNew from './components/button-group-new';
 import Modes from './components/modes';
 
 const install = (Vue, options = {}) => {
@@ -26,7 +25,6 @@ const install = (Vue, options = {}) => {
   Vue.component(Button.name, Button);
   Vue.component(Counter.name, Counter);
   Vue.component(ButtonGroup.name, ButtonGroup);
-  Vue.component(ButtonGroupNew.name, ButtonGroupNew);
   Vue.component(Modes.name, Modes);
 
   install.installed = true;

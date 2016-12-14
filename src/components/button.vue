@@ -127,9 +127,6 @@ export default {
   },
 
   watch: {
-    hold(val) {
-      console.log(`button:__${val}`);
-    },
 
     longTapFlag(val) {
       if (longTapInterval) {

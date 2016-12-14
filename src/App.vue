@@ -5,7 +5,7 @@
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : value is a Number</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="rangeNumber"
-          v-model="range_data_number.value" 
+          v-model="range_data_number.value"
           :min="range_data_number.min"
           :max="range_data_number.max"
           :unit="range_data_number.unit"
@@ -20,7 +20,7 @@
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is an Array</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="rangeArray"
-          v-model="range_data_array.value" 
+          v-model="range_data_array.value"
           :unit="range_data_array.unit"
           :isStep="range_data_array.isStep"
           :dots="range_data_array.dots"
@@ -33,7 +33,7 @@
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is a JSON object</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="rangeJson"
-          v-model="range_data_json.value" 
+          v-model="range_data_json.value"
           :unit="range_data_json.unit"
           :isStep="range_data_json.isStep"
           :dots="range_data_json.dots"
@@ -41,7 +41,7 @@
         </v-range>
       </div>
     </v-panel>
-    
+
     <v-panel >
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title">Switch: </div>
@@ -52,7 +52,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">Power: </div>
-        <v-power slot="main" v-model="power_state" ref="power"></v-power>
+        <v-power slot="main" ref="power"></v-power>
       </div>
     </v-panel>
 
@@ -63,7 +63,7 @@
             {{ countNumber }}
           </div>
         </div>
-        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="2" v-model=" countNumber "></v-button-counter>
+        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="2" v-model=" countNumber "></v-counter>
       </div>
     </v-panel>
 
@@ -84,7 +84,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-toggle: </div>
-        <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
+        <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
       </div>
     </v-panel>
 
@@ -93,24 +93,10 @@
         <div class="c-panel-title">互斥按钮组</div>
       </div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-button-group @change="exclusiveChangeHandle">
-          <v-button type="toggle" text="左风向"></v-button>
-          <v-button type="toggle" text="右风向"></v-button>
-          <v-button type="toggle" text="上风向"></v-button>
+        <v-button-group :items="buttonGroup" @change="exclusiveChangeHandle">
         </v-button-group>
       </div>
     </v-panel>
-
-    <v-panel>
-      <div slot="header" class="c-panel-header u-cross-center">
-        <div class="c-panel-title">互斥按钮组</div>
-      </div>
-      <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-button-group-new :items="newG">
-        </v-button-group-new>
-      </div>
-    </v-panel>
-
 
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
@@ -240,12 +226,13 @@
           id: 8,
         }],
 
-        newG: [
+        buttonGroup: [
           {
             text: '第一个',
           },
           {
             text: '第二个',
+            initStatus: true,
           },
           {
             text: '第三个',
@@ -328,14 +315,12 @@
         console.log(`设备当前power状态: ${state}`);
       });
 
-      this.$refs.counter.$on('increase', () => {
-        console.log('触发increase事件');
-        console.log('触发change事件');
+      this.$refs.counter.$on('increase', (val) => {
+        console.log(`触发increase事件 当前值为：${val}`);
       });
 
-      this.$refs.counter.$on('decrease', () => {
-        console.log('触发decrease事件');
-        console.log('触发change事件');
+      this.$refs.counter.$on('decrease', (val) => {
+        console.log(`触发decrease事件 当前值为：${val}`);
       });
 
       this.$refs.modes.$on('change', (state) => {

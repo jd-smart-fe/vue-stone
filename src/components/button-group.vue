@@ -1,16 +1,26 @@
 <template>
   <div class="c-btnGroup">
-    <slot></slot>
+    <v-button v-for="(item, index) in items"
+              ref="btn"
+              type="toggle"
+              :text="item.text"
+              :initStatus="initStatus[index]"
+              :hold="holds[index]"
+              @turnOn="turnOnHandle(index)"
+              @touchend.native="touchendHandle(index)"
+              ></v-button>
   </div>
 </template>
 
 <script>
 export default {
+
   name: 'v-button-group',
 
   data() {
     return {
-      list: [],
+      holds: [],
+      initStatus: [],
     };
   },
 
@@ -22,30 +32,48 @@ export default {
     exclusive: {
       type: Boolean,
       required: false,
-      default: false,
+      default: true,
     },
   },
 
-  mounted() {
-    this.list = Object.values(this.$children);
+  created() {
+    let flag = false;
+    const list = Array(this.items.length).fill(false);
 
-    this.list.forEach((val, index, array) => {
-
-      val.$on('turnOn', () => {
-
-        val.hold = true;
-        this.$emit('change', index);
-        array.filter(fVal => fVal !== val).forEach(eVal => {
-          eVal.hold = false;
-          eVal.status = false;
-        });
-      });
+    this.items.forEach((val, index) => {
+      if (val.initStatus === true && flag === false) {
+        list[index] = true;
+        flag = true;
+      }
     });
+
+    if (!flag) {
+      list[0] = true;
+    }
+    console.log(list);
+    // 初始化hold数组
+    this.holds = list;
+    this.initStatus = list;
   },
 
   methods: {
-    changeHandle() {
-      console.log(this);
+    turnOnHandle(index) {
+      if (this.$refs.btn[index].hold) {
+        return;
+      }
+
+      this.holds.forEach((val, i) => {
+        if (i === index) {
+          this.holds.splice(i, 1, true);
+          return;
+        }
+        this.holds.splice(i, 1, false);
+        this.$refs.btn[i].status = false;
+      });
+    },
+
+    touchendHandle(index) {
+      this.$emit('change', index);
     },
   },
 };
