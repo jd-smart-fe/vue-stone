@@ -374,11 +374,12 @@
   .c-range{
     display: inline-block;
     width:100%;
+    padding:0 $range-padding-x;
     box-sizing: border-box;
   }
   .c-range-slider{
     width:100%;
-    padding: $range-padding-y $range-padding-x;
+    padding: $range-padding-y 0;
     box-sizing: border-box;
   }
   .c-range-slider-line{
@@ -415,10 +416,10 @@
     .text{
       display:inline-block;
       position: absolute;
-      top: -$range-slide-button-size;
+      top: calc(-$range-slide-button-size * 0.75);
       left:50%;
       transform: translateX(-50%);
-      height: $range-slide-button-size;
+      height: calc(-$range-slide-button-size * 0.75);
       font-size: $font-size-base;
       font-style: normal;
       white-space: nowrap;
@@ -467,10 +468,10 @@
       font-size: $font-size-base;
       white-space: nowrap;
       &:first-child{
-        transform: translateX(0);
+        transform: translateX(-$range-padding-x);
       }
       &:last-child{
-        transform: translateX(-100%);
+        transform: translateX(-$range-padding-x);
       }
     }
     .dot-icon{
