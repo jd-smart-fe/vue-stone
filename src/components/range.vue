@@ -1,17 +1,17 @@
 <template>
   <div :class="['c-range']">
-    <!-- <input type="text" 
+    <!-- <input type="text"
       :value="currentValue"
     > -->
     <div class="c-range-slider"
       ref="range-slider"
-      @touchstart="startHandle_" 
-      @touchmove="moveHandle_" 
+      @touchstart="startHandle_"
+      @touchmove="moveHandle_"
       @touchend="endHandle_"
       @touchcancel="endHandle_"
     >
       <div class="c-range-slider-line">
-        <div class="c-range-slider-process" ref="range-process" 
+        <div class="c-range-slider-process" ref="range-process"
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
             <transition name="fadetip">
@@ -26,14 +26,14 @@
     </div>
     <div v-if="dots.length > 0" class="c-range-dots">
       <template v-if="show_icon_dots">
-        <span v-for="(info, index) in dotInfoList" 
-          :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]" 
+        <span v-for="(info, index) in dotInfoList"
+          :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]"
           :style="{left : info.left + '%'}">
         </span>
       </template>
       <template v-if="show_text_dots">
-        <span v-for="(info, index) in dotInfoList" 
-          class="dot-item" 
+        <span v-for="(info, index) in dotInfoList"
+          class="dot-item"
           :style="{left : info.left + '%'}"
         >{{info.text}}</span>
       </template>
