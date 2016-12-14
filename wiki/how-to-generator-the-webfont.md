@@ -12,34 +12,54 @@
 
 ---
 
-## Mask参数及事件
+## mask参数及事件
 
 ### 参数
 
 shown：true显示，false隐藏
 
-## 事件
+### 默认事件
 
 input：点击mask触发
 
-## Modal参数及事件
-
 ---
 
-### 参数
+## modal参数及事件
 
-title：标题
+### 组件属性
 
-message：内容信息
+showModal: true显示摸态框，false隐藏模态框
 
-leftBtnText：左按钮文本
+### 传递参数
 
-rightBtnText：右按钮文本
+```
+options : {
+    title：标题,
+    text：内容信息,
+    buttons: [
+          {
+            text: '左按钮文本',
+            callback() {
+                按钮点击后需要响应的回调方法
+            },
+          },
+          {
+            text: '右按钮文本',
+            callback() {
+                按钮点击后需要响应的回调方法
+            },
+          },
+    ],
+}
 
-buttons：按钮数量（目前只支持1-2个按钮）
+```
 
-### 事件
+### 默认事件
 
-leftBtn：左按钮点击事件
+left：左按钮点击事件
 
-rightBtn：右按钮点击事件
+right：右按钮点击事件
+
+单按钮监听left事件
+
+<font color="#ff6375">重要：目前只支持1-2个按钮</font>

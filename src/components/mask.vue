@@ -1,6 +1,6 @@
 <template>
-  <div class="mask" v-show="shown" @click="handle">
-    
+  <div class="c-mask" v-show="shown" @click="handle">
+
   </div>
 </template>
 
@@ -24,14 +24,27 @@
         this.$emit('input');
       },
     },
+    watch: {
+      shown() {
+        console.log(this.shown);
+        if (this.shown) {
+          document.body.classList.add('u-ofh');
+        } else {
+          document.body.classList.remove('u-ofh');
+        }
+      },
+    },
+    mounted() {
+      document.body.classList.add('u-ofh');
+    },
   };
 </script>
 
-<style scoped>
+<style>
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  .mask{
+  .c-mask{
         position:fixed;
         top:0;
         bottom: 0;
