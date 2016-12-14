@@ -15,23 +15,23 @@
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
             <transition name="fadetip">
-              <em v-show="showTip && showTipState" class="text">{{currentValue | pickText}}{{unit}}</em>
+              <em v-show="show_tip && show_tip_state" class="text">{{currentValue | pickText}}{{unit}}</em>
             </transition>
           </span>
         </div>
-        <div v-if="isStep" class="c-range-slider-step">
+        <div v-if="is_step" class="c-range-slider-step">
           <span v-for="info in dotInfoList" class="step-dot" :style="{left : info.left + '%'}"></span>
         </div>
       </div>
     </div>
     <div v-if="dots.length > 0" class="c-range-dots">
-      <template v-if="showIconDots">
+      <template v-if="show_icon_dots">
         <span v-for="(info, index) in dotInfoList" 
           :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]" 
           :style="{left : info.left + '%'}">
         </span>
       </template>
-      <template v-if="showTextDots">
+      <template v-if="show_text_dots">
         <span v-for="(info, index) in dotInfoList" 
           class="dot-item" 
           :style="{left : info.left + '%'}"
@@ -73,12 +73,12 @@
         default: '',
       },
       // 滑动时是否显示当前的值 默认显示
-      showTip: {
+      show_tip: {
         type: Boolean,
         default: true,
       },
       // 是否是有级 默认是无级
-      isStep: {
+      is_step: {
         type: Boolean,
         default: false,
       },
@@ -95,12 +95,12 @@
         },
       },
       // 显示图标dots
-      showIconDots: {
+      show_icon_dots: {
         type: Boolean,
         default: false,
       },
       // 显示文字dots
-      showTextDots: {
+      show_text_dots: {
         type: Boolean,
         default: true,
       },
@@ -116,8 +116,8 @@
         startX: 0,
         currentX: 0,
         dotsLength: this.dots.length,
-        showTipState: false,
-        showTipTimer: null,
+        show_tip_state: false,
+        show_tip_timer: null,
       };
     },
 
@@ -235,7 +235,7 @@
         if (!isSame) {
 
           // 无级
-          if (!this.isStep) {
+          if (!this.is_step) {
 
             if (val < this.min) {
               this.$emit('input', this.min);
@@ -283,7 +283,7 @@
         let currentValue = null;
 
         // 无级
-        if (!this.isStep) {
+        if (!this.is_step) {
 
           const valueDiff = this.max - this.min;
 
@@ -330,9 +330,9 @@
         this.startX = touchs.pageX;
 
         // 如果用户设置了显示当前值得话 在滑动时显示其当前值层;
-        if (this.showTip) {
-          clearTimeout(this.showTipTimer);
-          this.showTipState = true;
+        if (this.show_tip) {
+          clearTimeout(this.show_tip_timer);
+          this.show_tip_state = true;
         }
       },
 
@@ -356,9 +356,9 @@
         this.$emit('change', this.currentValue);
 
         // 如果用户设置了显示当前值得话 在滑动结束时隐藏其层;
-        if (this.showTip) {
-          this.showTipTimer = setTimeout(() => {
-            this.showTipState = false;
+        if (this.show_tip) {
+          this.show_tip_timer = setTimeout(() => {
+            this.show_tip_state = false;
           }, 1000);
         }
       },

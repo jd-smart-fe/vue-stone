@@ -9,10 +9,10 @@
           :min="range_data.min"
           :max="range_data.max"
           :unit="range_data.unit"
-          :isStep="range_data.isStep"
+          :is_step="range_data.isStep"
           :dots="range_data.dots"
-          :showIconDots="range_data.showIconDots"
-          :showTextDots="range_data.showTextDots"
+          :show_icon_dots="range_data.showIconDots"
+          :show_text_dots="range_data.showTextDots"
         >
         </v-range>
       </div>
@@ -26,7 +26,7 @@
           :min="range_data_number.min"
           :max="range_data_number.max"
           :unit="range_data_number.unit"
-          :isStep="range_data_number.isStep"
+          :is_step="range_data_number.isStep"
           :dots="range_data_number.dots"
         >
         </v-range>
@@ -39,8 +39,7 @@
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="rangeArray"
           v-model="range_data_array.value"
-          :unit="range_data_array.unit"
-          :isStep="range_data_array.isStep"
+          :is_step="range_data_array.isStep"
           :dots="range_data_array.dots"
         >
         </v-range>
@@ -52,8 +51,7 @@
       <div slot="body" class="c-panel-body row-4 u-cross-center">
         <v-range slot="main" ref="rangeJson"
           v-model="range_data_json.value"
-          :unit="range_data_json.unit"
-          :isStep="range_data_json.isStep"
+          :is_step="range_data_json.isStep"
           :dots="range_data_json.dots"
         >
         </v-range>
@@ -102,7 +100,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-toggle: </div>
-        <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
+        <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="true"></v-button>
       </div>
     </v-panel>
 
@@ -376,16 +374,21 @@
     },
 
     mounted() {
+
+      this.$refs.rangeNumber.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value}`);
+      });
+
+      this.$refs.range.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value}`);
+      });
+
       this.$refs.rangeArray.$on('change', (value) => {
         console.log(`当前滑杆的值: ${value}`);
       });
 
       this.$refs.rangeJson.$on('change', (value) => {
         console.log(`当前滑杆的值: ${value.text}`);
-      });
-
-      this.$refs.rangeNumber.$on('change', (value) => {
-        console.log(`当前滑杆的值: ${value}`);
       });
 
       this.$refs.switch.$on('change', (state) => {
