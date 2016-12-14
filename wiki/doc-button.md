@@ -1,4 +1,4 @@
-##按钮类组件：
+## 按钮类组件：
 
 ### button
 
@@ -24,11 +24,11 @@ hold | Boolean | false | 按钮是否维持住当前状态。值为true时，点
 - `change`:
   参数:`status` 当前按钮toggle状态。只对type值为toggle的按钮有效
   点击按钮时会触发该事件，按钮状态为disabled时不会触发事件。
-  
+
 - `turnOn`:
   参数:`status` 当前按钮toggle状态。只对type值为toggle的按钮有效
   toggle型按钮打开时会触发事件，按钮状态为disabled时不会触发事件。
-  
+
 - `turnOff`:
   参数:`status` 当前按钮toggle状态。只对type值为toggle的按钮有效
   toggle型按钮关闭时会触发事件，按钮状态为disabled时不会触发事件。
@@ -58,11 +58,11 @@ v-model 为双向绑定参数，应传入一个data值。
 - `change`:
   参数:`value` 当前计数值
   点击加号或减号都会触发该事件，按钮disabled时不会触发。
-  
+
 - `increase`:
   参数:`value` 当前计数值
   点击加号时会触发该事件，按钮disabled时不会触发。
-  
+
 - `decrease`:
  参数:`value` 当前计数值
   点击加号时会触发该事件，按钮disabled时不会触发。

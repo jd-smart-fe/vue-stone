@@ -135,7 +135,7 @@
     </v-panel>
     <!--<v-mask :shown="shown" ref="mask">
     </v-mask>-->
-    <v-modal ref="modal" :options="modalOptions">
+    <v-modal ref="modal" :showModal="showModal" :options="modalOptions">
 
     </v-modal>
   </div>
@@ -286,8 +286,8 @@
 
         power_state: true,
         modalOptions: {
-          title: '天气',
-          text: '我爱北京天安门',
+          title: '提示',
+          text: '热水器过热',
           buttons: [
             {
               text: '查看详情',
@@ -299,7 +299,7 @@
           ],
         },
 
-       // power_state: false,
+        showModal: false,
 
       };
     },
@@ -333,7 +333,7 @@
 
       this.$refs.switch.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
-        // this.$refs.modal.showModal = true;
+        this.showModal = true;
       });
 
       this.$refs.power.$on('change', (state) => {
@@ -356,6 +356,11 @@
       });
       this.$refs.modal.$on('right', () => {
         console.log('触发right事件');
+      });
+      this.$refs.modal.$on('input', () => {
+        // console.debug(222);
+        // this.shown = false;
+        this.showModal = false;
       });
     },
   };

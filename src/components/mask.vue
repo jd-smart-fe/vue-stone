@@ -14,11 +14,6 @@
         default: true,
       },
     },
-    data() {
-      return {
-        mask: 0,
-      };
-    },
     methods: {
       handle() {
         this.$emit('input');
@@ -26,7 +21,7 @@
     },
     watch: {
       shown() {
-        console.log(this.shown);
+
         if (this.shown) {
           document.body.classList.add('u-ofh');
         } else {
@@ -35,7 +30,9 @@
       },
     },
     mounted() {
-      // document.body.classList.add('u-ofh');
+      if (this.shown) {
+        document.body.classList.add('u-ofh');
+      }
     },
   };
 </script>

@@ -22,15 +22,16 @@
 <script>
   export default {
     name: 'v-modal',
-    data() {
-      return {
-        // shown: true,
-        showModal: false,
-      };
-    },
     props: {
+      showModal: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
       options: {
         type: Object,
+        required: false,
+        default: {},
       },
     },
     computed: {
@@ -57,8 +58,7 @@
     },
     mounted() {
       this.$refs.mask.$on('input', () => {
-        // this.shown = false;
-        this.showModal = false;
+        this.$emit('input');// mask的input事件向上抛
       });
     },
     methods: {
