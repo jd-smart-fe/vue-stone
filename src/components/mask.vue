@@ -35,7 +35,7 @@
       },
     },
     mounted() {
-      document.body.classList.add('u-ofh');
+      // document.body.classList.add('u-ofh');
     },
   };
 </script>

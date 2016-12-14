@@ -3,6 +3,7 @@
     <v-button
       ref="inc"
       class="c-counter-inc"
+      disabledClass="c-counter-disabled"
       type="click"
       icon="plus"
       :longTap="true"
@@ -11,8 +12,9 @@
       ></v-button>
     <v-button
       ref="dec"
-      class="c-theme-black c-counter-dec"
+      class="c-counter-dec"
       type="click"
+      disabledClass="c-counter-disabled"
       icon="minus"
       :longTap="true"
       :disabled="decDisabled"
@@ -69,7 +71,6 @@ export default {
     verification(this.current, this.max, this.min);
 
     if (this.value >= this.max) {
-      console.log(this.value);
       this.incDisabled = true;
     }
     if (this.value <= this.min) {
@@ -148,6 +149,7 @@ export default {
       height: 100%;
       border: none;
       border-radius: 0;
+      color: $gray;
     }
 
     .c-counter-inc {
@@ -171,9 +173,9 @@ export default {
         font-style: normal;
       }
     }
-
-    .is-active {
-      background-color: $press-color;
+    
+    .c-counter-disabled{
+      color: $btn-disabled;
     }
   }
 

@@ -2,13 +2,42 @@
   <div id="app">
 
     <v-panel>
-      <div slot="header" class="c-panel-header row-1 u-cross-center">range</div>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : value is a Number</div>
       <div slot="body" class="c-panel-body row-4 u-cross-center">
-        <v-range slot="main" ref="range"
-          v-model="range_data.value"
-          :unit="range_data.unit"
-          :isStep="range_data.isStep"
-          :dots="range_data.dots"
+        <v-range slot="main" ref="rangeNumber"
+          v-model="range_data_number.value"
+          :min="range_data_number.min"
+          :max="range_data_number.max"
+          :unit="range_data_number.unit"
+          :isStep="range_data_number.isStep"
+          :dots="range_data_number.dots"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
+
+    <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is an Array</div>
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
+        <v-range slot="main" ref="rangeArray"
+          v-model="range_data_array.value"
+          :unit="range_data_array.unit"
+          :isStep="range_data_array.isStep"
+          :dots="range_data_array.dots"
+        >
+        </v-range>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is a JSON object</div>
+      <div slot="body" class="c-panel-body row-4 u-cross-center">
+        <v-range slot="main" ref="rangeJson"
+          v-model="range_data_json.value"
+          :unit="range_data_json.unit"
+          :isStep="range_data_json.isStep"
+          :dots="range_data_json.dots"
         >
         </v-range>
       </div>
@@ -24,7 +53,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">Power: </div>
-        <v-power slot="main" v-model="power_state" ref="power"></v-power>
+        <v-power slot="main" ref="power" v-model="power_state"></v-power>
       </div>
     </v-panel>
 
@@ -35,7 +64,7 @@
             {{ countNumber }}
           </div>
         </div>
-        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="2" v-model=" countNumber "></v-button-counter>
+        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="2" v-model=" countNumber "></v-counter>
       </div>
     </v-panel>
 
@@ -49,14 +78,14 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" size="lg" text="联动按钮"></v-button>
+        <v-button slot="main" @change="btnClickHandle" size="lg" icon="mode-holiday"></v-button>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <div slot="title" class="c-panel-title ">btn-switch: </div>
-        <v-button slot="main" ref="btnSwitch" size="lg" text="开关" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
+        <div slot="title" class="c-panel-title ">btn-toggle: </div>
+        <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="false"></v-button>
       </div>
     </v-panel>
 
@@ -65,24 +94,10 @@
         <div class="c-panel-title">互斥按钮组</div>
       </div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-button-group @change="exclusiveChangeHandle">
-          <v-button type="toggle" text="左风向"></v-button>
-          <v-button type="toggle" text="右风向"></v-button>
-          <v-button type="toggle" text="上风向"></v-button>
+        <v-button-group :items="buttonGroup" @change="exclusiveChangeHandle">
         </v-button-group>
       </div>
     </v-panel>
-
-    <v-panel>
-      <div slot="header" class="c-panel-header u-cross-center">
-        <div class="c-panel-title">互斥按钮组</div>
-      </div>
-      <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-button-group-new :items="newG">
-        </v-button-group-new>
-      </div>
-    </v-panel>
-
 
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
@@ -212,28 +227,63 @@
           id: 8,
         }],
 
-        newG: [
+        buttonGroup: [
           {
             text: '第一个',
           },
           {
             text: '第二个',
+            initStatus: true,
           },
           {
             text: '第三个',
           },
+          {
+            text: '第4个',
+          },
+          {
+            text: '第5个',
+          },
         ],
 
-
-        range_data: {
-          value: '2档',
+        range_data_number: {
+          value: 100,
+          min: 0,
+          max: 1000,
           unit: '°C',
-          showInfos: true,
+          dots: ['低温', '高温'],
+        },
+
+        range_data_array: {
+          value: '2档',
           isStep: true,
           dots: ['1档', '2档', '3档', '4档'],
         },
+
+        range_data_json: {
+          value: {
+            value: 30,
+            text: '高档',
+          },
+          isStep: true,
+          dots: [
+            {
+              value: 10,
+              text: '低档',
+            },
+            {
+              value: 20,
+              text: '中档',
+            },
+            {
+              value: 30,
+              text: '高档',
+            },
+          ],
+        },
         switch_state: true,
         switch_dis_state: false,
+
         power_state: true,
         modalOptions: {
           title: '天气',
@@ -248,19 +298,19 @@
             { text: '我知道了' },
           ],
         },
+
+       // power_state: false,
+
       };
     },
 
     methods: {
       btnSwitchHandle(state) {
         console.log(`开关按钮状态：${state}`);
-        // console.log(this.$refs.btnSwitch.status);
       },
 
       btnClickHandle() {
         console.log('触发按钮点击事件');
-        this.$refs.btnSwitch.hold = !this.$refs.btnSwitch.hold;
-        console.log(this.$refs.btnSwitch);
       },
 
       exclusiveChangeHandle(index) {
@@ -269,7 +319,15 @@
     },
 
     mounted() {
-      this.$refs.range.$on('change', (value) => {
+      this.$refs.rangeArray.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value}`);
+      });
+
+      this.$refs.rangeJson.$on('change', (value) => {
+        console.log(`当前滑杆的值: ${value.text}`);
+      });
+
+      this.$refs.rangeNumber.$on('change', (value) => {
         console.log(`当前滑杆的值: ${value}`);
       });
 
@@ -282,14 +340,12 @@
         console.log(`设备当前power状态: ${state}`);
       });
 
-      this.$refs.counter.$on('increase', () => {
-        console.log('触发increase事件');
-        console.log('触发change事件');
+      this.$refs.counter.$on('increase', (val) => {
+        console.log(`触发increase事件 当前值为：${val}`);
       });
 
-      this.$refs.counter.$on('decrease', () => {
-        console.log('触发decrease事件');
-        console.log('触发change事件');
+      this.$refs.counter.$on('decrease', (val) => {
+        console.log(`触发decrease事件 当前值为：${val}`);
       });
 
       this.$refs.modes.$on('change', (state) => {

@@ -82,7 +82,7 @@
     background-color: $t-power-offcolor;
 
     $(prefix)-icon {
-      color: #fff;
+      color: $t-power-oncolor;
     }
 
     &.is-disable {}

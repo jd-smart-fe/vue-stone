@@ -34,10 +34,11 @@ $orange: #f76b46;
 /****  range  ****/
 $range-padding-y: 0.16rem;
 $range-slide-height: 0.02rem;
-$range-slide-block-size: 0.24rem;
-$range-padding-x: calc($range-slide-block-size/2);
-$range-slide-block-border: 0.02rem;
+$range-slide-button-size: 0.24rem;
+$range-padding-x: calc($range-slide-button-size/2);
+$range-slide-button-border: 0.01rem;
 $range-slide-stepdot-size: 0.04rem;
+$range-slide-dot-size: 0.24rem;
 
 $t-range-defcolor: $gray-lighter;
 $t-range-lightcolor: $c-primary;
@@ -56,8 +57,8 @@ $t-switch-offcolor: $gray-lighter;
 $power-width: 0.45rem;
 $power-height: 0.45rem;
 
-$t-power-oncolor: #fff;
-$t-power-offcolor: $c-primary;
+$t-power-offcolor: #fff;
+$t-power-oncolor: $c-primary;
 
 /****  button  ****/
 $btn-width-sm: 0.75rem;
@@ -83,3 +84,4 @@ $panel-width: $main-width;
 
 /*modal**/
 $c-modal-title: #ff6375
+
