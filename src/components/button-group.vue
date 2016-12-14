@@ -1,6 +1,6 @@
 <template>
   <div class="c-btnGroup">
-    <v-button v-for="(item, index) in items"
+    <v-button class="c-btnGroup-btn" v-for="(item, index) in items"
               ref="btn"
               type="toggle"
               :text="item.text"
@@ -33,6 +33,10 @@ export default {
       type: Boolean,
       required: false,
       default: true,
+    },
+    line: {
+      type: Number,
+      default: 3,
     },
   },
 
@@ -88,5 +92,7 @@ export default {
 
     width: 100%;
   }
-
+  .c-btnGroup-btn{
+    margin: 0px 2px;
+  }
 </style>

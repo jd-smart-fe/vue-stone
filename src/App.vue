@@ -52,7 +52,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">Power: </div>
-        <v-power slot="main" ref="power"></v-power>
+        <v-power slot="main" ref="power" v-model="power_state"></v-power>
       </div>
     </v-panel>
 
@@ -237,6 +237,12 @@
           {
             text: '第三个',
           },
+          {
+            text: '第4个',
+          },
+          {
+            text: '第5个',
+          },
         ],
 
         range_data_number: {
@@ -276,7 +282,7 @@
         },
         switch_state: true,
         switch_dis_state: false,
-        power_state: true,
+        power_state: false,
       };
     },
 

@@ -57,8 +57,8 @@ $t-switch-offcolor: $gray-lighter;
 $power-width: 0.45rem;
 $power-height: 0.45rem;
 
-$t-power-oncolor: #fff;
-$t-power-offcolor: $c-primary;
+$t-power-offcolor: #fff;
+$t-power-oncolor: $c-primary;
 
 /****  button  ****/
 $btn-width-sm: 0.75rem;
