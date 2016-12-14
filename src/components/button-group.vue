@@ -1,8 +1,9 @@
 <template>
-  <div :class="['c-btnGroup', wrap ? 'c-btnGroup-wrap': '']">
+  <div class="c-btnGroup">
       <v-button class="c-btnGroup-btn" v-for="(item, index) in items"
       ref="btn"
       type="toggle"
+      :size="size"
       :text="item.text"
       :initStatus="initStatus[index]"
       :hold="holds[index]"
@@ -28,15 +29,6 @@ export default {
     items: {
       type: Array,
       required: false,
-    },
-    exclusive: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
-    wrap: {
-      type: Boolean,
-      default: false,
     },
     size: {
       type: String,
@@ -95,12 +87,6 @@ export default {
     align-items: center;
     overflow: hidden;
   }
-
-  /*.c-btnGroup-wrap{
-    flex-wrap: wrap;
-    flex: none;
-  }*/
-
   .c-btnGroup-btn + .c-btnGroup-btn{
     margin-left: 16px;
   }

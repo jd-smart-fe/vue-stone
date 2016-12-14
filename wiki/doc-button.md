@@ -66,3 +66,47 @@ v-model 为双向绑定参数，应传入一个data值。
 - `decrease`:
  参数:`value` 当前计数值
   点击加号时会触发该事件，按钮disabled时不会触发。
+
+
+---
+### buttonGroup
+
+#### v-button-group 按钮组
+
+该按钮组为互斥按钮组，只会有一个按钮处于激活状态。
+
+
+属性名   |    类型   |     默认值     |     说明
+----    | ----    | ----    | ----    |
+items  | Array    |     无     |   按钮属性集合。
+size     | String  |   base |  统一设置按钮大小。
+
+
+```
+buttonGroup: [
+  // 请参照button设置选项
+  {
+    text: '第一个',
+    icon: 'mode-holiday',
+    ...
+
+    ...
+  },
+
+  {
+    text: '第二个',
+    icon: 'mode-holiday',
+    initStatus: true, // 设置初始被激活的按钮，有且仅有一个按钮能被初始激活。
+    ...
+
+    ...
+  },
+],
+
+```
+
+**事件：**
+
+- `change`:
+  参数:`value` 当前被激活按钮的索引
+  点击按钮组内按钮会触发该事件。
