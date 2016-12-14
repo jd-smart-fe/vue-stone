@@ -15,7 +15,7 @@
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
             <transition name="fadetip">
-              <em v-show="showCurrentValue && showCurrentValueState" class="text">{{currentValue | pickText}}{{unit}}</em>
+              <em v-show="showTip && showTipState" class="text">{{currentValue | pickText}}{{unit}}</em>
             </transition>
           </span>
         </div>
@@ -24,8 +24,8 @@
         </div>
       </div>
     </div>
-    <div v-if="dots.length > 0" class="c-range-infos">
-      <span v-for="(info, index) in dotInfoList" class="info-item" :style="{left : info.left + '%'}">{{info.text}}</span>
+    <div v-if="dots.length > 0" class="c-range-dots">
+      <span v-for="(info, index) in dotInfoList" class="dot-item" :style="{left : info.left + '%'}">{{info.text}}</span>
     </div>
   </div>
 </template>
@@ -61,7 +61,7 @@
         default: '',
       },
       // 滑动时是否显示当前的值 默认显示
-      showCurrentValue: {
+      showTip: {
         type: Boolean,
         default: true,
       },
@@ -91,8 +91,8 @@
         startX: 0,
         currentX: 0,
         dotsLength: this.dots.length,
-        showCurrentValueState: false,
-        showCurrentValueTimer: null,
+        showTipState: false,
+        showTipTimer: null,
       };
     },
 
@@ -301,9 +301,9 @@
         this.startX = touchs.pageX;
 
         // 如果用户设置了显示当前值得话 在滑动时显示其当前值层;
-        if (this.showCurrentValue) {
-          clearTimeout(this.showCurrentValueTimer);
-          this.showCurrentValueState = true;
+        if (this.showTip) {
+          clearTimeout(this.showTipTimer);
+          this.showTipState = true;
         }
       },
 
@@ -327,9 +327,9 @@
         this.$emit('change', this.currentValue);
 
         // 如果用户设置了显示当前值得话 在滑动结束时隐藏其层;
-        if (this.showCurrentValue) {
-          this.showCurrentValueTimer = setTimeout(() => {
-            this.showCurrentValueState = false;
+        if (this.showTip) {
+          this.showTipTimer = setTimeout(() => {
+            this.showTipState = false;
           }, 1000);
         }
       },
@@ -357,6 +357,7 @@
     width: 100%;
     height: $range-slide-height;
     background: $t-range-defcolor;
+    border-radius: calc($range-slide-height / 2);
   }
   .c-range-slider-process{
     position: absolute;
@@ -365,28 +366,30 @@
     z-index: 3;
     height: $range-slide-height;
     background-color: $t-range-lightcolor;
+    border-radius: calc($range-slide-height / 2);
   }
   .c-range-slider-button{
     display: inline-block;
     position:absolute;
     top:50%;
     right:0;
-    margin-right: calc(-$range-slide-block-size / 2);
-    margin-top: calc(-$range-slide-block-size / 2);
-    width:$range-slide-block-size;
-    height:$range-slide-block-size;
-    border:$t-range-lightcolor solid 0.02rem;
+    margin-right: calc(-$range-slide-button-size / 2);
+    margin-top: calc(-$range-slide-button-size / 2);
+    width:$range-slide-button-size;
+    height:$range-slide-button-size;
+    border:$t-range-lightcolor solid $range-slide-button-border;
     border-radius: 100%;
-    background:#fff;
+    background-image: linear-gradient(0deg, #f9f9f9 0%, #fff 80%);
+    box-shadow:0 1px 2px rgba(0,0,0,0.1);
     box-sizing:border-box;
     z-index:5;
     .text{
       display:inline-block;
       position: absolute;
-      top: -$range-slide-block-size;
+      top: -$range-slide-button-size;
       left:50%;
       transform: translateX(-50%);
-      height: $range-slide-block-size;
+      height: $range-slide-button-size;
       font-size: $font-size-base;
       font-style: normal;
       white-space: nowrap;
@@ -419,18 +422,18 @@
       border-radius:100%;
     }
   }
-  .c-range-infos{
+  .c-range-dots{
     position: relative;
     width:100%;
-    height: $range-slide-block-size;
+    height: $range-slide-dot-size;
     box-sizing: border-box;
-    .info-item{
+    .dot-item{
       display:inline-block;
       position: absolute;
       top:0;
       transform: translateX(-50%);
-      height: $range-slide-block-size;
-      line-height: $range-slide-block-size;
+      height: $range-slide-dot-size;
+      line-height: $range-slide-dot-size;
       font-size: $font-size-base;
       white-space: nowrap;
       &:first-child{
