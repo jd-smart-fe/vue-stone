@@ -118,12 +118,12 @@
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">picker: </div>
         <div slot="main">
-          <v-button text="picker"></v-button>
+          <v-button text="picker" @change="pickerHandle()"></v-button>
         </div>
       </div>
     </v-panel>
     
-    <v-picker></v-picker>
+    <v-picker ref="picker"></v-picker>
     
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
@@ -378,6 +378,10 @@
 
       exclusiveChangeHandle(index) {
         console.log(`第${index + 1}个按钮被激活`);
+      },
+
+      pickerHandle(val) {
+        this.$refs.picker.slideIn = true;
       },
     },
 
