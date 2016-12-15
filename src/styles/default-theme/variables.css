@@ -36,7 +36,7 @@ $range-padding-y: 0.16rem;
 $range-slide-height: 0.02rem;
 $range-slide-button-size: 0.24rem;
 $range-padding-x: calc($range-slide-button-size/2);
-$range-slide-button-border: 0.01rem;
+$range-slide-button-border: 0.02rem;
 $range-slide-stepdot-size: 0.04rem;
 $range-slide-dot-size: 0.24rem;
 

@@ -3,7 +3,7 @@
 
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : dots is objects</div>
-      <div slot="body" class="c-panel-body row-4 u-cross-center">
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
         <v-range slot="main" ref="range"
           v-model="range_data.value"
           :min="range_data.min"
@@ -20,7 +20,7 @@
 
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : value is a Number</div>
-      <div slot="body" class="c-panel-body row-4 u-cross-center">
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
         <v-range slot="main" ref="rangeNumber"
           v-model="range_data_number.value"
           :min="range_data_number.min"
@@ -36,7 +36,7 @@
 
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is an Array</div>
-      <div slot="body" class="c-panel-body row-4 u-cross-center">
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
         <v-range slot="main" ref="rangeArray"
           v-model="range_data_array.value"
           :is_step="range_data_array.isStep"
@@ -48,7 +48,7 @@
 
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - isStep : value is a JSON object</div>
-      <div slot="body" class="c-panel-body row-4 u-cross-center">
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
         <v-range slot="main" ref="rangeJson"
           v-model="range_data_json.value"
           :is_step="range_data_json.isStep"
@@ -313,6 +313,12 @@
             },
             {
               text: '4档',
+            },
+            {
+              text: '5档',
+            },
+            {
+              text: '6档',
             },
           ],
         },

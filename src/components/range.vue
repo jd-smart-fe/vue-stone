@@ -1,17 +1,17 @@
 <template>
   <div :class="['c-range']">
-    <!-- <input type="text" 
+    <!-- <input type="text"
       :value="currentValue"
     > -->
     <div class="c-range-slider"
       ref="range-slider"
-      @touchstart="startHandle_" 
-      @touchmove="moveHandle_" 
+      @touchstart="startHandle_"
+      @touchmove="moveHandle_"
       @touchend="endHandle_"
       @touchcancel="endHandle_"
     >
       <div class="c-range-slider-line">
-        <div class="c-range-slider-process" ref="range-process" 
+        <div class="c-range-slider-process" ref="range-process"
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
             <transition name="fadetip">
@@ -26,14 +26,14 @@
     </div>
     <div v-if="dots.length > 0" class="c-range-dots">
       <template v-if="show_icon_dots">
-        <span v-for="(info, index) in dotInfoList" 
-          :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]" 
+        <span v-for="(info, index) in dotInfoList"
+          :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]"
           :style="{left : info.left + '%'}">
         </span>
       </template>
       <template v-if="show_text_dots">
-        <span v-for="(info, index) in dotInfoList" 
-          class="dot-item" 
+        <span v-for="(info, index) in dotInfoList"
+          class="dot-item"
           :style="{left : info.left + '%'}"
         >{{info.text}}</span>
       </template>
@@ -374,11 +374,12 @@
   .c-range{
     display: inline-block;
     width:100%;
+    padding:0 $range-padding-x;
     box-sizing: border-box;
   }
   .c-range-slider{
     width:100%;
-    padding: $range-padding-y $range-padding-x;
+    padding: $range-padding-y 0;
     box-sizing: border-box;
   }
   .c-range-slider-line{
@@ -415,10 +416,10 @@
     .text{
       display:inline-block;
       position: absolute;
-      top: -$range-slide-button-size;
+      top: calc(-$range-slide-button-size * 0.75);
       left:50%;
       transform: translateX(-50%);
-      height: $range-slide-button-size;
+      height: calc(-$range-slide-button-size * 0.75);
       font-size: $font-size-base;
       font-style: normal;
       white-space: nowrap;
@@ -467,10 +468,10 @@
       font-size: $font-size-base;
       white-space: nowrap;
       &:first-child{
-        transform: translateX(0);
+        transform: translateX(-$range-padding-x);
       }
       &:last-child{
-        transform: translateX(-100%);
+        transform: translateX(-$range-padding-x);
       }
     }
     .dot-icon{
