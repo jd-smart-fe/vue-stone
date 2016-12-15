@@ -68,7 +68,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">Power: </div>
-        <v-power slot="main" ref="power" v-model="power_state"></v-power>
+        <v-power slot="main" ref="power" :hand="true" v-model="power_state"></v-power>
       </div>
     </v-panel>
 
@@ -79,7 +79,7 @@
             {{ countNumber }}
           </div>
         </div>
-        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="2" v-model=" countNumber "></v-counter>
+        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="1" v-model=" countNumber "></v-counter>
       </div>
     </v-panel>
 
@@ -114,6 +114,17 @@
       </div>
     </v-panel>
 
+    <v-panel>
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div slot="title" class="c-panel-title ">picker: </div>
+        <div slot="main">
+          <v-button text="picker"></v-button>
+        </div>
+      </div>
+    </v-panel>
+    
+    <v-picker></v-picker>
+    
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">Panel Header</div>
@@ -162,7 +173,7 @@
 
     data() {
       return {
-        countNumber: 10,
+        countNumber: 5,
         grid_active_id: 2,
         grid_data_2: [{
           text: '修改Wifi密码',

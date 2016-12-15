@@ -1,6 +1,6 @@
 <template>
-  <div class="c-btnGroup">
-      <v-button class="c-btnGroup-btn" v-for="(item, index) in items"
+  <div class="c-btngroup">
+      <v-button class="c-btngroup-btn" v-for="(item, index) in items"
       ref="btn"
       type="toggle"
       :size="size"
@@ -81,13 +81,13 @@ export default {
 <style>
   @import '../styles/base.css';
 
-  .c-btnGroup{
+  .c-btngroup{
     display: flex;
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
   }
-  .c-btnGroup-btn + .c-btnGroup-btn{
+  .c-btngroup-btn + .c-btngroup-btn{
     margin-left: 16px;
   }
 </style>

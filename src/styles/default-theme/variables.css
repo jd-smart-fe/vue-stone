@@ -73,7 +73,7 @@ $btn-height-lg: 0.42rem;
 
 /**** button status ****/
 $btn-disabled: #efefef;
-$btn-press: #efefef; /* 按钮按下底色 */
+$btn-hover: #efefef; /* 按钮按下底色 */
 
 /**** counter ****/
 $counter-width: 1.03rem;
@@ -84,4 +84,3 @@ $panel-width: $main-width;
 
 /*modal**/
 $c-modal-title: #ff6375
-

@@ -11,6 +11,7 @@ import Counter from './components/counter';
 import ButtonGroup from './components/button-group';
 import Modes from './components/modes';
 import Mask from './components/mask';
+import Picker from './components/picker';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -27,6 +28,7 @@ const install = (Vue, options = {}) => {
   Vue.component(Counter.name, Counter);
   Vue.component(ButtonGroup.name, ButtonGroup);
   Vue.component(Modes.name, Modes);
+  Vue.component(Picker.name, Picker);
 
   install.installed = true;
 };

@@ -23,6 +23,10 @@
         type: Boolean,
         default: false,
       },
+      hand: {
+        type: Boolean,
+        default: false,
+      },
     },
 
     computed: {
@@ -45,6 +49,11 @@
     methods: {
 
       handle() {
+        if (this.hand) {
+          this.$emit('change', this.value);
+          return;
+        }
+
         // state: disabled
         if (this.disabled) {
           return;

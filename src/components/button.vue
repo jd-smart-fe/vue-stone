@@ -13,13 +13,11 @@
 
 <template>
   <div
-  :class="[ 'c-btn',
+  :class="[ btnCls,
             `c-btn-${size}`,
-            disabled ? disabledClass : '',
-            isPress ? hoverClass : '',
-            status ? 'c-btn-on' : '',
-            /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
-            type === 'toggle' ? 'is-transition' : ''
+            disabled ? disabledCls : '',
+            hover ? hoverCls : '',
+            status ? activeCls : '',
           ]"
   :text="text"
   :type="type"
@@ -41,7 +39,7 @@ export default {
 
   data() {
     return {
-      isPress: false,
+      hover: false,
       longTapFlag: false,
       status: this.initStatus,
     };
@@ -94,18 +92,36 @@ export default {
       reuqired: false,
       default: false,
     },
-    // 指定按钮按下去的样式类
-    hoverClass: {
+    // 指定按钮按默认样式类
+    btnCls: {
       type: String,
       required: false,
-      default: 'c-btn-press',
+      default: 'c-btn',
+    },
+    // 指定按钮按下去的样式类
+    hoverCls: {
+      type: String,
+      required: false,
+      default: 'c-btn-hover',
     },
     // 指定disabled的样式类
-    disabledClass: {
+    disabledCls: {
       type: String,
       required: false,
       default: 'c-btn-disabled',
     },
+    // 指定按钮激活时的样式类， 仅对toggle按钮有效
+    activeCls: {
+      type: String,
+      required: false,
+      default: 'c-btn-on',
+    },
+    // 指定按钮激活时按下去的样式类， 仅对toggle按钮有效
+    // activeHoverCls: {
+    //   type: String,
+    //   required: false,
+    //   default: 'c-btn-on',
+    // },
     // 是否开启长按功能
     longTap: {
       type: Boolean,
@@ -165,10 +181,10 @@ export default {
       }
       // 按钮被禁用
       if (this.disabled) {
-        this.isPress = false;
+        this.hover = false;
         return;
       }
-      this.isPress = true;
+      this.hover = true;
     },
 
     touchendHandle() {
@@ -181,11 +197,11 @@ export default {
       // 按钮禁用状态
       if (this.disabled) {
         // 按钮禁用后解除按下的状态
-        this.isPress = false;
+        this.hover = false;
         return;
       }
       // 解除按下状态
-      this.isPress = false;
+      this.hover = false;
 
       // click 型按钮，无需改变status值，直接分发change事件
       if (this.type === 'click') {
@@ -223,43 +239,9 @@ export default {
 
     color: $c-primary;
     font-size: $font-size-base;
-
-    /*解决触控板点击click型按钮没有颜色反馈，后期可取消注释*/
-    /*@mixin transition;*/
-
-    &.c-btn-press{
-      background: $btn-press;
-
-      &.c-btn-on{
-        background-color: $c-primary-on;
-      }
-    }
-
-    &.c-btn-on{
-      color: $white;
-      background-color: $blue;
-    }
     
-    &.c-btn-base {
-      width: $btn-width-base;
-      height: $btn-height-base;
-      
-      border-radius: @width;
-    }
-    
-    &.c-btn-sm {
-      width: $btn-width-sm;
-      height: $btn-height-sm;
-      
-      border-radius: @width;
-    }
-    
-    &.c-btn-lg {
-      width: $btn-width-lg;
-      height: $btn-height-lg;
-      
-      border-radius: @width;
-    }
+    @mixin transition;
+
 
     span + span{
       margin-left: 0.05rem;
@@ -267,6 +249,39 @@ export default {
     }
   }
 
+  .c-btn-hover{
+    background: $btn-hover;
+    
+    &.c-btn-on{
+      background-color: $c-primary-on;
+    }
+  }
+  
+  .c-btn-on{
+    color: $white;
+    background-color: $blue;
+  }
+  
+  .c-btn-base {
+    width: $btn-width-base;
+    height: $btn-height-base;
+    
+    border-radius: @width;
+  }
+  
+  .c-btn-sm {
+    width: $btn-width-sm;
+    height: $btn-height-sm;
+    
+    border-radius: @width;
+  }
+  
+  .c-btn-lg {
+    width: $btn-width-lg;
+    height: $btn-height-lg;
+    
+    border-radius: @width;
+  }
 
   #app .c-btn-disabled {
     color: $btn-disabled;
@@ -274,10 +289,6 @@ export default {
     border-color: $btn-disabled;
   }
 
-  /*解决触控板点击click型按钮没有颜色反馈，后期可删除*/
-  .is-transition{
-    @mixin transition;
-  }
 
   .c-btn-icon{
     font-size: calc($font-size-base + 4px);
