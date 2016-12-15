@@ -405,6 +405,7 @@
       });
 
       this.$refs.power.$on('change', (state) => {
+        this.power_state = !this.power_state;
         console.log(`设备当前power状态: ${state}`);
       });
 
