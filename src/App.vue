@@ -124,7 +124,7 @@
     </v-panel>
 
     <v-picker ref="picker" :items="picker_data"></v-picker>
-
+    
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">Panel Header</div>
@@ -398,7 +398,7 @@
       },
 
       pickerHandle(val) {
-        this.$refs.picker.slideIn = !this.$refs.picker.slideIn;
+        this.$refs.picker.show = !this.$refs.picker.show;
       },
     },
 
