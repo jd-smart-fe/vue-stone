@@ -29,7 +29,7 @@ module.exports = {
     }],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-
+    "no-use-before-define": ["error", { "functions": false,}],
     "no-unused-vars": 1,
 
     "no-console": 0,
