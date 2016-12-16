@@ -122,9 +122,9 @@
         </div>
       </div>
     </v-panel>
-    
-    <v-picker ref="picker"></v-picker>
-    
+
+    <v-picker ref="picker" :items="picker_data"></v-picker>
+
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">Panel Header</div>
@@ -364,6 +364,23 @@
 
         showModal: false,
 
+        picker_data: [
+          {
+            textAlign: 'center', // default 'center'
+            values: ['item', 'item', 'item', 'item', 'item', 'item'],
+            // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+          },
+          {
+            textAlign: 'center', // default 'center'
+            values: ['item', 'item', 'item', 'item', 'item', 'item'],
+            // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+          },
+          {
+            textAlign: 'center', // default 'center'
+            values: ['item', 'item', 'item', 'item', 'item', 'item'],
+            // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+          },
+        ],
       };
     },
 
@@ -381,7 +398,7 @@
       },
 
       pickerHandle(val) {
-        this.$refs.picker.slideIn = true;
+        this.$refs.picker.slideIn = !this.$refs.picker.slideIn;
       },
     },
 
