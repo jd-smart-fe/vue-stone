@@ -157,10 +157,19 @@ export default {
       justify-content: center;
       align-items: center;
 
-      border-right: 1px solid $gray-lighter;
+      position: relative;
 
       i {
         font-style: normal;
+      }
+
+      &:after{
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1px;
+        height: 100%;
+        background-color: $gray-lighter;
       }
     }
 
@@ -173,7 +182,7 @@ export default {
         font-style: normal;
       }
     }
-    
+
     .c-counter-disabled{
       color: $btn-disabled;
     }
