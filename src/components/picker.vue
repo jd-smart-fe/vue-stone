@@ -1,159 +1,270 @@
 <template lang="html">
-  <div :class="['c-picker', show ? 'c-picker-slideIn' : '']">
-
-    <header class="c-picker-title">
-      <span>{{ title }}</span>
-      <button @click="show = false">确定</button>
-    </header>
+  <div class='c-picker' :data-hour="`${hour}`" :data-min="`${min}`">
 
     <div class="c-picker-body">
-      <div class="c-picker-col" v-for="(item, index) in items">
-        <div :class="['c-picker-item', activeIndex === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
-          {{ _item }}
+      <div class="c-picker-col" v-for="(item, index) in items" ref="col" >
+        <div class="c-picker-col-wrapper">
+          <div :data-value="_item" :class="['c-picker-item', item.active === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
+            {{ item.displayValues[_index] }}
+          </div>
         </div>
       </div>
       <div class="c-picker-highlight"></div>
+      <b class="c-picker-colon">:</b>
     </div>
 
   </div>
 </template>
 
 <script>
-const vm = {
+let vm;
+
+const hour = [];
+for (let i = 0; i <= 23; i += 1) {
+  hour.push(i);
+}
+
+const min = [];
+for (let i = 0; i <= 59; i += 1) {
+  let n = 0;
+  if (i < 10) {
+    n = `0${i}`;
+  } else {
+    n = i;
+  }
+  min.push(n);
+}
+
+const hourActive = new Date().getHours();
+const minActive = new Date().getMinutes();
+
+export default {
   name: 'v-picker',
 
   data() {
     return {
       show: false,
-      activeIndex: 2,
       title: '请选择选项',
+      cols: [],
+      items: [{
+        // textAlign: 'center', // default 'center'
+        values: hour,
+        active: hourActive,
+      },
+      {
+        // textAlign: 'center', // default 'center'
+        values: min,
+        active: minActive,
+      }],
     };
   },
 
-  props: {
-    items: {
-      type: Array,
-      default() {
-        return [{
-          textAlign: 'center', // default 'center'
-          values: [],
-        }];
-      },
+  computed: {
+    hour() {
+      const h = this.items[0].active;
+      const m = this.items[1].active;
+      const value = {
+        hour: h,
+        min: m,
+      };
+      this.$emit('change', value);
+      return h;
+    },
+
+    min() {
+      const h = this.items[0].active;
+      const m = this.items[1].active;
+      const value = {
+        hour: h,
+        min: m,
+      };
+      this.$emit('change', value);
+      return m;
     },
   },
 
-  mounted() {
-    picker(this.$el);
+  // props: {
+  //   items: {
+  //     type: Array,
+  //     default() {
+  //       return [{
+  //         textAlign: 'center', // default 'center'
+  //         values: [],
+  //         active: 0,
+  //       }];
+  //     },
+  //   },
+  // },
 
-    this.$el.addEventListener('touchmove', (e) => {
-      e.stopPropagation;
-      e.preventDefault;
+  created() {
+    vm = this;
+
+    this.items.forEach((val, index) => {
+      if (!this.items[index].displayValues) {
+        this.$set(this.items[index], 'displayValues', this.items[index].values);
+      }
     });
+  },
+
+  mounted() {
+    Array.prototype.push.apply(this.cols, this.$refs.col);
+    picker(this.$el, this.cols);
   },
 
   watch: {
     show(val) {
       this.$emit('change', val);
-
-      // if (val) {
-      //   document.body.classList.add('u-ofh');
-      // } else {
-      //   document.body.classList.remove('u-ofh');
-      // }
     },
   },
 };
 
-function picker(el) {
+function picker(body, cols) {
+  const options = {
+    showItemNum: 7, // 一屏内显示item的个数, 应为奇数.
+    itemHeight: 30,
+  };
+  // 一屏内的第activeShowItemIndex个item被激活
+  const activeShowItemIndex = (options.showItemNum - 1) / 2;
 
-  let isTouched = false;
-  let isMoved = false;
-  let touchStartY = false;
-  let touchCurrentY = false;
+  let touchStartY;
+  let touchCurrentY;
   let touchStartTime;
-  // let touchEndTime = false;
-  let currentTranslate = 0;
-  let startTranslate = 0;
+  let touchEndTime;
+  let diff = 0;
+  let movedItem;
 
-  let allowItemClick = false;
+  // 遍历col，初始化相关属性，注册事件。
+  cols.forEach((el, index) => {
+    const isMoved = false;
+    const isTouched = false;
+    const itemList = el.getElementsByClassName('c-picker-item');
+    const activeIndex = vm.items[index].active;
+    const itemHeight = itemList[0].offsetHeight;
+    const maxTranslate = (activeIndex) * itemHeight;
+    const minTranslate = ((activeIndex + 1) - itemList.length) * itemHeight;
+    const startTranslate = 0;
+    const currentTranslate = 0;
+    // const oneItemListHeight = (itemList.length / 3) * itemHeight;
 
-  el.addEventListener('touchstart', touchstartHandle);
-  el.addEventListener('touchmove', touchmoveHandle);
-  el.addEventListener('touchend', touchendHandle);
+    // 为col添加需要用到的数据
+    el.isMoved = isMoved;
+    el.isTouched = isTouched;
+    el.colIndex = index;
+    el.itemList = itemList;
+    el.activeIndex = activeIndex;
+    el.itemHeight = itemHeight;
+    el.maxTranslate = maxTranslate;
+    el.minTranslate = minTranslate;
+    el.startTranslate = startTranslate;
+    el.currentTranslate = currentTranslate;
+    // el.oneItemListHeight = oneItemListHeight;
 
-  function setTranslate(y) {
-    el.style.transform = `translate3d(0, ${y}, 0)`;
+    const wrapper = el.getElementsByClassName('c-picker-col-wrapper')[0];
+    // const marginTopBase = (itemList.length / 3) * itemHeight;
+    const marginTopBase = 0;
+    const marginTop = ((activeShowItemIndex - activeIndex) * itemHeight) - marginTopBase;
+
+    wrapper.style.marginTop = `${marginTop}px`;
+
+    el.addEventListener('touchstart', touchstartHandle);
+    el.addEventListener('touchmove', touchmoveHandle);
+    el.addEventListener('touchend', touchendHandle);
+  });
+
+  function setTranslate(el, y) {
+    el.getElementsByClassName('c-picker-col-wrapper')[0].style.transform = `translate3d(0, ${y}px, 0)`;
   }
 
   function touchstartHandle(e) {
-    if (isMoved || isTouched) return;
+    if (this.isMoved || this.isTouched) return;
     e.preventDefault();
-    isTouched = true;
+    this.isTouched = true;
     touchStartY = touchCurrentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
     touchStartTime = (new Date()).getTime();
-
-    allowItemClick = true;
-    startTranslate = currentTranslate;
+    this.startTranslate = this.currentTranslate;
   }
 
   function touchmoveHandle(e) {
-    if (!isTouched) return;
+    if (!this.isTouched) return;
     e.preventDefault();
-    allowItemClick = false;
     touchCurrentY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
 
-    if (!isMoved) {
-      isMoved = true;
-      startTranslate = currentTranslate;
+    if (!this.isMoved) {
+      this.isMoved = true;
+      this.startTranslate = this.currentTranslate;
     }
 
-    const diff = touchCurrentY - touchStartY;
-    currentTranslate = startTranslate + diff;
+    diff = touchCurrentY - touchStartY;
+    // 计算出现在translate的值
+    this.currentTranslate = this.startTranslate + diff;
 
-    //
     // 判断max 与min
-    //
+    if (this.currentTranslate > this.maxTranslate) {
+      this.currentTranslate = this.maxTranslate;
+    }
+    if (this.currentTranslate < this.minTranslate) {
+      this.currentTranslate = this.minTranslate;
+    }
 
-    setTranslate(currentTranslate);
+    // 解决字体模糊问题
+    Math.round(this.currentTranslate);
 
-    //
-    // 判断item
-    //
+    // 改变相应col的translate
+    setTranslate(this, this.currentTranslate);
   }
 
   function touchendHandle() {
-    if (!isTouched || !isMoved) {
-      isTouched = isMoved = false;
+    if (!this.isTouched || !this.isMoved) {
+      this.isTouched = this.isMoved = false;
       return;
     }
-    isTouched = isMoved = true;
 
+    this.isTouched = this.isMoved = false;
+    touchEndTime = new Date().getTime();
+    // console.log(`touchTime: ${touchEndTime - touchStartTime}`);
 
-    //
-    // 判断步距
-    //
+    // 卡对步距
+    if (diff > 0) {
+      this.currentTranslate -= this.currentTranslate % this.itemHeight;
+    } else {
+      this.currentTranslate -= this.currentTranslate % this.itemHeight;
+    }
+    // console.log(`this.currentTranslate:  ${this.currentTranslate}`);
+    // console.log(`step:  ${this.currentTranslate % this.itemHeight}`);
 
-    // ...
-    // ...
-    // ...
+    // 转变active的值
+    movedItem = Math.floor((this.startTranslate - this.currentTranslate) / this.itemHeight);
+    setTimeout(() => {
+      vm.items[this.colIndex].active += movedItem;
+    }, 300);
+
+    // console.log(this.startTranslate);
+    // console.log(movedItem);
+    // console.log(`${(startTranslate - this.currentTranslate) / this.itemHeight}`);
+    // console.log(`${this.currentTranslate / this.itemHeight}`);
+    // console.log(`${vm.items[this.colIndex].active}`);
+    // console.log(`step: ${step},this.currentTranslate: ${this.currentTranslate}`);
+    // console.log(`this.currentTranslate:   ${this.currentTranslate}`);
+    // console.log(',');
+
+    setTranslate(this, this.currentTranslate);
   }
 }
 
-export default vm;
 </script>
 
 <style lang="css">
 
+  $fontSize: 18px;
+  $height: calc(18px + 12px);
+  $colHeight: calc((18px + 12px) * 7);
+
   .c-picker {
-    position: fixed;
-    top: 100%;
+    position: relative;
     width: 100%;
-    background: red;
     z-index: 10;
-    background: #cfd5da;
 
-    transition: transform ease-out .3s;
-
+    background-color: #fff;
     overflow: hidden;
   }
 
@@ -161,56 +272,39 @@ export default vm;
     transform: translate3d(0, -100%, 0);
   }
 
-  .c-picker-title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-
-    position: relative;
-    top: 0;
-    left: 0;
-
-    height: 44px;
-    padding-right: 20px;
-    padding-left: 20px;
-    background-color: #f7f7f8;
-
-    border-width: 1px 0;
-    border-style: solid;
-    border-color: #a8abb0;
-
-    button {
-      position: absolute;
-      right: 0;
-
-      font-size: 16px;
-    }
-  }
-
   .c-picker-body{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
     -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
-    height: calc(36px * 5);
+    height: $colHeight;
 
     position: relative;
     left: 0;
     top: 0;
+  }
 
-    padding: 0 20px;
+  .c-picker-col{
+    overflow: hidden;
+  }
+
+  .c-picker-col-wrapper{
+    transition: transform 300ms ease-out;
+
+    padding: 0 .4rem;
   }
 
   .c-picker-item{
-    height: 36px;
-    line-height: 36px;
+    height: $height;
+    line-height: $height;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #999999;
-    font-size: 24px;
+    font-size: $fontSize;
     width: 100%;
+
+    text-align: center;
   }
 
   .c-picker-highlight{
@@ -219,11 +313,21 @@ export default vm;
     right: 0;
     top: 50%;
     width: 100%;
-    height: 36px;
+    height: $height;
     border-width: 1px 0;
     border-style: solid;
-    border-color: #a8abb0;
-    margin-top: -18px;
+    border-color: #ccc;
+    margin-top: calc(@height / -2 - 1px);
+
+    pointer-events: none;
+  }
+
+  .c-picker-colon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(0, -50%);
   }
 
   .c-picker-item-active{

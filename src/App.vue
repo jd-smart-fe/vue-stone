@@ -114,17 +114,20 @@
       </div>
     </v-panel>
 
-    <v-panel>
-      <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div slot="title" class="c-panel-title ">picker: </div>
-        <div slot="main">
-          <v-button text="picker" @change="pickerHandle()"></v-button>
-        </div>
+    <div class="c-panel">
+      <div id='picker_value'
+      style="
+      width: 100%;
+      height: 30px;
+      font-size: 20px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      " >
+        {{ picker.hour }} : {{ picker.min }}
       </div>
-    </v-panel>
+      <v-picker ref="picker" :items="picker_data" @change="pickerHandle"></v-picker>
+    </div>
 
-    <v-picker ref="picker" :items="picker_data"></v-picker>
-    
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">Panel Header</div>
@@ -367,20 +370,28 @@
         picker_data: [
           {
             textAlign: 'center', // default 'center'
-            values: ['item', 'item', 'item', 'item', 'item', 'item'],
+            values: ['item', 'item', 'item'],
+            active: 1,
             // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
           },
           {
             textAlign: 'center', // default 'center'
-            values: ['item', 'item', 'item', 'item', 'item', 'item'],
+            values: ['item', 'item', 'item', 'item', 'item'],
+            active: 3,
             // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
           },
           {
             textAlign: 'center', // default 'center'
-            values: ['item', 'item', 'item', 'item', 'item', 'item'],
+            values: ['item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item'],
+            active: 4,
             // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
           },
         ],
+
+        picker: {
+          hour: '0',
+          min: '00',
+        },
       };
     },
 
@@ -398,7 +409,8 @@
       },
 
       pickerHandle(val) {
-        this.$refs.picker.show = !this.$refs.picker.show;
+        this.picker.hour = val.hour;
+        this.picker.min = val.min;
       },
     },
 
@@ -448,8 +460,6 @@
         console.log('触发right事件');
       });
       this.$refs.modal.$on('input', () => {
-        // console.debug(222);
-        // this.shown = false;
         this.showModal = false;
       });
     },
