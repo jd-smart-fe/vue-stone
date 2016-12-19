@@ -13,6 +13,7 @@
 
 <template>
   <div
+  :data-value="`${status}`"
   :class="[ btnCls,
             `c-btn-${size}`,
             disabled ? disabledCls : '',

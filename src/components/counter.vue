@@ -1,5 +1,5 @@
 <template>
-  <div class="c-counter">
+  <div class="c-counter" :data-value="value">
     <v-button
       ref="inc"
       class="c-counter-inc"
