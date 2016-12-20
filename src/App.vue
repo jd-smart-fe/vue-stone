@@ -2,6 +2,14 @@
   <div id="app">
 
     <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">dayspicker</div>
+      <div slot="body" class="c-panel-body row-5 u-cross-center">
+        <v-dayspicker ref="dayspicker" v-model="dayspicker_list">
+        </v-dayspicker>
+      </div>
+    </v-panel>
+
+    <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : dots is objects</div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <v-range slot="main" ref="range"
@@ -273,6 +281,8 @@
           },
         ],
 
+        dayspicker_list: [6, 7],
+
         range_data: {
           value: 100,
           min: 0,
@@ -429,6 +439,10 @@
     },
 
     mounted() {
+
+      this.$refs.dayspicker.$on('change', (value) => {
+        console.log(`当前的星期选择是: ${value}`);
+      });
 
       this.$refs.rangeNumber.$on('change', (value) => {
         console.log(`当前滑杆的值: ${value}`);

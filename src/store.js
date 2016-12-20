@@ -1,5 +1,6 @@
 import './components/_style';
 
+import Dayspicker from './components/dayspicker';
 import Range from './components/range';
 import Switch from './components/switch';
 import Power from './components/power';
@@ -17,6 +18,7 @@ const install = (Vue, options = {}) => {
   if (install.installed) {
     return;
   }
+  Vue.component(Dayspicker.name, Dayspicker);
   Vue.component(Range.name, Range);
   Vue.component(Switch.name, Switch);
   Vue.component(Power.name, Power);

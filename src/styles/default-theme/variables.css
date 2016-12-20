@@ -31,6 +31,19 @@ $orange: #f76b46;
 
 
 /********************  component theme  ********************/
+/****  dayspicker  ****/
+
+$dayspicker-item-width: 0.5rem;
+$dayspicker-item-height: 0.22rem;
+$dayspicker-item-radius: 0.04rem;
+$dayspicker-padding-y: 0.12rem;
+
+$t-dayspicker-font-size: $font-size-sm;
+$t-dayspicker-defcolor: $gray-light;
+$t-dayspicker-lightcolor: $blue;
+
+
+
 /****  range  ****/
 $range-padding-y: 0.16rem;
 $range-slide-height: 0.02rem;
