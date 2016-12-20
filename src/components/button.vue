@@ -177,7 +177,7 @@ export default {
     // 通过调用update的方式去改变status；
     update(boolean) {
       this.status = boolean;
-    }
+    },
 
     touchstartHandle() {
       // longTap功能
