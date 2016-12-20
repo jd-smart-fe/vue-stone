@@ -7,7 +7,7 @@
 *******
 ******* 应用 toggle 型按钮时，
 ******* 通过传入 initStatus 属性来决定组件初始 的 status。
-******* 若想通过非点击方式改变 status， 可直接更改实例下的 status 属性即可。
+******* 若想通过非点击方式改变 status，可通过调用update(boolean) 去改变状态。
 *******
  -->
 
@@ -135,7 +135,8 @@ export default {
       required: false,
       default: false,
     },
-    // 保持当前status，类似与disabled, 再次点击后不会改变status， 但是hold会分发出事件，而disabled不会。
+    // 保持当前status，类似与disabled, 再次点击后不会改变status，但是可直接修改实例下的status来改变状态,
+    // 与disabled最大的不同是，disabled有默认的样式类，而hold不会添加新的样式。
     hold: {
       type: Boolean,
       required: false,
@@ -173,6 +174,11 @@ export default {
   },
 
   methods: {
+    // 通过调用update的方式去改变status；
+    update(boolean) {
+      this.status = boolean;
+    }
+
     touchstartHandle() {
       // longTap功能
       if (this.longTap) {
@@ -210,9 +216,9 @@ export default {
         return;
       }
 
-      // hold === true 时，也要保证能够分发出change事件。
+      // hold === true 时。
       if (this.hold === true) {
-        this.$emit('change', this.status);
+        // this.$emit('change', this.status);
         return;
       }
 
@@ -240,7 +246,7 @@ export default {
 
     color: $c-primary;
     font-size: $font-size-base;
-    
+
     @mixin transition;
 
 
@@ -252,35 +258,35 @@ export default {
 
   .c-btn-hover{
     background: $btn-hover;
-    
+
     &.c-btn-on{
       background-color: $c-primary-on;
     }
   }
-  
+
   .c-btn-on{
     color: $white;
     background-color: $blue;
   }
-  
+
   .c-btn-base {
     width: $btn-width-base;
     height: $btn-height-base;
-    
+
     border-radius: @width;
   }
-  
+
   .c-btn-sm {
     width: $btn-width-sm;
     height: $btn-height-sm;
-    
+
     border-radius: @width;
   }
-  
+
   .c-btn-lg {
     width: $btn-width-lg;
     height: $btn-height-lg;
-    
+
     border-radius: @width;
   }
 
