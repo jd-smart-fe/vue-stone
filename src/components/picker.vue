@@ -9,8 +9,14 @@
           </div>
         </div>
       </div>
-      <div class="c-picker-highlight"></div>
-      <b class="c-picker-colon">:</b>
+      <!-- <div class="c-picker-highlight"></div> -->
+      <div class="c-picker-mask-top"></div>
+      <div class="c-picker-mask-bottom"></div>
+      <div class="c-picker-unit">
+        <span class="c-picker-unit-hour">时</span>
+        <span class="c-picker-unit-colon">:</span>
+        <span class="c-picker-unit-min">分</span>
+      </div>
     </div>
 
   </div>
@@ -19,11 +25,18 @@
 <script>
 let vm;
 
+// 24小时
 const hour = [];
 for (let i = 0; i <= 23; i += 1) {
-  hour.push(i);
+  let n = 0;
+  if (i < 10) {
+    n = `0${i}`;
+  } else {
+    n = i;
+  }
+  hour.push(n);
 }
-
+// 60分钟
 const min = [];
 for (let i = 0; i <= 59; i += 1) {
   let n = 0;
@@ -49,12 +62,14 @@ export default {
       items: [{
         // textAlign: 'center', // default 'center'
         values: hour,
-        active: hourActive,
+        active: this.hour,
+        // displayValues: ,
       },
       {
         // textAlign: 'center', // default 'center'
         values: min,
-        active: minActive,
+        active: this.min,
+        // displayValues: ,
       }],
     };
   },
@@ -96,6 +111,18 @@ export default {
   //   },
   // },
 
+  props: {
+    hour: {
+      type: Number,
+      default: hourActive,
+    },
+
+    min: {
+      type: Number,
+      default: minActive,
+    },
+  },
+
   created() {
     vm = this;
 
@@ -121,7 +148,7 @@ export default {
 function picker(body, cols) {
   const options = {
     showItemNum: 7, // 一屏内显示item的个数, 应为奇数.
-    itemHeight: 30,
+    // itemHeight: 50,
   };
   // 一屏内的第activeShowItemIndex个item被激活
   const activeShowItemIndex = (options.showItemNum - 1) / 2;
@@ -139,7 +166,7 @@ function picker(body, cols) {
     const isTouched = false;
     const itemList = el.getElementsByClassName('c-picker-item');
     const activeIndex = vm.items[index].active;
-    const itemHeight = itemList[0].offsetHeight;
+    const itemHeight = itemList[0].offsetHeight; // 动态
     const maxTranslate = (activeIndex) * itemHeight;
     const minTranslate = ((activeIndex + 1) - itemList.length) * itemHeight;
     const startTranslate = 0;
@@ -255,9 +282,9 @@ function picker(body, cols) {
 
 <style lang="css">
 
-  $fontSize: 18px;
-  $height: calc(18px + 12px);
-  $colHeight: calc((18px + 12px) * 7);
+  $fontSize: 0.16rem;
+  $height: calc(0.16rem + 0.14rem);
+  $colHeight: calc((0.16rem + 0.14rem) * 7);
 
   .c-picker {
     position: relative;
@@ -300,14 +327,36 @@ function picker(body, cols) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: #999999;
+    color: #333;
     font-size: $fontSize;
     width: 100%;
 
     text-align: center;
   }
 
-  .c-picker-highlight{
+  .c-picker-mask-top{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc($height * 3);
+    background-color: rgba(255,255,255,0.6);
+    border-bottom: 1px solid #ccc;
+    pointer-events: none;
+  }
+
+  .c-picker-mask-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc($height * 3);
+    background-color: rgba(255,255,255,0.6);
+    border-top: 1px solid #ccc;
+    pointer-events: none;
+  }
+
+  /*.c-picker-highlight{
     position: absolute;
     left: 0;
     right: 0;
@@ -320,17 +369,47 @@ function picker(body, cols) {
     margin-top: calc(@height / -2 - 1px);
 
     pointer-events: none;
-  }
+  }*/
 
-  .c-picker-colon{
+  .c-picker-unit{
     position: absolute;
     top: 50%;
-    left: 50%;
+    width: 100%;
+    height: $fontSize;
+    transform: translate(0, -55%);
 
-    transform: translate(0, -50%);
+    font-size: calc($fontSize + 2px);
+
+    .c-picker-unit-colon{
+      position: absolute;
+      left: 0;
+      right: -0.21rem;
+      margin: auto;
+      margin-top: -1px;
+      width: calc($fontSize + 2px);
+      text-align: center;
+    }
+
+    .c-picker-unit-hour{
+      position: absolute;
+      left: -0.52rem;
+      right: 0;
+      margin: auto;
+      width: calc($fontSize + 2px);
+      text-align: center;
+    }
+
+    .c-picker-unit-min{
+      position: absolute;
+      left: 0;
+      right: -1.42rem;
+      margin: auto;
+      width: calc($fontSize + 2px);
+      text-align: center;
+    }
   }
 
   .c-picker-item-active{
-    color: #333;
+    /*color: #333;*/
   }
 </style>
