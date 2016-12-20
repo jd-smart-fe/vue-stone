@@ -282,9 +282,9 @@ function picker(body, cols) {
 
 <style lang="css">
 
-  $fontSize: 0.16rem;
-  $height: calc(0.16rem + 0.14rem);
-  $colHeight: calc((0.16rem + 0.14rem) * 7);
+  $fontSize: 16px;
+  $height: calc(16px + 14px);
+  $colHeight: calc((16px + 14px) * 7);
 
   .c-picker {
     position: relative;
@@ -339,7 +339,7 @@ function picker(body, cols) {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc($height * 3);
+    height: calc($height * 3 - 1px);
     background-color: rgba(255,255,255,0.6);
     border-bottom: 1px solid #ccc;
     pointer-events: none;
@@ -350,7 +350,7 @@ function picker(body, cols) {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: calc($height * 3);
+    height: calc($height * 3 - 1px);
     background-color: rgba(255,255,255,0.6);
     border-top: 1px solid #ccc;
     pointer-events: none;
