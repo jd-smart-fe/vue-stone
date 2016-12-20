@@ -467,12 +467,12 @@
       this.$refs.modes.$on('change', (state) => {
         console.log(`设备当前所选模式id: ${state}`);
       });
-      this.$refs.dialog.$on('primaryClick', (val) => {
-        console.log(`触发${val}事件`);
+      this.$refs.dialog.$on('primaryClick', () => {
+        console.log('触发primaryClick事件');
         this.showDialog = false;
       });
-      this.$refs.dialog.$on('defaultClick', (val) => {
-        console.log(`触发${val}事件`);
+      this.$refs.dialog.$on('defaultClick', () => {
+        console.log('触发primaryClick事件');
         this.showDialog = false;
       });
       this.$refs.dialog.$on('maskClick', () => {
