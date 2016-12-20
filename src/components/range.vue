@@ -10,6 +10,8 @@
       @touchend="endHandle_"
       @touchcancel="endHandle_"
     >
+
+
       <div class="c-range-slider-line">
         <div class="c-range-slider-process" ref="range-process"
          :style="{width : processPercent + '%'}" >

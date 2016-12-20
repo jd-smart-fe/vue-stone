@@ -15,18 +15,19 @@ option说明
 ```
 options : {
     title：标题,
-    text：内容信息,
+    description：描述,
+    isModal: true,//true模态,false非模态(不传默认是true)
     buttons: [
           {
             text: '左按钮文本',
             callback() {
-                按钮点击后需要响应的回调方法，设置callback后默认事件无法监听
+                按钮点击后需要响应的回调方法
             },
           },
           {
             text: '右按钮文本',
             callback() {
-                按钮点击后需要响应的回调方法，设置callback后默认事件无法监听
+                按钮点击后需要响应的回调方法
             },
           },
     ],
@@ -34,19 +35,19 @@ options : {
 ```
 
 **事件**
-- `input`:
+- `maskClick`:
   参数:`无`
   点击蒙版出发事件。
 
 **默认事件**
-- `left`:
+- `defaultClick`:
   参数:`无`
   左按钮点击事件。
-- `right`:
+- `primaryClick`:
   参数:`无`
   右按钮点击事件。
 
-单按钮监听`left`事件
+单按钮监听`defaultClick`事件
 
 <font color="#ff6375">目前只支持1-2个按钮</font>
 ---

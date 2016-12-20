@@ -128,6 +128,7 @@
       <v-picker ref="picker" :items="picker_data" @change="pickerHandle"></v-picker>
     </div>
 
+
     <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">Panel Header</div>
@@ -164,9 +165,15 @@
     </v-panel>
     <!--<v-mask :shown="shown" ref="mask">
     </v-mask>-->
-    <v-modal ref="modal" :showModal="showModal" :options="modalOptions">
+    <v-dialog ref="dialog" :showDialog="showDialog" :options="dialogOptions">
 
-    </v-modal>
+    </v-dialog>
+    <v-panel >
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
+        <div slot="title" class="c-panel-title">模态: </div>
+        <v-switch slot="main" v-model="switch_state" ref="switch_dialog"></v-switch>
+      </div>
+    </v-panel>
   </div>
 </template>
 
@@ -351,21 +358,28 @@
         switch_dis_state: false,
 
         power_state: true,
-        modalOptions: {
-          title: '提示',
-          text: '热水器过热',
+        dialogOptions: {
+          title: '热水器报警',
+          description: '热水器过热',
+          isModal: true,
           buttons: [
             {
               text: '查看详情',
               callback() {
-                console.log('上层传递');
+                console.log('传递方法调用');
+
               },
             },
-            { text: '我知道了' },
+            {
+              text: '我知道了',
+              callback() {
+                console.log('传递方法调用');
+              },
+            },
           ],
         },
 
-        showModal: false,
+        showDialog: false,
 
         picker_data: [
           {
@@ -434,7 +448,7 @@
 
       this.$refs.switch.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
-        this.showModal = true;
+
       });
 
       this.$refs.power.$on('change', (state) => {
@@ -453,14 +467,21 @@
       this.$refs.modes.$on('change', (state) => {
         console.log(`设备当前所选模式id: ${state}`);
       });
-      this.$refs.modal.$on('left', () => {
-        console.log('触发left事件');
+      this.$refs.dialog.$on('primaryClick', (val) => {
+        console.log(`触发${val}事件`);
+        this.showDialog = false;
       });
-      this.$refs.modal.$on('right', () => {
-        console.log('触发right事件');
+      this.$refs.dialog.$on('defaultClick', (val) => {
+        console.log(`触发${val}事件`);
+        this.showDialog = false;
       });
-      this.$refs.modal.$on('input', () => {
-        this.showModal = false;
+      this.$refs.dialog.$on('maskClick', () => {
+        console.log('maskClick');
+        this.showDialog = false;
+      });
+      this.$refs.switch_dialog.$on('change', (state) => {
+        console.log(`设备当前switch状态: ${state}`);
+        this.showDialog = true;
       });
     },
   };

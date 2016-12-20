@@ -5,7 +5,7 @@ import Switch from './components/switch';
 import Power from './components/power';
 import Panel from './components/panel';
 // import Grid from './components/grid';
-import Modal from './components/modal';
+import Dialog from './components/dialog';
 import Button from './components/button';
 import Counter from './components/counter';
 import ButtonGroup from './components/button-group';
@@ -22,14 +22,14 @@ const install = (Vue, options = {}) => {
   Vue.component(Power.name, Power);
   Vue.component(Panel.name, Panel);
   // Vue.component(Grid.name, Grid);
-  Vue.component(Modal.name, Modal);
+  Vue.component(Dialog.name, Dialog);
   Vue.component(Mask.name, Mask);
   Vue.component(Button.name, Button);
   Vue.component(Counter.name, Counter);
   Vue.component(ButtonGroup.name, ButtonGroup);
   Vue.component(Modes.name, Modes);
   Vue.component(Picker.name, Picker);
-
+  // Vue.prototype.$alert = Dialog;
   install.installed = true;
 };
 install.installed = false;

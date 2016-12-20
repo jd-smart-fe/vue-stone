@@ -16,12 +16,11 @@
     },
     methods: {
       handle() {
-        this.$emit('input');
+        this.$emit('click');
       },
     },
     watch: {
       shown() {
-
         if (this.shown) {
           document.body.classList.add('u-ofh');
         } else {

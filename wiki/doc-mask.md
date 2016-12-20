@@ -12,8 +12,7 @@ shown |  Boolean  | false | 是否显示mask 。
 
 **事件**
 
-- `input`:
+- `click`:
   参数:`无`
   点击mask时会触发该事件。
-
 ---
