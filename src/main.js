@@ -1,17 +1,26 @@
 import Vue from 'vue';
+
 import App from './App';
-import Time from './Time';
+import Timer from './pages/Timer';
+import TimerRepeat from './pages/TimerRepeat';
+import TimerTask from './pages/TimerTask';
+import TimerNotice from './pages/TimerNotice';
+import NotFind from './pages/404';
+
 import Store from './store';
 
 Store.install(Vue);
 
 const routes = {
   '/': App,
-  '/time': Time,
+  '/timer': Timer,
+  '/timer/repeat': TimerRepeat,
+  '/timer/task': TimerTask,
+  '/timer/notice': TimerNotice,
 };
 
 /* eslint-disable no-new */
-new Vue({
+const app = new Vue({
   el: '#app',
   template: '<App/>',
   data: {
@@ -19,10 +28,14 @@ new Vue({
   },
   computed: {
     ViewComponent() {
-      return routes[this.currentRoute];
+      return routes[this.currentRoute] || NotFind;
     },
   },
   render(h) {
     return h(this.ViewComponent);
   },
+});
+
+window.addEventListener('popstate', () => {
+  app.currentRoute = window.location.pathname;
 });

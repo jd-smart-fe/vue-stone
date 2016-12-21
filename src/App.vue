@@ -87,32 +87,30 @@
             {{ countNumber }}
           </div>
         </div>
-        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="1" v-model=" countNumber "></v-counter>
+        <v-counter slot="main" ref="counter" :max="10" :min="0" :step="1" :longTap="true" v-model="countNumber"></v-counter>
       </div>
     </v-panel>
 
     <v-panel>
+      <div slot="header" class="c-panel-header row-1 u-cross-center">
+        button系列
+      </div>
+
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-disabled: </div>
         <v-button slot="main" @change="btnClickHandle" ref="button" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
       </div>
-    </v-panel>
 
-    <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
         <v-button slot="main" @change="btnClickHandle" icon="mode-holiday"></v-button>
       </div>
-    </v-panel>
 
-    <v-panel>
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-toggle: </div>
         <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="true"></v-button>
       </div>
-    </v-panel>
 
-    <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">
           互斥
@@ -120,6 +118,7 @@
         <v-button-group :items="buttonGroup" @change="exclusiveChangeHandle">
         </v-button-group>
       </div>
+
     </v-panel>
 
     <div class="c-panel">
@@ -174,14 +173,24 @@
     <!--<v-mask :shown="shown" ref="mask">
     </v-mask>-->
     <v-dialog ref="dialog" :showDialog="showDialog" :options="dialogOptions">
-
     </v-dialog>
+
     <v-panel >
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title">模态: </div>
         <v-switch slot="main" v-model="switch_state" ref="switch_dialog"></v-switch>
       </div>
     </v-panel>
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div class="">定时设置</div>
+        <a href="/timer">
+          <v-button text="jump"></v-button>
+        </a>
+      </div>
+    </v-panel>
+
   </div>
 </template>
 
@@ -514,6 +523,11 @@
     font-size: $font-size-base;
     background-color: #efefef;
   }
+  a {
+    text-decoration: none;
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+  }
+
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

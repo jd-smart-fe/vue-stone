@@ -14,6 +14,9 @@ import Modes from './components/modes';
 import Mask from './components/mask';
 import Picker from './components/picker';
 
+import Timer from './components/timer';
+import TimerTask from './components/timer-task';
+
 const install = (Vue, options = {}) => {
   if (install.installed) {
     return;
@@ -32,6 +35,10 @@ const install = (Vue, options = {}) => {
   Vue.component(Modes.name, Modes);
   Vue.component(Picker.name, Picker);
   // Vue.prototype.$alert = Dialog;
+
+  Vue.component(Timer.name, Timer);
+  Vue.component(TimerTask.name, TimerTask);
+
   install.installed = true;
 };
 install.installed = false;

@@ -1,6 +1,8 @@
 <template lang="html">
-  <div class="">
-    hello world
+  <div class="c-404">
+    <h1>
+      404 Not Find
+    </h1>
   </div>
 </template>
 
@@ -13,4 +15,7 @@ export default {
 </script>
 
 <style lang="css">
+  .c-404{
+    text-align: center;
+  }
 </style>
