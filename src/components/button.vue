@@ -179,6 +179,13 @@ export default {
       this.status = boolean;
     },
 
+    // 停止计时器
+    stopInterval() {
+      window.clearInterval(longTapFlagInterval);
+      this.longTapFlag = false;
+      longTapFlagInterval = null;
+    },
+
     touchstartHandle() {
       // longTap功能
       if (this.longTap) {
@@ -249,6 +256,14 @@ export default {
 
     @mixin transition;
 
+    span {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
     span + span{
       margin-left: 0.05rem;
@@ -299,5 +314,13 @@ export default {
 
   .c-btn-icon{
     font-size: calc($font-size-base + 4px);
+
+    &:before{
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
   }
 </style>

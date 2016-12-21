@@ -6,7 +6,7 @@
       disabledClass="c-counter-disabled"
       type="click"
       icon="plus"
-      :longTap="true"
+      :longTap="longTap"
       :disabled="incDisabled"
       @change="incHandle"
       ></v-button>
@@ -16,7 +16,7 @@
       type="click"
       disabledClass="c-counter-disabled"
       icon="minus"
-      :longTap="true"
+      :longTap="longTap"
       :disabled="decDisabled"
       @change="decHandle"
       ></v-button>
@@ -53,6 +53,11 @@ export default {
       required: false,
       default: 1,
     },
+    longTap: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   created() {
@@ -82,10 +87,12 @@ export default {
     value(val) {
       if (val >= this.max) {
         this.incDisabled = true;
+        this.$refs.inc.stopInterval();
         return;
       }
       if (val <= this.min) {
         this.decDisabled = true;
+        this.$refs.dec.stopInterval();
         return;
       }
 
