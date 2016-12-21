@@ -97,15 +97,15 @@
         },
       },
       // 显示图标dots
-      show_icon_dots: {
-        type: Boolean,
-        default: false,
-      },
+      // show_icon_dots: {
+      //   type: Boolean,
+      //   default: false,
+      // },
       // 显示文字dots
-      show_text_dots: {
-        type: Boolean,
-        default: true,
-      },
+      // show_text_dots: {
+      //   type: Boolean,
+      //   default: true,
+      // },
     },
 
     data() {
@@ -120,6 +120,8 @@
         dotsLength: this.dots.length,
         show_tip_state: false,
         show_tip_timer: null,
+        show_icon_dots: false,
+        show_text_dots: false,
       };
     },
 
@@ -188,6 +190,13 @@
       this.updateProcess(this.value);
 
       this.currentValue = this.value;
+
+      // 判断dots是否有icon或者text;
+      // 显示优先级：如果icon与text都存在，优先显示icon;
+      if (this.dots.length > 0) {
+        this.show_icon_dots = !!this.dots[0].icon;
+        this.show_text_dots = !!this.dots[0].text && !this.dots[0].icon;
+      }
 
     },
 
