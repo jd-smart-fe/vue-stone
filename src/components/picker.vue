@@ -1,5 +1,12 @@
+<!--
+******
+****** 设置初始时间：
+****** 接受两个props, hour 和 min，分别对应 ‘时’和‘分’
+******
+******
+ -->
 <template lang="html">
-  <div class='c-picker' :data-hour="`${hour}`" :data-min="`${min}`">
+  <div class='c-picker' :data-hour="`${value.hour}`" :data-min="`${value.min}`">
 
     <div class="c-picker-body">
       <div class="c-picker-col" v-for="(item, index) in items" ref="col" >
@@ -62,62 +69,34 @@ export default {
       items: [{
         // textAlign: 'center', // default 'center'
         values: hour,
-        active: this.hour,
+        active: this.initHour,
         // displayValues: ,
       },
       {
         // textAlign: 'center', // default 'center'
         values: min,
-        active: this.min,
+        active: this.initMin,
         // displayValues: ,
       }],
     };
   },
 
   computed: {
-    hour() {
+    value() {
       const h = this.items[0].active;
       const m = this.items[1].active;
-      const value = {
-        hour: h,
-        min: m,
-      };
+      const value = { hour: h, min: m };
       this.$emit('change', value);
-      return h;
-    },
-
-    min() {
-      const h = this.items[0].active;
-      const m = this.items[1].active;
-      const value = {
-        hour: h,
-        min: m,
-      };
-      this.$emit('change', value);
-      return m;
+      return value;
     },
   },
 
-  // props: {
-  //   items: {
-  //     type: Array,
-  //     default() {
-  //       return [{
-  //         textAlign: 'center', // default 'center'
-  //         values: [],
-  //         active: 0,
-  //       }];
-  //     },
-  //   },
-  // },
-
   props: {
-    hour: {
+    initHour: {
       type: Number,
       default: hourActive,
     },
-
-    min: {
+    initMin: {
       type: Number,
       default: minActive,
     },
@@ -155,8 +134,8 @@ function picker(body, cols) {
 
   let touchStartY;
   let touchCurrentY;
-  let touchStartTime;
-  let touchEndTime;
+  // let touchStartTime;
+  // let touchEndTime;
   let diff = 0;
   let movedItem;
 
@@ -207,7 +186,7 @@ function picker(body, cols) {
     e.preventDefault();
     this.isTouched = true;
     touchStartY = touchCurrentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
-    touchStartTime = (new Date()).getTime();
+    // touchStartTime = (new Date()).getTime();
     this.startTranslate = this.currentTranslate;
   }
 
@@ -247,7 +226,7 @@ function picker(body, cols) {
     }
 
     this.isTouched = this.isMoved = false;
-    touchEndTime = new Date().getTime();
+    // touchEndTime = new Date().getTime();
     // console.log(`touchTime: ${touchEndTime - touchStartTime}`);
 
     // 卡对步距
