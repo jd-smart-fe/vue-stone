@@ -83,7 +83,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
         <div slot="title" class="c-panel-title ">counter:
-          <div class="">
+          <div class="temperature-number">
             {{ countNumber }}
           </div>
         </div>
@@ -522,6 +522,11 @@
     color: #2c3e50;
     margin-top: 60px;
     margin-bottom: 60px;
+  }
+
+  .temperature-number{
+    font-size: $font-size-32;
+    color: $c-primary;
   }
 
   /* 废弃代码, 后期可以删除*/
