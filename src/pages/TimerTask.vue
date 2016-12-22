@@ -15,7 +15,17 @@
 
       <v-panel>
         <div slot="header" class="c-panel-header row-1 u-cross-center">风速设置</div>
+        <div slot="body" class="c-panel-body row-3 u-cross-center">
+          <v-range slot="main"
+          v-model="range.value"
+          :is_step="range.isStep"
+          :dots="range.dots"
+          >
+          </v-range>
+        </div>
       </v-panel>
+
+      <!-- <v-picker></v-picker> -->
 
     </v-timer-task>
   </div>
@@ -24,6 +34,7 @@
 <script>
 const options = {
   hasSwitch: true,
+  // switchStatus: true,
 };
 
 export default {
@@ -53,6 +64,29 @@ export default {
           id: 4,
         }],
       },
+
+      range: {
+        value: {
+          value: 30,
+          text: '高档',
+        },
+        isStep: true,
+        dots: [
+          {
+            value: 10,
+            text: '低档',
+          },
+          {
+            value: 20,
+            text: '中档',
+          },
+          {
+            value: 30,
+            text: '高档',
+          },
+        ],
+      },
+
     };
   },
 };

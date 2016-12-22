@@ -34,6 +34,7 @@ const options = {
   show_delete: true, // 是否显示‘删除定时按钮’
   commend: { // 定时命令相关配置
     simple: false,
+    text: ['定时开启', '智能模式', '三档'],
   },
 };
 

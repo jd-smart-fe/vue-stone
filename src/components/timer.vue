@@ -2,7 +2,7 @@
   <div class="c-timer">
     <v-panel>
       <div slot="body">
-        <v-picker :initHour="time.hour" :initMin="time.min"></v-picker>
+        <v-picker :initHour="_time.hour" :initMin="_time.min"></v-picker>
       </div>
     </v-panel>
 
@@ -10,7 +10,7 @@
       <a slot="body" class="c-panel-body row-1 u-cross-center" :href="`${path}/repeat`">
         <div>重复</div>
         <div class="c-timer-content">
-          {{ this.repeat }} <span>></span>
+          {{ this._repeat }} <span>></span>
         </div>
       </a>
     </v-panel>
@@ -24,7 +24,7 @@
         <a slot="body" class="c-panel-body row-1 u-cross-center" :href="`${path}/task`">
           <div>执行命令</div>
           <div class="c-timer-content">
-            {{ this.commend }} <span>></span>
+            {{ this._commend }} <span>></span>
           </div>
         </a>
       </v-panel>
@@ -43,7 +43,7 @@
       <a slot="body" class="c-panel-body row-1 u-cross-center">
         <div>执行结果通知</div>
         <div class="c-timer-content">
-          {{ notice }} <span>></span>
+          {{ this._notice }} <span>></span>
         </div>
       </a>
     </v-panel>
@@ -81,7 +81,7 @@ export default {
   },
 
   computed: {
-    repeat() {
+    _repeat() {
       const text = [];
       const arr = this.options.time_task_express.split('_');
 
@@ -134,7 +134,7 @@ export default {
       return text.join('、');
     },
 
-    notice() {
+    _notice() {
       const n = this.options.pmg_setting;
 
       switch (n) {
@@ -149,7 +149,7 @@ export default {
       }
     },
 
-    time() {
+    _time() {
       const arr = this.options.time_task_express.split('_');
       const min = arr[0] * 1;
       const hour = arr[1] * 1;
@@ -157,14 +157,12 @@ export default {
       return { min, hour };
     },
 
-    commend() {
-      if (!this.options.commend.list) {
+    _commend() {
+      if (!this.options.commend.text) {
         return '';
       }
 
-      const cmd = [];
-      const list = this.options.commend.list;
-
+      return this.options.commend.text.join('/');
       // 检测是否含有开关
       // const hasNoSwitch = list.every((val, index)) => {
       //   return val.name !== 'switch';
@@ -183,7 +181,6 @@ export default {
       //   //   if ()
       //   // }
       // });
-      return cmd.join('/');
     },
   },
 };

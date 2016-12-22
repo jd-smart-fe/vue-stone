@@ -10,7 +10,7 @@
       </div>
     </v-panel>
 
-    <div v-show="oswitch.grid_active_id === 2" class="c-task-setting">
+    <div v-show="_showTask" class="c-task-setting">
       <slot></slot>
     </div>
 
@@ -41,6 +41,15 @@ export default {
       type: Object,
       required: true,
       default: {},
+    },
+  },
+
+  computed: {
+    _showTask() {
+      if (this.options.hasSwitch) {
+        return this.oswitch.grid_active_id === 2;
+      }
+      return true;
     },
   },
 };

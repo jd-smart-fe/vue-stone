@@ -1,7 +1,7 @@
 <!--
 ******
 ****** 设置初始时间：
-****** 接受两个props, hour 和 min，分别对应 ‘时’和‘分’
+****** 接受两个props, initHour 和 initMin ‘时’和‘分’
 ******
 ******
  -->
@@ -282,7 +282,7 @@ function picker(body, cols) {
     display: flex;
     justify-content: center;
     -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
-    -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 95%, transparent);
+    -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 98%, transparent);
     height: $colHeight;
 
     position: relative;

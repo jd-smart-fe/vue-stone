@@ -335,7 +335,6 @@
               text: '查看详情',
               callback() {
                 console.log('传递方法调用');
-
               },
             },
             {
