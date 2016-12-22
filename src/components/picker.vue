@@ -10,7 +10,7 @@
 
     <div class="c-picker-body">
       <div class="c-picker-col" v-for="(item, index) in items" ref="col" >
-        <div class="c-picker-col-wrapper">
+        <div :class="['c-picker-col-wrapper', `c-picker-col-${index}`]">
           <div :data-value="_item" :class="['c-picker-item', item.active === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
             {{ item.displayValues[_index] }}
           </div>
@@ -129,7 +129,8 @@ function picker(body, cols) {
     showItemNum: 7, // 一屏内显示item的个数, 应为奇数.
     // itemHeight: 50,
   };
-  // 一屏内的第activeShowItemIndex个item被激活
+
+  // 用于计算初始margin高度
   const activeShowItemIndex = (options.showItemNum - 1) / 2;
 
   let touchStartY;
@@ -144,8 +145,12 @@ function picker(body, cols) {
     const isMoved = false;
     const isTouched = false;
     const itemList = el.getElementsByClassName('c-picker-item');
+    const wrapper = el.getElementsByClassName('c-picker-col-wrapper')[0];
     const activeIndex = vm.items[index].active;
-    const itemHeight = itemList[0].offsetHeight; // 动态
+    // TODO
+    // itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正常工作。
+    const itemHeight = parseInt(window.getComputedStyle(itemList[0], null).height, 10);
+    const temp = window.getComputedStyle(itemList[0], null).height;
     const maxTranslate = (activeIndex) * itemHeight;
     const minTranslate = ((activeIndex + 1) - itemList.length) * itemHeight;
     const startTranslate = 0;
@@ -153,6 +158,7 @@ function picker(body, cols) {
     // const oneItemListHeight = (itemList.length / 3) * itemHeight;
 
     // 为col添加需要用到的数据
+    el.wrapper = wrapper;
     el.isMoved = isMoved;
     el.isTouched = isTouched;
     el.colIndex = index;
@@ -165,7 +171,7 @@ function picker(body, cols) {
     el.currentTranslate = currentTranslate;
     // el.oneItemListHeight = oneItemListHeight;
 
-    const wrapper = el.getElementsByClassName('c-picker-col-wrapper')[0];
+
     // const marginTopBase = (itemList.length / 3) * itemHeight;
     const marginTopBase = 0;
     const marginTop = ((activeShowItemIndex - activeIndex) * itemHeight) - marginTopBase;
@@ -188,6 +194,21 @@ function picker(body, cols) {
     touchStartY = touchCurrentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
     // touchStartTime = (new Date()).getTime();
     this.startTranslate = this.currentTranslate;
+
+    // 解决picker尺寸发生变化，或初始状态为隐藏时无法获取高度的问题。
+    // const itemList = this.itemList;
+    // const activeIndex = this.activeIndex;
+    // const itemHeight = itemList[0].offsetHeight; // 动态
+    // const maxTranslate = (activeIndex) * itemHeight;
+    // const minTranslate = ((activeIndex + 1) - itemList.length) * itemHeight;
+    // const wrapper = this.wrapper;
+    // this.itemHeight = itemHeight;
+    // this.maxTranslate = maxTranslate;
+    // this.minTranslate = minTranslate;
+    // const marginTopBase = 0;
+    // const marginTop = ((activeShowItemIndex - activeIndex) * itemHeight) - marginTopBase;
+    // wrapper.style.marginTop = `${marginTop}px`;
+
   }
 
   function touchmoveHandle(e) {
@@ -201,6 +222,7 @@ function picker(body, cols) {
     }
 
     diff = touchCurrentY - touchStartY;
+
     // 计算出现在translate的值
     this.currentTranslate = this.startTranslate + diff;
 
@@ -292,12 +314,22 @@ function picker(body, cols) {
 
   .c-picker-col{
     overflow: hidden;
+    width: 100%;
+
+
   }
 
   .c-picker-col-wrapper{
     transition: transform 300ms ease-out;
 
-    padding: 0 .4rem;
+    /*padding: 0 .4rem;*/
+    &.c-picker-col-0{
+      margin-right: -0.6rem;
+    }
+
+    &.c-picker-col-1{
+      margin-left: -0.6rem;
+    }
   }
 
   .c-picker-item{
