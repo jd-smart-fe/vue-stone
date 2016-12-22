@@ -8,7 +8,8 @@
         </div>
         <div slot="body" class="c-panel-body u-without-padding">
           <v-modes v-model="modes.grid_active_id" ref="modes"
-            :numberal="4" :items="modes.grid_data_2"
+          :numberal="4" :items="modes.grid_data_2"
+          @change="modeHandle"
           ></v-modes>
         </div>
       </v-panel>
@@ -25,16 +26,13 @@
         </div>
       </v-panel>
 
-      <!-- <v-picker></v-picker> -->
-
     </v-timer-task>
   </div>
 </template>
 
 <script>
 const options = {
-  hasSwitch: true,
-  // switchStatus: true,
+  onOff: false,
 };
 
 export default {
@@ -88,6 +86,12 @@ export default {
       },
 
     };
+  },
+
+  methods: {
+    modeHandle(val) {
+      console.log(val);
+    },
   },
 };
 </script>

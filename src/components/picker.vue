@@ -150,7 +150,6 @@ function picker(body, cols) {
     // TODO
     // itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正常工作。
     const itemHeight = parseInt(window.getComputedStyle(itemList[0], null).height, 10);
-    const temp = window.getComputedStyle(itemList[0], null).height;
     const maxTranslate = (activeIndex) * itemHeight;
     const minTranslate = ((activeIndex + 1) - itemList.length) * itemHeight;
     const startTranslate = 0;
@@ -390,6 +389,7 @@ function picker(body, cols) {
     transform: translate(0, -55%);
 
     font-size: calc($fontSize + 2px);
+    pointer-events: none;
 
     .c-picker-unit-colon{
       position: absolute;
