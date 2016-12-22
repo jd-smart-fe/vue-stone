@@ -17,7 +17,7 @@
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
             <transition name="fadetip">
-              <em v-show="show_tip && show_tip_state" class="text">{{currentValue | pickText}}{{unit}}</em>
+              <em v-show="show_tip && show_tip_state" class="text">{{tipText}}</em>
             </transition>
           </span>
         </div>
@@ -69,15 +69,17 @@
         type: Number,
         default: 50,
       },
-      // 单位
-      unit: {
-        type: String,
-        default: '',
-      },
-      // 滑动时是否显示当前的值 默认显示
+      // 滑动时是否显示提示 默认显示
       show_tip: {
         type: Boolean,
         default: true,
+      },
+      // 提示的text 默认返回当前的值
+      tooltip: {
+        type: Function,
+        default(tiptext) {
+          return `${tiptext}`;
+        },
       },
       // 是否是有级 默认是无级
       is_step: {
@@ -171,6 +173,17 @@
         }
         return aInfos;
       },
+      tipText() {
+        // currentValue是json对象时,过滤出text;
+        let currentValue = this.currentValue;
+        const isJSON = (typeof currentValue === 'object') &&
+          (Object.prototype.toString.call(currentValue).toLowerCase() === '[object object]') &&
+          (!currentValue.length);
+        if (isJSON) {
+          currentValue = this.currentValue.text;
+        }
+        return this.tooltip(currentValue);
+      },
     },
 
     watch: {
@@ -203,20 +216,6 @@
     mounted() {
       this.sliderWidth = parseFloat(this.$refs['range-slider'].getBoundingClientRect().width);
       this.sliderOffsetLeft = parseFloat(this.$refs['range-slider'].getBoundingClientRect().left);
-    },
-
-    filters: {
-      // 过滤出text;
-      pickText(val) {
-        let currentValue = val;
-        const isJSON = (typeof currentValue === 'object') &&
-          (Object.prototype.toString.call(currentValue).toLowerCase() === '[object object]') &&
-          (!currentValue.length);
-        if (isJSON) {
-          currentValue = val.text;
-        }
-        return currentValue;
-      },
     },
 
     methods: {
@@ -337,6 +336,8 @@
       },
 
       startHandle_(e) {
+        this.sliderWidth = parseFloat(this.$refs['range-slider'].getBoundingClientRect().width);
+        this.sliderOffsetLeft = parseFloat(this.$refs['range-slider'].getBoundingClientRect().left);
         const touchs = e.changedTouches[0];
         this.startX = touchs.pageX;
 

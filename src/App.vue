@@ -16,7 +16,7 @@
           v-model="range_data.value"
           :min="range_data.min"
           :max="range_data.max"
-          :unit="range_data.unit"
+          :tooltip="range_data.tooltip"
           :is_step="range_data.isStep"
           :dots="range_data.dots"
         >
@@ -27,7 +27,7 @@
           v-model="range_data_number.value"
           :min="range_data_number.min"
           :max="range_data_number.max"
-          :unit="range_data_number.unit"
+          :tooltip="range_data_number.tooltip"
           :is_step="range_data_number.isStep"
           :dots="range_data_number.dots"
         >
@@ -273,7 +273,9 @@
           value: 100,
           min: 0,
           max: 1000,
-          unit: '°C',
+          tooltip(val) {
+            return `${val}°C`;
+          },
           dots: [
             {
               icon: 'mode-holiday',
@@ -290,7 +292,9 @@
           value: 500,
           min: 0,
           max: 1000,
-          unit: '°C',
+          tooltip(val) {
+            return `当前温度：${val}°C`;
+          },
           dots: [
             {
               text: '低温',
