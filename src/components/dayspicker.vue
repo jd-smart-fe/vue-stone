@@ -34,7 +34,7 @@
   export default {
     name: 'v-dayspicker',
     props: {
-      value: {
+      days: {
         type: Array,
         default() {
           return [];
@@ -47,7 +47,7 @@
         days_list: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
         quick_state_list: [],
         days_state_list: [],
-        selected_days: this.value,
+        selected_days: this.days.concat(),
       };
     },
 
@@ -55,7 +55,7 @@
 
       this.quick_state_list = new Array(this.quick_list.length).fill(false);
       this.days_state_list = new Array(this.days_list.length).fill(false);
-      this.value.forEach((val) => {
+      this.days.forEach((val) => {
         this.days_state_list.splice((parseInt(val, 10) - 1), 1, true);
 
       });
@@ -68,7 +68,7 @@
     },
 
     mounted() {
-      this.setQuickState(this.value);
+      this.setQuickState(this.days);
     },
 
     methods: {
