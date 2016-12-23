@@ -90,7 +90,7 @@ module.exports = {
     postcss: [
       precss,
       require('autoprefixer')({
-        browsers: ['last 2 versions']
+        browsers: ['last 2 versions', '> 1%']
       })
     ]
   }

@@ -109,7 +109,7 @@
       " >
         {{ picker.hour }} : {{ picker.min }}
       </div>
-      <v-picker ref="picker" :items="picker_data" @change="pickerHandle"></v-picker>
+      <v-picker ref="picker" :items="picker_data" @change="pickerHandle" :init_hour="5" :init_min="30" :rotate_effect="true"></v-picker>
     </div>
 
 
