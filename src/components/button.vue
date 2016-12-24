@@ -24,6 +24,7 @@
   :type="type"
   @touchstart="touchstartHandle"
   @touchend="touchendHandle"
+  @touchcancel="touchcancelHandle"
   >
     <span v-if="icon !== '' " :class="['c-btn-icon', `icon-${icon}`]"></span>
     <span v-if="text !== '' " >{{ text }}</span>
@@ -47,6 +48,14 @@ export default {
   },
 
   props: {
+    // optinos
+    options: {
+      type: Object,
+      required: false,
+      default() {
+        return {};
+      },
+    },
     // 按钮类型
     type: {
       type: String,
@@ -232,7 +241,14 @@ export default {
       this.status = !this.status;
       // status 相关事件通过 watcher 分发
     },
+
+    touchcancelHandle() {
+      this.touchendHandle();
+      console.log('trigger touchcancel event!');
+    },
   },
+
+
 };
 </script>
 
