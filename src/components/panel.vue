@@ -51,15 +51,18 @@
   }
 
   $(prefix)-header {
-    padding-left: 0.12rem;
-    padding-right: 0.12rem;
+    padding: 0.12rem;
 
-    height: calc(2 * $grid-size);
+    min-height: calc(2 * $grid-size);
     border-bottom: 1px solid #eee;
 
     font-size: $font-size-lg;
     color: $gray-dark;
     box-sizing: border-box;
+    .introduce{
+      font-size: $font-size-sm;
+      padding-top: 0.1rem;
+      }
   }
 
   $(prefix)-extra {
@@ -73,7 +76,7 @@
 
   $(prefix)-body {
     padding: 0.12rem;
-    
+
 /*    padding-left: 0.12rem;
     padding-right: 0.12rem;
 */  }

@@ -168,6 +168,19 @@
       </div>
     </v-panel>
 
+
+    <!---->
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">模式设置
+          <div class="introduce">介绍介绍介绍介绍</div>
+        </div>
+        <div class="c-panel-extra">
+          <span class='icon icon-pull-right'></span>
+        </div>
+      </div>
+    </v-panel>
+
   </div>
 </template>
 
