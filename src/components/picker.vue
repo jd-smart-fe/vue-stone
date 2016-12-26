@@ -108,6 +108,7 @@ export default {
   },
 
   created() {
+    console.log('aaaaaaa');
     vm = this;
 
     this.items.forEach((val, index) => {

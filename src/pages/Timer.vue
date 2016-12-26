@@ -1,79 +1,114 @@
 <template lang="html">
   <div id="app">
-    <v-timer :options="options">
-
-      <template slot="simple">
-        <v-panel>
-          <div slot="header" class="c-panel-header row-1 u-cross-center">
-            定时任务
-          </div>
-          <div slot="body" class="c-panel-body u-without-padding">
-            <v-modes v-model="simple.grid_active_id" ref="modes"
-              :numberal="2" :items="simple.grid_data_2"
-            ></v-modes>
-          </div>
-        </v-panel>
-      </template>
-
-
-      <!-- task -->
-      <template slot="task">
-        <v-panel>
-          <div slot="header" class="c-panel-header row-1 u-cross-center">
-            模式设置
-          </div>
-          <div slot="body" class="c-panel-body u-without-padding">
-            <v-modes v-model="mods.modes.grid_active_id" ref="modes"
-            :numberal="4" :items="mods.modes.grid_data_2"
-            ></v-modes>
-          </div>
-        </v-panel>
-
-        <v-panel>
-          <div slot="header" class="c-panel-header row-1 u-cross-center">风速设置</div>
-          <div slot="body" class="c-panel-body row-3 u-cross-center">
-            <v-range slot="main"
-            v-model="mods.range.value"
-            :is_step="mods.range.isStep"
-            :dots="mods.range.dots"
-            >
-            </v-range>
-          </div>
-        </v-panel>
-      </template>
-
-
-
+    <v-timer :options="options" ref="timer" @change="timerChange">
     </v-timer>
   </div>
 </template>
 
 <script>
-import units from '../units/default';
-
-const date = {
-  min: (new Date().getMinutes()),
-  hour: (new Date().getHours()),
-  day: (new Date().getDate()),
-  month: (new Date().getMonth()),
-  year: (new Date().getFullYear()),
-};
-const timeTaskExpress = units.timeTaskExpress(date.min,
-  date.hour,
-  date.day,
-  date.month,
-  '1,2',
-  date.year);
 
 const options = {
-  task_name: '插座定时开关', // task_name:定时任务名称
-  time_task_express: timeTaskExpress, // 格式见微联文档
-  pmg_setting: -1, // -1表不通知，0表仅执行失败通知，1表均通知
-  show_delete: true, // 是否显示‘删除定时按钮’
-  // simple: false,
+  mainpage: {
+    task_name: '插座定时开关',
+    // time_task_express: timeTaskExpress,
+    time_task_express: false, // false == 新建定时任务
+    pmg_setting: -1,
+    show_delete: true,
+    // simple: { // 若想开启复杂任务模式，不传入simple对象即可
+    //   title: '定时任务',
+    //   status: false, // 按钮开关状态
+    //   hideDefault: false, // 是否隐藏默认的开关，主要用于想插入自定义组件，又不想要默认的开关组件
+    // },
+  },
+  repeatpage: [1, 2],
+  taskpage: [{ // 注意：组件先后顺序会体现在页面上
+    name: 'onOff', // 如果需要开关，必须写在第一位
+    title: '自定义开关名称',
+    value: 0,
+  }, {
+    name: 'modes',
+    title: '自定义名称',
+    value: 1,
+    items: [{
+      text: '智能模式',
+      icon: 'mode-smart',
+      id: 1,
+    }, {
+      text: '速冷模式',
+      icon: 'mode-cool',
+      id: 2,
+    }, {
+      text: '速冻模式',
+      icon: 'mode-freeze',
+      id: 3,
+    }, {
+      text: '假日模式',
+      icon: 'mode-holiday',
+      id: 4,
+    }, {
+      text: '智能模式',
+      icon: 'mode-smart',
+      id: 5,
+    }, {
+      text: '速冷模式',
+      icon: 'mode-cool',
+      id: 6,
+    }, {
+      text: '速冻模式',
+      icon: 'mode-freeze',
+      id: 7,
+    }, {
+      text: '假日模式',
+      icon: 'mode-holiday',
+      id: 8,
+    }],
+  }, {
+    name: 'range',
+    title: '风速设置',
+    value: 100,
+    min: 0,
+    max: 1000,
+    tooltip(val) {
+      return `${val}°C`;
+    },
+    dots: [{
+      icon: 'mode-holiday',
+      text: '啊啊',
+    }, {
+      icon: 'mode-freeze',
+      text: '高温',
+    }],
+  }, {
+    name: 'range',
+    title: 'aa风速设置',
+    value: {
+      value: 30,
+      text: '高档',
+    },
+    is_step: true,
+    dots: [
+      {
+        value: 10,
+        text: '低档',
+      },
+      {
+        value: 20,
+        text: '中档',
+      },
+      {
+        value: 30,
+        text: '高档',
+      },
+    ],
+  }, {
+    name: 'counter',
+    title: '脱水次数',
+    value: 5,
+    max: 10,
+    min: 0,
+    step: 1,
+  }],
 };
-
-const tasks = {};
 
 const mods = {
   modes: {
@@ -130,14 +165,20 @@ export default {
       simple: {
         grid_active_id: 1,
         grid_data_2: [{
-          text: '插座定时关闭',
+          text: 'a定时关闭',
           id: 1,
         }, {
-          text: '插座定时开启',
+          text: 'a定时开启',
           id: 2,
         }],
       },
     };
+  },
+
+  methods: {
+    timerChange(val) {
+      console.log(val);
+    },
   },
 };
 </script>
