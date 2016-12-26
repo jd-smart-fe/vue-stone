@@ -59,7 +59,8 @@
     @mixin border;
     border-color: $t-switch-offcolor;
 		border-radius: 50px;
-
+    -webkit-flex:none;
+    flex:none;
 		.c-switch-button {
 
 			top: calc($swtich-height / 2);

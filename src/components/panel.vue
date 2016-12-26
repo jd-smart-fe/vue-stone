@@ -59,10 +59,6 @@
     font-size: $font-size-lg;
     color: $gray-dark;
     box-sizing: border-box;
-    .introduce{
-      font-size: $font-size-sm;
-      padding-top: 0.1rem;
-      }
   }
 
   $(prefix)-extra {
@@ -80,7 +76,10 @@
 /*    padding-left: 0.12rem;
     padding-right: 0.12rem;
 */  }
-
+    $(prefix)-introduce{
+      font-size: $font-size-sm;
+      padding-top: 0.08rem;
+      }
   $(prefix)-footer {
 
   }
