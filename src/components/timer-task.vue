@@ -2,7 +2,7 @@
   <div class="">
 
     <!-- 开关 -->
-    <v-panel v-if="options[0].name === 'onOff'">
+    <v-panel v-if="_showSwitch">
       <div slot="header" class="c-panel-header row-1 u-cross-center">{{ options[0].title || ''}}</div>
       <div slot="body" class="c-panel-body u-without-padding">
         <v-modes v-model="options[0].value"
@@ -17,15 +17,7 @@
     <div v-show="_showTask" class="c-task-setting">
       <!-- 循环输出组件 -->
       <template v-for="item in componentsList">
-        <!-- 加载组件 优雅方法 但需统一参数入口-->
-        <!-- <v-panel>
-          <div slot="header" class="c-panel-header row-1 u-cross-center">{{ item.title }}</div>
-          <div slot="body" class="c-panel-body row-3 u-cross-center">
-            <component :is="`v-${item.name}`" v-model="item.value" :items="item.items"></component>
-          </div>
-        </v-panel> -->
 
-        <!-- 加载组件 不优雅方法 -->
         <!-- modes -->
         <v-panel v-if="item.name === 'modes'">
           <div slot="header" class="c-panel-header row-1 u-cross-center">{{ item.title }}</div>
@@ -102,7 +94,7 @@ export default {
 
   data() {
     return {
-      componentsList: [], // created内初始化，用于渲染组件
+      componentsList: [], // created内初始化，用于渲染组件, 剔除了onOff
 
       values: [],
 
@@ -122,7 +114,7 @@ export default {
   props: {
     options: {
       type: Array,
-      required: true,
+      required: false,
       default() {
         return [];
       },
@@ -130,7 +122,17 @@ export default {
   },
 
   computed: {
+    _showSwitch() {
+      if (this.options.length === 0) return false;
+
+      if (this.options[0].name === 'onOff') return true;
+
+      return false;
+    },
+
     _showTask() {
+      if (this.options.length === 0) return true;
+
       if (this.options[0].name === 'onOff' && this.options[0].value === 0) {
         return false;
       }
@@ -139,6 +141,8 @@ export default {
   },
 
   created() {
+    if (this.options.length === 0) return;
+
     // 初始化componentsList, 该值用于渲染组件
     this.componentsList = this.options.map(val => {
       const newval = val;
@@ -180,30 +184,36 @@ export default {
 
       // 初始化counter的值
       if (val.name === 'counter') {
+
         this.resolveCounter(obj, index);
       }
 
       return obj;
     });
 
-    this.$emit('change', this.getvalues());
+    this.$emit('change', this.getValues());
   },
 
   mounted() {
+    if (this.options.length === 0) return;
+
     // 开关
-    this.$refs.onOff.$on('change', val => {
-      if (this.values[0].name === 'onOff') {
-        this.values[0].value = val === 1;
-        this.$emit('change', this.getvalues());
-      }
-    });
+    if (this.options[0].name === 'onOff') {
+
+      this.$refs.onOff.$on('change', val => {
+        if (this.values[0].name === 'onOff') {
+          this.values[0].value = val === 1;
+          this.$emit('change', this.getValues());
+        }
+      });
+    }
 
     // 由于tasks数组中缺少onOff实例，所以在onOff存在的情况下, tasks数组的index需要加上1才能与values数组相对应起来
     let hasOnOff = 0;
     if (this.values[0].name === 'onOff') {
       hasOnOff = 1;
     }
-
+    console.log(this.values);
     // 任务组件们
     this.$refs.tasks.forEach((val, index) => {
       // curIndex 与 values 的索引值相对应
@@ -214,7 +224,7 @@ export default {
         val.$on('change', () => {
 
           this.resolveModes(this.values[curIndex], curIndex);
-          this.$emit('change', this.getvalues());
+          this.$emit('change', this.getValues());
         });
       }
 
@@ -223,23 +233,23 @@ export default {
         val.$on('change', v => {
 
           this.resolveRange(this.values[curIndex], v, curIndex);
-          this.$emit('change', this.getvalues());
+          this.$emit('change', this.getValues());
         });
       }
 
       // counter
       if (this.values[curIndex].name === 'counter') {
-        val.$on('change', () => {
-
-          this.resolveCounter(this.values, curIndex);
-          this.$emit('change', this.getvalues());
+        val.$on('change', (inval) => {
+          this.values[curIndex].value = inval;
+          this.values[curIndex].text = `${inval}次`;
+          this.$emit('change', this.getValues());
         });
       }
     });
   },
 
   methods: {
-    getvalues() {
+    getValues() {
       return this.values;
     },
 
@@ -251,12 +261,12 @@ export default {
     },
 
     resolveRange(val, newval, index) {
-      // is_step === true
+      // 当 is_step === true 时
       if (this.options[index].is_step) {
         val.value = newval;
         val.text = newval.text;
 
-      // is_step === false
+      // 当 is_step === false 时
       } else {
         // 在tooltip值中分析出数据单位
         const unit = this.options[index].tooltip().replace(/undefined/, '');

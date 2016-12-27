@@ -99,12 +99,12 @@
     </div>
 
     <!-- 新页面： 多任务命令 -->
-    <!-- 因为进入mainpage就立刻需要taskpage提供的数据，所以用了v-show没有用v-if -->
-    <template v-if="!options.mainpage.simple">
+    <!-- 关闭简单命令模式 并且 taskpage有传入参数的情况下显示 -->
+    <template v-if="!options.mainpage.simple && options.taskpage">
       <div v-show="currentPage === 'task'">
         <v-timer-task ref="task" :options="options.taskpage" @change="taskHandle">
           <!-- 自定义内容 -->
-          <slot name="task"></slot>
+          <slot name="task" @change="slotHandle"></slot>
         </v-timer-task>
       </div>
     </template>
@@ -246,48 +246,30 @@ export default {
       return time;
     },
 
-    _tasks() {
-      // 解析options
-      // const arr = [];
-      // if (this.taskpage[0].name === 'onOff') {
-      //   if (this.taskpage[0].value === 0) {
-      //     return '定时关闭';
-      //   }
-      //   arr.push('定时开启');
-      // }
-      //
-      // this.taskpage.forEach(val => {
-      //   // 模式选择
-      //   if (val.name === 'modes') {
-      //     const selected = val.items.find(v => v.id === val.value);
-      //     arr.push(selected.text);
-      //   }
-      //
-      //   // rang
-      //   if (val.name === 'range') {
-      //     console.log(this);
-      //   }
-      // });
-      // return arr.join('/');
+    _tasks: {
+      get() {
+        // 解析tasksValue;
+        if (this.tasksValue.length === 0) return '';
+        let arr = [];
 
-      // 解析tasksValue;
-      if (this.tasksValue.length === 0) return '';
-      let arr = [];
+        // onOff
+        if (this.tasksValue[0].name === 'onOff' && !this.tasksValue[0].value) {
+          return '定时关闭';
+        }
 
-      // onOff
-      if (this.tasksValue[0].name === 'onOff' && !this.tasksValue[0].value) {
-        return '定时关闭';
-      }
+        // tasks
+        arr = this.tasksValue.map(val => val.text);
 
-      // tasks
-      arr = this.tasksValue.map(val => val.text);
+        return arr.join('/');
+      },
 
-      return arr.join('/');
+      set() {
+
+      },
     },
   },
 
   created() {
-
     // 根据传入参数初始化星期
     // 如果是新建定时任务
     if (!this.options.mainpage.time_task_express) {
@@ -298,11 +280,6 @@ export default {
     // 如果是读取已有定时任务
     const week = units.arrayTimeTaskExpress(this.options.mainpage.time_task_express);
     this.days = week;
-    // Array.prototype.push.apply(this.days, week);
-  },
-
-  mounted() {
-    // console.log(this.$refs.task.getValue());
   },
 
   methods: {
@@ -337,6 +314,12 @@ export default {
       }
 
       return value;
+    },
+
+    setTasksText(val) {
+      console.log(val);
+      this._tasks = val;
+      console.log(this._tasks);
     },
 
     emitValues() {
