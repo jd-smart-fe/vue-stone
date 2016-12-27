@@ -19,6 +19,12 @@ longTap   | Boolean | false | 是否开启长按功能。
 initStatus | Boolean |  false |  按钮初始状态，当值为true时，按钮处于激活状态。只支持type值为toggle的按钮。
 hold | Boolean | false | 按钮是否维持住当前状态。值为true时，点击按钮不会改变按钮的状态，会触发change事件。
 
+
+**方法**
+
+- update(status)
+  传入参数status，来设置按钮的状态。
+
 **事件**
 
 - `change`:
@@ -80,25 +86,25 @@ v-model 为双向绑定参数，应传入一个data值。
 ----    | ----    | ----    | ----    |
 items  | Array    |     无     |   按钮属性集合。
 size     | String  |   base |  统一设置按钮大小。
+v-modle | data, Number |  0 | 双向绑定参数，激活的按钮id。
 
 
 ```
 buttonGroup: [
-  // 请参照button设置选项
+  // id值必填
+  // 其余请参照button设置选项
   {
+    id: 1 // 必填，当id值与v-model值相同时，按钮将会被激活。
     text: '第一个',
     icon: 'mode-holiday',
-    ...
-
     ...
   },
 
   {
+    id: 2 // 必填，当id值与v-model值相同时，按钮将会被激活。
     text: '第二个',
     icon: 'mode-holiday',
-    initStatus: true, // 设置初始被激活的按钮，有且仅有一个按钮能被初始激活。
     ...
-
     ...
   },
 ],

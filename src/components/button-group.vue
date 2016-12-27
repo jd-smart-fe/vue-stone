@@ -5,10 +5,10 @@
       type="toggle"
       :size="size"
       :text="item.text"
-      :initStatus="initStatus[index]"
-      :hold="holds[index]"
-      @turnOn="turnOnHandle(index)"
-      @touchend.native="touchendHandle(index)"
+      :initStatus="item.id === value"
+      :hold="true"
+      @touchend.native="touchendHandle(item.id)"
+      @touchcancel.native="touchendHandle(item.id)"
       ></v-button>
   </div>
 </template>
@@ -20,12 +20,15 @@ export default {
 
   data() {
     return {
-      holds: [],
-      initStatus: [],
     };
   },
 
   props: {
+    value: {
+      type: Number,
+      required: false,
+      default: 0,
+    },
     items: {
       type: Array,
       required: false,
@@ -36,43 +39,34 @@ export default {
     },
   },
 
-  created() {
-    let flag = false;
-    const list = Array(this.items.length).fill(false);
+  computed: {
+    _ids() {
+      const arr = this.items.map(val => val.id);
+      return arr;
+    },
+  },
 
-    this.items.forEach((val, index) => {
-      if (val.initStatus === true && flag === false) {
-        list[index] = true;
-        flag = true;
-      }
-    });
+  watch: {
+    // TODO:
+    // 应修改：
+    // 改变value会触发两次watcher，从而触发两次遍历
+    value(value) {
 
-    if (!flag) {
-      list[0] = true;
-    }
-    // 初始化hold数组
-    this.holds = list;
-    this.initStatus = list;
+      this.$refs.btn.forEach((val, index) => {
+
+        if (this._ids[index] === this.value) {
+          val.update(true);
+        } else {
+          val.update(false);
+        }
+      });
+    },
   },
 
   methods: {
-    turnOnHandle(index) {
-      if (this.$refs.btn[index].hold) {
-        return;
-      }
-
-      this.holds.forEach((val, i) => {
-        if (i === index) {
-          this.holds.splice(i, 1, true);
-          return;
-        }
-        this.holds.splice(i, 1, false);
-        this.$refs.btn[i].status = false;
-      });
-    },
-
-    touchendHandle(index) {
-      this.$emit('change', index);
+    touchendHandle(id) {
+      this.$emit('input', id);
+      this.$emit('change', id);
     },
   },
 };

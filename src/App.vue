@@ -92,9 +92,25 @@
         <div class="">
           互斥
         </div>
-        <v-button-group :items="buttonGroup" @change="exclusiveChangeHandle">
+      </div>
+      <div slot="body" style="
+      padding: .12rem;
+      ">
+        <v-button-group
+        style="
+          margin-bottom: 20px;
+        "
+        v-model="buttonGroup_value"
+        :items="buttonGroup1"
+        @change="exclusiveChangeHandle">
+        </v-button-group>
+        <v-button-group
+        v-model="buttonGroup_value"
+        :items="buttonGroup2"
+        @change="exclusiveChangeHandle">
         </v-button-group>
       </div>
+
 
     </v-panel>
 
@@ -268,13 +284,34 @@
           id: 8,
         }],
 
-        buttonGroup: [
+        buttonGroup_value: 2,
+        buttonGroup1: [
           {
             text: '第一个',
+            id: 1,
           },
           {
             text: '第二个',
-            initStatus: true,
+            id: 2,
+          },
+          {
+            text: '第三个',
+            id: 3,
+          },
+        ],
+
+        buttonGroup2: [
+          {
+            text: '第四个',
+            id: 4,
+          },
+          {
+            text: '第五个',
+            id: 5,
+          },
+          {
+            text: '第六个',
+            id: 6,
           },
         ],
 
@@ -401,7 +438,7 @@
       },
 
       exclusiveChangeHandle(index) {
-        console.log(`第${index + 1}个按钮被激活`);
+        console.log(`第${index}个按钮被激活`);
       },
 
       pickerHandle(val) {
