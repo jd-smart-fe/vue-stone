@@ -18,7 +18,7 @@
     </div>
 
     <transition name="fade">
-      <v-mask v-show="value" :shown="true"></v-mask>
+      <v-mask v-show="value" :shown="value"></v-mask>
     </transition>
   </div>
 </template>
