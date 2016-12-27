@@ -10,7 +10,7 @@
 const options = {
   mainpage: {
     task_name: '插座定时开关',
-    // time_task_express: timeTaskExpress,
+    // time_task_express: timeTaskExpress, // 直接传入定时命令表达式
     time_task_express: false, // false == 新建定时任务
     pmg_setting: -1,
     show_delete: true,

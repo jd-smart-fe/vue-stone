@@ -317,9 +317,7 @@ export default {
     },
 
     setTasksText(val) {
-      console.log(val);
       this._tasks = val;
-      console.log(this._tasks);
     },
 
     emitValues() {

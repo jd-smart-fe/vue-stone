@@ -213,7 +213,7 @@ export default {
     if (this.values[0].name === 'onOff') {
       hasOnOff = 1;
     }
-    console.log(this.values);
+
     // 任务组件们
     this.$refs.tasks.forEach((val, index) => {
       // curIndex 与 values 的索引值相对应
