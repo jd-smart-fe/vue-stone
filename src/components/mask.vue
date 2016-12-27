@@ -45,8 +45,7 @@
         top:0;
         bottom: 0;
         width: 100%;
-        opacity:0.7;
         z-index:100;
-        background-color:#000;
+        background-color: rgba(0, 0, 0, 0.7);
   }
 </style>
