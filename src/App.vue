@@ -175,17 +175,16 @@
       </div>
     </v-panel>
 
+
     <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div class="">定时设置</div>
-        <a href="/timer">
-          <v-button text="jump"></v-button>
-        </a>
+        <div class="">操作表</div>
+        <v-button ref="btn_actions" text="actions"></v-button>
       </div>
     </v-panel>
 
+    <v-actions ref="actions" v-model="actions_value" :items="actions_items"></v-actions>
 
-    <!---->
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="c-panel-title">模式设置
@@ -195,12 +194,22 @@
       </div>
     </v-panel>
 
+
+    <v-panel>
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div class="">定时设置</div>
+        <a href="/timer">
+          <v-button text="jump"></v-button>
+        </a>
+      </div>
+    </v-panel>
   </div>
 </template>
 
 <script>
 
   export default {
+    name: 'app',
 
     data() {
       return {
@@ -425,6 +434,13 @@
           hour: '0',
           min: '00',
         },
+
+        actions_value: false,
+        actions_items: [{
+          text: '编辑',
+        }, {
+          text: '删除',
+        }],
       };
     },
 
@@ -501,6 +517,14 @@
       this.$refs.switch_dialog.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
         this.showDialog = true;
+      });
+
+      this.$refs.btn_actions.$on('change', () => {
+        this.actions_value = true;
+      });
+
+      this.$refs.actions.$on('change', val => {
+        console.log(`第${val + 1}个按钮被点击`);
       });
     },
   };
