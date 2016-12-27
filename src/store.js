@@ -14,6 +14,7 @@ import Modes from './components/modes';
 import Mask from './components/mask';
 import Picker from './components/picker';
 import Checkboard from './components/checkboard';
+import Actions from './components/actions';
 
 import Timer from './components/timer';
 import TimerTask from './components/timer-task';
@@ -36,7 +37,7 @@ const install = (Vue, options = {}) => {
   Vue.component(Modes.name, Modes);
   Vue.component(Picker.name, Picker);
   Vue.component(Checkboard.name, Checkboard);
-  // Vue.prototype.$alert = Dialog;
+  Vue.component(Actions.name, Actions);
 
   Vue.component(Timer.name, Timer);
   Vue.component(TimerTask.name, TimerTask);

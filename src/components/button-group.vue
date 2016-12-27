@@ -50,7 +50,7 @@ export default {
     // TODO:
     // 应修改：
     // 改变value会触发两次watcher，从而触发两次遍历
-    value(value) {
+    value() {
 
       this.$refs.btn.forEach((val, index) => {
 

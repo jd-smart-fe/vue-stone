@@ -198,13 +198,21 @@ export default {
     if (this.options.length === 0) return;
 
     // 开关
-    if (this.options[0].name === 'onOff') {
+    if (this.options[0].name === 'onOff' && this.values[0].name === 'onOff') {
 
       this.$refs.onOff.$on('change', val => {
-        if (this.values[0].name === 'onOff') {
-          this.values[0].value = val === 1;
-          this.$emit('change', this.getValues());
+
+        if (val === 1) {
+
+          this.values[0].value = true;
+          this.values[0].text = '定时开启';
+        } else {
+
+          this.values[0].value = false;
+          this.values[0].text = '定时关闭';
         }
+
+        this.$emit('change', this.getValues());
       });
     }
 
@@ -240,6 +248,7 @@ export default {
       // counter
       if (this.values[curIndex].name === 'counter') {
         val.$on('change', (inval) => {
+
           this.values[curIndex].value = inval;
           this.values[curIndex].text = `${inval}次`;
           this.$emit('change', this.getValues());

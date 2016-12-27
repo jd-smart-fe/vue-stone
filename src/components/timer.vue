@@ -73,11 +73,14 @@
       </v-panel>
 
       <!-- 删除定时 -->
-      <div class="c-panel">
-        <div class="c-panel-body row-1 c-timer-center u-cross-center">
+      <div v-if="_showDelect" class="c-panel">
+        <div ref="btn_delete" class="c-panel-body row-1 c-timer-center u-cross-center">
           删除定时
         </div>
       </div>
+
+      <!-- 删除定时 弹窗 -->
+      <v-dialog ref="dialog_delete" :showDialog="showDialog" :options="dialogOptions"></v-dialog>
     </div>
 
     <!-- 新页面： 选择重复日期 -->
@@ -153,11 +156,27 @@ export default {
   data() {
     return {
       currentPage: 'index',
-      task_name: this.options.mainpage.task_name, // 定时名称
       days: [], // 储存重复日期,
       tasksValue: [], // taskspage提供的新数据
+      task_name: this.options.mainpage.task_name, // 定时名称
       notice: this.options.mainpage.pmg_setting, // pmg_setting值
-      time: this._initTime, //
+      time: this._initTime, // 初始时间
+      tasksText: '',
+
+      showDialog: false, // 弹窗
+      dialogOptions: {
+        title: '确定删除定时？',
+        // description: '热水器过热',
+        isModal: true,
+        buttons: [
+          {
+            text: '点错啦',
+          },
+          {
+            text: '确定',
+          },
+        ],
+      },
 
       mainpageSwtich: {
         active_id: 1,
@@ -189,6 +208,12 @@ export default {
     options: {
       type: Object,
       required: true,
+    },
+  },
+
+  watch: {
+    _tasks() {
+
     },
   },
 
@@ -246,26 +271,25 @@ export default {
       return time;
     },
 
-    _tasks: {
-      get() {
-        // 解析tasksValue;
-        if (this.tasksValue.length === 0) return '';
-        let arr = [];
+    _tasks() {
+      // 解析tasksValue;
+      if (this.tasksValue.length === 0) return '';
+      let arr = [];
 
-        // onOff
-        if (this.tasksValue[0].name === 'onOff' && !this.tasksValue[0].value) {
-          return '定时关闭';
-        }
+      // onOff
+      if (this.tasksValue[0].name === 'onOff' && !this.tasksValue[0].value) {
+        return '定时关闭';
+      }
 
-        // tasks
-        arr = this.tasksValue.map(val => val.text);
+      // tasks
+      arr = this.tasksValue.map(val => val.text);
 
-        return arr.join('/');
-      },
+      return arr.join('/');
+    },
 
-      set() {
-
-      },
+    _showDelect() {
+      if (this.options.mainpage.show_delete) return true;
+      return false;
     },
   },
 
@@ -280,6 +304,23 @@ export default {
     // 如果是读取已有定时任务
     const week = units.arrayTimeTaskExpress(this.options.mainpage.time_task_express);
     this.days = week;
+  },
+
+  mounted() {
+    this.$refs.btn_delete.addEventListener('click', () => {
+      this.showDialog = true;
+    });
+
+    // 取消
+    this.$refs.dialog_delete.$on('defaultClick', () => {
+      this.showDialog = false;
+    });
+
+    // 确定
+    this.$refs.dialog_delete.$on('primaryClick', () => {
+      this.showDialog = false;
+      this.$emit('delete');
+    });
   },
 
   methods: {

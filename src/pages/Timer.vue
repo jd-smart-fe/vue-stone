@@ -11,9 +11,9 @@ const options = {
   mainpage: {
     task_name: '插座定时开关',
     // time_task_express: timeTaskExpress, // 直接传入定时命令表达式
-    time_task_express: false, // false == 新建定时任务
+    time_task_express: false, // false == 现在默认时间
     pmg_setting: -1,
-    show_delete: true,
+    show_delete: true, // 是否显示删除按钮，默认值 false,
     // simple: { // 若想开启复杂任务模式，不传入simple对象即可
     //   title: '定时任务',
     //   status: false, // 按钮开关状态
@@ -176,8 +176,7 @@ export default {
   },
 
   methods: {
-    timerChange(val) {
-      console.log(val);
+    timerChange() {
     },
   },
 };
