@@ -203,6 +203,14 @@
         </a>
       </div>
     </v-panel>
+
+     <!---->
+    <v-panel>
+      <div slot="body" class="c-panel-body">
+        <v-inputs ref="inputs" v-model="message" placeholder="未输入时提示内容"></v-inputs>
+
+      </div>
+    </v-panel>
   </div>
 </template>
 
@@ -434,6 +442,8 @@
           hour: '0',
           min: '00',
         },
+
+        message: '',
 
         actions_value: false,
         actions_items: [{

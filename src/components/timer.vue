@@ -13,8 +13,8 @@
       <!-- 重复 -->
       <v-panel>
         <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('repeat')">
-          <div>重复</div>
-          <div class="c-timer-content">
+          <div class="title-not-flex">重复</div>
+          <div class="c-timer-content control-field">
             {{ this._repeat }} <span>></span>
           </div>
         </a>
@@ -44,8 +44,8 @@
       <template v-else>
         <v-panel>
           <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('task')" >
-            <div>执行命令</div>
-            <div class="c-timer-content">
+            <div class="title-not-flex">执行命令</div>
+            <div class="c-timer-content control-field">
               {{ this._tasks }} <span>></span>
             </div>
           </a>
@@ -55,8 +55,8 @@
       <!-- 定时名称 -->
       <v-panel>
         <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('name')">
-          <div>定时名称</div>
-          <div class="c-timer-content">
+          <div class="title-not-flex">定时名称</div>
+          <div class="c-timer-content control-field">
             {{ task_name }} <span>></span>
           </div>
         </a>
@@ -65,7 +65,7 @@
       <!-- 执行结果通知 -->
       <v-panel>
         <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('notice')">
-          <div>执行结果通知</div>
+          <div class="title-not-flex">执行结果通知</div>
           <div class="c-timer-content">
             {{ this._notice }} <span>></span>
           </div>
@@ -74,7 +74,7 @@
 
       <!-- 删除定时 -->
       <div v-if="_showDelect" class="c-panel">
-        <div ref="btn_delete" class="c-panel-body row-1 c-timer-center u-cross-center">
+        <div ref="btn_delete" class="c-panel-body row-1 c-timer-center u-cross-center ">
           删除定时
         </div>
       </div>

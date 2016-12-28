@@ -57,7 +57,17 @@
 .space {
   height: 10px;
 }
-
+/********************  textle-not-flex  ********************/
+.title-not-flex {
+  flex: none;
+}
+.control-field {
+  text-overflow:ellipsis;
+  overflow:hidden;
+  white-space:nowrap;
+  word-break:keep-all;
+  padding-left: 0.12rem;
+}
 
 
 
