@@ -27,12 +27,8 @@
 
           <div class="title-not-flex">重复</div>
           <div class="c-timer-content control-field">
-            {{ this._repeat }} <span>></span>
-          <div>重复</div>
-          <div class="c-timer-content">
             {{ this._repeat }}
             <span class="icon icon-pull-right"></span>
-          </div>
         </a>
       </v-panel>
 
@@ -65,7 +61,7 @@
               {{ this._tasks }} <span>></span>
             <div>执行命令</div>
             <div class="c-timer-content">
-              {{ this.taskText }} <span>></span>
+              {{ this.taskText }} <span class="icon icon-pull-right"></span>
             </div>
           </a>
         </v-panel>
@@ -74,9 +70,12 @@
       <!-- 定时名称 -->
       <v-panel>
         <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('name')">
+
           <div class="title-not-flex">定时名称</div>
           <div class="c-timer-content control-field">
-            {{ task_name }} <span>></span>
+            {{ task_name }}
+            <span class="icon icon-pull-right"></span>
+
           </div>
         </a>
       </v-panel>
@@ -86,7 +85,7 @@
         <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('notice')">
           <div class="title-not-flex">执行结果通知</div>
           <div class="c-timer-content">
-            {{ this._notice }} <span>></span>
+            {{ this._notice }} <span class="icon icon-pull-right"></span>
           </div>
         </a>
       </v-panel>
@@ -266,7 +265,6 @@ export default {
     _initTime() {
       let time = {};
       if (!this.options.mainpage.time) {
-        console.log('false');
         const date = {
           min: (new Date().getMinutes()),
           hour: (new Date().getHours()),
@@ -285,7 +283,6 @@ export default {
         };
       }
 
-      console.log(time);
       return time;
     },
 

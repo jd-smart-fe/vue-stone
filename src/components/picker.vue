@@ -228,7 +228,7 @@ function picker(body, cols) {
     const pickerColItems = pickerColList[0].getElementsByClassName('c-picker-item');
 
     if (el.rotateEffect) {
-      [...pickerColList].forEach((item, index) => {
+      [...pickerColList].forEach(item => {
         item.classList.add('c-picker-col-wrapper-3d');
       });
     }

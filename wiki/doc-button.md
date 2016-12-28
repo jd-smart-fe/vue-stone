@@ -3,6 +3,12 @@
 ### button
 
 **v-button 按钮**
+```html
+<v-button size="lg" text="开关" icon="mode-holiday" type="toggle" :initStatus="true">
+</v-button>
+
+```
+
 
 **属性：**
 
@@ -22,7 +28,7 @@ hold | Boolean | false | 按钮是否维持住当前状态。值为true时，点
 
 **方法**
 
-- update(status)
+- `update(status)`
   传入参数status，来设置按钮的状态。
 
 **事件**
@@ -89,7 +95,7 @@ size     | String  |   base |  统一设置按钮大小。
 v-modle | data, Number |  0 | 双向绑定参数，激活的按钮id。
 
 
-```
+```js
 buttonGroup: [
   // id值必填
   // 其余请参照button设置选项

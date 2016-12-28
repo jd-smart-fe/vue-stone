@@ -1,7 +1,32 @@
 <template lang="html">
   <div id="app">
-    <v-timer :options="options" ref="timer" @change="timerChange">
+    <v-timer :options="options" ref="timer" @change="timerChange" @delete="timerDelete">
+
+
+      <v-panel slot="simple" class="c-panel">
+        <div slot="header" class="c-panel-header row-1 u-cross-center">我是标题</div>
+        <div slot="body" class="c-panel-body row-1 u-cross-center">
+          <div>开关</div>
+          <div>
+            <v-button text="开关" type="toggle"></v-button>
+          </div>
+        </div>
+      </v-panel>
+
+
     </v-timer>
+
+    <v-button
+    style="
+    margin: 20px auto;
+    "
+    text="get value"
+    @change="getValue"
+    ></v-button>
+
+    <div>
+      {{ value }}
+    </div>
   </div>
 </template>
 
@@ -16,11 +41,11 @@ const options = {
     // },
     pmg_setting: -1,
     show_delete: true, // 是否显示删除按钮，默认值 false,
-    // simple: { // 若想开启复杂任务模式，不传入simple对象即可
-    //   title: '定时任务',
-    //   status: false, // 按钮开关状态
-    //   hideDefault: false, // 是否隐藏默认的开关，主要用于想插入自定义组件，又不想要默认的开关组件
-    // },
+    simple: { // 若想开启复杂任务模式，不传入simple对象即可
+      // title: '定时任务',
+      // status: false, // 按钮开关状态
+      hideDefault: true, // 是否隐藏默认的开关，主要用于想插入自定义组件，又不想要默认的开关组件
+    },
   },
   // repeatpage: [1, 2], // 默认为不重复
   taskpage: [{ // 注意：组件先后顺序会体现在页面上
@@ -174,11 +199,21 @@ export default {
           id: 2,
         }],
       },
+
+      value: '',
     };
   },
 
   methods: {
     timerChange() {
+    },
+
+    timerDelete() {
+      console.log('确定删除');
+    },
+
+    getValue() {
+      this.value = this.$refs.timer.getValue();
     },
   },
 };
