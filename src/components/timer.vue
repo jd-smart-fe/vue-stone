@@ -1,3 +1,14 @@
+<!--
+*****
+***** Readme
+***** 方法：
+***** getValue() 返回当前设置的值
+***** setTaskText(text) 将当前执行命令的文本设置成 text。
+*****
+ -->
+
+
+
 <template lang="html">
   <div class="c-timer">
 
@@ -6,7 +17,7 @@
       <!-- 时间选择 -->
       <v-panel>
         <div slot="body">
-          <v-picker @change='pickerHandle' :initHour="_initTime.hour" :initMin="_initTime.min"></v-picker>
+          <v-picker @change='pickerHandle' :init_hour="_initTime.hour" :init_min="_initTime.min"></v-picker>
         </div>
       </v-panel>
 
@@ -15,7 +26,8 @@
         <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('repeat')">
           <div>重复</div>
           <div class="c-timer-content">
-            {{ this._repeat }} <span>></span>
+            {{ this._repeat }}
+            <span class="icon icon-pull-right"></span>
           </div>
         </a>
       </v-panel>
@@ -46,7 +58,7 @@
           <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('task')" >
             <div>执行命令</div>
             <div class="c-timer-content">
-              {{ this._tasks }} <span>></span>
+              {{ this.taskText }} <span>></span>
             </div>
           </a>
         </v-panel>
@@ -157,11 +169,11 @@ export default {
     return {
       currentPage: 'index',
       days: [], // 储存重复日期,
-      tasksValue: [], // taskspage提供的新数据
+      taskValue: [], // taskpage提供的新数据
       task_name: this.options.mainpage.task_name, // 定时名称
       notice: this.options.mainpage.pmg_setting, // pmg_setting值
       time: this._initTime, // 初始时间
-      tasksText: '',
+      taskText: this._task, // 执行命令 显示的文本
 
       showDialog: false, // 弹窗
       dialogOptions: {
@@ -200,7 +212,7 @@ export default {
         id: 1,
       }],
 
-      repeat_switch: this.options.repeatpage.length === 1,
+      repeat_switch: this.options.repeatpage.length > 0,
     };
   },
 
@@ -212,18 +224,13 @@ export default {
   },
 
   watch: {
-    _tasks() {
-
+    _task(val) {
+      this.taskText = val;
     },
   },
 
   computed: {
     _repeat() {
-      if (this.days.length === 1) {
-        this.repeat_switch = false;
-        return '执行一次';
-      }
-
       if (!this.repeat_switch) {
         return '执行一次';
       }
@@ -249,8 +256,8 @@ export default {
 
     _initTime() {
       let time = {};
-      if (!this.options.mainpage.time_task_express) {
-
+      if (!this.options.mainpage.time) {
+        console.log('false');
         const date = {
           min: (new Date().getMinutes()),
           hour: (new Date().getHours()),
@@ -260,29 +267,31 @@ export default {
           hour: date.hour,
         };
       } else {
+        const hour = this.options.mainpage.time.hour;
+        const min = this.options.mainpage.time.min;
 
-        const arr = this.options.mainpage.time_task_express.split('_');
         time = {
-          min: arr[0] * 1,
-          hour: arr[1] * 1,
+          hour,
+          min,
         };
       }
 
+      console.log(time);
       return time;
     },
 
-    _tasks() {
-      // 解析tasksValue;
-      if (this.tasksValue.length === 0) return '';
+    _task() {
+      // 解析taskValue;
+      if (this.taskValue.length === 0) return '';
       let arr = [];
 
       // onOff
-      if (this.tasksValue[0].name === 'onOff' && !this.tasksValue[0].value) {
+      if (this.taskValue[0].name === 'onOff' && !this.taskValue[0].value) {
         return '定时关闭';
       }
 
-      // tasks
-      arr = this.tasksValue.map(val => val.text);
+      // task
+      arr = this.taskValue.map(val => val.text);
 
       return arr.join('/');
     },
@@ -348,17 +357,17 @@ export default {
         });
       }
 
-      if (this.tasksValue.length > 0) {
+      if (this.taskValue.length > 0) {
         Object.assign(value, {
-          tasksList: this.tasksValue,
+          taskList: this.taskValue,
         });
       }
 
       return value;
     },
 
-    setTasksText(val) {
-      this._tasks = val;
+    setTaskText(val) {
+      this.taskText = val;
     },
 
     emitValues() {
@@ -388,7 +397,7 @@ export default {
     },
 
     taskHandle(val) {
-      this.tasksValue = val;
+      this.taskValue = val;
     },
   },
 };

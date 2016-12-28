@@ -5,6 +5,7 @@
         <div
           v-for="(item, index) in items"
           class="c-actions-item"
+          :style="`color: ${item.color};`"
           @click="clickHandle(index)"
           >
           {{ item.text }}
@@ -18,7 +19,7 @@
     </div>
 
     <transition name="fade">
-      <v-mask v-show="value" :shown="value"></v-mask>
+      <v-mask v-show="value" :shown="mask_shown"></v-mask>
     </transition>
   </div>
 </template>
@@ -28,7 +29,9 @@ export default {
   name: 'v-actions',
 
   data() {
-    return {};
+    return {
+      mask_shown: this.value,
+    };
   },
 
   props: {
@@ -46,6 +49,21 @@ export default {
           text: '确定',
         }];
       },
+    },
+  },
+
+  watch: {
+    value(val) {
+      if (val) {
+
+        this.mask_shown = true;
+      } else {
+
+        // 300ms 是为了能够触发mask消失时的过渡动画
+        setTimeout(() => {
+          this.mask_shown = false;
+        }, 300);
+      }
     },
   },
 
