@@ -22,7 +22,7 @@ const options = {
     //   hideDefault: false, // 是否隐藏默认的开关，主要用于想插入自定义组件，又不想要默认的开关组件
     // },
   },
-  repeatpage: [1, 2],
+  // repeatpage: [1, 2], // 默认为不重复
   taskpage: [{ // 注意：组件先后顺序会体现在页面上
     name: 'onOff', // 如果需要开关，必须写在第一位
     title: '自定义开关名称',

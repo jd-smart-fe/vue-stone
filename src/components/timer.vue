@@ -212,7 +212,9 @@ export default {
         id: 1,
       }],
 
-      repeat_switch: this.options.repeatpage.length > 0,
+      repeat_switch: this.options.repeatpage
+      ? this.options.repeatpage.length > 0
+      : false,
     };
   },
 
