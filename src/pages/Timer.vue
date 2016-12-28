@@ -10,8 +10,10 @@
 const options = {
   mainpage: {
     task_name: '插座定时开关',
-    // time_task_express: timeTaskExpress, // 直接传入定时命令表达式
-    time_task_express: false, // false == 现在默认时间
+    // time: {    // 默认为现在时间
+    //   hour: 12,
+    //   min: 0,
+    // },
     pmg_setting: -1,
     show_delete: true, // 是否显示删除按钮，默认值 false,
     // simple: { // 若想开启复杂任务模式，不传入simple对象即可
@@ -20,7 +22,7 @@ const options = {
     //   hideDefault: false, // 是否隐藏默认的开关，主要用于想插入自定义组件，又不想要默认的开关组件
     // },
   },
-  repeatpage: [1, 2],
+  // repeatpage: [1, 2], // 默认为不重复
   taskpage: [{ // 注意：组件先后顺序会体现在页面上
     name: 'onOff', // 如果需要开关，必须写在第一位
     title: '自定义开关名称',

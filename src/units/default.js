@@ -5,7 +5,7 @@ function timeTaskExpress(min = '*', hour = '*', day = '*', month = '*', week = '
   return express;
 }
 
-// 输入定时api的日期表达式，返回值为汉字星期字符串
+// 输入定时api的日期表达式，返回值为汉字星期字符串 '每天'  '工作日' '周一, 周二'
 function textTimeTaskExpress(express) {
   const arr = express.split('_');
 
@@ -23,7 +23,7 @@ function textTimeTaskExpress(express) {
   return weekArrToStr(week);
 }
 
-// 输入定时api的日期表达式，返回值为星期数组
+// 输入定时api的日期表达式，返回值为星期数组 [1, 2, 4]
 function arrayTimeTaskExpress(express) {
   const week = express.split('_')[4];
   if (week === '*') {
@@ -78,7 +78,6 @@ function weekArrToStr(week) {
 
   return text.join('、');
 }
-
 
 export default {
   // 输入定时api的日期表达式，返回值为星期数组
