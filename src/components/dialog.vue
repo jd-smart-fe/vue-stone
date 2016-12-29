@@ -60,7 +60,7 @@
               // arr.callback = arr.callback || defaultInfoArray[index].callback;
               // arr.text = arr.text || defaultInfoArray[index].text;
               arr.defaultCallback = defaultInfoArray[index].callback;
-              arr.text = defaultInfoArray[index].text;
+              arr.text = arr.text || defaultInfoArray[index].text;
               return arr;
             }) : [],
           };

@@ -186,6 +186,12 @@
     <v-actions ref="actions" v-model="actions_value" :items="actions_items"></v-actions>
 
     <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">Panel Header</div>
+        <div class="c-panel-extra">
+          <span class='icon icon-mode-smart'></span>
+        </div>
+      </div>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="c-panel-title">模式设置
           <div class="c-panel-introduce">介绍介绍介绍介绍</div>
@@ -402,15 +408,16 @@
           buttons: [
             {
               text: '查看详情',
-              callback() {
+              /*callback() {
                 console.log('传递方法调用');
-              },
+                console.log(this);
+              },*/
             },
             {
               text: '我知道了',
-              callback() {
+              /*callback() {
                 console.log('传递方法调用');
-              },
+              },*/
             },
           ],
         },
