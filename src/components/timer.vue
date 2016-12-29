@@ -23,13 +23,14 @@
 
       <!-- 重复 -->
       <v-panel>
-        <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('repeat')">
 
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('repeat')">
           <div class="title-not-flex">重复</div>
           <div class="c-timer-content control-field">
             {{ this._repeat }}
             <span class="icon icon-pull-right"></span>
         </a>
+
       </v-panel>
 
       <!-- simple task 模式 -->
@@ -69,7 +70,7 @@
 
       <!-- 定时名称 -->
       <v-panel>
-        <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('name')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('name')">
 
           <div class="title-not-flex">定时名称</div>
           <div class="c-timer-content control-field">
@@ -82,7 +83,7 @@
 
       <!-- 执行结果通知 -->
       <v-panel>
-        <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('notice')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('notice')">
           <div class="title-not-flex">执行结果通知</div>
           <div class="c-timer-content">
             {{ this._notice }} <span class="icon icon-pull-right"></span>
@@ -134,15 +135,8 @@
     <!-- 新页面：定时名称 -->
     <div v-show="currentPage === 'name'">
       <v-panel>
-        <div slot="body" class="c-panel-body row-5 u-cross-center">
-          <input type="text"
-          style="
-          width: 100%;
-          height: 50px;
-          border: 1px solid #999;
-          "
-          v-model="task_name"
-          >
+        <div slot="body" class="c-panel-body row-1 u-cross-center">
+          <v-input class="c-timer-input" v-model="task_name" placeholder="定时名称"></v-input>
         </div>
       </v-panel>
     </div>
@@ -155,12 +149,6 @@
         </div>
       </v-panel>
     </div>
-
-    <v-button style="
-      position: absolute;
-      top: 10px;
-    "
-    text="index" @change="backHandle"></v-button>
 
   </div>
 </template>
@@ -376,6 +364,10 @@ export default {
       this.taskText = val;
     },
 
+    jumpMainpage() {
+      this.currentPage = 'index';
+    },
+
     emitValues() {
       const val = this.getValue();
 
@@ -390,9 +382,6 @@ export default {
       this.currentPage = val;
     },
 
-    backHandle() {
-      this.currentPage = 'index';
-    },
 
     dayspickerHandle(val) {
       this.days = val;
@@ -421,6 +410,24 @@ export default {
 
       -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
     }
+    .u-relative{
+      position: relative;
+
+      .c-timer-content{
+        padding-right: 12px;
+      }
+
+      .icon{
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0.06rem;
+        margin: auto;
+        transform: translate(0, -4%);
+      }
+    }
 
     .c-timer-content{
       color: $gray-light;
@@ -439,6 +446,10 @@ export default {
 
     .c-dayspicker-body{
       padding: 0 0.12rem;
+    }
+
+    .c-timer-input{
+      width: 100%;
     }
   }
 
