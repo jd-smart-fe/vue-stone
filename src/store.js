@@ -18,7 +18,7 @@ import Actions from './components/actions';
 
 import Timer from './components/timer';
 import TimerTask from './components/timer-task';
-import Inputs from './components/inputs';
+import Input from './components/input';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -42,7 +42,7 @@ const install = (Vue, options = {}) => {
 
   Vue.component(Timer.name, Timer);
   Vue.component(TimerTask.name, TimerTask);
-  Vue.component(Inputs.name, Inputs);
+  Vue.component(Input.name, Input);
 
   install.installed = true;
 };

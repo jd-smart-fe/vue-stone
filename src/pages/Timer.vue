@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="app">
+    <v-button text="mainpage" @change="jumpMainpage"></v-button>
     <v-timer :options="options" ref="timer" @change="timerChange" @delete="timerDelete">
 
 
@@ -214,6 +215,10 @@ export default {
 
     getValue() {
       this.value = this.$refs.timer.getValue();
+    },
+
+    jumpMainpage() {
+      this.$refs.timer.jumpMainpage();
     },
   },
 };

@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/iconfont.ttf?raq6t8') format('truetype'),
-    url('../styles/fonts/iconfont.woff?raq6t8') format('woff'),
-    url('../styles/fonts/iconfont.svg?raq6t8#iconfont') format('svg');
+    url('../styles/fonts/iconfont.ttf?v0uj94') format('truetype'),
+    url('../styles/fonts/iconfont.woff?v0uj94') format('woff'),
+    url('../styles/fonts/iconfont.svg?v0uj94#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-ellipsis:before {
+  content: "\e90d";
+}
+.icon-bars:before {
+  content: "\e90f";
+}
+.icon-delete:before {
+  content: "\e912";
+}
+.icon-settting:before {
+  content: "\e913";
+}
+.icon-home:before {
+  content: "\e914";
+}
+.icon-close:before {
+  content: "\e90e";
+}
+.icon-check:before {
+  content: "\e915";
+}
+.icon-select-on:before {
+  content: "\e8f5";
+}
+.icon-select-off:before {
+  content: "\e916";
+}
+.icon-round-correct:before {
+  content: "\e917";
+}
 .icon-round-close:before {
   content: "\e911";
 }
@@ -59,4 +89,3 @@
 .icon-mode-freeze:before {
   content: "\e903";
 }
-

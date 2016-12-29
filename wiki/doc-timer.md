@@ -1,4 +1,4 @@
-## 定时组模
+# 定时组模
 
 **`v-timer`**
 
@@ -7,22 +7,30 @@
 <v-timer :options="options"></v-timer>
 ```
 
-### 属性：
+## 属性：
 
 属性名   |    类型   |     默认值     |     说明
 ----    | ----    | ----    | ----    |
 options |  Object  |  | 必须值，定义组件内容
 
-#### Tips：
-taskpage支持的模组：`onOff` , `modes`, `range`, `counter`
 
 相关用法，请看下面示例
 
+## 方法：
 
-#### 示例：
+- `getValue()` 返回值为组件内部的值
+
+- `jumpMainpage()` 跳会组件首页
+
+## 事件
+
+- `delete` 当点击删除按钮并确定时，触发该事件。
 
 
-##### 开关类定时模块：
+## 示例：
+
+
+### 开关类定时模块：
 
 功能单一，只需要定时开启或关闭。
 
@@ -81,7 +89,9 @@ options: {
 
 ```
 
-**多任务定时模块：**
+###多任务定时模块：
+#### Tips：
+taskpage支持的模组：`onOff` , `modes`, `range`, `counter`
 
 ```js
 options: {

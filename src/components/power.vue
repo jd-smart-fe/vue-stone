@@ -23,7 +23,7 @@
         type: Boolean,
         default: false,
       },
-      hand: {
+      hold: {
         type: Boolean,
         default: false,
       },
@@ -49,7 +49,7 @@
     methods: {
 
       handle() {
-        if (this.hand) {
+        if (this.hold) {
           this.$emit('change', this.value);
           return;
         }

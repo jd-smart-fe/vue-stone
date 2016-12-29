@@ -4,6 +4,7 @@
     :class="item.id === value ? 'c-checkboard-active': '' "
     >
       {{ item.text }}
+      <span class="c-checkboard-icon icon-check"></span>
     </label>
   </div>
 </template>
@@ -68,17 +69,21 @@ export default {
     .c-checkboard-active{
       position: relative;
 
-      &:after{
-        content: '';
+      .c-checkboard-icon{
         display: block;
-        width: 30px;
-        height: 30px;
-        background: red;
+        color: #00a678;
+        font-weight: bolder;
+        width: 16px;
+        height: 16px;
         position: absolute;
         right: 0.12rem;
         top: 50%;
         transform: translate(0, calc(-@height / 2));
       }
+    }
+
+    .c-checkboard-icon{
+      display: none;
     }
   }
 
