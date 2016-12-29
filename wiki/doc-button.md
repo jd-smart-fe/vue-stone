@@ -92,7 +92,7 @@ v-model 为双向绑定参数，应传入一个data值。
 ----    | ----    | ----    | ----    |
 items  | Array    |     无     |   按钮属性集合。
 size     | String  |   base |  统一设置按钮大小。
-v-modle | data, Number |  0 | 双向绑定参数，激活的按钮id。
+v-model | data, Number |  0 | 双向绑定参数，激活的按钮id。
 
 
 ```js

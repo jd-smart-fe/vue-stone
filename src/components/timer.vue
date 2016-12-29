@@ -206,9 +206,7 @@ export default {
         id: 1,
       }],
 
-      repeat_switch: this.options.repeatpage
-      ? this.options.repeatpage.length > 0
-      : false,
+      repeat_switch: false,
     };
   },
 
@@ -227,7 +225,7 @@ export default {
 
   computed: {
     _repeat() {
-      if (!this.repeat_switch) {
+      if (!this.repeat_switch || this.days.length === 0) {
         return '执行一次';
       }
 
@@ -252,25 +250,30 @@ export default {
 
     _initTime() {
       let time = {};
-      if (!this.options.mainpage.time) {
-        const date = {
-          min: (new Date().getMinutes()),
-          hour: (new Date().getHours()),
-        };
+      const date = {
+        min: (new Date().getMinutes()),
+        hour: (new Date().getHours()),
+      };
+
+      // 如果是新建任务
+      if (!this.options.mainpage.time_task_express) {
         time = {
           min: date.min,
           hour: date.hour,
         };
+
+      // 如果是已有任务
       } else {
-        const hour = this.options.mainpage.time.hour;
-        const min = this.options.mainpage.time.min;
+
+        // 解析时间表达式
+        const min = this.options.mainpage.time_task_express.split('_')[0] * 1;
+        const hour = this.options.mainpage.time_task_express.split('_')[1] * 1;
 
         time = {
           hour,
           min,
         };
       }
-
       return time;
     },
 
@@ -297,16 +300,29 @@ export default {
   },
 
   created() {
+    // 解析传入的time_task_express.
+
+
     // 根据传入参数初始化星期
-    // 如果是新建定时任务
-    if (!this.options.mainpage.time_task_express) {
-      const week = [(new Date()).getDay()];
-      this.days = week === [0] ? [7] : week;
-      return;
-    }
     // 如果是读取已有定时任务
-    const week = units.arrayTimeTaskExpress(this.options.mainpage.time_task_express);
-    this.days = week;
+    if (this.options.mainpage.time_task_express) {
+
+      const week = units.arrayTimeTaskExpress(this.options.mainpage.time_task_express);
+
+      // 如果是重复任务
+      if (week.length > 0) {
+        this.days = week;
+        this.repeat_switch = true;
+
+      // 否则是一次性任务
+      } else {
+        this.repeat_switch = false;
+      }
+
+    // 否则为新建任务
+    } else {
+      this.repeat_switch = false;
+    }
   },
 
   mounted() {
@@ -327,30 +343,47 @@ export default {
   },
 
   methods: {
+    // 获取组件数据
     getValue() {
-      let repeat;
-      if (this.repeat_switch) {
-        repeat = this.days;
+      let timeTaskExpress = '';
+
+      // 定时重复的value
+      if (this.repeat_switch && this.days.length > 0) {
+
+        // 开启重复的情况
+        timeTaskExpress = units.timeTaskExpress(this.time.min, this.time.hour, '*', '*', this.days);
       } else {
-        repeat = false;
+
+        // 只执行一次的情况
+        const nowdate = this.getNowDate();
+
+        // 如果设置时间小于等于现在时间，则任务默认为第二天进行
+        if ((this.time.hour * 60) + this.time.min
+        <= (nowdate.hour * 60) + nowdate.min) {
+
+          timeTaskExpress = units.timeTaskExpress(this.time.min, this.time.hour, nowdate.date + 1, nowdate.month, '*', nowdate.year);
+        } else {
+
+          // 否则任务默认为今天进行
+          timeTaskExpress = units.timeTaskExpress(this.time.min, this.time.hour, nowdate.date, nowdate.month, '*', nowdate.year);
+        }
       }
 
+      // 任务时间表达式，结果通知，任务名称
       const value = {
-        repeat,
-        time: {
-          hour: this.time.hour,
-          min: this.time.min,
-        },
+        time_task_express: timeTaskExpress,
         notice: this.notice,
         task_name: this.task_name,
       };
 
+      // 简单开关的value
       if (this.options.mainpage.simple) {
         Object.assign(value, {
           simple_switch: this.mainpageSwtich.active_id === 1,
         });
       }
 
+      // 复杂开关的value
       if (this.taskValue.length > 0) {
         Object.assign(value, {
           taskList: this.taskValue,
@@ -360,13 +393,34 @@ export default {
       return value;
     },
 
+    // 设置任务字符串
     setTaskText(val) {
       this.taskText = val;
     },
 
+    // 跳回主页
     jumpMainpage() {
       this.currentPage = 'index';
+
+      // 及时检查开关状态
+      // 可删除，因为在跳转至重复页时也检查了开关状态
+      if (this._repeat === '执行一次') {
+        this.repeat_switch = false;
+      }
     },
+
+    // 获取当前时间
+    getNowDate() {
+      const date = new Date();
+      return {
+        hour: date.getHours(),
+        min: date.getMinutes(),
+        date: date.getDate(),
+        month: date.getMonth(),
+        year: date.getFullYear(),
+      };
+    },
+
 
     emitValues() {
       const val = this.getValue();
@@ -375,13 +429,15 @@ export default {
     },
 
     jumpHandle(val) {
+      // 只执行一次时关闭重复按钮
+      // 在跳转至首页时也检查并重置了开关状态，
+      // 后期可以二者保其一
       if (this._repeat === '执行一次') {
         this.repeat_switch = false;
       }
 
       this.currentPage = val;
     },
-
 
     dayspickerHandle(val) {
       this.days = val;

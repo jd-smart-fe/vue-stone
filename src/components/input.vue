@@ -11,7 +11,7 @@
 
     data() {
       return {
-        del: false,
+        del: this.value !== '',
         invalue: this.value,
       };
     },

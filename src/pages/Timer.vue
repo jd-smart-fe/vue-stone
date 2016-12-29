@@ -36,6 +36,8 @@
 const options = {
   mainpage: {
     task_name: '插座定时开关',
+    time_task_express: '31_16_*_*_4,5_*',
+    // time_task_express: '44_12_29_11_*_2016',
     // time: {    // 默认为现在时间
     //   hour: 12,
     //   min: 0,
@@ -48,7 +50,6 @@ const options = {
       hideDefault: true, // 是否隐藏默认的开关，主要用于想插入自定义组件，又不想要默认的开关组件
     },
   },
-  // repeatpage: [1, 2], // 默认为不重复
   taskpage: [{ // 注意：组件先后顺序会体现在页面上
     name: 'onOff', // 如果需要开关，必须写在第一位
     title: '自定义开关名称',

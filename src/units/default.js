@@ -1,7 +1,7 @@
 // 输入年月日周，返回值为定时接口日期表达式
-function timeTaskExpress(min = '*', hour = '*', day = '*', month = '*', week = '*', year = '*') {
+function timeTaskExpress(min = '*', hour = '*', date = '*', month = '*', week = '*', year = '*') {
   const weekStr = Array.isArray(week) ? week.join(',') : week;
-  const express = `${min}_${hour}_${day}_${month}_${weekStr}_${year}`;
+  const express = `${min}_${hour}_${date}_${month}_${weekStr}_${year}`;
   return express;
 }
 
@@ -27,9 +27,7 @@ function textTimeTaskExpress(express) {
 function arrayTimeTaskExpress(express) {
   const week = express.split('_')[4];
   if (week === '*') {
-    return (new Date()).getDay() === 0
-    ? [7]
-    : [(new Date()).getDay()];
+    return [];
   }
   const arr = week.split(',').map(val => val * 1);
   return arr;
