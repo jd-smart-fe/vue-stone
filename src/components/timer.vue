@@ -6,9 +6,6 @@
 ***** setTaskText(text) 将当前执行命令的文本设置成 text。
 *****
  -->
-
-
-
 <template lang="html">
   <div class="c-timer">
 

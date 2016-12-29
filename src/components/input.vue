@@ -1,7 +1,7 @@
 <template>
-  <div class="c-input" id="suggest-align">
-    <input type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
-    <span title="清空" class="c-input-delquery icon-round-close" @click="clear" v-show="del"></span>
+  <div class="c-input">
+    <input ref="input" type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
+    <span title="清空" class="c-input-delquery icon-round-close" @click="clear" v-show="_show"></span>
   </div>
 </template>
 
@@ -11,8 +11,8 @@
 
     data() {
       return {
-        del: this.value !== '',
         invalue: this.value,
+        focus: false,
       };
     },
 
@@ -28,6 +28,13 @@
       },
     },
 
+    computed: {
+      _show() {
+        if (this.invalue === '') return false;
+        return this.focus;
+      },
+    },
+
     props: {
       value: {
         type: String,
@@ -38,6 +45,18 @@
         default: '请输入',
       },
 
+    },
+
+    mounted() {
+      const el = this.$el.getElementsByTagName('input')[0];
+
+      el.addEventListener('focus', () => {
+        this.focus = true;
+      });
+
+      el.addEventListener('blur', () => {
+        this.focus = false;
+      });
     },
 
     methods: {
