@@ -18,9 +18,9 @@
       </div>
     </div>
 
-    <transition name="fade">
+    <v-transition enter="fadeIn" leave="fadeOut">
       <v-mask v-show="value" :shown="mask_shown"></v-mask>
-    </transition>
+    </v-transition>
   </div>
 </template>
 
@@ -116,18 +116,6 @@ export default {
       + .c-actions-item{
         border-top: 1px solid #999;
       }
-    }
-
-    .fade-enter-active{
-      transition: all 13s ease;
-    }
-
-    .fade-leave-active{
-      transition: all 13s ease;
-    }
-
-    .fade-enter, .fade-leave{
-      opacity: 0;
     }
   }
 </style>

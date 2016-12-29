@@ -5,7 +5,6 @@ import Range from './components/range';
 import Switch from './components/switch';
 import Power from './components/power';
 import Panel from './components/panel';
-// import Grid from './components/grid';
 import Dialog from './components/dialog';
 import Button from './components/button';
 import Counter from './components/counter';
@@ -15,10 +14,11 @@ import Mask from './components/mask';
 import Picker from './components/picker';
 import Checkboard from './components/checkboard';
 import Actions from './components/actions';
-
+import Input from './components/input';
 import Timer from './components/timer';
 import TimerTask from './components/timer-task';
-import Input from './components/input';
+
+import Transition from './components/transition';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -29,7 +29,6 @@ const install = (Vue, options = {}) => {
   Vue.component(Switch.name, Switch);
   Vue.component(Power.name, Power);
   Vue.component(Panel.name, Panel);
-  // Vue.component(Grid.name, Grid);
   Vue.component(Dialog.name, Dialog);
   Vue.component(Mask.name, Mask);
   Vue.component(Button.name, Button);
@@ -39,10 +38,11 @@ const install = (Vue, options = {}) => {
   Vue.component(Picker.name, Picker);
   Vue.component(Checkboard.name, Checkboard);
   Vue.component(Actions.name, Actions);
-
+  Vue.component(Input.name, Input);
   Vue.component(Timer.name, Timer);
   Vue.component(TimerTask.name, TimerTask);
-  Vue.component(Input.name, Input);
+
+  Vue.component(Transition.name, Transition);
 
   install.installed = true;
 };

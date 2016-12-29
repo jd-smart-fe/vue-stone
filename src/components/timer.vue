@@ -10,7 +10,7 @@
   <div class="c-timer">
 
     <!-- 首屏  -->
-    <div v-show="currentPage === 'index'">
+    <div v-show="currentPage === 'main'">
       <!-- 时间选择 -->
       <v-panel>
         <div slot="body">
@@ -21,7 +21,7 @@
       <!-- 重复 -->
       <v-panel>
 
-        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('repeat')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('repeat')">
           <div class="title-not-flex">重复</div>
           <div class="c-timer-content control-field">
             {{ this._repeat }}
@@ -53,7 +53,7 @@
       <!-- 复杂任务模式 点击加载任务页 -->
       <template v-else>
         <v-panel>
-          <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('task')" >
+          <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('task')" >
             <div class="title-not-flex">执行命令</div>
             <div class="c-timer-content control-field">
               {{ this.taskText }} <span class="icon icon-pull-right"></span>
@@ -64,10 +64,10 @@
 
       <!-- 定时名称 -->
       <v-panel>
-        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('name')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('name')">
 
           <div class="title-not-flex">定时名称</div>
-          <div class="c-timer-content control-field">
+          <div class="c-timer-content control-field">``
             {{ task_name }}
             <span class="icon icon-pull-right"></span>
 
@@ -77,7 +77,7 @@
 
       <!-- 执行结果通知 -->
       <v-panel>
-        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('notice')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('notice')">
           <div class="title-not-flex">执行结果通知</div>
           <div class="c-timer-content">
             {{ this._notice }} <span class="icon icon-pull-right"></span>
@@ -155,7 +155,7 @@ export default {
 
   data() {
     return {
-      currentPage: 'index',
+      currentPage: 'main',
       days: [], // 储存重复日期,
       taskValue: [], // taskpage提供的新数据
       task_name: this.options.mainpage.task_name, // 定时名称
@@ -394,7 +394,7 @@ export default {
 
     // 跳回主页
     jumpMainpage() {
-      this.currentPage = 'index';
+      this.currentPage = 'main';
 
       // 及时检查开关状态
       // 可删除，因为在跳转至重复页时也检查了开关状态
@@ -422,7 +422,7 @@ export default {
       this.$emit('change', val);
     },
 
-    jumpHandle(val) {
+    jump(val) {
       // 只执行一次时关闭重复按钮
       // 在跳转至首页时也检查并重置了开关状态，
       // 后期可以二者保其一
@@ -431,6 +431,10 @@ export default {
       }
 
       this.currentPage = val;
+    },
+
+    emitJump(val) {
+      this.$emit('jump', val);
     },
 
     dayspickerHandle(val) {

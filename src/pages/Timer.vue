@@ -157,6 +157,12 @@ export default {
     };
   },
 
+  mounted() {
+    this.$refs.timer.$on('jump', val => {
+      this.$refs.timer.jump(val);
+    });
+  },
+
   methods: {
     timerChange() {
     },
@@ -170,7 +176,7 @@ export default {
     },
 
     jumpMainpage() {
-      this.$refs.timer.jumpMainpage();
+      this.$refs.timer.jump('main');
     },
   },
 };
