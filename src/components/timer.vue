@@ -413,7 +413,7 @@ export default {
         hour: date.getHours(),
         min: date.getMinutes(),
         date: date.getDate(),
-        month: date.getMonth(),
+        month: date.getMonth() + 1,
         year: date.getFullYear(),
       };
     },
