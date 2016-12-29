@@ -56,12 +56,9 @@
       <!-- 复杂任务模式 点击加载任务页 -->
       <template v-else>
         <v-panel>
-          <a slot="body" class="c-panel-body row-1 u-cross-center" @click="jumpHandle('task')" >
+          <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="jumpHandle('task')" >
             <div class="title-not-flex">执行命令</div>
             <div class="c-timer-content control-field">
-              {{ this._tasks }} <span>></span>
-            <div>执行命令</div>
-            <div class="c-timer-content">
               {{ this.taskText }} <span class="icon icon-pull-right"></span>
             </div>
           </a>
