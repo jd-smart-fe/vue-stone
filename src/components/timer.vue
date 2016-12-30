@@ -294,6 +294,7 @@ export default {
   },
 
   created() {
+    console.log(JSON.stringify(this.options));
     // 解析传入的time_task_express.
 
 

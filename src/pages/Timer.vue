@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="app">
     <v-button text="mainpage" @change="jumpMainpage"></v-button>
-    <v-timer :options="options" ref="timer" @change="timerChange" @delete="timerDelete">
+    <v-timer :key="key" :options="options" ref="timer" @change="timerChange" @delete="timerDelete">
 
 
       <v-panel slot="simple" class="c-panel">
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import units from '../units/default';
 
 const options = {
   // 定义主页内容
@@ -117,6 +118,7 @@ export default {
   data() {
     return {
       options,
+      key: 1,
       simple: {
         grid_active_id: 1,
         grid_data_2: [{
@@ -158,6 +160,14 @@ export default {
 
     jumpMainpage() {
       this.$refs.timer.jump('main');
+    },
+
+    units() {
+      return units;
+    },
+
+    key22() {
+      this.key += 1;
     },
   },
 };
