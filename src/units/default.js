@@ -1,12 +1,12 @@
 // 输入年月日周，返回值为定时接口日期表达式
-function timeTaskExpress(min = '*', hour = '*', date = '*', month = '*', week = '*', year = '*') {
+function taskTimeExpress(min = '*', hour = '*', date = '*', month = '*', week = '*', year = '*') {
   const weekStr = Array.isArray(week) ? week.join(',') : week;
   const express = `${min}_${hour}_${date}_${month}_${weekStr}_${year}`;
   return express;
 }
 
 // 输入定时api的日期表达式，返回值为汉字星期字符串 '每天'  '工作日' '周一, 周二'
-function textTimeTaskExpress(express) {
+function textTaskTimeExpress(express) {
   const arr = express.split('_');
 
   // 执行一次
@@ -23,7 +23,7 @@ function textTimeTaskExpress(express) {
 }
 
 // 输入定时api的日期表达式，返回值为星期数组 [1, 2, 4]
-function arrayTimeTaskExpress(express) {
+function arrayTaskTimeExpress(express) {
   const week = express.split('_')[4];
   if (week === '*') {
     return [];
@@ -87,7 +87,7 @@ function resolveTimeInTasklist(date) {
 function toTasklistStr(obj) {
   const express = obj.task_time_express;
   const minutes = obj.next_left_minutes;
-  const str1 = textTimeTaskExpress(express);
+  const str1 = textTaskTimeExpress(express);
 
   const hour = Math.floor(minutes / 60);
   const min = minutes - (hour * 60);
@@ -102,13 +102,13 @@ function toTasklistStr(obj) {
 
 export default {
   // 输入定时api的日期表达式，返回值为星期数组
-  arrayTimeTaskExpress,
+  arrayTaskTimeExpress,
   // 输入定时api的日期表达式，返回值为汉字星期字符串
-  textTimeTaskExpress,
+  textTaskTimeExpress,
   // 输入星期数组，返回值为汉字星期字符串
   weekArrToStr,
   // 输入多个时间参数，返回值为定时接口日期表达式字符串
-  timeTaskExpress,
+  taskTimeExpress,
   // 传入固定格式的时间(2016-11-12 12:30)，返回小时分钟(12:30)。
   resolveTimeInTasklist,
   // 传入对象，返回固定格式字符串 (执行一次 2天后执行)

@@ -14,7 +14,11 @@
       <!-- 时间选择 -->
       <v-panel>
         <div slot="body">
-          <v-picker @change='pickerHandle' :init_hour="_initTime.hour" :init_min="_initTime.min"></v-picker>
+          <v-picker
+          @change='pickerHandle'
+          :rotate_effect="false"
+          :init_hour="_initTime.hour"
+          :init_min="_initTime.min"></v-picker>
         </div>
       </v-panel>
 
@@ -159,7 +163,7 @@ export default {
       days: [], // 储存重复日期,
       taskValue: [], // taskpage提供的新数据
       task_name: this.options.mainpage.task_name, // 定时名称
-      notice: this.options.mainpage.pmg_setting, // pmg_setting值
+      notice: this.options.mainpage.pmg_setting * 1, // pmg_setting值
       time: this._initTime, // 初始时间
       taskText: this._task, // 执行命令 显示的文本
 
@@ -179,7 +183,7 @@ export default {
       },
 
       mainpageSwtich: {
-        active_id: 1,
+        active_id: this.options.mainpage.simple.status ? 1 : 0,
         data_2: [{
           text: '定时关闭',
           id: 0,
@@ -249,8 +253,8 @@ export default {
         hour: (new Date().getHours()),
       };
 
-      // 如果是新建任务
-      if (!this.options.mainpage.time_task_express) {
+      // 如果是新建任务``
+      if (!this.options.mainpage.task_time_express) {
         time = {
           min: date.min,
           hour: date.hour,
@@ -260,8 +264,8 @@ export default {
       } else {
 
         // 解析时间表达式
-        const min = this.options.mainpage.time_task_express.split('_')[0] * 1;
-        const hour = this.options.mainpage.time_task_express.split('_')[1] * 1;
+        const min = this.options.mainpage.task_time_express.split('_')[0] * 1;
+        const hour = this.options.mainpage.task_time_express.split('_')[1] * 1;
 
         time = {
           hour,
@@ -295,14 +299,14 @@ export default {
 
   created() {
     console.log(JSON.stringify(this.options));
-    // 解析传入的time_task_express.
+    // 解析传入的task_time_express.
 
 
     // 根据传入参数初始化星期
     // 如果是读取已有定时任务
-    if (this.options.mainpage.time_task_express) {
+    if (this.options.mainpage.task_time_express) {
 
-      const week = units.arrayTimeTaskExpress(this.options.mainpage.time_task_express);
+      const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
 
       // 如果是重复任务
       if (week.length > 0) {
@@ -321,9 +325,11 @@ export default {
   },
 
   mounted() {
-    this.$refs.btn_delete.addEventListener('click', () => {
-      this.showDialog = true;
-    });
+    if (this.options.mainpage.show_delete) {
+      this.$refs.btn_delete.addEventListener('click', () => {
+        this.showDialog = true;
+      });
+    }
 
     // 取消
     this.$refs.dialog_delete.$on('defaultClick', () => {
@@ -340,13 +346,13 @@ export default {
   methods: {
     // 获取组件数据
     getValue() {
-      let timeTaskExpress = '';
+      let taskTimeExpress = '';
 
       // 定时重复的value
       if (this.repeat_switch && this.days.length > 0) {
 
         // 开启重复的情况
-        timeTaskExpress = units.timeTaskExpress(this.time.min, this.time.hour, '*', '*', this.days);
+        taskTimeExpress = units.taskTimeExpress(this.time.min, this.time.hour, '*', '*', this.days);
       } else {
 
         // 只执行一次的情况
@@ -356,17 +362,17 @@ export default {
         if ((this.time.hour * 60) + this.time.min
         <= (nowdate.hour * 60) + nowdate.min) {
 
-          timeTaskExpress = units.timeTaskExpress(this.time.min, this.time.hour, nowdate.date + 1, nowdate.month, '*', nowdate.year);
+          taskTimeExpress = units.taskTimeExpress(this.time.min, this.time.hour, nowdate.date + 1, nowdate.month, '*', nowdate.year);
         } else {
 
           // 否则任务默认为今天进行
-          timeTaskExpress = units.timeTaskExpress(this.time.min, this.time.hour, nowdate.date, nowdate.month, '*', nowdate.year);
+          taskTimeExpress = units.taskTimeExpress(this.time.min, this.time.hour, nowdate.date, nowdate.month, '*', nowdate.year);
         }
       }
 
       // 任务时间表达式，结果通知，任务名称
       const value = {
-        time_task_express: timeTaskExpress,
+        task_time_express: taskTimeExpress,
         notice: this.notice,
         task_name: this.task_name,
       };
