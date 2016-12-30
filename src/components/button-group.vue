@@ -5,7 +5,7 @@
       type="toggle"
       :size="size"
       :text="item.text"
-      :initStatus="item.id === value"
+      :init_status="item.id === value"
       :hold="true"
       @touchend.native="touchendHandle(item.id)"
       @touchcancel.native="touchendHandle(item.id)"

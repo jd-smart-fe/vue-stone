@@ -28,6 +28,27 @@
     <div>
       {{ value }}
     </div>
+
+    <v-button
+    ref="animate"
+    text="animate"
+    style="
+      margin: 20px auto;
+    "
+    ></v-button>
+
+
+    <v-transition enter="bounce" leave="fadeOut">
+      <v-button
+      text="动画"
+      type="toggle"
+      style="
+      margin: 20px auto;
+      "
+      :init_status="true"
+      v-show="btn_show">
+      </v-button>
+    </v-transition>
   </div>
 </template>
 
@@ -90,58 +111,12 @@ const options = {
   }],
 };
 
-const mods = {
-  modes: {
-    grid_active_id: 1,
-    grid_data_2: [{
-      text: '智能模式',
-      icon: 'mode-smart',
-      id: 1,
-    }, {
-      text: '速冷模式',
-      icon: 'mode-cool',
-      id: 2,
-    }, {
-      text: '速冻模式',
-      icon: 'mode-freeze',
-      id: 3,
-    }, {
-      text: '假日模式',
-      icon: 'mode-holiday',
-      id: 4,
-    }],
-  },
-
-  range: {
-    value: {
-      value: 30,
-      text: '高档',
-    },
-    isStep: true,
-    dots: [
-      {
-        value: 10,
-        text: '低档',
-      },
-      {
-        value: 20,
-        text: '中档',
-      },
-      {
-        value: 30,
-        text: '高档',
-      },
-    ],
-  },
-};
-
 export default {
   name: 'v-app',
 
   data() {
     return {
       options,
-      mods,
       simple: {
         grid_active_id: 1,
         grid_data_2: [{
@@ -154,12 +129,18 @@ export default {
       },
 
       value: '',
+
+      btn_show: true,
     };
   },
 
   mounted() {
     this.$refs.timer.$on('jump', val => {
       this.$refs.timer.jump(val);
+    });
+
+    this.$refs.animate.$on('change', val => {
+      this.btn_show = !this.btn_show;
     });
   },
 

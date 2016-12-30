@@ -8,7 +8,7 @@
         ref="quick"
         :text="item"
         type="toggle"
-        :initStatus="quick_state_list[index]"
+        :init_status="quick_state_list[index]"
         @turnOn="quickOnHandle(index)"
         @touchend.native="quickEndNativeHandle(index)"
         @touchcancel.native="quickEndNativeHandle(index)"
@@ -21,7 +21,7 @@
         ref="days"
         :text="item"
         type="toggle"
-        :initStatus="days_state_list[index]"
+        :init_status="days_state_list[index]"
         @turnOn="daysOnHandle(index)"
         @turnOff="daysOffHandle(index)"
       >

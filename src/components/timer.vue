@@ -67,7 +67,7 @@
         <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('name')">
 
           <div class="title-not-flex">定时名称</div>
-          <div class="c-timer-content control-field">``
+          <div class="c-timer-content control-field">
             {{ task_name }}
             <span class="icon icon-pull-right"></span>
 

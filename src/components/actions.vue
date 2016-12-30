@@ -1,9 +1,11 @@
 <template lang="html">
   <div class="">
     <div :class='["c-actions", value ? "c-actions-active" : "" ]'>
-      <div class="c-actions-warpper">
-        <div
+
+        <div class="c-actions-warpper">
+          <div
           v-for="(item, index) in items"
+          v-if="!item.is_cancel"
           class="c-actions-item"
           :style="`color: ${item.color};`"
           @click="clickHandle(index)"
@@ -11,14 +13,29 @@
           {{ item.text }}
         </div>
       </div>
+
       <div class="c-actions-warpper">
-        <div class="c-actions-cancel" @click="cancelHandle">
-          取消
-        </div>
+        <template v-if="_cancelItem.length > 0">
+          <div
+          v-for="item in _cancelItem"
+          class="c-actions-cancel"
+          :style="`color: ${item.color};`"
+          @click="cancelHandle">
+            {{ item.text }}
+          </div>
+        </template>
+
+        <template v-else>
+          <div class="c-actions-cancel" @click="cancelHandle">
+            取消
+          </div>
+        </template>
+
       </div>
+
     </div>
 
-    <v-transition enter="fadeIn" leave="fadeOut">
+    <v-transition name="fade">
       <v-mask v-show="value" :shown="mask_shown"></v-mask>
     </v-transition>
   </div>
@@ -32,6 +49,19 @@ export default {
     return {
       mask_shown: this.value,
     };
+  },
+
+  computed: {
+    _cancelItem() {
+      const arr = [];
+      this.items.forEach(val => {
+        if (val.is_cancel) {
+          arr.push(val);
+        }
+      });
+
+      return arr;
+    },
   },
 
   props: {

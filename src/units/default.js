@@ -77,6 +77,18 @@ function weekArrToStr(week) {
   return text.join('、');
 }
 
+// 传入固定格式的时间(2016-11-12 12:30)，返回小时分钟(12:30)。
+function resolveTimeInTimer(date) {
+  return date.split(' ')[1];
+}
+
+// 传入分钟数，返回固定格式字符串
+function minutesToStr(min) {
+  // const hour = Math.floor(min % 60);
+  // const min = min - (hour * 60);
+
+}
+
 export default {
   // 输入定时api的日期表达式，返回值为星期数组
   arrayTimeTaskExpress,
@@ -86,4 +98,6 @@ export default {
   weekArrToStr,
   // 输入多个时间参数，返回值为定时接口日期表达式字符串
   timeTaskExpress,
+  // 传入固定格式的时间(2016-11-12 12:30)，返回小时分钟(12:30)。
+  resolveTimeInTimer,
 };

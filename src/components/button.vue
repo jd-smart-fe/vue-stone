@@ -6,7 +6,7 @@
 ******* longTap === true 时，开启长按功能，按下按钮 1000ms 后，每 150ms 触发一次 change 事件。
 *******
 ******* 应用 toggle 型按钮时，
-******* 通过传入 initStatus 属性来决定组件初始 的 status。
+******* 通过传入 init_status 属性来决定组件初始 的 status。
 ******* 若想通过非点击方式改变 status，可通过调用update(boolean) 去改变状态。
 *******
  -->
@@ -43,7 +43,7 @@ export default {
     return {
       hover: false,
       longTapFlag: false,
-      status: this.initStatus,
+      status: this.init_status,
     };
   },
 
@@ -139,7 +139,7 @@ export default {
       default: false,
     },
     // 按钮初始状态
-    initStatus: {
+    init_status: {
       type: Boolean,
       required: false,
       default: false,
