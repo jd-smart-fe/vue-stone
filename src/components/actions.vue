@@ -5,7 +5,7 @@
         <div class="c-actions-warpper">
           <div
           v-for="(item, index) in items"
-          v-if="!item.is_cancel"
+          v-if="!item.isCancel"
           class="c-actions-item"
           :style="`color: ${item.color};`"
           @click="clickHandle(index)"
@@ -55,7 +55,7 @@ export default {
     _cancelItem() {
       const arr = [];
       this.items.forEach(val => {
-        if (val.is_cancel) {
+        if (val.isCancel) {
           arr.push(val);
         }
       });
