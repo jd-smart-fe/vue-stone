@@ -12,7 +12,7 @@
     data() {
       return {
         invalue: this.value,
-        focus: true,
+        focus: false,
       };
     },
 
