@@ -482,7 +482,7 @@
     },
 
     mounted() {
-
+      console.log(document);
       this.$refs.dayspicker.$on('change', (value) => {
         console.log(`当前的星期选择是: ${value}`);
       });
@@ -542,7 +542,11 @@
       });
 
       this.$refs.actions.$on('change', val => {
-        console.log(`第${val + 1}个按钮被点击`);
+        if (val === -1) {
+          console.log('取消按钮被点击');
+        } else {
+          console.log(`第${val + 1}个按钮被点击`);
+        }
       });
     },
   };

@@ -103,6 +103,7 @@ export default {
     },
 
     cancelHandle() {
+      this.$emit('change', -1);
       this.$emit('input', false);
     },
   },
