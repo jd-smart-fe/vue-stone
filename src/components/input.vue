@@ -1,7 +1,7 @@
 <template>
   <div class="c-input">
     <input ref="input" type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
-    <span title="清空" class="c-input-delquery icon-round-close" @click="clear" v-show="_show"></span>
+    <span title="清空" class="c-input-delquery icon-round-close" @touchstart="clear" v-show="_show"></span>
   </div>
 </template>
 
@@ -12,19 +12,13 @@
     data() {
       return {
         invalue: this.value,
-        focus: false,
+        focus: true,
       };
     },
 
     watch: {
       value(val) {
         this.invalue = val;
-
-        if (val === '') {
-          this.del = false;
-        } else {
-          this.del = true;
-        }
       },
     },
 
@@ -44,7 +38,6 @@
         required: false,
         default: '请输入',
       },
-
     },
 
     mounted() {
@@ -60,8 +53,8 @@
     },
 
     methods: {
-
       clear() {
+        console.log('aa');
         this.$emit('input', '');
         this.$emit('change', this.invalue);
       },
@@ -98,6 +91,7 @@
       height: 0.16rem;
       outline:none;
       padding: 1px 0;
+      padding-right: 0.2rem;
       width: 100%;
     }
 }
