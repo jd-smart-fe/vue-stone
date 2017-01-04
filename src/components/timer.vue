@@ -15,7 +15,7 @@
       <v-panel>
         <div slot="body">
           <v-picker
-          @change='pickerHandle'
+          @change='_pickerHandle'
           :rotate_effect="false"
           :init_hour="_initTime.hour"
           :init_min="_initTime.min"></v-picker>
@@ -25,7 +25,7 @@
       <!-- 重复 -->
       <v-panel>
 
-        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('repeat')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="_emitJump('repeat')">
           <div class="title-not-flex">重复</div>
           <div class="c-timer-content control-field">
             {{ this._repeat }}
@@ -51,13 +51,14 @@
           </v-panel>
 
         </template>
+
         <slot name="simple"></slot>
       </template>
 
       <!-- 复杂任务模式 点击加载任务页 -->
       <template v-else>
         <v-panel>
-          <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('task')" >
+          <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="_emitJump('task')" >
             <div class="title-not-flex">执行命令</div>
             <div class="c-timer-content control-field">
               {{ this.taskText }} <span class="icon icon-pull-right"></span>
@@ -68,7 +69,7 @@
 
       <!-- 定时名称 -->
       <v-panel>
-        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('name')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="_emitJump('name')">
 
           <div class="title-not-flex">定时名称</div>
           <div class="c-timer-content control-field">
@@ -81,7 +82,7 @@
 
       <!-- 执行结果通知 -->
       <v-panel>
-        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="emitJump('notice')">
+        <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="_emitJump('notice')">
           <div class="title-not-flex">执行结果通知</div>
           <div class="c-timer-content">
             {{ this._notice }} <span class="icon icon-pull-right"></span>
@@ -112,7 +113,7 @@
           </div>
         </div>
         <div v-show="repeat_switch" slot="body" class="c-panel-body row-5 u-without-padding c-timer-border-top">
-          <v-dayspicker ref="dayspicker" :days="days" @change="dayspickerHandle">
+          <v-dayspicker ref="dayspicker" :days="days" @change="_dayspickerHandle">
           </v-dayspicker>
         </div>
       </v-panel>
@@ -122,7 +123,7 @@
     <!-- 关闭简单命令模式 并且 taskpage有传入参数的情况下显示 -->
     <template v-if="!options.mainpage.simple && options.taskpage">
       <div v-show="currentPage === 'task'">
-        <v-timer-task ref="task" :options="options.taskpage" @change="taskHandle">
+        <v-timer-task ref="task" :options="options.taskpage" @change="_taskHandle">
           <!-- 自定义内容 -->
           <slot name="task" @change="slotHandle"></slot>
         </v-timer-task>
@@ -166,7 +167,6 @@ export default {
       notice: this.options.mainpage.pmg_setting * 1, // pmg_setting值
       time: this._initTime, // 初始时间
       taskText: this._task, // 执行命令 显示的文本
-
       showDialog: false, // 弹窗
       dialogOptions: {
         title: '确定删除定时？',
@@ -215,14 +215,25 @@ export default {
     },
   },
 
+
   watch: {
     _task(val) {
       this.taskText = val;
+    },
+
+    options() {
+      console.log('watch!!');
+      this._created();
+      this._mounted();
+      this.task_name = this.options.mainpage.task_name;
+      this.notice = this.options.mainpage.pmg_setting * 1;
     },
   },
 
   computed: {
     _repeat() {
+      console.log('_repeat');
+
       if (!this.repeat_switch || this.days.length === 0) {
         return '执行一次';
       }
@@ -232,6 +243,7 @@ export default {
     },
 
     _notice() {
+      console.log('_notice');
       const n = this.notice;
 
       switch (n) {
@@ -247,6 +259,7 @@ export default {
     },
 
     _initTime() {
+      console.log('_initTime');
       let time = {};
       const date = {
         min: (new Date().getMinutes()),
@@ -298,49 +311,51 @@ export default {
   },
 
   created() {
-    console.log(JSON.stringify(this.options));
-    // 解析传入的task_time_express.
+    console.debug('created');
 
+    this._created(this);
 
     // 根据传入参数初始化星期
     // 如果是读取已有定时任务
-    if (this.options.mainpage.task_time_express) {
-
-      const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
-
-      // 如果是重复任务
-      if (week.length > 0) {
-        this.days = week;
-        this.repeat_switch = true;
-
-      // 否则是一次性任务
-      } else {
-        this.repeat_switch = false;
-      }
-
-    // 否则为新建任务
-    } else {
-      this.repeat_switch = false;
-    }
+    // if (this.options.mainpage.task_time_express) {
+    //
+    //   const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
+    //
+    //   // 如果是重复任务
+    //   if (week.length > 0) {
+    //     this.days = week;
+    //     this.repeat_switch = true;
+    //
+    //   // 否则是一次性任务
+    //   } else {
+    //     this.repeat_switch = false;
+    //   }
+    //
+    // // 否则为新建任务
+    // } else {
+    //   this.repeat_switch = false;
+    // }
   },
 
   mounted() {
-    if (this.options.mainpage.show_delete) {
-      this.$refs.btn_delete.addEventListener('click', () => {
-        this.showDialog = true;
-      });
-    }
-
-    // 取消
-    this.$refs.dialog_delete.$on('defaultClick', () => {
-      this.showDialog = false;
-    });
-
-    // 确定
-    this.$refs.dialog_delete.$on('primaryClick', () => {
-      this.showDialog = false;
-      this.$emit('delete');
-    });
+    console.debug('mounted');
+    this._mounted();
+    // if (this.options.mainpage.show_delete) {
+    //   this.$refs.btn_delete.addEventListener('click', () => {
+    //     this.showDialog = true;
+    //   });
+    // }
+    //
+    // // 取消
+    // this.$refs.dialog_delete.$on('defaultClick', () => {
+    //   this.showDialog = false;
+    // });
+    //
+    // // 确定
+    // this.$refs.dialog_delete.$on('primaryClick', () => {
+    //   this.showDialog = false;
+    //   this.$emit('delete');
+    // });
   },
 
   methods: {
@@ -394,20 +409,14 @@ export default {
       return value;
     },
 
+    update() {
+      console.log('up');
+      this.$forceUpdate();
+    },
+
     // 设置任务字符串
     setTaskText(val) {
       this.taskText = val;
-    },
-
-    // 跳回主页
-    jumpMainpage() {
-      this.currentPage = 'main';
-
-      // 及时检查开关状态
-      // 可删除，因为在跳转至重复页时也检查了开关状态
-      if (this._repeat === '执行一次') {
-        this.repeat_switch = false;
-      }
     },
 
     // 获取当前时间
@@ -422,17 +431,8 @@ export default {
       };
     },
 
-
-    emitValues() {
-      const val = this.getValue();
-
-      this.$emit('change', val);
-    },
-
     jump(val) {
       // 只执行一次时关闭重复按钮
-      // 在跳转至首页时也检查并重置了开关状态，
-      // 后期可以二者保其一
       if (this._repeat === '执行一次') {
         this.repeat_switch = false;
       }
@@ -440,20 +440,63 @@ export default {
       this.currentPage = val;
     },
 
-    emitJump(val) {
-      this.$emit('jump', val);
+    _emitJump(val) {
+      this.$emit('jumppp', val);
     },
 
-    dayspickerHandle(val) {
+    _dayspickerHandle(val) {
       this.days = val;
     },
 
-    pickerHandle(val) {
+    _pickerHandle(val) {
       this.time = val;
     },
 
-    taskHandle(val) {
+    _taskHandle(val) {
       this.taskValue = val;
+    },
+
+    _created() {
+      // 根据传入参数初始化星期
+      // 如果是读取已有定时任务
+      console.log(this.options.mainpage.task_time_express);
+      if (this.options.mainpage.task_time_express) {
+
+        const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
+
+        // 如果是重复任务
+        if (week.length > 0) {
+          this.days = week;
+          this.repeat_switch = true;
+
+        // 否则是一次性任务
+        } else {
+          this.repeat_switch = false;
+        }
+
+      // 否则为新建任务
+      } else {
+        this.repeat_switch = false;
+      }
+    },
+
+    _mounted() {
+      if (this.options.mainpage.show_delete) {
+        this.$refs.btn_delete.addEventListener('click', () => {
+          this.showDialog = true;
+        });
+      }
+
+      // 取消
+      this.$refs.dialog_delete.$on('defaultClick', () => {
+        this.showDialog = false;
+      });
+
+      // 确定
+      this.$refs.dialog_delete.$on('primaryClick', () => {
+        this.showDialog = false;
+        this.$emit('delete');
+      });
     },
   },
 };

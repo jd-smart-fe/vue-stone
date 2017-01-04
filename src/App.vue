@@ -123,9 +123,9 @@
       text-align: center;
       border-bottom: 1px solid #ccc;
       " >
-        {{ picker.hour }} : {{ picker.min }}
+        {{ picker_value }}
       </div>
-      <v-picker ref="picker" :items="picker_data" @change="pickerHandle" :init_hour="5" :init_min="30" :rotate_effect="true"></v-picker>
+      <v-picker ref="picker"  @change="pickerHandle" :items="picker_items" :rotate_effect="true"></v-picker>
     </div>
 
 
@@ -180,6 +180,36 @@
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">操作表</div>
         <v-button ref="btn_actions" text="actions"></v-button>
+      </div>
+    </v-panel>
+
+    <v-panel>
+      <div slot="header" class="c-panel-header u-cross-center">
+        <div class="c-panel-title">过渡效果／动画效果</div>
+      </div>
+
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
+        <v-button text="过渡效果" ref="btn_transition"></v-button>
+        <v-transition name="fade">
+          <div v-show="transition_status" style="
+          width: .5rem;
+          height: .5rem;
+          background-color: green;
+          ">
+          </div>
+        </v-transition>
+      </div>
+
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
+        <v-button text="动画效果" ref="btn_animation"></v-button>
+        <v-transition enter="bounceIn" leave="bounceOut" >
+          <div v-show="animation_status" style="
+          width: .5rem;
+          height: .5rem;
+          background-color: green;
+          ">
+          </div>
+        </v-transition>
       </div>
     </v-panel>
 
@@ -424,31 +454,18 @@
 
         showDialog: false,
 
-        picker_data: [
-          {
-            textAlign: 'center', // default 'center'
-            values: ['item', 'item', 'item'],
-            active: 1,
-            // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
-          },
-          {
-            textAlign: 'center', // default 'center'
-            values: ['item', 'item', 'item', 'item', 'item'],
-            active: 3,
-            // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
-          },
-          {
-            textAlign: 'center', // default 'center'
-            values: ['item', 'item', 'item', 'item', 'item', 'item', 'item', 'item', 'item'],
-            active: 4,
-            // 如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
-          },
-        ],
+        picker_value: [],
 
-        picker: {
-          hour: '0',
-          min: '00',
-        },
+        picker_items: [{
+          values: ['啊', '掰', '猜', '呆'],
+          active: 1,
+          // displayValues: ['la', 'da', 'fa'],
+        }, {
+          values: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          active: 2,
+          // displayValues: ,
+        }],
+
 
         message: '',
 
@@ -459,6 +476,10 @@
           text: '删除',
           color: 'red',
         }],
+
+        transition_status: true,
+
+        animation_status: true,
       };
     },
 
@@ -476,8 +497,8 @@
       },
 
       pickerHandle(val) {
-        this.picker.hour = val.hour;
-        this.picker.min = val.min;
+        console.log(val);
+        this.picker_value = val;
       },
     },
 
@@ -547,6 +568,14 @@
         } else {
           console.log(`第${val + 1}个按钮被点击`);
         }
+      });
+
+      this.$refs.btn_transition.$on('change', () => {
+        this.transition_status = !this.transition_status;
+      });
+
+      this.$refs.btn_animation.$on('change', () => {
+        this.animation_status = !this.animation_status;
       });
     },
   };

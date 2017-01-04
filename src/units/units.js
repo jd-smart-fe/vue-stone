@@ -1,9 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 function taskTimeExpress() {
   var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '*';
   var hour = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '*';
@@ -107,17 +101,3 @@ function toTasklistStr(obj) {
 
   return str1 + ' ' + hour + '\u5C0F\u65F6' + min + '\u5206\u949F\u540E\u6267\u884C';
 }
-
-exports.default = {
-  arrayTaskTimeExpress: arrayTaskTimeExpress,
-
-  textTaskTimeExpress: textTaskTimeExpress,
-
-  weekArrToStr: weekArrToStr,
-
-  taskTimeExpress: taskTimeExpress,
-
-  resolveTimeInTasklist: resolveTimeInTasklist,
-
-  toTasklistStr: toTasklistStr
-};
