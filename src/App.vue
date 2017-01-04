@@ -497,13 +497,12 @@
       },
 
       pickerHandle(val) {
-        console.log(val);
+        // console.log(val);
         this.picker_value = val;
       },
     },
 
     mounted() {
-      console.log(document);
       this.$refs.dayspicker.$on('change', (value) => {
         console.log(`当前的星期选择是: ${value}`);
       });

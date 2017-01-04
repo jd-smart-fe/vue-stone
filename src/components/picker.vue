@@ -120,7 +120,6 @@ export default {
 
 
 function picker(container, cols, vm) {
-  console.debug('run');
   const options = {
     showItemNum: 7, // 一屏内显示item的个数, 应为奇数.
     // itemHeight: 50,
@@ -228,7 +227,6 @@ function picker(container, cols, vm) {
   }
 
   function touchstartHandle(e) {
-    console.debug('touchstart');
 
     if (this.isMoved || this.isTouched) return;
     e.preventDefault();
