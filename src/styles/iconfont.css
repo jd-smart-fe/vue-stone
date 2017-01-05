@@ -23,8 +23,89 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-todos:before {
+  content: "\e91c";
+}
+.icon-wash-sterilization:before {
+  content: "\e91d";
+}
+.icon-return-top:before {
+  content: "\e91e";
+}
+.icon-quick-wash-15:before {
+  content: "\e91f";
+}
+.icon-shopping-cart-ing:before {
+  content: "\e920";
+}
+.icon-clothes-wool:before {
+  content: "\e923";
+}
+.icon-down-jackets:before {
+  content: "\e924";
+}
+.icon-ai:before {
+  content: "\e925";
+}
+.icon-tube-self-cleaning:before {
+  content: "\e926";
+}
+.icon-children-clothing:before {
+  content: "\e927";
+}
+.icon-wash-cycle:before {
+  content: "\e928";
+}
+.icon-cotton:before {
+  content: "\e929";
+}
+.icon-quick-wash-30:before {
+  content: "\e92a";
+}
+.icon-wash-immerse:before {
+  content: "\e92b";
+}
+.icon-wash-eco:before {
+  content: "\e92c";
+}
+.icon-wash-merge:before {
+  content: "\e92d";
+}
+.icon-wash-large-sized:before {
+  content: "\e92e";
+}
+.icon-shirt:before {
+  content: "\e92f";
+}
+.icon-check-mark:before {
+  content: "\e930";
+}
+.icon-shopping-cart:before {
+  content: "\e931";
+}
+.icon-wash-precontract:before {
+  content: "\e932";
+}
+.icon-wash-pre:before {
+  content: "\e933";
+}
+.icon-wash-ing:before {
+  content: "\e934";
+}
+.icon-wash-dewatering:before {
+  content: "\e935";
+}
+.icon-wash-poaching:before {
+  content: "\e936";
+}
+.icon-select-on:before {
+  content: "\e8f5";
+}
 .icon-ellipsis:before {
   content: "\e90d";
+}
+.icon-close:before {
+  content: "\e90e";
 }
 .icon-bars:before {
   content: "\e90f";
@@ -38,14 +119,8 @@
 .icon-home:before {
   content: "\e914";
 }
-.icon-close:before {
-  content: "\e90e";
-}
 .icon-check:before {
   content: "\e915";
-}
-.icon-select-on:before {
-  content: "\e8f5";
 }
 .icon-select-off:before {
   content: "\e916";
@@ -89,3 +164,4 @@
 .icon-mode-freeze:before {
   content: "\e903";
 }
+
