@@ -125,7 +125,7 @@
 .icon-select-off:before {
   content: "\e916";
 }
-.icon-round-correct:before {
+.icon-round-check:before {
   content: "\e917";
 }
 .icon-round-close:before {
@@ -164,4 +164,3 @@
 .icon-mode-freeze:before {
   content: "\e903";
 }
-

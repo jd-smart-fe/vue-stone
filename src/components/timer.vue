@@ -10,7 +10,7 @@
   <div class="c-timer">
 
     <!-- 首屏  -->
-    <div v-show="currentPage === 're'">
+    <div v-show="currentPage === 'main'">
       <!-- 时间选择 -->
       <v-panel>
         <div slot="body">
@@ -220,7 +220,7 @@ export default {
       this.taskText = val;
     },
 
-    options() {
+    options(val) {
       this._created();
       this._mounted();
       this.switch_active_id = this.options.mainpage.simple.status ? 1 : 0;
@@ -405,6 +405,8 @@ export default {
     },
 
     _created() {
+      console.log(JSON.stringify(this.options));
+
       // 根据传入参数初始化星期
       // 如果是读取已有定时任务
       if (this.options.mainpage.task_time_express) {
