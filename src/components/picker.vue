@@ -308,7 +308,6 @@ function picker(container, cols, vm) {
   .c-picker {
     position: relative;
     width: 100%;
-    z-index: 10;
 
     background-color: #fff;
     overflow: hidden;
