@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/iconfont.ttf?fpx269') format('truetype'),
-    url('../styles/fonts/iconfont.woff?fpx269') format('woff'),
-    url('../styles/fonts/iconfont.svg?fpx269#iconfont') format('svg');
+    url('../styles/fonts/iconfont.ttf?w3q69a') format('truetype'),
+    url('../styles/fonts/iconfont.woff?w3q69a') format('woff'),
+    url('../styles/fonts/iconfont.svg?w3q69a#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -167,3 +167,4 @@
 .icon-mode-freeze:before {
   content: "\e903";
 }
+
