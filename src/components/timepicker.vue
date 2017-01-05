@@ -1,9 +1,9 @@
 <template lang="html">
-  <v-picker :items="items"></v-picker>
+  <v-picker :items="_items" ref="picker" :rotate_effect="rotate_effect"></v-picker>
 </template>
 
 <script>
-const hour = [];
+const hourCol = [];
 for (let i = 0; i <= 23; i += 1) {
   let n = 0;
   if (i < 10) {
@@ -11,10 +11,10 @@ for (let i = 0; i <= 23; i += 1) {
   } else {
     n = i;
   }
-  hour.push(n);
+  hourCol.push(n);
 }
 // 60分钟
-const min = [];
+const minCol = [];
 for (let i = 0; i <= 59; i += 1) {
   let n = 0;
   if (i < 10) {
@@ -22,24 +22,53 @@ for (let i = 0; i <= 59; i += 1) {
   } else {
     n = i;
   }
-  min.push(n);
+  minCol.push(n);
 }
 
 const hourActive = new Date().getHours();
 const minActive = new Date().getMinutes();
+
 export default {
   name: 'v-timepicker',
 
   data() {
     return {
-      items: [{
-        values: hour,
-        active: hourActive,
-      }, {
-        values: min,
-        active: minActive,
-      }],
     };
+  },
+
+  computed: {
+    _items() {
+      const arr = [{
+        values: hourCol,
+        active: this.hour,
+      }, {
+        values: minCol,
+        active: this.min,
+      }];
+
+      return arr;
+    },
+  },
+
+  props: {
+    rotate_effect: {
+      type: Boolean,
+      default: false,
+    },
+
+    hour: {
+      default: hourActive,
+    },
+
+    min: {
+      default: minActive,
+    },
+  },
+
+  mounted() {
+    this.$refs.picker.$on('change', val => {
+      this.$emit('change', val);
+    });
   },
 };
 

@@ -14,11 +14,12 @@
       <!-- 时间选择 -->
       <v-panel>
         <div slot="body">
-          <v-picker
+          <v-timepicker
+          :hour="_initTime.hour"
+          :min="_initTime.min"
           @change='_pickerHandle'
           :rotate_effect="false"
-          :init_hour="_initTime.hour"
-          :init_min="_initTime.min"></v-picker>
+          ></v-timepicker>
         </div>
       </v-panel>
 
@@ -44,8 +45,8 @@
               {{ options.mainpage.simple.title }}
             </div>
             <div slot="body" class="c-panel-body u-without-padding">
-              <v-modes v-model="mainpageSwtich.active_id"
-              :numberal="2" :items="mainpageSwtich.data_2"
+              <v-modes v-model="switch_active_id"
+              :numberal="2" :items="switch_data"
               ></v-modes>
             </div>
           </v-panel>
@@ -182,16 +183,14 @@ export default {
         ],
       },
 
-      mainpageSwtich: {
-        active_id: this.options.mainpage.simple.status ? 1 : 0,
-        data_2: [{
-          text: '定时关闭',
-          id: 0,
-        }, {
-          text: '定时开启',
-          id: 1,
-        }],
-      },
+      switch_active_id: this.options.mainpage.simple.status ? 1 : 0,
+      switch_data: [{
+        text: '定时关闭',
+        id: 0,
+      }, {
+        text: '定时开启',
+        id: 1,
+      }],
 
       checkboardItems: [{
         text: '不通知',
@@ -222,9 +221,9 @@ export default {
     },
 
     options() {
-      console.log('watch!!');
       this._created();
       this._mounted();
+      this.switch_active_id = this.options.mainpage.simple.status ? 1 : 0;
       this.task_name = this.options.mainpage.task_name;
       this.notice = this.options.mainpage.pmg_setting * 1;
     },
@@ -232,8 +231,6 @@ export default {
 
   computed: {
     _repeat() {
-      console.log('_repeat');
-
       if (!this.repeat_switch || this.days.length === 0) {
         return '执行一次';
       }
@@ -243,7 +240,6 @@ export default {
     },
 
     _notice() {
-      console.log('_notice');
       const n = this.notice;
 
       switch (n) {
@@ -259,18 +255,13 @@ export default {
     },
 
     _initTime() {
-      console.log('_initTime');
       let time = {};
-      const date = {
-        min: (new Date().getMinutes()),
-        hour: (new Date().getHours()),
-      };
 
       // 如果是新建任务``
       if (!this.options.mainpage.task_time_express) {
         time = {
-          min: date.min,
-          hour: date.hour,
+          min: undefined,
+          hour: undefined,
         };
 
       // 如果是已有任务
@@ -311,51 +302,11 @@ export default {
   },
 
   created() {
-    console.debug('created');
-
     this._created(this);
-
-    // 根据传入参数初始化星期
-    // 如果是读取已有定时任务
-    // if (this.options.mainpage.task_time_express) {
-    //
-    //   const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
-    //
-    //   // 如果是重复任务
-    //   if (week.length > 0) {
-    //     this.days = week;
-    //     this.repeat_switch = true;
-    //
-    //   // 否则是一次性任务
-    //   } else {
-    //     this.repeat_switch = false;
-    //   }
-    //
-    // // 否则为新建任务
-    // } else {
-    //   this.repeat_switch = false;
-    // }
   },
 
   mounted() {
-    console.debug('mounted');
     this._mounted();
-    // if (this.options.mainpage.show_delete) {
-    //   this.$refs.btn_delete.addEventListener('click', () => {
-    //     this.showDialog = true;
-    //   });
-    // }
-    //
-    // // 取消
-    // this.$refs.dialog_delete.$on('defaultClick', () => {
-    //   this.showDialog = false;
-    // });
-    //
-    // // 确定
-    // this.$refs.dialog_delete.$on('primaryClick', () => {
-    //   this.showDialog = false;
-    //   this.$emit('delete');
-    // });
   },
 
   methods: {
@@ -365,23 +316,22 @@ export default {
 
       // 定时重复的value
       if (this.repeat_switch && this.days.length > 0) {
-
         // 开启重复的情况
-        taskTimeExpress = units.taskTimeExpress(this.time.min, this.time.hour, '*', '*', this.days);
+        taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], '*', '*', this.days);
       } else {
 
         // 只执行一次的情况
         const nowdate = this.getNowDate();
 
         // 如果设置时间小于等于现在时间，则任务默认为第二天进行
-        if ((this.time.hour * 60) + this.time.min
+        if ((this.time[0] * 60) + this.time[1]
         <= (nowdate.hour * 60) + nowdate.min) {
 
-          taskTimeExpress = units.taskTimeExpress(this.time.min, this.time.hour, nowdate.date + 1, nowdate.month, '*', nowdate.year);
+          taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date + 1, nowdate.month, '*', nowdate.year);
         } else {
 
           // 否则任务默认为今天进行
-          taskTimeExpress = units.taskTimeExpress(this.time.min, this.time.hour, nowdate.date, nowdate.month, '*', nowdate.year);
+          taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date, nowdate.month, '*', nowdate.year);
         }
       }
 
@@ -395,7 +345,7 @@ export default {
       // 简单开关的value
       if (this.options.mainpage.simple) {
         Object.assign(value, {
-          simple_switch: this.mainpageSwtich.active_id === 1,
+          simple_switch: this.switch_active_id === 1,
         });
       }
 
@@ -405,12 +355,10 @@ export default {
           taskList: this.taskValue,
         });
       }
-
       return value;
     },
 
     update() {
-      console.log('up');
       this.$forceUpdate();
     },
 
@@ -459,7 +407,6 @@ export default {
     _created() {
       // 根据传入参数初始化星期
       // 如果是读取已有定时任务
-      console.log(this.options.mainpage.task_time_express);
       if (this.options.mainpage.task_time_express) {
 
         const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
