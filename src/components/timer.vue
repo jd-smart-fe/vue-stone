@@ -10,7 +10,7 @@
   <div class="c-timer">
 
     <!-- 首屏  -->
-    <div v-show="currentPage === 'main'">
+    <div v-show="currentPage === 're'">
       <!-- 时间选择 -->
       <v-panel>
         <div slot="body">
@@ -389,7 +389,7 @@ export default {
     },
 
     _emitJump(val) {
-      this.$emit('jumppp', val);
+      this.$emit('jump', val);
     },
 
     _dayspickerHandle(val) {
