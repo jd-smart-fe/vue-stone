@@ -39,7 +39,6 @@ export default {
 
   methods: {
     handle(item) {
-      console.log(item.id);
       const val = item.id;
 
       this.$emit('input', val);
