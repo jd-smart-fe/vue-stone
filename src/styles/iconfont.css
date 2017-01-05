@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/iconfont.ttf?w3q69a') format('truetype'),
-    url('../styles/fonts/iconfont.woff?w3q69a') format('woff'),
-    url('../styles/fonts/iconfont.svg?w3q69a#iconfont') format('svg');
+    url('../styles/fonts/iconfont.ttf?bubw9w') format('truetype'),
+    url('../styles/fonts/iconfont.woff?bubw9w') format('woff'),
+    url('../styles/fonts/iconfont.svg?bubw9w#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -29,10 +29,10 @@
 .icon-check-through:before {
   content: "\e90b";
 }
-.icon-icon-todos:before {
+.icon-todos:before {
   content: "\e90c";
 }
-.icon-icon-washing-liquid:before {
+.icon-washing-liquid:before {
   content: "\1f3dc";
 }
 .icon-wash-sterilization:before {

@@ -104,7 +104,7 @@
       "properties": {
         "order": 2,
         "id": 2,
-        "name": "icon-todos",
+        "name": "todos",
         "prevSize": 32,
         "code": 59660
       },
@@ -142,7 +142,7 @@
       "properties": {
         "order": 5,
         "id": 3,
-        "name": "icon-washing-liquid",
+        "name": "washing-liquid",
         "prevSize": 32,
         "code": 127964
       },
