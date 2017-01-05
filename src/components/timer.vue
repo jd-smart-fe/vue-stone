@@ -221,11 +221,13 @@ export default {
     },
 
     options(val) {
-      this._created();
-      this._mounted();
-      this.switch_active_id = this.options.mainpage.simple.status ? 1 : 0;
-      this.task_name = this.options.mainpage.task_name;
-      this.notice = this.options.mainpage.pmg_setting * 1;
+      this.$nextTick(() => {
+        this._created();
+        this._mounted();
+        this.switch_active_id = this.options.mainpage.simple.status ? 1 : 0;
+        this.task_name = this.options.mainpage.task_name;
+        this.notice = this.options.mainpage.pmg_setting * 1;
+      });
     },
   },
 
