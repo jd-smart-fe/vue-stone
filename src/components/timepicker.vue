@@ -31,9 +31,9 @@ for (let i = 0; i <= 59; i += 1) {
   }
   minCol.push(n);
 }
-
-const hourActive = new Date().getHours();
-const minActive = new Date().getMinutes();
+//
+// const hourActive = new Date().getHours();
+// const minActive = new Date().getMinutes();
 
 export default {
   name: 'v-timepicker',
@@ -64,11 +64,11 @@ export default {
     },
 
     hour: {
-      default: hourActive,
+      default: 0,
     },
 
     min: {
-      default: minActive,
+      default: 0,
     },
   },
 
@@ -79,7 +79,7 @@ export default {
   },
 
   methods: {
-    update() {
+    update(val) {
       this.$refs.picker.update();
     },
   },

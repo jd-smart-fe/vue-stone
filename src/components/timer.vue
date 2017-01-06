@@ -269,8 +269,8 @@ export default {
       // 如果是新建任务``
       if (!this.options.mainpage.task_time_express) {
         time = {
-          min: undefined,
-          hour: undefined,
+          min: new Date().getMinutes(),
+          hour: new Date().getHours(),
         };
 
       // 如果是已有任务
