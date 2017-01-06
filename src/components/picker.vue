@@ -73,12 +73,7 @@ export default {
 
     items() {
 
-      this._setInnterItems();
-
-      // dom更新后再调用picker方法
-      this.$nextTick(() => {
-        this._callPickerHandle();
-      });
+      this.update();
     },
   },
 
@@ -94,6 +89,14 @@ export default {
   },
 
   methods: {
+    update() {
+      this._setInnterItems();
+
+      this.$nextTick(() => {
+        this._callPickerHandle();
+      });
+    },
+
     _setInnterItems() {
       const arr = this.items.map((val, index) => {
         if (!this.items[index].displayValues) {
@@ -421,7 +424,7 @@ function picker(container, cols, vm) {
     pointer-events: none;
   }
 
-  .c-picker-unit{
+  /*.c-picker-unit{
     position: absolute;
     top: 50%;
     width: 100%;
@@ -457,7 +460,7 @@ function picker(container, cols, vm) {
       width: calc($fontSize + 2px);
       text-align: center;
     }
-  }
+  }*/
 
   .c-picker-item-active{
   }

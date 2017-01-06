@@ -15,6 +15,7 @@
       <v-panel>
         <div slot="body">
           <v-timepicker
+          ref="timepicker"
           :hour="_initTime.hour"
           :min="_initTime.min"
           @change='_pickerHandle'
@@ -220,7 +221,13 @@ export default {
       this.taskText = val;
     },
 
-    options(val) {
+    options(val, oldVal) {
+      // 时间参数没有发生变化，需要手动调用timepicker的update方法重置picker
+      if (val.mainpage.task_time_express === oldVal.mainpage.task_time_express) {
+        this.$refs.timepicker.update();
+      }
+
+      // dom更新后调用
       this.$nextTick(() => {
         this._created();
         this._mounted();

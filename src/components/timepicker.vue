@@ -77,6 +77,12 @@ export default {
       this.$emit('change', val);
     });
   },
+
+  methods: {
+    update() {
+      this.$refs.picker.update();
+    },
+  },
 };
 
 </script>
