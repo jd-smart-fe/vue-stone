@@ -31,9 +31,6 @@ for (let i = 0; i <= 59; i += 1) {
   }
   minCol.push(n);
 }
-//
-// const hourActive = new Date().getHours();
-// const minActive = new Date().getMinutes();
 
 export default {
   name: 'v-timepicker',
