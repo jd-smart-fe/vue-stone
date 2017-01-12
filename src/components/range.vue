@@ -119,7 +119,9 @@
         currentValue: null,
         startX: 0,
         currentX: 0,
+        dotsData: this.dots,
         dotsLength: this.dots.length,
+        dotsHasChanged: false,
         show_tip_state: false,
         show_tip_timer: null,
         show_icon_dots: false,
@@ -132,7 +134,8 @@
       // dots信息
       dotInfoList() {
         const aInfos = [];
-        const dotsLength = this.dots.length;
+        const dotsLength = this.dotsData.length;
+
         if (dotsLength > 0) {
           const oneStepPercent = 100 / (dotsLength - 1);
 
@@ -142,11 +145,11 @@
               icon: '',
             };
 
-            const hasIcon = !!this.dots[i].icon;
+            const hasIcon = !!this.dotsData[i].icon;
 
             if (hasIcon) {
               aInfo = Object.assign({}, aInfo, {
-                icon: this.dots[i].icon,
+                icon: this.dotsData[i].icon,
               });
             }
 
@@ -162,8 +165,8 @@
             }
 
             aInfo = Object.assign({}, aInfo, {
-              text: this.dots[i].text,
-              value: this.dots[i].value,
+              text: this.dotsData[i].text,
+              value: this.dotsData[i].value,
             });
 
             aInfos.push(aInfo);
@@ -191,6 +194,16 @@
         // 根据值更新位置
         this.updateProcess(newVal);
       },
+      dots(newVal) {
+        this.dotsData = newVal;
+        this.dotsLength = newVal.length;
+        this.dotsHasChanged = true;
+        /* 由于也监听了value的值 在value值产生变化时调用了一次更新当前位置;
+         * 所以在value、dots同时都产生变化时 这里还会调用一次 总共调用了两次;
+         * 这种情况比较少出现 暂时先不做排重处理;
+        */
+        this.updateProcess(this.value);
+      },
     },
 
     created() {
@@ -206,9 +219,9 @@
 
       // 判断dots是否有icon或者text;
       // 显示优先级：如果icon与text都存在，优先显示icon;
-      if (this.dots.length > 0) {
-        this.show_icon_dots = !!this.dots[0].icon;
-        this.show_text_dots = !!this.dots[0].text && !this.dots[0].icon;
+      if (this.dotsData.length > 0) {
+        this.show_icon_dots = !!this.dotsData[0].icon;
+        this.show_text_dots = !!this.dotsData[0].text && !this.dotsData[0].icon;
       }
 
     },
@@ -241,8 +254,10 @@
           isSame = val === this.currentValue;
 
         }
-        // 如果不一致 执行更新方法;
-        if (!isSame) {
+        // 如果不一致 或者dots产生了变化 执行更新方法;
+        if (!isSame || this.dotsHasChanged) {
+          // dots是否产生变化的值（this.dotsHasChanged）重置为false;
+          this.dotsHasChanged = false;
 
           // 无级
           if (!this.is_step) {
@@ -260,20 +275,22 @@
 
             let currentStepInd = 0;
             if (this.valueIsJSON) {
-              for (const [index, elem] of (this.dots).entries()) {
+              // 当前级判断原则: this.value里的text和value与dotsData里哪个先对比相同 就是哪个级;
+              for (const [index, elem] of (this.dotsData).entries()) {
                 if ((this.value.text !== 'undefined' && this.value.text === elem.text) ||
                   (this.value.value !== 'undefined' && this.value.value === elem.value)) {
                   currentStepInd = index;
+                  break;
                 }
               }
             } else {
-              for (const [index, elem] of (this.dots).entries()) {
+              for (const [index, elem] of (this.dotsData).entries()) {
                 if (this.value === elem.text) {
                   currentStepInd = index;
                 }
               }
             }
-
+            console.log('ppppp');
             this.processPercent = this.dotInfoList[currentStepInd].left;
           }
 
@@ -323,9 +340,9 @@
           // dots是json objects组成的Array 所以dots[i]肯定都是json object;
           // 为保证传入value时的类型不变 所以在value类型不是object时, currentValue = dots[i].text;
           if (this.valueIsJSON) {
-            currentValue = this.dots[currentStep - 1];
+            currentValue = this.dotsData[currentStep - 1];
           } else {
-            currentValue = this.dots[currentStep - 1].text;
+            currentValue = this.dotsData[currentStep - 1].text;
           }
 
         }
