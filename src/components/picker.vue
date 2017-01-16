@@ -4,10 +4,23 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
 -->
 
 <template lang="html">
-  <div class='c-picker'>
+<div>
+  <v-mask :shown="shown"></v-mask>
+
+  <div :class="[display!=='inline'?'c-picker-modal':'',shown?'c-picker-modal-show':'']">
+
+  <div v-if="display!=='inline'" class="c-picker-head" :style="{color:button_color}">
+    <span class="c-picker-head-cancel" @click="handle('cancel')">取消</span>
+    <span class="c-picker-head-test">{{head_direction}}</span>
+    <span class="c-picker-head-determine" @click="handle('determine')">确定</span>
+  </div>
+   <div class='c-picker'>
     <div class="c-picker-body">
+
       <div class="c-picker-col" v-for="(item, index) in innerItems" ref="col" >
+        <div class="unit" :style="{right: getUnitStyle()}">{{getUnit(index)}}</div>
         <div :class="['c-picker-col-wrapper', `c-picker-col-${index}`]">
+
           <div :data-value="_item" :class="['c-picker-item', item.active === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
             {{ item.displayValues[_index] }}
           </div>
@@ -20,13 +33,18 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
         <span class="c-picker-unit-colon">:</span>
         <span class="c-picker-unit-min">分</span>
       </div> -->
-    </div>
 
+    </div>
   </div>
+</div>
+</div>
+
 </template>
 
 
 <script>
+
+// import button './button';
 
 export default {
   name: 'v-picker',
@@ -45,7 +63,6 @@ export default {
       type: Boolean,
       default: true,
     },
-
     items: {
       type: Array,
       required: true,
@@ -53,6 +70,34 @@ export default {
         return [];
       },
     },
+    display: {
+      type: String,
+      required: false,
+      default: 'inline',
+    },
+    button_color: {
+      type: String,
+      required: false,
+      default: '#59B8FC',
+    },
+    head_direction: {
+      type: String,
+      required: false,
+      default: '',
+    },
+    shown: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    unit: {
+      type: Array,
+      required: false,
+      default() {
+        return [];
+      },
+    },
+
   },
 
   computed: {
@@ -72,7 +117,6 @@ export default {
     },
 
     items() {
-
       this.update();
     },
   },
@@ -91,12 +135,27 @@ export default {
   methods: {
     update() {
       this._setInnterItems();
-
       this.$nextTick(() => {
         this._callPickerHandle();
       });
     },
+    getUnit(index) {
 
+      return this.unit.length - 1 < index ? '' : this.unit[index];
+    },
+    getUnitStyle() {
+      // console.debug(this.innerItems.length);
+      const r = this.innerItems.length > 1 ? this.innerItems.length * 4 : 1;
+      return `${0.9 / r}rem`;
+    },
+    handle(val) {
+      console.debug(JSON.stringify(this.value));
+      const obj = {
+        select: val,
+        value: this.value,
+      };
+      this.$emit('select', obj);
+    },
     _setInnterItems() {
       const arr = this.items.map((val, index) => {
         if (!this.items[index].displayValues) {
@@ -303,6 +362,7 @@ function picker(container, cols, vm) {
 </script>
 
 <style lang="css">
+ @import '../styles/default-theme/variables.css';
 
   $fontSize: 16px;
   $height: calc(16px + 14px);
@@ -328,7 +388,7 @@ function picker(container, cols, vm) {
     -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 98%, transparent);
 
     height: $colHeight;
-    padding: 0 .36rem;
+
 
     position: relative;
     left: 0;
@@ -351,8 +411,10 @@ function picker(container, cols, vm) {
 
   .c-picker-col-wrapper{
     transition: transform 300ms ease-out;
+    position:relative;
   }
   .c-picker-col-wrapper-3d{
+    position:relative;
     transition: transform 300ms ease-out;
     /*padding: 0 .5rem;*/
     -webkit-transform-style: preserve-3d;
@@ -461,7 +523,48 @@ function picker(container, cols, vm) {
       text-align: center;
     }
   }*/
-
+  .c-picker-head{
+      margin: 0.1rem 0;
+      display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     border-bottom: #ccc solid 0.01rem;
+  }
+  .c-picker-head > span{
+    display: inline-flex;
+    width:0.5rem;
+    height:0.3rem;
+    justify-content:center;
+    align-items: center;
+  }
+  .c-picker-head > .c-picker-head-test{
+    color : $gray
+  }
   .c-picker-item-active{
   }
+  .c-picker-modal{
+    position :fixed;
+    bottom: 0;
+    left:0;
+    width: 100%;
+    transform: translateY(100%);
+    background-color:$white;
+    transition: all 0.5s;
+    border-top:0.01rem solid #ccc;
+    z-index:101;
+  }
+  .c-picker-modal-show{
+    transform: translateY(0);
+  }
+  .unit{
+    position: absolute;
+
+    height: 0.3rem;
+    top: 50%;
+    margin-top: -0.15rem;
+    z-index: 100;
+    line-height: 0.3rem;
+    text-align: center;
+
+}
 </style>

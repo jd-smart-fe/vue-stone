@@ -125,7 +125,7 @@
       " >
         {{ picker_value }}
       </div>
-      <v-picker ref="picker"  @change="pickerHandle" :items="picker_items" :rotate_effect="true"></v-picker>
+      <v-picker ref="picker" :unit="picker_unit"  :display="picker_display" :shown="pickerModal"  @change="pickerHandle" :items="picker_items" :rotate_effect="true"></v-picker>
     </div>
 
 
@@ -388,6 +388,7 @@
             },
           ],
         },
+        pickerModal: false,
 
         range_data_number: {
           value: 500,
@@ -405,7 +406,6 @@
             },
           ],
         },
-
         range_data_json: {
           value: {
             value: 30,
@@ -455,17 +455,22 @@
         showDialog: false,
 
         picker_value: [],
-
+        picker_unit: ['小时后', '分', '秒'],
         picker_items: [{
+          values: ['啊ws', '掰', '猜', '呆'],
+          active: 1,
+          // displayValues: ['la', 'da', 'fa'],
+
+        },
+        {
           values: ['啊', '掰', '猜', '呆'],
           active: 1,
           // displayValues: ['la', 'da', 'fa'],
-        }, {
-          values: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-          active: 2,
-          // displayValues: ,
-        }],
 
+        },
+
+        ],
+        picker_display: 'modal',
 
         message: '',
 
@@ -543,6 +548,7 @@
       this.$refs.dialog.$on('primaryClick', () => {
         console.log('触发primaryClick事件');
         this.showDialog = false;
+
       });
       this.$refs.dialog.$on('defaultClick', () => {
         console.log('触发primaryClick事件');
@@ -554,7 +560,8 @@
       });
       this.$refs.switch_dialog.$on('change', (state) => {
         console.log(`设备当前switch状态: ${state}`);
-        this.showDialog = true;
+        // this.showDialog = true;
+        this.pickerModal = true;
       });
 
       this.$refs.btn_actions.$on('change', () => {
@@ -575,6 +582,9 @@
 
       this.$refs.btn_animation.$on('change', () => {
         this.animation_status = !this.animation_status;
+      });
+      this.$refs.picker.$on('select', (val) => {
+        this.pickerModal = false;
       });
     },
   };
