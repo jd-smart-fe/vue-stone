@@ -529,8 +529,8 @@ function picker(container, cols, vm) {
     }
   }*/
   .c-picker-head{
-      margin: 0.05rem 0;
-      display: flex;
+    margin: 0.05rem 0;
+     display: flex;
      flex-direction: row;
      justify-content: space-between;
      border-bottom: #ccc solid 0.01rem;
@@ -543,7 +543,8 @@ function picker(container, cols, vm) {
     align-items: center;
   }
   .c-picker-head > .c-picker-head-test{
-    color : $gray
+    color : $gray;
+    width: auto;
   }
   .c-picker-item-active{
   }

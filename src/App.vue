@@ -125,7 +125,7 @@
       " >
         {{ picker_value }}
       </div>
-      <v-picker ref="picker" :unit="picker_unit"  :display="picker_display" :shown="pickerModal"  @change="pickerHandle" :items="picker_items" :rotate_effect="true"></v-picker>
+      <v-picker ref="picker" :unit="picker_unit" :head_direction="head_direction" :display="picker_display" :shown="pickerModal"  @change="pickerHandle" :items="picker_items" :rotate_effect="true"></v-picker>
     </div>
 
 
@@ -481,7 +481,7 @@
           text: '删除',
           color: 'red',
         }],
-
+        head_direction: '666666666666666',
         transition_status: true,
 
         animation_status: true,
