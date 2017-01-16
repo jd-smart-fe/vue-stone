@@ -5,7 +5,7 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
 
 <template lang="html">
 <div>
-  <v-mask :shown="shown"></v-mask>
+  <v-mask :shown="shown" ref="mask"></v-mask>
 
   <div :class="[display!=='inline'?'c-picker-modal':'',shown?'c-picker-modal-show':'']">
 
@@ -130,6 +130,10 @@ export default {
 
     this._callPickerHandle();
     this.init = true;
+    this.$refs.mask.$on('click', () => {
+
+      this.$emit('pickerMaskClick');
+    });
   },
 
   methods: {
@@ -156,6 +160,7 @@ export default {
       };
       this.$emit('select', obj);
     },
+
     _setInnterItems() {
       const arr = this.items.map((val, index) => {
         if (!this.items[index].displayValues) {
@@ -524,7 +529,7 @@ function picker(container, cols, vm) {
     }
   }*/
   .c-picker-head{
-      margin: 0.1rem 0;
+      margin: 0.05rem 0;
       display: flex;
      flex-direction: row;
      justify-content: space-between;
