@@ -10,9 +10,9 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
   <div :class="[display!=='inline'?'c-picker-modal':'',shown?'c-picker-modal-show':'']">
 
   <div v-if="display!=='inline'" class="c-picker-head" :style="{color:button_color}">
-    <span class="c-picker-head-cancel" @click="handle('cancel')">取消</span>
+    <span class="c-picker-head-cancel" @click="handle('cancel')">{{cancelText}}</span>
     <span class="c-picker-head-test">{{head_direction}}</span>
-    <span class="c-picker-head-determine" @click="handle('determine')">确定</span>
+    <span class="c-picker-head-determine" @click="handle('determine')">{{determineText}}</span>
   </div>
    <div class='c-picker'>
     <div class="c-picker-body">
@@ -55,6 +55,8 @@ export default {
       title: '请选择选项',
       innerItems: [], // 复制并改进items
       init: false,
+      cancelText: '取消',
+      determineText: '确定',
     };
   },
 
@@ -422,8 +424,8 @@ function picker(container, cols, vm) {
     position:relative;
     transition: transform 300ms ease-out;
     /*padding: 0 .5rem;*/
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
+    -webkit-transform-style: "preserve-3d";
+    transform-style: "preserve-3d";
 
   }
   .c-picker-item{
@@ -436,7 +438,6 @@ function picker(container, cols, vm) {
     font-size: $fontSize;
     width: 100%;
     text-align: center;
-    background-color:#fff;
 
   }
  .c-picker-col-wrapper-3d > .c-picker-item{
@@ -553,9 +554,9 @@ function picker(container, cols, vm) {
     bottom: 0;
     left:0;
     width: 100%;
-    transform: translateY(100%);
+    transform: translate3d(100%);
     background-color:$white;
-    transition: all 0.5s;
+    transition: transform 0.5s;
     border-top:0.01rem solid #ccc;
     z-index:101;
   }
