@@ -18,7 +18,7 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
     <div class="c-picker-body">
 
       <div class="c-picker-col" v-for="(item, index) in innerItems" ref="col" >
-        <div class="unit" ref="unit" :style="{right: getUnitStyle()}">{{getUnit(index)}}</div>
+        <div class="unit" ref="unit">{{getUnit(index)}}</div>
         <div :class="['c-picker-col-wrapper', `c-picker-col-${index}`]">
 
           <div :data-value="_item" :class="['c-picker-item', item.active === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
@@ -57,6 +57,7 @@ export default {
       init: false,
       cancelText: '取消',
       determineText: '确定',
+      //unitPosition: '0',
     };
   },
 
@@ -136,6 +137,14 @@ export default {
 
       this.$emit('pickerMaskClick');
     });
+    const units = this.$refs.unit;
+    [...units].forEach((item, index) => {
+      const innerWidth = window.innerWidth;
+      const unitWidth = this.$refs.unit[index].offsetWidth;
+      const oneWidth = innerWidth / this.items.length;
+      const left = ((1 / 2) * oneWidth) + (unitWidth / 2);
+      this.$refs.unit[index].style.left = `${left + 5}px`;
+    });
   },
 
   methods: {
@@ -149,12 +158,7 @@ export default {
 
       return this.unit.length - 1 < index ? '' : this.unit[index];
     },
-    getUnitStyle() {
-      // console.debug(this.$refs.unit[0]);
-      // this.$refs.unit.offsetWidth
-      const r = this.innerItems.length > 1 ? this.innerItems.length * 4 : 1;
-      return `${0.9 / r}rem`;
-    },
+
     handle(val) {
       console.debug(JSON.stringify(this.value));
       const obj = {
@@ -186,6 +190,7 @@ export default {
       picker(this.$el, arr, this);
     },
   },
+
 };
 
 
