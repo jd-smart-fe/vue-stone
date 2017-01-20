@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="c-timepicker">
-    <v-picker :items="_items" ref="picker" :rotate_effect="rotate_effect"></v-picker>
+    <v-picker :items="_items" ref="picker"  :rotate_effect="rotate_effect"></v-picker>
     <div class="c-timepicker-unit">
       <span class="c-timepicker-unit-hour">时</span>
       <span class="c-timepicker-unit-colon">:</span>
@@ -37,6 +37,7 @@ export default {
 
   data() {
     return {
+
     };
   },
 
@@ -89,7 +90,12 @@ export default {
   $fontSize: 16px;
   $height: calc(16px + 14px);
   $colHeight: calc((16px + 14px) * 7);
-
+  div.c-picker-col:nth-of-type(1){
+    padding-left: 0.36rem;
+  }
+  div.c-picker-col:nth-of-type(2){
+    padding-right: 0.36rem;
+  }
   .c-timepicker{
     position: relative;
 
@@ -105,6 +111,8 @@ export default {
       .c-timepicker-unit-colon{
         position: absolute;
         left: 0;
+        top:50%;
+        transform: translateY(-50%);
         right: -0.21rem;
         margin: auto;
         margin-top: -1px;
@@ -115,6 +123,8 @@ export default {
       .c-timepicker-unit-hour{
         position: absolute;
         left: -0.68rem;
+        top: 50%;
+        transform: translateY(-50%);
         right: 0;
         margin: auto;
         width: calc($fontSize + 2px);
@@ -122,12 +132,14 @@ export default {
       }
 
       .c-timepicker-unit-min{
-        position: absolute;
-        left: 0;
-        right: -1.60rem;
-        margin: auto;
-        width: calc($fontSize + 2px);
-        text-align: center;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            right: -1.65rem;
+            margin: auto;
+            width: calc(16px + 2px);
+            text-align: center;
+            transform: translateY(-50%);
       }
     }
   }

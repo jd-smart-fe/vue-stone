@@ -5,7 +5,8 @@ docs/
 npm-debug.log
 test/unit/coverage/
 .vscode/
-
+sfp-config.js
+package.json
 TODO.md
 Temp.md
 
