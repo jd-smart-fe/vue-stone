@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "deploy": "scp -r dist/static root@192.168.202.48:/home/admin/static.360buyimg.com/vue-stone/",
+    "deploy49": "scp -r dist/static static@192.168.202.49:/var/www/html/static.360buyimg.com/nsng/vue-stone/",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "unit": "karma start test/unit/karma.conf.js --single-run",

@@ -201,6 +201,30 @@
       </div>
 
       <div slot="body" class="c-panel-body row-2 u-cross-center">
+        <v-button text="过渡效果"></v-button>
+        <v-transition name="fade" time="1">
+          <div v-show="transition_status" style="
+          width: .5rem;
+          height: .5rem;
+          background-color: green;
+          ">
+          </div>
+        </v-transition>
+      </div>
+
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
+        <v-button text="过渡效果"></v-button>
+        <v-transition name="fade" time="2">
+          <div v-show="transition_status" style="
+          width: .5rem;
+          height: .5rem;
+          background-color: green;
+          ">
+          </div>
+        </v-transition>
+      </div>
+
+      <div slot="body" class="c-panel-body row-2 u-cross-center">
         <v-button text="动画效果" ref="btn_animation"></v-button>
         <v-transition enter="bounceIn" leave="bounceOut" >
           <div v-show="animation_status" style="

@@ -35,7 +35,9 @@ export default {
   name: 'v-transition',
 
   data() {
-    return {};
+    return {
+      str: Math.random().toString(36).substr(2),
+    };
   },
 
   props: {
@@ -87,36 +89,19 @@ export default {
   },
 
   mounted() {
+
     if (this.time !== 1) {
-      addSheet([
-        `.c-transition-duration {
+      this.__addSheet([
+        `.c-transition-duration_${this.str} {
           transition-duration: ${this.time}s !important;
-        }`,
-        `.c-transition-duration {
           -webkit-transition-duration: ${this.time}s !important;
         }`,
-        `.c-animated-duration {
+        `.c-animated-duration_${this.str} {
           animation-duration: ${this.time}s !important;
-        }`,
-        `.c-animated-duration {
           webkit-animation-duration: ${this.time}s !important;
         }`,
       ]);
     }
-
-    // if (this.time !== -1) {
-    //   sheet.insertRule(`
-    //     .c-transition-duration {
-    //       transition-duration: ${this.time}s !important;
-    //     }
-    //   `, 0);
-    //
-    //   sheet.insertRule(`
-    //     .c-animated-duration {
-    //       animation-duration: ${this.time}s !important;
-    //     }
-    //   `, 0);
-    // }
   },
 
   methods: {
@@ -147,12 +132,12 @@ export default {
         el.classList.add(...cls);
 
         if (this.time !== -1) {
-          el.classList.add('c-animated-duration');
+          el.classList.add(`c-animated-duration_${this.str}`);
         }
 
       // 执行过渡的情况
       } else if (this.time !== -1) {
-        el.classList.add('c-transition-duration');
+        el.classList.add(`c-transition-duration_${this.str}`);
       }
     },
 
@@ -162,31 +147,30 @@ export default {
         el.classList.remove(...cls);
 
         if (this.time !== -1) {
-          el.classList.remove('c-animated-duration');
+          el.classList.remove(`c-animated-duration_${this.str}`);
         }
 
       // 执行过渡的情况
       } else if (this.time !== -1) {
-        el.classList.remove('c-transition-duration');
+        el.classList.remove(`c-transition-duration_${this.str}`);
       }
+    },
+
+    // 动态插入css规则样式表
+    __addSheet(rules) {
+      const style = document.createElement('style');
+
+      // webkit 布丁
+      style.appendChild(document.createTextNode(''));
+
+      document.head.appendChild(style);
+
+      rules.forEach(rule => {
+        style.sheet.insertRule(rule, style.sheet.length - 1);
+      });
     },
   },
 };
-
-
-// 动态插入css规则样式表
-function addSheet(rules) {
-  const style = document.createElement('style');
-
-  // webkit 布丁
-  style.appendChild(document.createTextNode(''));
-
-  document.head.appendChild(style);
-
-  rules.forEach(rule => {
-    style.sheet.insertRule(rule, style.sheet.length - 1);
-  });
-}
 
 </script>
 <style lang="css">
