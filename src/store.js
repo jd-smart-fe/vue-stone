@@ -19,6 +19,7 @@ import Timer from './components/timer';
 import TimerTask from './components/timer-task';
 import Timepicker from './components/timepicker';
 import Transition from './components/transition';
+import Slide from './components/slide';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -43,6 +44,7 @@ const install = (Vue, options = {}) => {
   Vue.component(TimerTask.name, TimerTask);
   Vue.component(Timepicker.name, Timepicker);
   Vue.component(Transition.name, Transition);
+  Vue.component(Slide.name, Slide);
 
   install.installed = true;
 };
