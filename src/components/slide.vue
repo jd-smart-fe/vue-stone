@@ -5,6 +5,11 @@
       <slot name="item" class="c-slide-item"></slot>
 
     </div>
+    <div v-if="pagination" class="c-slide-pagination">
+      <div class="c-slide-pagination-bar">
+        <i v-for="item in length" :class="['c-slide-pagination-item', item - 1 === value ? 'active': '']"></i>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,6 +36,11 @@ export default {
       required: false,
       default: 0,
     },
+    pagination: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
 
   watch: {
@@ -43,26 +53,30 @@ export default {
   computed: {
     style() {
 
-      return `transform: translate3d(${this.translateX}px, 0, 0);`;
+      return `
+      transform: translate3d(${this.translateX}px, 0, 0);
+      webkitTransform: translate3d(${this.translateX}px, 0, 0);
+      webkitTransform: webkitTranslate3d(${this.translateX}px, 0, 0);
+      `;
     },
   },
 
   mounted() {
-
     // 缓存dom节点
     this.ele = this.$el.getElementsByClassName('c-slide-warpper')[0];
 
-    // 初始化 item 宽度
-    this.width = this.getWidth(this.$el);
+    // // 初始化 item 宽度
+    // this.width = this.getWidth(this.$el);
+    //
+    // // 初始化 minMoveDistance 最小触发距离
+    // this.minMoveDistance = this.width / 5.5;
 
-    // 初始化 minMoveDistance 最小触发距离
-    this.minMoveDistance = this.width / 5.5;
+    this.resetPixel();
 
     // 为 item 添加类名
     this.$slots.item.forEach(val => {
 
       val.elm.classList.add('c-slide-item');
-      val.elm.style.width = `${this.width}px`;
     });
 
     // 缓存 item 长度
@@ -73,14 +87,13 @@ export default {
   },
 
   methods: {
-    getWidth(obj) {
+    resetPixel() {
 
-      const style = getComputedStyle(obj, false).width;
-      return parseInt(style, 10);
-    },
+      const style = getComputedStyle(this.$el, false).width;
+      this.width = parseInt(style, 10);
 
-    addWebKit() {
-
+      // 初始化 minMoveDistance 最小触发距离
+      this.minMoveDistance = this.width / 5.5;
     },
 
     core() {
@@ -166,4 +179,37 @@ export default {
     flex-shrink: 0;
   }
 
+  .c-slide-pagination{
+    position: relative;
+    height: 0;
+
+    .c-slide-pagination-bar{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -8px;
+      bottom: 0;
+      height: 4px;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+  }
+
+  .c-slide-pagination-item{
+    display: block;
+    width: 8px;
+    height: 4px;
+    border-radius: 3px;
+    background-color: rgb(181,181,181);
+    margin: 0 3px;
+    transition: all .1s;
+
+    &.active{
+      width: 20px;
+      background-color: rgb(72,163,241);
+    }
+  }
 </style>
