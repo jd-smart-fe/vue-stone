@@ -187,7 +187,7 @@ export default {
       position: absolute;
       left: 0;
       right: 0;
-      top: -8px;
+      top: -12px;
       bottom: 0;
       height: 4px;
 
