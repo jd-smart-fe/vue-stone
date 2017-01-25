@@ -283,6 +283,12 @@
         <div slot="item">
           <div style="height: 100px; display: flex; justify-content: center; align-items: center;">item3</div>
         </div>
+        <div slot="item">
+          <div style="height: 100px; display: flex; justify-content: center; align-items: center;">item4</div>
+        </div>
+        <div slot="item">
+          <div style="height: 100px; display: flex; justify-content: center; align-items: center;">item5</div>
+        </div>
       </v-slide>
     </div>
 

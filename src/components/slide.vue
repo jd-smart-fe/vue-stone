@@ -1,19 +1,37 @@
+<!--
+slide 性能优化问题及总结：
+1.
+  问题：在手机上 touchend 后会出现短暂的卡顿。
+
+  背景：slide 的切屏是由 value 的值直接决定的。当滑动屏幕后松开，组件先去改变双向绑定的 value 值，然后由 value
+       的 watcher 去改变 this.translateX 从而达到切屏的目的。
+       而 Vue 是异步执行 DOM 更新，只有在一个事件循环完成后才会去更新 Dom。根据Chrome DevTools Timeline显示，
+       touchend事件占据了大量的执行时间，根据调研是由于双向绑定 v-model 引起的。
+
+  方案：slide 的切屏逻辑应由组件内部值 insideValue 决定。保留双向绑定的特性，但要异步的同步双向绑定的数据。
+
+  结果：Chrome DevTools Timeline 10 * slowdown：
+       优化前：touchend事件触发后到下一帧渲染时的时间间隔 180ms
+       优化后：touchend事件触发后到下一帧渲染时的时间间隔 68ms
+ -->
+
 <template>
   <div class="c-slide">
-    <div class="c-slide-warpper" :style="style">
+    <div class="c-slide-warpper">
 
       <slot name="item" class="c-slide-item"></slot>
 
     </div>
     <div v-if="pagination" class="c-slide-pagination">
       <div class="c-slide-pagination-bar">
-        <i v-for="item in length" :class="['c-slide-pagination-item', item - 1 === value ? 'active': '']"></i>
+        <i v-for="item in length" :class="['c-slide-pagination-item', item - 1 === insideValue ? 'active': '']"></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'v-slide',
 
@@ -21,11 +39,8 @@ export default {
     return {
       ele: {}, // 缓存 dom
       width: 0,
+      insideValue: this.value,
       length: 0,
-      translateX: 0,
-      touchStartX: 0,
-      moveDistance: 0,
-      startTranslateX: 0,
       minMoveDistance: 60, // 成功触发切换 item 的最小滑动距离
     };
   },
@@ -46,7 +61,12 @@ export default {
   watch: {
     value() {
 
-      this.setTranslateByValue();
+      // this.setTranslateByValue();
+    },
+
+    insideValue(val) {
+      // this.setTranslateByValue();
+      // this.$emit('change', val);
     },
   },
 
@@ -62,16 +82,15 @@ export default {
   },
 
   mounted() {
+
     // 缓存dom节点
     this.ele = this.$el.getElementsByClassName('c-slide-warpper')[0];
 
-    // // 初始化 item 宽度
-    // this.width = this.getWidth(this.$el);
-    //
-    // // 初始化 minMoveDistance 最小触发距离
-    // this.minMoveDistance = this.width / 5.5;
-
+    // 初始化 width，minMoveDistance
     this.resetPixel();
+
+    // 设定初始 translateX 位置
+    this.ele.dataset.translatex = -(this.width * this.length);
 
     // 为 item 添加类名
     this.$slots.item.forEach(val => {
@@ -79,7 +98,7 @@ export default {
       val.elm.classList.add('c-slide-item');
     });
 
-    // 缓存 item 长度
+    // 初始化 item 长度
     this.length = this.$slots.item.length;
 
     // 执行核心函数
@@ -97,66 +116,110 @@ export default {
     },
 
     core() {
+      const that = this;
+      const minMoveDistance = 60; // 成功触发切换 item 的最小滑动距离
 
-      this.ele.addEventListener('touchstart', this.startHandle);
-      this.ele.addEventListener('touchmove', this.moveHandle);
-      this.ele.addEventListener('touchend', this.endHandle);
-      this.ele.addEventListener('touchcancel', this.endHandle);
-    },
+      let translateX = this.ele.dataset.translatex * 1;
+      let touchStartX = 0;
+      let moveDistance = 0;
+      let startTranslateX = 0;
+      let inindex = 0;
 
-    startHandle(e) {
+      const setTranslateX = 'webkitTransform' in that.ele.style
+      ? setTranslateXnormal
+      : setTranslateXsub;
 
-      this.touchStartX = e.targetTouches[0].pageX;
-      this.startTranslateX = this.translateX;
+      this.ele.addEventListener('touchstart', startHandle);
+      this.ele.addEventListener('touchmove', moveHandle);
+      this.ele.addEventListener('touchend', endHandle);
+      this.ele.addEventListener('touchcancel', endHandle);
 
-      this.ele.style.transitionDuration = '0';
-    },
+      function startHandle(e) {
+        // 先同步函数内部的 translateX
+        translateX = that.ele.dataset.translatex * 1;
 
-    moveHandle(e) {
+        // 记录初始坐标
+        touchStartX = e.targetTouches[0].pageX;
+        startTranslateX = translateX;
 
-      this.moveDistance = e.targetTouches[0].pageX - this.touchStartX;
-
-      // 判断最大值与最小值
-      if (this.moveDistance > 0) {
-
-        this.translateX = this.startTranslateX + this.moveDistance > 0
-        ? 0
-        : this.startTranslateX + this.moveDistance;
-      } else if (this.moveDistance < 0) {
-
-        this.translateX = this.startTranslateX + this.moveDistance < -this.width * (this.length - 1)
-        ? -this.width * (this.length - 1)
-        : this.startTranslateX + this.moveDistance;
+        // 取消过渡效果
+        that.ele.style.transitionDuration = '0ms';
       }
-    },
 
-    endHandle(e) {
+      function moveHandle(e) {
+        // 计算移动距离
+        moveDistance = e.targetTouches[0].pageX - touchStartX;
 
-      if (Math.abs(this.moveDistance) > Math.abs(this.minMoveDistance)) {
+        // 判断最大值与最小值
+        if (moveDistance > 0) {
 
-        if (this.moveDistance > 0 && this.value > 0) {
+          translateX = startTranslateX + moveDistance > 0
+          ? 0
+          : startTranslateX + moveDistance;
 
-          this.$emit('input', this.value - 1);
-        } else if (this.moveDistance <= 0 && this.value < this.length - 1) {
+          setTranslateX(translateX);
+        } else if (moveDistance < 0) {
 
-          this.$emit('input', this.value + 1);
+          translateX = startTranslateX + moveDistance < -that.width * (that.length - 1)
+          ? -that.width * (that.length - 1)
+          : startTranslateX + moveDistance;
+
+          setTranslateX(translateX);
+        }
+      }
+
+      function endHandle(e) {
+
+        if (Math.abs(moveDistance) > Math.abs(that.minMoveDistance)) {
+          if (moveDistance > 0 && inindex > 0) {
+
+            inindex -= 1;
+            changeIndex(inindex);
+          } else if (moveDistance <= 0 && inindex < that.length - 1) {
+
+            inindex += 1;
+            changeIndex(inindex);
+          }
+
+          return;
         }
 
-        return;
+        changeIndex(inindex);
       }
 
-      this.setTranslateByValue();
+      function setTranslateXnormal(x) {
+        that.ele.style.transform = `translate3d(${x}px, 0, 0)`;
+      }
+
+      function setTranslateXsub(x) {
+        that.ele.style.webkitTransform = `translate3d(${x}px, 0, 0)`;
+      }
+
+      function changeIndex(index) {
+
+        const trans = -(that.width * index);
+        setTranslateX(trans);
+
+        that.ele.style.transitionDuration = '300ms';
+        setTimeout(() => {
+          that.ele.style.transitionDuration = '0ms';
+        }, 300);
+
+        that.ele.dataset.translatex = trans;
+      }
     },
 
-    setTranslateByValue() {
-
-      this.ele.style.transitionDuration = '300ms';
-      this.translateX = -(this.value * this.width);
-
-      setTimeout(() => {
-        this.ele.style.transitionDuration = '0ms';
-      }, 300);
-    },
+    // 根据value值重置translateX
+    // setTranslateByInsideValue() {
+    //
+    //   this.translateX = -(this.insideValue * this.width);
+    //
+    //   this.ele.style.transitionDuration = '300ms';
+    //
+    //   setTimeout(() => {
+    //     this.ele.style.transitionDuration = '0ms';
+    //   }, 300);
+    // },
   },
 };
 </script>

@@ -409,11 +409,8 @@ function picker(container, cols, vm) {
   }
 
  .c-picker-col{
-   flex: auto;
-
+    flex: auto;
     overflow: hidden;
-    /*width: 50%;*/
-
 
     position:relative;
     -webkit-transform-style: preserve-3d;
@@ -429,8 +426,6 @@ function picker(container, cols, vm) {
   .c-picker-col-wrapper-3d{
     position:relative;
     transition: transform 300ms ease-out;
-    /*padding: 0 .5rem;*/
-    -webkit-transform-style: "preserve-3d";
     transform-style: "preserve-3d";
 
   }
@@ -456,7 +451,6 @@ function picker(container, cols, vm) {
     font-size: $fontSize;
     width: 100%;
     text-align: center;
-	  -webkit-transform-style: preserve-3d;
 	  transform-style: preserve-3d;
     white-space: nowrap;
     position:absolute;
@@ -465,13 +459,9 @@ function picker(container, cols, vm) {
     left: 0;
     top: 0;
     box-sizing: border-box;
-    -webkit-transition: .3s;
     transition: .3s;
-    -webkit-transform-origin: center center -90px;
     transform-origin: center center -90px;
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 
   }
@@ -497,50 +487,12 @@ function picker(container, cols, vm) {
     border-top: 1px solid #ccc;
     pointer-events: none;
   }
-
-  /*.c-picker-unit{
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    height: $fontSize;
-    transform: translate(0, -55%);
-    left: 0;
-    font-size: calc($fontSize + 2px);
-    pointer-events: none;
-    .c-picker-unit-colon{
-      position: absolute;
-      left: 0;
-      right: -0.21rem;
-      margin: auto;
-      margin-top: -1px;
-      width: calc($fontSize + 2px);
-      text-align: center;
-    }
-
-    .c-picker-unit-hour{
-      position: absolute;
-      left: -0.52rem;
-      right: 0;
-      margin: auto;
-      width: calc($fontSize + 2px);
-      text-align: center;
-    }
-
-    .c-picker-unit-min{
-      position: absolute;
-      left: 0;
-      right: -1.42rem;
-      margin: auto;
-      width: calc($fontSize + 2px);
-      text-align: center;
-    }
-  }*/
   .c-picker-head{
     margin: 0.05rem 0;
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
-     border-bottom: #ccc solid 0.01rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: #ccc solid 0.01rem;
   }
   .c-picker-head > span{
     display: inline-flex;
