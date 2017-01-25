@@ -3,16 +3,15 @@ slide 性能优化问题及总结：
 1.
   问题：在手机上 touchend 后会出现短暂的卡顿。
 
-  背景：slide 的切屏是由 value 的值直接决定的。当滑动屏幕后松开，组件先去改变双向绑定的 value 值，然后由 value
-       的 watcher 去改变 this.translateX 从而达到切屏的目的。
-       而 Vue 是异步执行 DOM 更新，只有在一个事件循环完成后才会去更新 Dom。根据Chrome DevTools Timeline显示，
-       touchend事件占据了大量的执行时间，根据调研是由于双向绑定 v-model 引起的。
+  背景：slide 的滑动和 Vue 的 data 值高度耦合，同时还双向绑定了激活状态的索引，因此每次改变激活状态索引暨双向绑定的 value
+       值的时候，都牵扯到大量的 vue 的内部计算。而 Vue 是异步执行 DOM 更新，只有在一个事件循环完成后才会去更新 Dom。
 
-  方案：slide 的切屏逻辑应由组件内部值 insideValue 决定。保留双向绑定的特性，但要异步的同步双向绑定的数据。
+  方案：slide 滑动核心代码和 vue data数据解耦。同时为了保留双向绑定的特性，用到了 insideValue data值来同步激活索引，
+       用 dataset.translatex 来同步滚动距离数据。
 
   结果：Chrome DevTools Timeline 10 * slowdown：
        优化前：touchend事件触发后到下一帧渲染时的时间间隔 180ms
-       优化后：touchend事件触发后到下一帧渲染时的时间间隔 68ms
+       优化后：touchend事件触发后到下一帧渲染时的时间间隔 40ms
  -->
 
 <template>
@@ -59,14 +58,18 @@ export default {
   },
 
   watch: {
-    value() {
+    value(val) {
 
-      // this.setTranslateByValue();
+      // 此时 v-model 被从外部改变
+      if (val !== this.insideValue) {
+        this.insideValue = val;
+        this.setTranslateXByInsideValue();
+      }
     },
 
     insideValue(val) {
-      // this.setTranslateByValue();
-      // this.$emit('change', val);
+
+      this.$emit('input', val);
     },
   },
 
@@ -171,10 +174,13 @@ export default {
       function endHandle(e) {
 
         if (Math.abs(moveDistance) > Math.abs(that.minMoveDistance)) {
+          // 左滑 👈
           if (moveDistance > 0 && inindex > 0) {
 
             inindex -= 1;
             changeIndex(inindex);
+
+          // 右滑 👉
           } else if (moveDistance <= 0 && inindex < that.length - 1) {
 
             inindex += 1;
@@ -195,31 +201,39 @@ export default {
         that.ele.style.webkitTransform = `translate3d(${x}px, 0, 0)`;
       }
 
+      // 切换 slide 的 acitve index
       function changeIndex(index) {
 
         const trans = -(that.width * index);
         setTranslateX(trans);
 
         that.ele.style.transitionDuration = '300ms';
+
+        that.ele.dataset.translatex = trans;
+
+        setTimeout(() => {
+          that.insideValue = index;
+        }, 0);
+
         setTimeout(() => {
           that.ele.style.transitionDuration = '0ms';
         }, 300);
-
-        that.ele.dataset.translatex = trans;
       }
     },
 
-    // 根据value值重置translateX
-    // setTranslateByInsideValue() {
-    //
-    //   this.translateX = -(this.insideValue * this.width);
-    //
-    //   this.ele.style.transitionDuration = '300ms';
-    //
-    //   setTimeout(() => {
-    //     this.ele.style.transitionDuration = '0ms';
-    //   }, 300);
-    // },
+    setTranslateXByInsideValue() {
+      const trans = -(this.width * this.insideValue);
+
+      this.ele.style.transform = `translate3d(${trans}px, 0, 0)`;
+      this.ele.style.webkitTransform = `translate3d(${trans}px, 0, 0)`;
+
+      this.ele.style.transitionDuration = '300ms';
+      setTimeout(() => {
+        this.ele.style.transitionDuration = '0ms';
+      }, 300);
+
+      this.ele.dataset.translatex = trans;
+    },
   },
 };
 </script>
