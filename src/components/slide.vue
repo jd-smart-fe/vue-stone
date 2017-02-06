@@ -129,6 +129,7 @@ export default {
       let moveDistanceY = 0;
       let startTranslateX = 0;
       let inindex = 0;
+      let touchStartTime = 0;
       let canMove = true;
       let firstMove = true;
 
@@ -143,8 +144,15 @@ export default {
       this.ele.addEventListener('touchcancel', endHandle);
 
       function startHandle(e) {
+        // 清零
+        moveDistance = 0;
+        moveDistanceY = 0;
+
         // 先同步函数内部的 translateX
         translateX = that.ele.dataset.translatex * 1;
+
+        // 记录start时间
+        touchStartTime = new Date().getTime();
 
         // 记录初始坐标
         touchStartX = e.targetTouches[0].pageX;
@@ -209,6 +217,32 @@ export default {
         canMove = true;
         firstMove = true;
 
+        // 快速滑动时，不用判断滑动距离，直接切换item
+        const touchTime = (new Date().getTime()) - touchStartTime;
+        console.log('==============');
+        console.debug(touchTime);
+        console.log(moveDistance);
+        console.log('==============');
+
+
+        // 快速滑动
+        if (touchTime < 200 && (moveDistance > 20 || moveDistance < -20)) {
+          // 左滑 👈
+          if (moveDistance > 0 && inindex > 0) {
+            inindex -= 1;
+            changeIndex(inindex);
+
+          // 右滑 👉
+          } else if (moveDistance <= 0 && inindex < that.length - 1) {
+
+            inindex += 1;
+            changeIndex(inindex);
+          }
+
+          return;
+        }
+
+        // 慢速滑动
         if (Math.abs(moveDistance) > Math.abs(that.minMoveDistance)) {
           // 左滑 👈
           if (moveDistance > 0 && inindex > 0) {
