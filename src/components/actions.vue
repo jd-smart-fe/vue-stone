@@ -35,9 +35,9 @@
 
     </div>
 
-    <v-transition name="fade">
+    <transition name="fade">
       <v-mask v-show="value" :shown="mask_shown"></v-mask>
-    </v-transition>
+    </transition>
   </div>
 </template>
 

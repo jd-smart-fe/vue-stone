@@ -183,7 +183,7 @@
       </div>
     </v-panel>
 
-    <v-panel>
+    <!-- <v-panel>
       <div slot="header" class="c-panel-header u-cross-center">
         <div class="c-panel-title">过渡效果／动画效果</div>
       </div>
@@ -235,7 +235,7 @@
           </div>
         </v-transition>
       </div>
-    </v-panel>
+    </v-panel> -->
 
     <v-actions ref="actions" v-model="actions_value" :items="actions_items"></v-actions>
 
@@ -623,13 +623,14 @@
         }
       });
 
-      this.$refs.btn_transition.$on('change', () => {
-        this.transition_status = !this.transition_status;
-      });
+      // this.$refs.btn_transition.$on('change', () => {
+      //   this.transition_status = !this.transition_status;
+      // });
+      //
+      // this.$refs.btn_animation.$on('change', () => {
+      //   this.animation_status = !this.animation_status;
+      // });
 
-      this.$refs.btn_animation.$on('change', () => {
-        this.animation_status = !this.animation_status;
-      });
       this.$refs.picker.$on('select', (val) => {
         this.pickerModal = false;
       });

@@ -102,14 +102,6 @@
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  .fade-enter-active, .fade-leave-active  {
-    transition: opacity .3s ease;
-  }
-
-  .fade-enter, .fade-leave-active {
-    opacity: 0;
-  }
-
   $prefix: .c-mode;
 
   $prefix {
@@ -117,7 +109,7 @@
     flex-wrap: wrap;
   }
 
-  
+
   .c-mode-item {
     box-sizing: border-box;
     font-size: $font-size-sm;
@@ -175,7 +167,7 @@
     height: calc($grid-size * 2);
     justify-content: center;
   }
-  
+
   .c-mode-toggle {
     margin-left: 0.05rem;
     font-size: $font-size-xl;

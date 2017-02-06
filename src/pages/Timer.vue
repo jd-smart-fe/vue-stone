@@ -36,26 +36,6 @@
       {{ value }}
     </div>
 
-    <v-button
-    ref="animate"
-    text="animate"
-    style="
-      margin: 20px auto;
-    "
-    ></v-button>
-
-    <v-transition name="fade">
-      <v-button
-      text="动画"
-      type="toggle"
-      style="
-      margin: 20px auto;
-      "
-      :init_status="true"
-      v-show="btn_show">
-      </v-button>
-    </v-transition>
-
   </div>
 </template>
 
@@ -118,11 +98,6 @@ export default {
   mounted() {
     this.$refs.timer.$on('jump', val => {
       this.$refs.timer.jump(val);
-    });
-
-    this.$refs.animate.$on('change', () => {
-
-      this.btn_show = !this.btn_show;
     });
   },
 
