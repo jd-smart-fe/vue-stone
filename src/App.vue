@@ -500,7 +500,7 @@
         showDialog: false,
 
         picker_value: [],
-        picker_unit: ['小时后', '分', '秒'],
+        picker_unit: ['时', '分', '秒'],
         picker_items: [{
           values: ['啊ws666', '掰', '猜', '呆'],
           active: 1,

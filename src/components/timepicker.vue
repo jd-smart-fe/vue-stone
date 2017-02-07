@@ -90,10 +90,10 @@ export default {
   $fontSize: 16px;
   $height: calc(16px + 14px);
   $colHeight: calc((16px + 14px) * 7);
-  div.c-picker-col:nth-of-type(1){
+  .c-timepicker .c-picker-col:nth-of-type(1){
     padding-left: 0.36rem;
   }
-  div.c-picker-col:nth-of-type(2){
+  .c-timepicker .c-picker-col:nth-of-type(2){
     padding-right: 0.36rem;
   }
   .c-timepicker{

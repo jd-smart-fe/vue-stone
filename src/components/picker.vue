@@ -57,7 +57,6 @@ export default {
       init: false,
       cancelText: '取消',
       determineText: '确定',
-      //unitPosition: '0',
     };
   },
 
@@ -134,16 +133,18 @@ export default {
     this._callPickerHandle();
     this.init = true;
     this.$refs.mask.$on('click', () => {
-
       this.$emit('pickerMaskClick');
     });
     const units = this.$refs.unit;
+
     [...units].forEach((item, index) => {
+      const longest = this.innerItems[index].displayValues.sort((a, b) => b.length - a.length)[0];
+      console.debug((longest.length * 16) / 4);
       const innerWidth = window.innerWidth;
       const unitWidth = this.$refs.unit[index].offsetWidth;
       const oneWidth = innerWidth / this.items.length;
-      const left = ((1 / 2) * oneWidth) + (unitWidth / 2);
-      this.$refs.unit[index].style.left = `${left + 5}px`;
+      const left = ((1 / 2) * oneWidth) + ((longest.length * 16) / 4);
+      this.$refs.unit[index].style.left = `${left + 15}px`;
     });
   },
 
@@ -523,7 +524,6 @@ function picker(container, cols, vm) {
   }
   .unit{
     position: absolute;
-
     height: 0.3rem;
     top: 50%;
     margin-top: -0.15rem;
