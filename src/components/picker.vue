@@ -138,14 +138,23 @@ export default {
     const units = this.$refs.unit;
 
     [...units].forEach((item, index) => {
-      const currentInnerItems = Object.assign({}, this.innerItems);
+      // const currentInnerItems = Object.assign({}, this.innerItems);
+      const currentInnerItems = this.innerItems[index].displayValues;
       // console.debug(currentInnerItems === this.innerItems);
-      const longest = currentInnerItems[index].displayValues.sort((a, b) => b.length - a.length)[0];
+      let longest = currentInnerItems[0].toString().length || 0;
+
+      for (const arr of currentInnerItems) {
+        // console.debug(arr);
+        if (arr.toString().length > longest) {
+          longest = arr.toString().length;
+        }
+      }
+      console.debug(this.innerItems[index]);
       // console.debug((longest.length * 16) / 4);
       const innerWidth = window.innerWidth;
       const unitWidth = this.$refs.unit[index].offsetWidth;
       const oneWidth = innerWidth / this.items.length;
-      const left = ((1 / 2) * oneWidth) + ((longest.length * 16) / 4);
+      const left = ((1 / 2) * oneWidth) + ((longest * 16) / 4);
       this.$refs.unit[index].style.left = `${left + 15}px`;
     });
   },
