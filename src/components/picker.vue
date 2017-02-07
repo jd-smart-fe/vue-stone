@@ -138,8 +138,10 @@ export default {
     const units = this.$refs.unit;
 
     [...units].forEach((item, index) => {
-      const longest = this.innerItems[index].displayValues.sort((a, b) => b.length - a.length)[0];
-      console.debug((longest.length * 16) / 4);
+      const currentInnerItems = Object.assign({}, this.innerItems);
+      // console.debug(currentInnerItems === this.innerItems);
+      const longest = currentInnerItems[index].displayValues.sort((a, b) => b.length - a.length)[0];
+      // console.debug((longest.length * 16) / 4);
       const innerWidth = window.innerWidth;
       const unitWidth = this.$refs.unit[index].offsetWidth;
       const oneWidth = innerWidth / this.items.length;
