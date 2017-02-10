@@ -23,6 +23,12 @@
         type: Boolean,
         default: false,
       },
+
+      hold: {
+        required: false,
+        type: Boolean,
+        default: false,
+      },
     },
 
     data() {
@@ -35,9 +41,26 @@
         if (this.disabled) {
           return;
         }
+
+        if (this.hold) {
+          this.$emit('change', this.value);
+          return;
+        }
+
         const val = !this.value;
         this.$emit('input', val);
         this.$emit('change', val);
+      },
+
+      update(val) {
+        if (val === 'toggle') {
+          this.$emit('change', !this.value);
+          this.$emit('input', !this.value);
+          return;
+        }
+
+        this.$emit('change', val);
+        this.$emit('input', val);
       },
     },
   };

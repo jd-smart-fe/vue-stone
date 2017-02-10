@@ -60,6 +60,17 @@
         }
         this._value = !this.value;
       },
+
+      update(val) {
+        if (val === 'toggle') {
+          this.$emit('change', !this.value);
+          this.$emit('input', !this.value);
+          return;
+        }
+
+        this.$emit('change', val);
+        this.$emit('input', val);
+      },
     },
   };
 </script>
