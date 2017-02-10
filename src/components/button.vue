@@ -244,7 +244,6 @@ export default {
 
     touchcancelHandle() {
       this.touchendHandle();
-      console.log('trigger touchcancel event!');
     },
   },
 

@@ -54,7 +54,6 @@
 
     methods: {
       clear() {
-        console.log('aa');
         this.$emit('input', '');
         this.$emit('change', this.invalue);
       },

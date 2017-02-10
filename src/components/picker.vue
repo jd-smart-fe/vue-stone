@@ -149,7 +149,7 @@ export default {
           longest = arr.toString().length;
         }
       }
-      console.debug(this.innerItems[index]);
+      // console.debug(this.innerItems[index]);
       // console.debug((longest.length * 16) / 4);
       const innerWidth = window.innerWidth;
       const unitWidth = this.$refs.unit[index].offsetWidth;
@@ -172,7 +172,7 @@ export default {
     },
 
     handle(val) {
-      console.debug(JSON.stringify(this.value));
+      // console.debug(JSON.stringify(this.value));
       const obj = {
         select: val,
         value: this.value,

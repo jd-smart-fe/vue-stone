@@ -290,7 +290,6 @@
                 }
               }
             }
-            console.log('ppppp');
             this.processPercent = this.dotInfoList[currentStepInd].left;
           }
 

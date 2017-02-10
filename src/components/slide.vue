@@ -219,11 +219,6 @@ export default {
 
         // 快速滑动时，不用判断滑动距离，直接切换item
         const touchTime = (new Date().getTime()) - touchStartTime;
-        console.log('==============');
-        console.debug(touchTime);
-        console.log(moveDistance);
-        console.log('==============');
-
 
         // 快速滑动
         if (touchTime < 200 && (moveDistance > 20 || moveDistance < -20)) {

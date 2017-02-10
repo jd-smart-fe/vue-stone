@@ -414,7 +414,7 @@ export default {
     },
 
     _created() {
-      console.log(JSON.stringify(this.options));
+      // console.log(JSON.stringify(this.options));
 
       // 根据传入参数初始化星期
       // 如果是读取已有定时任务

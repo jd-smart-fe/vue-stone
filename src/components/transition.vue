@@ -174,7 +174,7 @@ export default {
 
 </script>
 <style lang="css">
-@import "../styles/animate.css";
+  @import "../styles/animate.css";
   .fade-enter-active, .fade-leave-active{
     transition: all .3s ease;
   }
