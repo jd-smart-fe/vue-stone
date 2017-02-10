@@ -20,13 +20,4 @@
     margin-top: 60px;
     margin-bottom: 60px;
   }
-
-  .fade-enter-active, .fade-leave-active  {
-    transition: opacity .3s ease;
-  }
-
-  .fade-enter, .fade-leave-active {
-    opacity: 0;
-  }
-
 </style>
