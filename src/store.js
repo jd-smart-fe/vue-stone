@@ -1,4 +1,5 @@
 import './components/_style';
+import './components/_style_transition';
 
 import Dayspicker from './components/dayspicker';
 import Range from './components/range';
