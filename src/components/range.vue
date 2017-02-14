@@ -119,7 +119,11 @@
         processPercent: 0,
         currentValue: null,
         startX: 0,
+        startY: 0,
         currentX: 0,
+        currentY: 0,
+        isTouched: false,
+        isHorizontalMoved: false,
         dotsData: this.dots,
         dotsLength: this.dots.length,
         dotsHasChanged: false,
@@ -357,30 +361,55 @@
         this.sliderOffsetLeft = parseFloat(this.$refs['range-slider'].getBoundingClientRect().left);
         const touchs = e.changedTouches[0];
         this.startX = touchs.pageX;
+        this.startY = touchs.pageY;
+        this.isTouched = true;
+        this.isHorizontalMoved = false;
 
         // 如果用户设置了显示当前值得话 在滑动时显示其当前值层;
-        if (this.show_tip) {
-          clearTimeout(this.show_tip_timer);
-          this.show_tip_state = true;
-        }
+        // if (this.show_tip) {
+        //   clearTimeout(this.show_tip_timer);
+        //   this.show_tip_state = true;
+        // }
       },
 
       moveHandle_(e) {
-        e.preventDefault();
         const touchs = e.changedTouches[0];
         this.currentX = touchs.pageX;
+        this.currentY = touchs.pageY;
+        const diffX = Math.abs(this.currentX - this.startX);
+        const diffY = Math.abs(this.currentY - this.startY);
+
+        // 在第一次触发touchmove时 判断是左右滑还是上下滑
+        // 左右滑动时才是触动了滑杆的滑动 isHorizontalMoved = true;
+        if (this.isTouched) {
+          if (diffX * 0.8 > diffY) {
+            this.isHorizontalMoved = true;
+            // 如果用户设置了显示当前值得话 在滑动时显示其当前值层;
+            if (this.show_tip) {
+              clearTimeout(this.show_tip_timer);
+              this.show_tip_state = true;
+            }
+          }
+          this.isTouched = false;
+        }
+
         const processPercent = ((this.currentX - this.sliderOffsetLeft) / this.sliderWidth) * 100;
-        this.setProcessPercent(processPercent);
+        // 只有在左右滑动时 滑杆才产生变化;
+        if (this.isHorizontalMoved) {
+          e.preventDefault();
+          this.setProcessPercent(processPercent);
+        }
 
       },
 
       endHandle_(e) {
+        if (!this.isHorizontalMoved) return;
         const touchs = e.changedTouches[0];
-        this.currentX = touchs.pageX;
+        /* this.currentX = touchs.pageX;
         if (Math.abs(this.startX - this.currentX) < 3) {
           const processPercent = ((this.currentX - this.sliderOffsetLeft) / this.sliderWidth) * 100;
           this.setProcessPercent(processPercent);
-        }
+        } */
         this.$emit('input', this.currentValue);
         this.$emit('change', this.currentValue);
 
