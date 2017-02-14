@@ -44,6 +44,7 @@
 </template>
 
 <script>
+  require('core-js/fn/array/entries');
 
   export default {
     name: 'v-range',
