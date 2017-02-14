@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import units from '../units/default';
 
 let longTapFlagInterval = null;
 let longTapInterval = null;
@@ -63,8 +64,14 @@ export default {
       default: 'click',
       validator(value) {
         const list = ['toggle', 'click'];
+
         if (list.indexOf(value) < 0) {
-          console.error("[v-button] prop 'type' error: yon pass an invalid value, please pass a value in 'toggle' 'click'");
+
+          units.warn({
+            com: 'v-button',
+            prop: 'type',
+            param: list,
+          });
           return false;
         }
         return true;
@@ -78,7 +85,12 @@ export default {
       validator(value) {
         const list = ['sm', 'base', 'lg'];
         if (list.indexOf(value) < 0) {
-          console.error("[v-button] prop 'size' error: yon pass an invalid value, please pass a value in 'sm' 'base' 'lg'");
+
+          units.warn({
+            com: 'v-button',
+            prop: 'size',
+            param: list,
+          });
           return false;
         }
         return true;
