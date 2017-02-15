@@ -51,7 +51,6 @@ export default {
 
   data() {
     return {
-      show: false,
       title: '请选择选项',
       innerItems: [], // 复制并改进items
       init: false,
@@ -104,16 +103,16 @@ export default {
 
   computed: {
     value() {
-      const arr = this.innerItems.map(val => val.values[val.active]);
-      return arr;
+      const obj = {};
+
+      obj.value = this.innerItems.map(val => val.values[val.active]);
+      obj.displayValue = this.innerItems.map(val => val.displayValues[val.active]);
+      obj.active = this.innerItems.map(val => val.active);
+      return obj;
     },
   },
 
   watch: {
-    show(val) {
-      this.$emit('change', val);
-    },
-
     value(val) {
       this.$emit('change', val);
     },
@@ -166,6 +165,7 @@ export default {
         this._callPickerHandle();
       });
     },
+
     getUnit(index) {
 
       return this.unit.length - 1 < index ? '' : this.unit[index];
@@ -309,8 +309,6 @@ function picker(container, cols, vm) {
       item.style.transform = `translate3d(0,${-y + 0}px,0) rotateX(${angle}deg)`;
       item.style.WebkitTransform = `translate3d(0,${-y + 0}px,0) rotateX(${angle}deg)`;
     });
-
-
   }
 
   function touchstartHandle(e) {

@@ -499,23 +499,20 @@
 
         showDialog: false,
 
+        // picker setting
         picker_value: [],
+        picker_display: 'modal',
         picker_unit: ['时', '分', '秒'],
         picker_items: [{
-          values: ['啊ws666', '掰', '猜', '呆'],
+          values: ['la', 'da', 'fa', 'ca'],
+          displayValues: ['啊', '掰', '猜', '呆'],
           active: 1,
-          // displayValues: ['la', 'da', 'fa'],
-
         },
         {
-          values: ['啊', '掰', '猜', '呆'],
+          values: ['la', 'da', 'fa', 'ca'],
+          displayValues: ['啊', '掰', '猜', '呆'],
           active: 1,
-          // displayValues: ['la', 'da', 'fa'],
-
-        },
-
-        ],
-        picker_display: 'modal',
+        }],
 
         message: '',
 
@@ -526,7 +523,7 @@
           text: '删除',
           color: 'red',
         }],
-        head_direction: '666666666666666',
+        head_direction: 'title',
         transition_status: true,
 
         animation_status: true,
@@ -633,6 +630,10 @@
 
       this.$refs.picker.$on('select', (val) => {
         this.pickerModal = false;
+      });
+
+      this.$refs.picker.$on('change', (val, all) => {
+        // console.log(val);
       });
     },
   };
