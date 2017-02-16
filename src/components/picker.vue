@@ -173,10 +173,7 @@ export default {
 
     handle(val) {
       // console.debug(JSON.stringify(this.value));
-      const obj = {
-        select: val,
-        value: this.value,
-      };
+      const obj = Object.assign({}, this.value, { select: val });
       this.$emit('select', obj);
     },
 

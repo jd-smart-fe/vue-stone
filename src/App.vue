@@ -630,6 +630,7 @@
 
       this.$refs.picker.$on('select', (val) => {
         this.pickerModal = false;
+        console.log(val);
       });
 
       this.$refs.picker.$on('change', (val, all) => {
