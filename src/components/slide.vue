@@ -273,6 +273,7 @@ export default {
         setTranslateX(trans);
 
         that.ele.style.transitionDuration = '300ms';
+        that.ele.style.webkitTransitionDuration = '300ms';
 
         that.ele.dataset.translatex = trans;
 
@@ -282,6 +283,7 @@ export default {
 
         setTimeout(() => {
           that.ele.style.transitionDuration = '0ms';
+          that.ele.style.webkitTransitionDuration = '0ms';
         }, 300);
       }
     },
@@ -290,7 +292,9 @@ export default {
       const trans = -(this.width * this.insideValue);
 
       this.ele.style.transform = `translate3d(${trans}px, 0, 0)`;
+      this.ele.style.transform = `webkitTranslate3d(${trans}px, 0, 0)`;
       this.ele.style.webkitTransform = `translate3d(${trans}px, 0, 0)`;
+      this.ele.style.webkitTransform = `webkitTranslate3d(${trans}px, 0, 0)`;
 
       this.ele.style.transitionDuration = '300ms';
       setTimeout(() => {
