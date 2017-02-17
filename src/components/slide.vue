@@ -73,17 +73,6 @@ export default {
     },
   },
 
-  computed: {
-    style() {
-
-      return `
-      transform: translate3d(${this.translateX}px, 0, 0);
-      webkitTransform: translate3d(${this.translateX}px, 0, 0);
-      webkitTransform: webkitTranslate3d(${this.translateX}px, 0, 0);
-      `;
-    },
-  },
-
   mounted() {
 
     // 缓存dom节点
@@ -135,8 +124,9 @@ export default {
 
 
       const setTranslateX = 'webkitTransform' in that.ele.style
-      ? setTranslateXnormal
-      : setTranslateXsub;
+      ? setTranslateXsub
+      : setTranslateXnormal;
+
 
       this.ele.addEventListener('touchstart', startHandle);
       this.ele.addEventListener('touchmove', moveHandle);
@@ -260,10 +250,12 @@ export default {
 
       function setTranslateXnormal(x) {
         that.ele.style.transform = `translate3d(${x}px, 0, 0)`;
+        that.ele.style.transform = `webkitTranslate3d(${x}px, 0, 0)`;
       }
 
       function setTranslateXsub(x) {
         that.ele.style.webkitTransform = `translate3d(${x}px, 0, 0)`;
+        that.ele.style.webkitTransform = `webkitTranslate3d(${x}px, 0, 0)`;
       }
 
       // 切换 slide 的 acitve index
