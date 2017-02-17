@@ -471,6 +471,12 @@
     box-shadow:0 1px 2px rgba(0,0,0,0.1);
     box-sizing:border-box;
     z-index:5;
+
+    /**
+     * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
+     */
+    background-clip: padding-box;
+
     .text{
       display:inline-block;
       position: absolute;

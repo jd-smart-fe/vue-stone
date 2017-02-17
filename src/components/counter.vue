@@ -151,6 +151,11 @@ export default {
     border-color: $gray-lighter;
     border-radius: calc($counter-height / 2);
 
+    /**
+     * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
+     */
+    background-clip: padding-box;
+
     > .c-btn{
       width: 50%;
       height: 100%;

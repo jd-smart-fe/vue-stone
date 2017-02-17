@@ -263,15 +263,17 @@
       box-sizing: border-box;
       margin-right:0.15rem;
       float:left;
+
       &.c-btn-base{
         width: $dayspicker-item-width;
-        height:$dayspicker-item-height;
+        height: $dayspicker-item-height;
         border-radius: $dayspicker-item-radius;
       }
+
       &.c-btn-on{
-        color:$t-dayspicker-lightcolor;
-        border-color:$t-dayspicker-lightcolor;
-        background:none;
+        color: $t-dayspicker-lightcolor;
+        border-color: $t-dayspicker-lightcolor;
+        background: none;
       }
     }
   }

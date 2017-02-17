@@ -281,6 +281,11 @@ export default {
     color: $c-primary;
     font-size: $font-size-base;
 
+    /**
+     * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
+     */
+    background-clip: padding-box;
+
     @mixin transition;
 
     span {

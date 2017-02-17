@@ -101,6 +101,11 @@
 
     background-color: $t-power-offcolor;
 
+    /**
+     * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
+     */
+    background-clip: padding-box;
+
     $(prefix)-icon {
       color: $t-power-oncolor;
     }
