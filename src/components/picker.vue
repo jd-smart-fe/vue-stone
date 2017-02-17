@@ -502,7 +502,7 @@ function picker(container, cols, vm) {
     border-bottom: #ccc solid 0.01rem;
   }
   .c-picker-head > span{
-    display: inline-flex;
+    display: flex;
     width:0.5rem;
     height:0.3rem;
     justify-content:center;
