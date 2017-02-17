@@ -430,7 +430,7 @@
   @import '../styles/mixins.css';
 
   .c-range{
-    display: inline-block;
+    display: block;
     width:100%;
     padding:0 $range-padding-x;
     box-sizing: border-box;
