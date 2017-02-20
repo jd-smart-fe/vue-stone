@@ -18,7 +18,7 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
     <div class="c-picker-body">
 
       <div class="c-picker-col" v-for="(item, index) in innerItems" ref="col" >
-        <div class="unit" ref="unit">{{getUnit(index)}}</div>
+        <div class="c-picker-unit" ref="unit">{{getUnit(index)}}</div>
         <div :class="['c-picker-col-wrapper', `c-picker-col-${index}`]">
 
           <div :data-value="_item" :class="['c-picker-item', item.active === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
@@ -418,12 +418,8 @@ function picker(container, cols, vm) {
  .c-picker-col{
     flex: auto;
     overflow: hidden;
-
     position:relative;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-perspective:700px;
-    perspective:700px;
+    
   }
 
   .c-picker-col-wrapper{
@@ -434,7 +430,10 @@ function picker(container, cols, vm) {
     position:relative;
     transition: transform 300ms ease-out;
     transform-style: "preserve-3d";
-
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective:700px;
+    perspective:700px;
   }
   .c-picker-item{
     height: $height;
@@ -528,7 +527,7 @@ function picker(container, cols, vm) {
   .c-picker-modal-show{
     transform: translateY(0);
   }
-  .unit{
+  .c-picker-unit{
     position: absolute;
     height: 0.3rem;
     top: 50%;
@@ -536,6 +535,6 @@ function picker(container, cols, vm) {
     z-index: 100;
     line-height: 0.3rem;
     text-align: center;
-
+   
 }
 </style>
