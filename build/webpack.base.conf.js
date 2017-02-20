@@ -5,6 +5,10 @@ var projectRoot = path.resolve(__dirname, '../')
 
 var precss = require('precss');
 
+var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
+var components = require('../config/list.json').list.join('|');
+var componentsReg = new RegExp(`(${components})\.vue$`);
+
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
@@ -85,6 +89,12 @@ module.exports = {
   eslint: {
     formatter: require('eslint-friendly-formatter')
   },
+  plugins: [
+    new ContextReplacementPlugin(
+      /components$/,
+      componentsReg
+    )
+  ],
   vue: {
     loaders: utils.cssLoaders({ sourceMap: useCssSourceMap }),
     postcss: [

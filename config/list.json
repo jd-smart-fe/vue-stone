@@ -1,0 +1,24 @@
+{
+  "list": [
+    "dayspicker",
+    "range",
+    "switch",
+    "power",
+    "panel",
+    "dialog",
+    "button",
+    "counter",
+    "button-group",
+    "modes",
+    "mask",
+    "picker",
+    "checkboard",
+    "actions",
+    "input",
+    "timer",
+    "timer-task",
+    "timepicker",
+    "transition",
+    "slide"
+  ]
+}

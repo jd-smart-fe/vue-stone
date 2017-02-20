@@ -1,7 +1,7 @@
 import './units/default';
 import './components/_style';
 import './components/_style_transition';
-import { list } from './list.json';
+import { list } from '../config/list.json';
 
 
 const install = (Vue, options = {}) => {
