@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/iconfont.ttf?przj5i') format('truetype'),
-    url('../styles/fonts/iconfont.woff?przj5i') format('woff'),
-    url('../styles/fonts/iconfont.svg?przj5i#iconfont') format('svg');
+    url('../styles/fonts/iconfont.ttf?u9tx3u') format('truetype'),
+    url('../styles/fonts/iconfont.woff?u9tx3u') format('woff'),
+    url('../styles/fonts/iconfont.svg?u9tx3u#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -24,7 +24,7 @@
 }
 
 .icon-washing-liquid:before {
-  content: "\e91a";
+  content: "\e91b";
 }
 .icon-children-clothing:before {
   content: "\e927";
