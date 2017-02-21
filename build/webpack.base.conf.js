@@ -2,13 +2,13 @@ var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
-
 var precss = require('precss');
+var list = require('../config/comlist').list;
 
 var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
-var components = require('../config/list.json').list.join('|');
-var componentsReg = new RegExp(`(${components})\.vue$`);
+var components = list.join('|');
 
+var componentsReg = new RegExp(`(${components})\.vue$`);
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file

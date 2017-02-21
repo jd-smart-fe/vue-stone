@@ -20,5 +20,17 @@
     "timepicker",
     "transition",
     "slide"
-  ]
+  ],
+  "dependence": {
+    "dayspicker": ["button"],
+    "dialog": ["mask"],
+    "counter": ["button"],
+    "button-group": ["button"],
+    "actions": ["mask"],
+    "timer": ["panel", "timepicker", "modes", "dialog",
+      "switch", "dayspicker", "timer-task", "input", "checkboard"
+    ],
+    "timer-task": ["panel", "modes", "range", "counter"],
+    "timepicker": ["picker"]
+  }
 }

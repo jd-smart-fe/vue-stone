@@ -1,17 +1,17 @@
 import './units/default';
 import './components/_style';
 import './components/_style_transition';
-import { list } from '../config/list.json';
-
+import list from '../config/comlist';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
     return;
   }
 
-  list.forEach(val => {
-
+  list.list.forEach(val => {
     const component = require(`./components/${val}.vue`); // eslint-disable-line global-require
+
+    // console.log(component);
     Vue.component(component.name, component);
   });
 
