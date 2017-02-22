@@ -91,7 +91,6 @@
       width: $swtich-button-size;
       height: $swtich-button-size;
       transform: translate($switch-button-padding-x, calc(-$swtich-button-size / 2));
-      -webkit-transform: translate($switch-button-padding-x, calc(-$swtich-button-size / 2));
 
 	    position: absolute;
 	    border-radius: 100%;
@@ -109,10 +108,7 @@
       border-color: $t-switch-oncolor;
       .c-switch-button {
         background-color: $t-switch-oncolor;
-        transform: translate(calc($switch-width - $switch-button-padding-x - $swtich-button-size),
-          calc(-$swtich-button-size / 2));
-        -webkit-transform: translate(calc($switch-width - $switch-button-padding-x - $swtich-button-size),
-          calc(-$swtich-button-size / 2));
+        transform: translate(calc($switch-width - $switch-button-padding-x - $swtich-button-size), calc(-$swtich-button-size / 2));
       }
     }
 
