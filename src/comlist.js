@@ -3,9 +3,7 @@ const L = require('../config/list.json');
 const initList = L.list;
 const dependence = L.dependence;
 
-let list = [];
-
-componentsList(dependence, initList);
+const list = componentsList(dependence, initList);
 
 function componentsList(depe_, list_) {
   const length = list_.length;
@@ -26,12 +24,11 @@ function componentsList(depe_, list_) {
   // 如果数组长度没有发生变化，说明没有新的相关依赖组件
   if (length === _list.length) {
     // 赋值
-    list = _list;
-    return;
+    return _list;
   }
 
   // 递归调用
-  componentsList(depe_, _list);
+  return componentsList(depe_, _list);
 }
 
 module.exports = { list };

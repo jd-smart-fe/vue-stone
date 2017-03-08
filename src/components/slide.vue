@@ -1,19 +1,3 @@
-<!--
-slide 性能优化问题及总结：
-1.
-  问题：在手机上 touchend 后会出现短暂的卡顿。
-
-  背景：slide 的滑动和 Vue 的 data 值高度耦合，同时还双向绑定了激活状态的索引，因此每次改变激活状态索引暨双向绑定的 value
-       值的时候，都牵扯到大量的 vue 的内部计算。而 Vue 是异步执行 DOM 更新，只有在一个事件循环完成后才会去更新 Dom。
-
-  方案：slide 滑动核心代码和 vue data数据解耦。同时为了保留双向绑定的特性，用到了 insideValue data值来同步激活索引，
-       用 dataset.translatex 来同步滚动距离数据。
-
-  结果：Chrome DevTools Timeline 10 * slowdown：
-       优化前：touchend事件触发后到下一帧渲染时的时间间隔 180ms
-       优化后：touchend事件触发后到下一帧渲染时的时间间隔 40ms
- -->
-
 <template>
   <div class="c-slide">
     <div class="c-slide-warpper">
