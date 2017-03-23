@@ -372,17 +372,20 @@ function picker(container, cols, vm) {
     // this.style.transitionDuration = '300ms';
     // this.style.webkitTransitionDuration = '300ms';
 
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      // 记录当前的movedItem，避免在没有300毫秒内movedItem发生改变导致步长出错。
-      const step = movedItem;
-      const n = vm.innerItems[this.colIndex];
-      n.active += step;
-      vm.innerItems.splice(this.colIndex, 1, n);
-      // this.style.transitionDuration = '0ms';
-      // this.style.webkitTransitionDuration = '0ms';
-      // vm.innerItems[this.colIndex].active += movedItem;
-    }, 300);
+    // clearTimeout(timer);
+    updateInnerItems(movedItem);
+    const that = this;
+    // 为每次movedItem创建副本，避免在300毫秒内movedItem发生改变导致步长出错。
+    function updateInnerItems(step) {
+      timer = setTimeout(() => {
+        // const step = movedItem;
+        console.log(step);
+        const innerItems = vm.innerItems[that.colIndex];
+        const n = innerItems;
+        n.active += step;
+        vm.innerItems.splice(that.colIndex, 1, n);
+      }, 300);
+    }
 
     setTranslate(this, this.currentTranslate);
   }

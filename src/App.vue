@@ -125,7 +125,7 @@
       " >
         {{ picker_value }}
       </div>
-      <v-picker ref="picker" :unit="picker_unit" :head_direction="head_direction" :display="picker_display" :shown="pickerModal"  @change="pickerHandle" :items="picker_items" :rotate_effect="true"></v-picker>
+      <v-picker ref="picker" :unit="picker_unit" :head_direction="head_direction" :display="picker_display" :shown="pickerModal"  @change="pickerHandle" :items="picker_items" :rotate_effect="false"></v-picker>
     </div>
 
 
@@ -504,8 +504,8 @@
         picker_display: 'modal',
         picker_unit: ['时', '分', '秒'],
         picker_items: [{
-          values: ['la', 'da', 'fa', 'ca'],
-          displayValues: ['啊', '掰', '猜', '呆'],
+          values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+          displayValues: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
           active: 1,
         },
         {
@@ -634,7 +634,7 @@
       });
 
       this.$refs.picker.$on('change', (val, all) => {
-        // console.log(val);
+        console.log(val.displayValue);
       });
     },
   };
