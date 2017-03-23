@@ -204,6 +204,7 @@ export default {
 
 
 function picker(container, cols, vm) {
+  let timer = null;
   const options = {
     showItemNum: 7, // 一屏内显示item的个数, 应为奇数.
     // itemHeight: 50,
@@ -367,12 +368,19 @@ function picker(container, cols, vm) {
 
     // 转变active的值
     movedItem = Math.floor((this.startTranslate - this.currentTranslate) / this.itemHeight);
+    // console.debug(this);
+    // this.style.transitionDuration = '300ms';
+    // this.style.webkitTransitionDuration = '300ms';
 
-    setTimeout(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      // 记录当前的movedItem，避免在没有300毫秒内movedItem发生改变导致步长出错。
+      const step = movedItem;
       const n = vm.innerItems[this.colIndex];
-      n.active += movedItem;
+      n.active += step;
       vm.innerItems.splice(this.colIndex, 1, n);
-
+      // this.style.transitionDuration = '0ms';
+      // this.style.webkitTransitionDuration = '0ms';
       // vm.innerItems[this.colIndex].active += movedItem;
     }, 300);
 
@@ -419,7 +427,7 @@ function picker(container, cols, vm) {
     flex: auto;
     overflow: hidden;
     position:relative;
-    
+
   }
 
   .c-picker-col-wrapper{
@@ -535,6 +543,6 @@ function picker(container, cols, vm) {
     z-index: 100;
     line-height: 0.3rem;
     text-align: center;
-   
+
 }
 </style>
