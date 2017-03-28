@@ -114,7 +114,7 @@
 
     </v-panel>
 
-    <div class="c-panel">
+    <!-- <div class="c-panel">
       <div id='picker_value'
       style="
       width: 100%;
@@ -126,7 +126,7 @@
         {{ picker_value }}
       </div>
       <v-picker ref="picker" :unit="picker_unit" :head_direction="head_direction" :display="picker_display" :shown="pickerModal"  @change="pickerHandle" :items="picker_items" :rotate_effect="false"></v-picker>
-    </div>
+    </div> -->
 
 
     <v-panel>
@@ -628,14 +628,14 @@
       //   this.animation_status = !this.animation_status;
       // });
 
-      this.$refs.picker.$on('select', (val) => {
-        this.pickerModal = false;
-        console.log(val);
-      });
-
-      this.$refs.picker.$on('change', (val, all) => {
-        console.log(val.displayValue);
-      });
+      // this.$refs.picker.$on('select', (val) => {
+      //   this.pickerModal = false;
+      //   console.log(val);
+      // });
+      //
+      // this.$refs.picker.$on('change', (val, all) => {
+      //   console.log(val.displayValue);
+      // });
     },
   };
 </script>

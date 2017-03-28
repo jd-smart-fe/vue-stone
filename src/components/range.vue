@@ -109,6 +109,18 @@
       //   type: Boolean,
       //   default: true,
       // },
+
+      // 禁止滑动
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
+
+      // 控制圆球消失
+      disappear: {
+        type: Boolean,
+        default: false,
+      },
     },
 
     data() {
@@ -208,6 +220,9 @@
          * 这种情况比较少出现 暂时先不做排重处理;
         */
         this.updateProcess(this.value);
+      },
+      currentValue(val) {
+        this.$emit('input', val);
       },
     },
 

@@ -32,6 +32,7 @@
           <div class="c-timer-content control-field">
             {{ this._repeat }}
             <span class="icon icon-pull-right"></span>
+          </div>
         </a>
 
       </v-panel>
