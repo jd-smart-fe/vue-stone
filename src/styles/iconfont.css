@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/iconfont.ttf?aac9gs') format('truetype'),
-    url('../styles/fonts/iconfont.woff?aac9gs') format('woff'),
-    url('../styles/fonts/iconfont.svg?aac9gs#iconfont') format('svg');
+    url('../styles/fonts/iconfont.ttf?gikif0') format('truetype'),
+    url('../styles/fonts/iconfont.woff?gikif0') format('woff'),
+    url('../styles/fonts/iconfont.svg?gikif0#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,68 +23,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-quick-wash-15 .path1:before {
-  content: "\e91a";
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-15 .path2:before {
+.icon-quick-wash-30:before {
   content: "\e91c";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
 }
-.icon-quick-wash-15 .path3:before {
-  content: "\e920";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
-}
-.icon-quick-wash-30 .path1:before {
-  content: "\e921";
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path2:before {
-  content: "\e922";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path3:before {
-  content: "\e930";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path4:before {
-  content: "\e937";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path5:before {
-  content: "\e938";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path6:before {
-  content: "\e939";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path7:before {
-  content: "\e93a";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path8:before {
-  content: "\e93b";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path9:before {
-  content: "\e93c";
-  margin-left: -1em;
-  color: rgb(35, 24, 21);
-}
-.icon-quick-wash-30 .path10:before {
-  content: "\e93d";
-  margin-left: -1em;
-  color: rgb(0, 0, 0);
+.icon-quick-wash-15:before {
+  content: "\e91a";
 }
 .icon-washing-liquid:before {
   content: "\e91b";
