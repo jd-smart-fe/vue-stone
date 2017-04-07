@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="">
     <div :class='["c-actions", value ? "c-actions-active" : "" ]'>
-
+      <slot></slot>
     </div>
 
     <transition name="fade">
@@ -57,9 +57,7 @@ export default {
     margin: auto;
 
     text-align: center;
-    font-size: 18px;
-
-    width: 3.1rem;
+    font-size: inherit;
 
     z-index: 101;
 

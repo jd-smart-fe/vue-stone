@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === 'production') {
       // "mask",
       // "picker",
       // "checkboard",
-      "actions",
+      // "actions",
       "actions-box",
       // "input",
       // "timer",
