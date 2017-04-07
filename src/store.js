@@ -1,7 +1,7 @@
 import './units/default';
 import './components/_style';
 import './components/_style_transition';
-import list from './comlist';
+import list from '../libs/comlist';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -9,8 +9,13 @@ const install = (Vue, options = {}) => {
   }
 
   list.list.forEach(val => {
-    const component = require(`./components/${val}.vue`); // eslint-disable-line global-require
+    // _style 开头的样式组件，只需引入不需要注册为组件
+    if (val.indexOf('_style') !== -1) {
+      require(`./components/${val}.vue`); // eslint-disable-line global-require
+      return;
+    }
 
+    const component = require(`./components/${val}.vue`); // eslint-disable-line global-require
     Vue.component(component.name, component);
   });
 

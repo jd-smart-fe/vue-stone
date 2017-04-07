@@ -3,7 +3,7 @@ var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 var precss = require('precss');
-var list = require('../src/comlist').list;
+var list = require('../libs/comlist').list;
 
 var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
 var components = list.join('|');

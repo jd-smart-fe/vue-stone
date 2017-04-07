@@ -1,4 +1,4 @@
-const L = require('../config/list.json');
+const L = require('../config/list');
 
 const initList = L.list;
 const dependence = L.dependence;
