@@ -5,7 +5,7 @@
   @import '../styles/utils.css';
   @import '../styles/base.css';
 
-  @import '../styles/iconfont.css';
+  /*@import '../styles/iconfont.css';*/
 
   body {
     font-size: $font-size-base;
