@@ -1,8 +1,7 @@
-const L = require('../config/list');
+const L = require('../build/list');
 
 const initList = L.list;
 const dependence = L.dependence;
-
 const list = componentsList(dependence, initList);
 
 function componentsList(depe_, list_) {
