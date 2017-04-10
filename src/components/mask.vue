@@ -1,11 +1,9 @@
 <template>
-  <div class="c-mask" v-show="shown" @click="handle">
-
-  </div>
+  <div class="c-mask" v-show="shown" @click="handle"></div>
 </template>
 
 <script>
-  // TODO: 组件初始化的时候，检查是否需要设置默认值。
+
   export default {
     name: 'v-mask',
     props: {
@@ -37,16 +35,14 @@
 </script>
 
 <style>
-  @import '../styles/default-theme/variables.css';
-  @import '../styles/mixins.css';
 
   .c-mask{
-        position:fixed;
-        top:0;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        z-index:100;
-        background-color: rgba(0, 0, 0, 0.5);
+    position:fixed;
+    top:0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index:100;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 </style>

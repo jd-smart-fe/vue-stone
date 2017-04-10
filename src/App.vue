@@ -248,7 +248,7 @@
       </div>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="c-panel-title">模式设置
-          <div class="c-panel-introduce">介绍介绍介绍介绍</div>
+          <div class="c-panel-description">介绍介绍介绍介绍</div>
         </div>
         <span class='icon icon-pull-right'></span>
       </div>
@@ -642,27 +642,19 @@
 
 <style>
 
-  @import './styles/normalize.css';
   @import './styles/default-theme/variables.css';
   @import './styles/mixins.css';
-  @import './styles/utils.css';
-
-  /*@import './styles/iconfont.css';*/
 
   body {
-    font-size: $font-size-base;
     background-color: #efefef;
   }
+
   a {
     text-decoration: none;
     -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
   }
 
-
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
     margin-top: 60px;
     margin-bottom: 60px;
@@ -672,39 +664,5 @@
     font-size: $font-size-32;
     color: $c-primary;
   }
-
-  /* 废弃代码, 后期可以删除*/
-  /*
-  .o-panel {
-    height: calc($grid-size * 2);
-
-    padding-left: 0.12rem;
-    padding-right: 0.12rem;
-
-    font-size: $font-size-lg;
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    background: #fff;
-
-    width: 3.12rem;
-    margin: auto;
-    box-sizing: border-box;
-    border: 1px solid $eee;
-    border-radius: 3px;
-
-    &:not(:first-child) {
-      margin-top: 10px;
-    }
-
-    &.o-panel-lg {
-      height: calc($grid-size * 3);
-    }
-  }
-  */
-
 
 </style>

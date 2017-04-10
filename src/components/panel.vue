@@ -16,10 +16,6 @@
         type: String,
         default: '',
       },
-      title: {
-        type: String,
-        default: 'Panel Title',
-      },
     },
   };
 </script>
@@ -34,16 +30,13 @@
   $prefix {
     width: $panel-width;
     margin: auto;
-    box-sizing: border-box;
-
     font-size: $font-size-lg;
-
-    background: #fff;
-
     @mixin border;
     @mixin box-shadow;
+    background: #fff;
     border-color: #eee;
     border-radius: $l-radius;
+    box-sizing: border-box;
 
     &:not(:first-child) {
       margin-top: 10px;
@@ -72,14 +65,14 @@
 
   $(prefix)-body {
     padding: 0.12rem;
+  }
 
-/*    padding-left: 0.12rem;
-    padding-right: 0.12rem;
-*/  }
-    $(prefix)-introduce{
-      font-size: $font-size-sm;
-      padding-top: 0.08rem;
-      }
+  $(prefix)-description{
+    font-size: $font-size-sm;
+    padding-top: 0.08rem;
+  }
+
+  /* TODO */
   $(prefix)-footer {
 
   }

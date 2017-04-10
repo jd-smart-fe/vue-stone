@@ -70,4 +70,13 @@
 }
 
 
+@for $i from 1 to 12 {
+  .col-$i {
+    width: calc($grid-size * $i);
+  }
+  .row-$i {
+    height: calc($grid-size * $i);
+  }
+}
+
 
