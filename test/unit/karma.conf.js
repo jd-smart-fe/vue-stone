@@ -39,14 +39,6 @@ webpackConfig.module.preLoaders.unshift({
   include: path.resolve(projectRoot, 'src'),
 });
 
-// only apply babel for test files when using isparta
-webpackConfig.module.loaders.some(function (loader, i) {
-  if (loader.loader === 'babel') {
-    loader.include = path.resolve(projectRoot, 'test/unit');
-    return true;
-  }
-});
-
 module.exports = function (config) {
   config.set({
     // to run in additional browsers:
