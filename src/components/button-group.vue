@@ -73,7 +73,6 @@ export default {
 </script>
 
 <style>
-  @import '../styles/base.css';
 
   .c-btngroup{
     display: flex;

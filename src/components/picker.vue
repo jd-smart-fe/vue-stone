@@ -427,7 +427,8 @@ function picker(container, cols, vm) {
   }
 
  .c-picker-col{
-    flex: auto;
+    /*flex: auto;*/
+    flex: 1;
     overflow: hidden;
     position:relative;
 

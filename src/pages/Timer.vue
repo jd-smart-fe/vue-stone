@@ -1,6 +1,13 @@
-<template lang="html">
-  <div id="app">
-    <v-button text="mainpage" @change="jumpMainpage"></v-button>
+<template>
+  <div>
+
+    <div class="page-header row-2 u-cross-center">
+      <div class="page-header-left u-cross-center row-2">
+        <router-link to="/" class="back-link">
+          <span class="icon icon-pull-left page-header-icon"></span>返回
+        </router-link>
+      </div>
+    </div>
 
     <v-timer :key="key" :options="options" ref="timer" @change="timerChange" @delete="timerDelete">
 
@@ -16,23 +23,18 @@
 
     </v-timer>
 
-    <v-button
-    style="
-    margin: 20px auto;
-    "
-    text="update"
-    @change="update"
-    ></v-button>
+    <div class="clearfix timer-buttons">
+      <v-button text="mainpage" @change="jumpMainpage">
+      </v-button>
+      <v-button
+        text="update" @change="update">
+      </v-button>
+      <v-button
+        text="get value" @change="getValue">
+      </v-button>
+    </div>
 
-    <v-button
-    style="
-    margin: 20px auto;
-    "
-    text="get value"
-    @change="getValue"
-    ></v-button>
-
-    <div>
+    <div class="timer-value">
       {{ value }}
     </div>
 
@@ -147,25 +149,14 @@ export default {
 };
 </script>
 
-<style lang="css">
-@import '../styles/normalize.css';
-@import '../styles/default-theme/variables.css';
-@import '../styles/mixins.css';
-@import '../styles/utils.css';
-
-
-body {
-  font-size: $font-size-base;
-  background-color: #efefef;
-}
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
-
+<style>
+  .timer-value {
+    font-size: 16px;
+  }
+  .timer-buttons {
+    .c-btn {
+      float: left;
+      margin: 20px 0;
+    }
+  }
 </style>
