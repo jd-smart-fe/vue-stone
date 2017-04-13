@@ -13,7 +13,7 @@ module.exports = [
   "mask",
   "picker",
   "checkboard",
-  "actions",
+  "action-sheet",
   "actions-box",
   "input",
   "timer",

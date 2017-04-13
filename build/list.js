@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
       "mask",
       "picker",
       "checkboard",
-      "actions",
+      "action-sheet",
       "actions-box",
       "input",
       "timer",
@@ -35,7 +35,7 @@ module.exports = {
     "dialog": ["mask"],
     "counter": ["button"],
     "button-group": ["button"],
-    "actions": ["mask"],
+    "action-sheet": ["mask"],
     "actions-box": ["mask"],
     "timer": ["panel", "timepicker", "modes", "dialog",
       "switch", "dayspicker", "timer-task", "input", "checkboard"

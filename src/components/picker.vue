@@ -5,20 +5,25 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
 
 <template lang="html">
 <div>
-  <v-mask :shown="shown" ref="mask"></v-mask>
 
-  <div :class="[display!=='inline'?'c-picker-modal':'',shown?'c-picker-modal-show':'']">
+  <v-mask :shown="mode !== 'inline' && shown" ref="mask"></v-mask>
 
-  <div v-if="display!=='inline'" class="c-picker-head" :style="{color:button_color}">
+  <div :class="[
+    mode !== 'inline' ? 'c-picker-modal' : 'c-picker-inline',
+    shown ? 'c-picker-modal-show' : '']">
+
+  <div v-if="mode!=='inline'" class="c-picker-head" :style="{color:button_color}">
     <span class="c-picker-head-cancel" @click="handle('cancel')">{{cancelText}}</span>
-    <span class="c-picker-head-test">{{head_direction}}</span>
+    <span class="c-picker-head-test">{{title}}</span>
     <span class="c-picker-head-determine" @click="handle('determine')">{{determineText}}</span>
   </div>
    <div class='c-picker'>
     <div class="c-picker-body">
 
       <div class="c-picker-col" v-for="(item, index) in innerItems" ref="col" >
-        <div class="c-picker-unit" ref="unit">{{getUnit(index)}}</div>
+        <div class="c-picker-unit" ref="unit">
+          {{item.unit || ''}}
+        </div>
         <div :class="['c-picker-col-wrapper', `c-picker-col-${index}`]">
 
           <div :data-value="_item" :class="['c-picker-item', item.active === _index ? 'c-picker-item-active' : '']" v-for="(_item, _index) in item.values">
@@ -51,7 +56,6 @@ export default {
 
   data() {
     return {
-      title: '请选择选项',
       innerItems: [], // 复制并改进items
       init: false,
       cancelText: '取消',
@@ -62,7 +66,7 @@ export default {
   props: {
     rotate_effect: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     items: {
       type: Array,
@@ -71,7 +75,9 @@ export default {
         return [];
       },
     },
-    display: {
+
+    // 两种模式, 支持 inline 模式 及 modal 模式
+    mode: {
       type: String,
       required: false,
       default: 'inline',
@@ -81,7 +87,7 @@ export default {
       required: false,
       default: '#59B8FC',
     },
-    head_direction: {
+    title: {
       type: String,
       required: false,
       default: '',
@@ -91,14 +97,6 @@ export default {
       required: false,
       default: false,
     },
-    unit: {
-      type: Array,
-      required: false,
-      default() {
-        return [];
-      },
-    },
-
   },
 
   computed: {
@@ -164,11 +162,6 @@ export default {
       this.$nextTick(() => {
         this._callPickerHandle();
       });
-    },
-
-    getUnit(index) {
-
-      return this.unit.length - 1 < index ? '' : this.unit[index];
     },
 
     handle(val) {
