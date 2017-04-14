@@ -160,7 +160,7 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     if (!Object.hasOwnProperty.call(this.$slots, 'default') && this.icon) {
       this.iconOnly = true;
     }
