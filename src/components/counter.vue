@@ -1,25 +1,26 @@
 <template>
   <div class="c-counter" :data-value="value">
-    <v-button
+    <v-button-group>
+      <v-button
       ref="inc"
       class="c-counter-inc"
-      disabledClass="c-counter-disabled"
-      type="click"
       icon="plus"
+      size="large"
       :longTap="longTap"
       :disabled="incDisabled"
       @change="incHandle"
       ></v-button>
-    <v-button
+
+      <v-button
       ref="dec"
       class="c-counter-dec"
-      type="click"
-      disabledClass="c-counter-disabled"
       icon="minus"
+      size="large"
       :longTap="longTap"
       :disabled="decDisabled"
       @change="decHandle"
       ></v-button>
+    </v-button-group>
   </div>
 </template>
 
@@ -133,71 +134,3 @@ export default {
 // + : 22.60
 
 </script>
-
-<style>
-  @import '../styles/default-theme/variables.css';
-  @import '../styles/mixins.css';
-
-  .c-counter {
-
-    display: flex;
-
-    width: $counter-width;
-    height: $counter-height;
-    overflow: hidden;
-
-    @mixin border;
-
-    border-color: $gray-lighter;
-    border-radius: calc($counter-height / 2);
-
-    /**
-     * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
-     */
-    background-clip: padding-box;
-
-    > .c-btn{
-      width: 50%;
-      height: 100%;
-      border: none;
-      border-radius: 0;
-      color: $gray;
-    }
-
-    .c-counter-inc {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      position: relative;
-
-      i {
-        font-style: normal;
-      }
-
-      &:after{
-        content: '';
-        position: absolute;
-        right: 0;
-        width: 1px;
-        height: 100%;
-        background-color: $gray-lighter;
-      }
-    }
-
-    .c-counter-dec {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      i {
-        font-style: normal;
-      }
-    }
-
-    .c-counter-disabled{
-      color: $btn-disabled;
-    }
-  }
-
-</style>

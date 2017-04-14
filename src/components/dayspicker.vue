@@ -6,13 +6,15 @@
       <v-button
         v-for="(item, index) in quick_list"
         ref="quick"
-        :text="item"
         type="toggle"
+        size="small"
+        radius="small"
         :init_status="quick_state_list[index]"
         @turnOn="quickOnHandle(index)"
         @touchend.native="quickEndNativeHandle(index)"
         @touchcancel.native="quickEndNativeHandle(index)"
       >
+      {{ item }}
       </v-button>
     </div>
     <div class="c-dayspicker-body">
@@ -21,10 +23,13 @@
         ref="days"
         :text="item"
         type="toggle"
+        size="small"
+        radius="small"
         :init_status="days_state_list[index]"
         @turnOn="daysOnHandle(index)"
         @turnOff="daysOffHandle(index)"
       >
+      {{ item }}
       </v-button>
     </div>
   </div>
@@ -254,14 +259,14 @@
 
   .c-dayspicker{
     .c-btn{
-      line-height:$dayspicker-item-height;
+      /*line-height:$dayspicker-item-height;*/
       font-size: $t-dayspicker-font-size;
       text-align:center;
       @mixin border;
       border-color: $t-dayspicker-defcolor;
       color: $t-dayspicker-defcolor;
       box-sizing: border-box;
-      margin-right:0.15rem;
+      margin-left:0.15rem;
       float:left;
 
       &.c-btn-base{
@@ -281,11 +286,14 @@
     padding:$dayspicker-padding-y 0;
     border-bottom:#e5e5e5 solid 1px;
     overflow:hidden;
+    margin-left: -0.15rem;
   }
   .c-dayspicker-body{
     width:100%;
     padding:0 0 $dayspicker-padding-y 0;
     overflow:hidden;
+    margin-left: -0.15rem;
+
     .c-btn{
       margin-top:$dayspicker-padding-y;
     }

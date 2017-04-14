@@ -256,7 +256,7 @@ select,
 textarea {
   font-family: sans-serif; /* 1 */
   font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
+  /*line-height: 1.15; */  /* 1 */
   margin: 0; /* 2 */
 }
 
@@ -290,7 +290,7 @@ button,
 html [type="button"], /* 1 */
 [type="reset"],
 [type="submit"] {
-  -webkit-appearance: button; /* 2 */
+  -webkit-appearance: none; /* 2 */
 }
 
 /**
@@ -313,7 +313,7 @@ button:-moz-focusring,
 [type="button"]:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
-  outline: 1px dotted ButtonText;
+  outline: 0;
 }
 
 /**
@@ -458,4 +458,8 @@ template {
 
 [hidden] {
   display: none;
+}
+
+button:focus {
+  outline: 0;
 }

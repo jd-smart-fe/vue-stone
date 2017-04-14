@@ -75,40 +75,41 @@
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-disabled: </div>
-        <v-button slot="main" @change="btnClickHandle" ref="button" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
+        <v-button slot="main" @change="btnClickHandle" ref="button" icon="mode-holiday" :disabled="true">左风向</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" icon="mode-holiday"></v-button>
+        <v-button slot="main" radius="circle" size="small" type="toggle" @change="btnClickHandle" icon="mode-holiday"></v-button>
+        <v-button slot="main" radius="circle" size="base" type="toggle" @change="btnClickHandle" icon="mode-holiday"></v-button>
+        <v-button slot="main" radius="circle" size="large" type="toggle" @change="btnClickHandle" icon="mode-holiday"></v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-toggle: </div>
-        <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="true"></v-button>
+        <v-button slot="main" ref="btnSwitch" size="large" v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="true">开关</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">
-          互斥
+          按钮组
         </div>
       </div>
       <div slot="body" style="
       padding: .12rem;
       ">
-        <v-button-group
-        style="
-          margin-bottom: 20px;
-        "
-        v-model="buttonGroup_value"
-        :items="buttonGroup1"
-        @change="exclusiveChangeHandle">
+        <v-button-group>
+          <v-button icon="mode-holiday">你好</v-button>
+          <v-button>你们好</v-button>
+          <v-button>你们好</v-button>
+          <v-button>你们好</v-button>
         </v-button-group>
-        <v-button-group
-        v-model="buttonGroup_value"
-        :items="buttonGroup2"
-        @change="exclusiveChangeHandle">
-        </v-button-group>
+        <div class="">
+          ==
+        </div>
+        <v-button size="small">提交</v-button>
+        <v-button size="base">提交</v-button>
+        <v-button size="large">提交</v-button>
       </div>
 
 

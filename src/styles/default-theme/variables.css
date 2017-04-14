@@ -32,7 +32,10 @@ $orange: #f76b46;
 
 
 /********************  component theme  ********************/
-/****  dayspicker  ****/
+
+
+
+/********************  dayspicker  ********************/
 
 $dayspicker-item-width: 0.5rem;
 $dayspicker-item-height: 0.22rem;
@@ -45,7 +48,7 @@ $t-dayspicker-lightcolor: $blue;
 
 
 
-/****  range  ****/
+/********************  range  ********************/
 $range-padding-y: 0.16rem;
 $range-slide-height: 0.02rem;
 $range-slide-button-size: 0.24rem;
@@ -57,7 +60,7 @@ $range-slide-dot-size: 0.24rem;
 $t-range-defcolor: $gray-lighter;
 $t-range-lightcolor: $c-primary;
 
-/****  switch   ****/
+/************************  switch   ************************/
 
 $switch-width: 0.53rem;
 $swtich-height: 0.26rem;
@@ -67,34 +70,40 @@ $switch-button-padding-x: 0.08rem;
 $t-switch-oncolor: $c-primary;
 $t-switch-offcolor: $gray-lighter;
 
-/****  power   ****/
+/************************  power   ************************/
 $power-width: 0.45rem;
 $power-height: 0.45rem;
 
 $t-power-offcolor: #fff;
 $t-power-oncolor: $c-primary;
 
-/****  button  ****/
-$btn-width-sm: 0.75rem;
-$btn-height-sm: 0.28rem;
-
+/************************  button  ************************/
+/*$btn-width-sm: 0.75rem;
+$btn-height-sm: 0.18rem;
 $btn-width-base: 0.86rem;
 $btn-height-base: 0.28rem;
-
 $btn-width-lg: 1.29rem;
-$btn-height-lg: 0.42rem;
+$btn-height-lg: 0.42rem;*/
 
+$btn-padding-sm: 0.04rem 0.08rem;
+$btn-fontsize-sm: $font-size-sm;
+$btn-radius-sm: 0.05rem;
 
-/**** button status ****/
+$btn-padding-base: 0.08rem 0.12rem;
+$btn-fontsize-base: $font-size-base;
+
+$btn-padding-lg: 0.12rem 0.18rem;
+$btn-fontsize-lg: $font-size-lg;
+
 $btn-disabled: #efefef;
 $btn-hover: #efefef; /* 按钮按下底色 */
 
-/**** counter ****/
+/************************  counter  ************************/
 $counter-width: 1.03rem;
 $counter-height: 0.35rem;
 
-/****  panel   ****/
+/************************  panel   ************************/
 $panel-width: $main-width;
 
-/*modal**/
+/************************  modal   ************************/
 $c-dialog-title: #ff6375
