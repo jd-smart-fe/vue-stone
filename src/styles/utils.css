@@ -1,4 +1,6 @@
 
+@import './mixins.css';
+
 /********************  Clearfix, Float  ********************/
 .clearfix:before,
 .clearfix:after {
@@ -79,4 +81,11 @@
   }
 }
 
+
+
+/******** border ********/
+
+.bd1 {
+  @mixin bd1;
+}
 

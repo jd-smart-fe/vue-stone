@@ -29,6 +29,11 @@
   box-shadow: 0 1px 1px rgba(0,0,0,.01);
 }
 
+@define-mixin bd1 $color: #eee {
+  border-top: 1px solid $color;
+}
+
+
 /*  TODO: 未用到，后续可以删除。
 @define-mixin without-padding $main: 1, $cross: 1 {
 
