@@ -12,7 +12,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Show/Hide Dialog</div>
-        <v-button @change="click">actions</v-button>
+        <v-button @change="click">action</v-button>
       </div>
     </v-panel>
 

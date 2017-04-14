@@ -1,14 +1,14 @@
 ## 互动组件：
 
-### actions-box
+### action-box
 
-**v-actions-box**
+**v-action-box**
 
 ```html
-<v-actions-box :v-model="value">
+<v-action-box :v-model="value">
   <!-- 内容区 -->
   <div></div>
-</v-actions-box>
+</v-action-box>
 
 ```
 

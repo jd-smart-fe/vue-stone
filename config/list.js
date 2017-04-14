@@ -14,7 +14,7 @@ module.exports = [
   "picker",
   "checkboard",
   "action-sheet",
-  "actions-box",
+  "action-box",
   "input",
   "timer",
   "timer-task",

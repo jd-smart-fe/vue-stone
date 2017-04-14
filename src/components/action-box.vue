@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <div :class='["c-actions", value ? "c-actions-active" : "" ]'>
+    <div :class='["c-action", value ? "c-action-active" : "" ]'>
       <slot></slot>
     </div>
 
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'v-actions-box',
+  name: 'v-action-box',
 
   data() {
     return {
@@ -49,12 +49,14 @@ export default {
 </script>
 
 <style lang="css">
-  .c-actions{
+  .c-action{
     position: fixed;
     top: 100%;
     left: 0;
     right: 0;
     margin: auto;
+
+    width: 100%;
 
     text-align: center;
     font-size: inherit;
@@ -63,7 +65,7 @@ export default {
 
     transition: transform .3s ease-out;
 
-    &.c-actions-active{
+    &.c-action-active{
       transform: translate(0, -100%);
     }
   }

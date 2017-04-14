@@ -1,12 +1,12 @@
 <template lang="html">
   <div class="">
-    <div :class='["c-actions", value ? "c-actions-active" : "" ]'>
+    <div :class='["c-action", value ? "c-action-active" : "" ]'>
 
-        <div class="c-actions-warpper">
+        <div class="c-action-warpper">
           <div
           v-for="(item, index) in items"
           v-if="!item.isCancel"
-          class="c-actions-item"
+          class="c-action-item"
           :style="`color: ${item.color};`"
           @click="clickHandle(index)"
           >
@@ -14,11 +14,11 @@
         </div>
       </div>
 
-      <div class="c-actions-warpper">
+      <div class="c-action-warpper">
         <template v-if="_cancelItem.length > 0">
           <div
           v-for="item in _cancelItem"
-          class="c-actions-cancel"
+          class="c-action-cancel"
           :style="`color: ${item.color};`"
           @click="cancelHandle">
             {{ item.text }}
@@ -26,7 +26,7 @@
         </template>
 
         <template v-else>
-          <div class="c-actions-cancel" @click="cancelHandle">
+          <div class="c-action-cancel" @click="cancelHandle">
             取消
           </div>
         </template>
@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  name: 'v-actions',
+  name: 'v-action-sheet',
 
   data() {
     return {
@@ -111,7 +111,7 @@ export default {
 </script>
 
 <style lang="css">
-  .c-actions{
+  .c-action{
     position: fixed;
     top: 100%;
     left: 0;
@@ -127,11 +127,11 @@ export default {
 
     transition: transform .3s ease-out;
 
-    &.c-actions-active{
+    &.c-action-active{
       transform: translate(0, -100%);
     }
 
-    .c-actions-warpper{
+    .c-action-warpper{
       background: #fff;
       border-radius: 4px;
       margin-bottom: 12px;
@@ -142,9 +142,9 @@ export default {
       }
     }
 
-    .c-actions-item{
+    .c-action-item{
 
-      + .c-actions-item{
+      + .c-action-item{
         border-top: 1px solid #999;
       }
     }
