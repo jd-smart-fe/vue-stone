@@ -16,7 +16,7 @@
         <div slot="body" class="c-panel-body row-1 u-cross-center">
           <div>开关</div>
           <div>
-            <v-button text="开关" type="toggle"></v-button>
+            <v-button type="toggle" radius="circle">开关</v-button>
           </div>
         </div>
       </v-panel>
@@ -24,13 +24,14 @@
     </v-timer>
 
     <div class="clearfix timer-buttons">
-      <v-button text="mainpage" @change="jumpMainpage">
+      <v-button @change="jumpMainpage">
+        mainpage
       </v-button>
-      <v-button
-        text="update" @change="update">
+      <v-button @change="update">
+        update
       </v-button>
-      <v-button
-        text="get value" @change="getValue">
+      <v-button @change="getValue">
+        get value
       </v-button>
     </div>
 

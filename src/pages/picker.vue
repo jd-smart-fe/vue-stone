@@ -6,12 +6,16 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Picker embed in the page</div>
-        <v-button text="Toggle" @change="ishown = !ishown"></v-button>
+        <v-button @change="ishown = !ishown">
+          Toggle
+        </v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Picker in modal</div>
-        <v-button text="Toggle" @change="mshown = !mshown"></v-button>
+        <v-button @change="mshown = !mshown">
+          Toggle
+        </v-button>
       </div>
     </v-panel>
 

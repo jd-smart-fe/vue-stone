@@ -12,7 +12,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Show/Hide Dialog</div>
-        <v-button text="actions" @change="click"></v-button>
+        <v-button @change="click">actions</v-button>
       </div>
     </v-panel>
 
@@ -38,16 +38,9 @@
           buttons: [
             {
               text: '查看详情',
-              /*callback() {
-                console.log('传递方法调用');
-                console.log(this);
-              },*/
             },
             {
               text: '我知道了',
-              /*callback() {
-                console.log('传递方法调用');
-              },*/
             },
           ],
         },
@@ -66,11 +59,6 @@
         console.log('触发 defaultClick 事件');
         this.showDialog = false;
       });
-
-      // this.$refs.dialog.$on('maskClick', () => {
-      //   console.log('maskClick');
-      //   this.showDialog = false;
-      // });
     },
 
     methods: {

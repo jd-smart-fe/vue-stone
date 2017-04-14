@@ -5,7 +5,9 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Action Sheet</div>
-        <v-button ref="btn" text="Toggle" @change="showActionSheet"></v-button>
+        <v-button ref="btn" @change="showActionSheet">
+          Toggle
+        </v-button>
       </div>
     </v-panel>
 

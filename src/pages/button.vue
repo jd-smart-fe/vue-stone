@@ -10,36 +10,49 @@
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-disabled: </div>
-        <v-button slot="main" @change="btnClickHandle" ref="button" text="左风向" icon="mode-holiday" :disabled="true"></v-button>
+        <v-button slot="main" :disabled="true">确认</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle" icon="mode-holiday"></v-button>
+        <v-button slot="main" @change="btnClickHandle">click</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <div slot="title" class="c-panel-title ">btn-toggle: </div>
-        <v-button slot="main" ref="btnSwitch" size="lg" text="开关"  v-model="power_state" icon="mode-holiday" @change="btnSwitchHandle" type="toggle" :initStatus="true"></v-button>
+        <v-button slot="main" ref="btnSwitch" v-model="power_state" @change="btnSwitchHandle" type="toggle" :initStatus="true" icon="mode-holiday">toggle</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div> 互斥 </div>
+        <div> 尺寸 </div>
       </div>
-      <div slot="body" style="padding: .12rem; ">
-        <v-button-group
-        style="margin-bottom: 20px;"
-        v-model="buttonGroup_value"
-        :items="buttonGroup1"
-        @change="exclusiveChangeHandle">
-        </v-button-group>
-        <v-button-group
-        v-model="buttonGroup_value"
-        :items="buttonGroup2"
-        @change="exclusiveChangeHandle">
-        </v-button-group>
+      <div slot="body" style="padding: .12rem;">
+        <v-button slot="main" size="small" @change="btnClickHandle">小按钮</v-button>
+        <v-button slot="main" size="base" @change="btnClickHandle">中按钮</v-button>
+        <v-button slot="main" size="large" @change="btnClickHandle">大按钮</v-button>
       </div>
 
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div> 形状 </div>
+      </div>
+      <div slot="body" style="padding: .12rem;">
+        <v-button slot="main" radius="small" @change="btnClickHandle">small</v-button>
+        <v-button slot="main" radius="circle" @change="btnClickHandle">circle</v-button>
+        <v-button slot="main" radius="circle" icon="power" @change="btnClickHandle"></v-button>
+      </div>
+
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div> 按钮组 </div>
+      </div>
+      <div slot="body" style="padding: .12rem;">
+        <v-button-group slot="main">
+          <v-button @change="btnClickHandle"><</v-button>
+          <v-button @change="btnClickHandle">1</v-button>
+          <v-button @change="btnClickHandle">2</v-button>
+          <v-button @change="btnClickHandle">></v-button>
+        </v-button-group>
+
+      </div>
     </v-panel>
   </div>
 </template>
