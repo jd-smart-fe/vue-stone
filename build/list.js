@@ -35,7 +35,7 @@ module.exports = {
     "dialog": ["mask"],
     "counter": ["button"],
     "button-group": ["button"],
-    "action-sheet": ["mask"],
+    "action-sheet": ["mask", "action-box"],
     "action-box": ["mask"],
     "timer": ["panel", "timepicker", "modes", "dialog",
       "switch", "dayspicker", "timer-task", "input", "checkboard"

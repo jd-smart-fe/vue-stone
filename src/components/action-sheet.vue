@@ -1,44 +1,35 @@
 <template lang="html">
-  <div class="">
-    <div :class='["c-action", value ? "c-action-active" : "" ]'>
-
-        <div class="c-action-warpper">
-          <div
-          v-for="(item, index) in items"
-          v-if="!item.isCancel"
-          class="c-action-item"
-          :style="`color: ${item.color};`"
-          @click="clickHandle(index)"
-          >
-          {{ item.text }}
-        </div>
+  <v-action-box :value="value">
+    <div class="c-action-sheet-warpper">
+      <div
+      v-for="(item, index) in items"
+      v-if="!item.isCancel"
+      class="c-action-sheet-item"
+      :style="`color: ${item.color};`"
+      @click="clickHandle(index)"
+      >
+        {{ item.text }}
       </div>
-
-      <div class="c-action-warpper">
-        <template v-if="_cancelItem.length > 0">
-          <div
-          v-for="item in _cancelItem"
-          class="c-action-cancel"
-          :style="`color: ${item.color};`"
-          @click="cancelHandle">
-            {{ item.text }}
-          </div>
-        </template>
-
-        <template v-else>
-          <div class="c-action-cancel" @click="cancelHandle">
-            取消
-          </div>
-        </template>
-
-      </div>
-
     </div>
 
-    <transition name="fade">
-      <v-mask v-show="value" :shown="mask_shown"></v-mask>
-    </transition>
-  </div>
+    <div class="c-action-sheet-warpper">
+      <template v-if="_cancelItem.length > 0">
+        <div
+        v-for="item in _cancelItem"
+        class="c-action-sheet-cancel"
+        :style="`color: ${item.color};`"
+        @click="cancelHandle">
+          {{ item.text }}
+        </div>
+      </template>
+
+      <template v-else>
+        <div class="c-action-sheet-cancel" @click="cancelHandle">
+          取消
+        </div>
+      </template>
+    </div>
+  </v-action-box>
 </template>
 
 <script>
@@ -131,20 +122,20 @@ export default {
       transform: translate(0, -100%);
     }
 
-    .c-action-warpper{
+    .c-action-sheet-warpper{
       background: #fff;
       border-radius: 4px;
+      margin: 0 .05rem;
       margin-bottom: 12px;
-
 
       > div{
         padding: 12px;
       }
     }
 
-    .c-action-item{
+    .c-action-sheet-item{
 
-      + .c-action-item{
+      + .c-action-sheet-item{
         border-top: 1px solid #999;
       }
     }
