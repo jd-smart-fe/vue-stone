@@ -12,23 +12,23 @@
  -->
 
 <template>
-  <div
+  <button
   :data-value="`${status}`"
-  :class="[ btnCls,
+  :class="[ 'c-btn',
             `c-btn-${size}`,
-            disabled ? disabledCls : '',
-            hover ? hoverCls : '',
-            status ? activeCls : '',
+            disabled ? 'c-btn-disabled' : '',
+            active ? 'c-btn-hover' : '',
+            status ? 'c-btn-on' : '',
+            iconOnly ? 'c-btn-icon-only' : '',
+            'c-btn-radius-' + radius,
           ]"
-  :text="text"
-  :type="type"
   @touchstart="touchstartHandle"
   @touchend="touchendHandle"
   @touchcancel="touchcancelHandle"
   >
     <span v-if="icon !== '' " :class="['c-btn-icon', `icon-${icon}`]"></span>
-    <span v-if="text !== '' " >{{ text }}</span>
-  </div>
+    <span class="c-btn-content"><slot></slot></span>
+  </button>
 </template>
 
 <script>
@@ -42,21 +42,14 @@ export default {
 
   data() {
     return {
-      hover: false,
+      active: false,
       longTapFlag: false,
       status: this.init_status,
+      iconOnly: false,
     };
   },
 
   props: {
-    // optinos
-    options: {
-      type: Object,
-      required: false,
-      default() {
-        return {};
-      },
-    },
     // 按钮类型
     type: {
       type: String,
@@ -83,9 +76,9 @@ export default {
       // required: false,
       default: 'base',
       validator(value) {
-        const list = ['sm', 'base', 'lg'];
-        if (list.indexOf(value) < 0) {
+        const list = ['small', 'base', 'large'];
 
+        if (list.indexOf(value) < 0) {
           units.warn({
             com: 'v-button',
             prop: 'size',
@@ -93,20 +86,19 @@ export default {
           });
           return false;
         }
+
         return true;
       },
     },
-    // 按钮文本
-    text: {
-      type: String,
-      required: false,
-      default: '',
-    },
-    // 按钮icon
+    // 按钮图标
     icon: {
       type: String,
       required: false,
       default: '',
+    },
+    radius: {
+      type: String,
+      default: 'circle', // none small circle
     },
     // 是否禁用按钮
     disabled: {
@@ -114,36 +106,6 @@ export default {
       reuqired: false,
       default: false,
     },
-    // 指定按钮按默认样式类
-    btnCls: {
-      type: String,
-      required: false,
-      default: 'c-btn',
-    },
-    // 指定按钮按下去的样式类
-    hoverCls: {
-      type: String,
-      required: false,
-      default: 'c-btn-hover',
-    },
-    // 指定disabled的样式类
-    disabledCls: {
-      type: String,
-      required: false,
-      default: 'c-btn-disabled',
-    },
-    // 指定按钮激活时的样式类， 仅对toggle按钮有效
-    activeCls: {
-      type: String,
-      required: false,
-      default: 'c-btn-on',
-    },
-    // 指定按钮激活时按下去的样式类， 仅对toggle按钮有效
-    // activeHoverCls: {
-    //   type: String,
-    //   required: false,
-    //   default: 'c-btn-on',
-    // },
     // 是否开启长按功能
     longTap: {
       type: Boolean,
@@ -166,7 +128,6 @@ export default {
   },
 
   watch: {
-
     longTapFlag(val) {
       if (longTapInterval) {
         window.clearInterval(longTapInterval);
@@ -194,6 +155,12 @@ export default {
     },
   },
 
+  created() {
+    if (!Object.hasOwnProperty.call(this.$slots, 'default') && this.icon) {
+      this.iconOnly = true;
+    }
+  },
+
   methods: {
     // 通过调用update的方式去改变status；
     update(boolean) {
@@ -216,10 +183,10 @@ export default {
       }
       // 按钮被禁用
       if (this.disabled) {
-        this.hover = false;
+        this.active = false;
         return;
       }
-      this.hover = true;
+      this.active = true;
     },
 
     touchendHandle() {
@@ -232,11 +199,11 @@ export default {
       // 按钮禁用状态
       if (this.disabled) {
         // 按钮禁用后解除按下的状态
-        this.hover = false;
+        this.active = false;
         return;
       }
       // 解除按下状态
-      this.hover = false;
+      this.active = false;
 
       // click 型按钮，无需改变status值，直接分发change事件
       if (this.type === 'click') {
@@ -258,101 +225,170 @@ export default {
       this.touchendHandle();
     },
   },
-
-
 };
+
 </script>
 
 <style>
-  @import '../styles/default-theme/variables.css';
-  @import '../styles/mixins.css';
+@import '../styles/default-theme/variables.css';
+@import '../styles/mixins.css';
 
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  .c-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @mixin border;
+  border-color: $c-primary;
+  border-color: $c-primary;
 
-    @mixin border;
-    border-color: $c-primary;
-    border-radius: @width;
-    border-color: $c-primary;
+  color: $c-primary;
 
-    color: $c-primary;
-    font-size: $font-size-base;
+  cursor: pointer;
+  -webkit-tap-highlight-color:rgba(0, 0, 0, 0);
 
-    /**
-     * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
-     */
-    background-clip: padding-box;
+  /**
+   * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
+   */
+  background-clip: padding-box;
+  background-color: transparent;
 
-    @mixin transition;
+  @mixin transition;
 
-    span {
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    span + span{
-      margin-left: 0.05rem;
-      margin-bottom: -1px;
-    }
+  span {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
-  .c-btn-hover{
-    background: $btn-hover;
-
-    &.c-btn-on{
-      background-color: $c-primary-on;
-    }
-  }
-
-  .c-btn-on{
-    color: $white;
-    background-color: $blue;
-  }
-
-  .c-btn-base {
-    width: $btn-width-base;
-    height: $btn-height-base;
-
-    border-radius: @width;
-  }
-
-  .c-btn-sm {
-    width: $btn-width-sm;
-    height: $btn-height-sm;
-
-    border-radius: @width;
-  }
-
-  .c-btn-lg {
-    width: $btn-width-lg;
-    height: $btn-height-lg;
-
-    border-radius: @width;
-  }
-
-  #app .c-btn-disabled {
-    color: $btn-disabled;
+  &.c-btn-disabled {
+    opacity: .6;
+    /*color: $btn-disabled;*/
+    /*border-color: $btn-disabled;*/
     /*background-color: $btn-disabled;*/
-    border-color: $btn-disabled;
+  }
+}
+
+.c-btn-hover{
+  background: $btn-hover;
+
+  &.c-btn-on{
+    background-color: $c-primary-on;
+  }
+}
+
+.c-btn-on{
+  color: $white;
+  background-color: $blue;
+}
+
+.c-btn-base {
+  font-size: $btn-fontsize-base;
+  line-height: $btn-fontsize-base;
+
+  padding: $btn-padding-base;
+}
+
+.c-btn-small {
+  font-size: $btn-fontsize-sm;
+  line-height: $btn-fontsize-sm;
+
+  padding: $btn-padding-sm;
+}
+
+.c-btn-large {
+  font-size: $btn-fontsize-lg;
+  line-height: $btn-fontsize-lg;
+
+  padding: $btn-padding-lg;
+}
+
+.c-btn-radius-none {
+  border-radius: 0;
+}
+
+.c-btn-radius-small {
+  border-radius: $btn-radius-sm;
+}
+
+.c-btn-radius-circle {
+  border-radius: 999rem;
+}
+
+.c-btn-content {
+  vertical-align: middle;
+}
+
+.c-btn-icon{
+  display: inline-block;
+
+  vertical-align: middle;
+  /*font-size: calc($font-size-base + 4px);*/
+  /*margin-right: 0.05rem;*/
+
+  &:before{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+.c-btn-icon-only {
+  border-radius: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.c-btn-small {
+    width: .24rem;
+    height: .24rem;
+    font-size: .12rem;
   }
 
-
-  .c-btn-icon{
-    font-size: calc($font-size-base + 4px);
-
-    &:before{
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
+  &.c-btn-base {
+    width: .32rem;
+    height: .32rem;
+    font-size: .16rem;
   }
+
+  &.c-btn-large {
+    width: .44rem;
+    height: .44rem;
+    font-size: .22rem;
+  }
+}
+
+.c-btn-group {
+
+  display: flex;
+
+  .c-btn:first-child {
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .c-btn:last-child {
+    border-left-width: 1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .c-btn:not(:first-child):not(:last-child){
+    border-left-width: 1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    border-right: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+}
 </style>
