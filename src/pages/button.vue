@@ -46,7 +46,7 @@
       </div>
       <div slot="body" style="padding: .12rem;">
         <v-button-group slot="main">
-          <v-button @change="btnClickHandle"><</v-button>
+          <v-button @change="btnClickHandle">0</v-button>
           <v-button @change="btnClickHandle">1</v-button>
           <v-button @change="btnClickHandle">2</v-button>
           <v-button @change="btnClickHandle">></v-button>
