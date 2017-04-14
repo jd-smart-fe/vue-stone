@@ -13,21 +13,22 @@
 
 <template>
   <button
-  :data-value="`${status}`"
-  :class="[ 'c-btn',
-            `c-btn-${size}`,
-            disabled ? 'c-btn-disabled' : '',
-            active ? 'c-btn-hover' : '',
-            status ? 'c-btn-on' : '',
-            iconOnly ? 'c-btn-icon-only' : '',
-            'c-btn-radius-' + radius,
-          ]"
-  @touchstart="touchstartHandle"
-  @touchend="touchendHandle"
-  @touchcancel="touchcancelHandle"
+    :data-value="`${status}`"
+    :class="[ 'c-btn',
+              `c-btn-${size}`,
+              disabled ? 'c-btn-disabled' : '',
+              active ? 'c-btn-hover' : '',
+              status ? 'c-btn-on' : '',
+              iconOnly ? 'c-btn-icon-only' : '',
+              'c-btn-radius-' + radius,
+            ]"
+    :type="htmlType"
+    @touchstart="touchstartHandle"
+    @touchend="touchendHandle"
+    @touchcancel="touchcancelHandle"
   >
     <span v-if="icon !== '' " :class="['c-btn-icon', `icon-${icon}`]"></span>
-    <span class="c-btn-content"><slot></slot></span>
+    <span v-show="!iconOnly" class="c-btn-content"><slot></slot></span>
   </button>
 </template>
 
@@ -98,7 +99,7 @@ export default {
     },
     radius: {
       type: String,
-      default: 'circle', // none small circle
+      default: 'small', // none small circle
     },
     // 是否禁用按钮
     disabled: {
@@ -124,6 +125,10 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    htmlType: {
+      type: String,
+      default: 'button',
     },
   },
 
@@ -265,9 +270,9 @@ export default {
   }
 
   &.c-btn-disabled {
-    opacity: .6;
-    /*color: $btn-disabled;*/
-    /*border-color: $btn-disabled;*/
+    /*opacity: .6;*/
+    color: $btn-disabled;
+    border-color: $btn-disabled;
     /*background-color: $btn-disabled;*/
   }
 }
@@ -327,7 +332,6 @@ export default {
 
   vertical-align: middle;
   /*font-size: calc($font-size-base + 4px);*/
-  /*margin-right: 0.05rem;*/
 
   &:before{
     -webkit-touch-callout: none;
@@ -336,14 +340,16 @@ export default {
     -ms-user-select: none;
     user-select: none;
   }
+
+  + span {
+    margin-left: 0.05rem;
+  }
 }
 
 .c-btn-icon-only {
-  border-radius: 100%;
+
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 100%;
 
   &.c-btn-small {
     width: .24rem;

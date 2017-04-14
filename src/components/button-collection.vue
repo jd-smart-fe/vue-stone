@@ -16,7 +16,7 @@
 <script>
 export default {
 
-  name: 'v-button-group',
+  name: 'v-button-collection',
 
   data() {
     return {
