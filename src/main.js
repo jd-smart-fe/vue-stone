@@ -39,6 +39,8 @@ const list = [{
   name: 'switch',
 }, {
   name: 'transition',
+}, {
+  name: 'toast',
 }];
 
 Vue.use(VueRouter);

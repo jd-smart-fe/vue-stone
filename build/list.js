@@ -26,6 +26,7 @@ if (process.env.NODE_ENV !== 'production') {
       "timepicker",
       "transition",
       "slide",
+      'toast',
   ];
 }
 

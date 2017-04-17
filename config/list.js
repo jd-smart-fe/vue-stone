@@ -22,4 +22,5 @@ module.exports = [
   "timepicker",
   "transition",
   "slide",
+  'toast',
 ];

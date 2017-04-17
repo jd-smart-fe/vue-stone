@@ -110,6 +110,13 @@
       </div>
     </v-panel>
 
+    <v-panel>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('toast')">
+        <div class="c-panel-title"> Toast </div>
+        <span class='icon icon-pull-right'></span>
+      </div>
+    </v-panel>
+
     <div style="height: 20px;"></div>
   </div>
 </template>

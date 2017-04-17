@@ -1,16 +1,10 @@
 <template>
 
   <div>
-    <div class="page-header row-2 u-cross-center">
-      <div class="page-header-left u-cross-center row-2">
-        <router-link to="/" class="back-link">
-          <span class="icon icon-pull-left page-header-icon"></span>返回
-        </router-link>
-      </div>
-    </div>
+    <tmpl-back></tmpl-back>
 
     <v-panel>
-      <div slot="body" class="c-panel-body row-1 u-cross-center">
+      <div slot="body" class="c-panel-body u-cross-center">
         <div class="">Show/Hide Dialog</div>
         <v-button @click.native="click">action</v-button>
       </div>
