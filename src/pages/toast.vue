@@ -3,12 +3,11 @@
   <div>
     <tmpl-back></tmpl-back>
 
-
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="">Show Toast</div>
         <v-button ref="btn" @change="toast_show = true">
-          Toggle
+          Show
         </v-button>
       </div>
     </v-panel>

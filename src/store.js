@@ -2,6 +2,10 @@ import './units/default';
 import './components/_style';
 import './components/_style_transition';
 import list from '../libs/comlist';
+import VueLogger from './libs/vue-logger';
+
+const plugins = [];
+plugins.push(VueLogger);
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -15,8 +19,9 @@ const install = (Vue, options = {}) => {
       return;
     }
 
-    const component = require(`./components/${val}.vue`); // eslint-disable-line global-require
-    Vue.component(component.name, component);
+    const Component = Vue.extend(require(`./components/${val}.vue`)); // eslint-disable-line global-require
+    // Utils.logWrapper(Component);
+    Vue.component(Component.options.name, Component);
   });
 
   install.installed = true;
@@ -25,9 +30,11 @@ install.installed = false;
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
+  VueLogger.install(window.Vue);
 }
 
 const Store = {
   install,
+  plugins,
 };
 export default Store;

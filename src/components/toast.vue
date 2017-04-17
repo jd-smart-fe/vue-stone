@@ -35,6 +35,7 @@
         return;
       }
       this.timer = setTimeout(() => {
+        this.$log('hide');
         this.hide(false);
       }, this.duration);
     },

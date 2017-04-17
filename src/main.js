@@ -45,6 +45,9 @@ const list = [{
 
 Vue.use(VueRouter);
 Store.install(Vue);
+Store.plugins.forEach((plugin) => {
+  Vue.use(plugin);
+});
 
 Vue.component('tmpl-back', TmplBack);
 
