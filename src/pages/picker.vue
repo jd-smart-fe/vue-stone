@@ -6,14 +6,14 @@
     <v-panel>
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Picker embed in the page</div>
-        <v-button @change="ishown = !ishown">
+        <v-button @click.native="ishown = !ishown">
           Toggle
         </v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div class="">Picker in modal</div>
-        <v-button @change="mshown = !mshown">
+        <v-button @click.native="mshown = !mshown">
           Toggle
         </v-button>
       </div>

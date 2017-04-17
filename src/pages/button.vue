@@ -9,49 +9,55 @@
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div slot="title" class="c-panel-title ">btn-disabled: </div>
-        <v-button slot="main" :disabled="true">确认</v-button>
+        <div slot="title" class="c-panel-title ">禁用 disabled: </div>
+        <v-button :disabled="true">确认</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div slot="title" class="c-panel-title ">btn-click: </div>
-        <v-button slot="main" @change="btnClickHandle">click</v-button>
-      </div>
-
-      <div slot="body" class="c-panel-body row-2 u-cross-center">
-        <div slot="title" class="c-panel-title ">btn-toggle: </div>
-        <v-button slot="main" ref="btnSwitch" v-model="power_state" @change="btnSwitchHandle" type="toggle" :initStatus="true" icon="mode-holiday">toggle</v-button>
-      </div>
-
-      <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div> 尺寸 </div>
+        <div> 尺寸 size</div>
       </div>
       <div slot="body" style="padding: .12rem;">
-        <v-button slot="main" size="small" @change="btnClickHandle">小按钮</v-button>
-        <v-button slot="main" size="base" @change="btnClickHandle">中按钮</v-button>
-        <v-button slot="main" size="large" @change="btnClickHandle">大按钮</v-button>
+        <v-button size="small" @click.native="btnClickHandle">小按钮</v-button>
+        <v-button @click.native="btnClickHandle">中按钮</v-button>
+        <v-button size="large" @click.native="btnClickHandle">大按钮</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div> 形状 </div>
+        <div> 形状 radius</div>
       </div>
       <div slot="body" style="padding: .12rem;">
-        <v-button slot="main" radius="small" @change="btnClickHandle">small</v-button>
-        <v-button slot="main" radius="circle" @change="btnClickHandle">circle</v-button>
-        <v-button slot="main" radius="circle" icon="power" @change="btnClickHandle"></v-button>
+        <v-button @click.native="btnClickHandle">small</v-button>
+        <v-button radius="circle" @click.native="btnClickHandle">circle</v-button>
+        <v-button radius="circle" icon="power" @click.native="btnClickHandle"></v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div> 按钮组 </div>
+        <div> 图标 icon</div>
       </div>
       <div slot="body" style="padding: .12rem;">
-        <v-button-group slot="main">
-          <v-button @change="btnClickHandle">0</v-button>
-          <v-button @change="btnClickHandle">1</v-button>
-          <v-button @change="btnClickHandle">2</v-button>
-          <v-button @change="btnClickHandle">></v-button>
+        <v-button icon="mode-holiday">取暖</v-button>
+        <v-button icon="shirt" radius="circle" @click.native="btnClickHandle">洗衣</v-button>
+        <v-button radius="circle" icon="power" @click.native="btnClickHandle"></v-button>
+      </div>
+
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div slot="title" class="c-panel-title ">开关 button-switch </div>
+      </div>
+      <div slot="body" style="padding: .12rem;">
+        <v-button-switch v-model="buttonSwitchValue">toggle</v-button-switch>
+        <v-button-switch v-model="switchValue" icon="power" radius="circle"></v-button-switch>
+      </div>
+
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div> 按钮组 button-group</div>
+      </div>
+      <div slot="body" style="padding: .12rem;">
+        <v-button-group>
+          <v-button @click.native="btnClickHandle">0</v-button>
+          <v-button @click.native="btnClickHandle">1</v-button>
+          <v-button @click.native="btnClickHandle">2</v-button>
+          <v-button @click.native="btnClickHandle">4</v-button>
         </v-button-group>
-
       </div>
     </v-panel>
   </div>
@@ -64,6 +70,8 @@
 
     data() {
       return {
+        switchValue: false,
+        buttonSwitchValue: false,
         power_state: true,
         buttonGroup_value: 2,
         buttonGroup1: [

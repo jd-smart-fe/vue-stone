@@ -108,7 +108,7 @@
       param: options.param || [],
     };
 
-    const paramStr = `'${opt.param.join("' '")}'`;
+    const paramStr = `${opt.param.join(',')}`;
 
     const str = `[${opt.com}] prop '${opt.prop}' error: yon pass an invalid value, please pass a value in ${paramStr}`;
 

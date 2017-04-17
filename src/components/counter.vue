@@ -6,19 +6,17 @@
       class="c-counter-inc"
       icon="plus"
       size="large"
-      :longTap="longTap"
       :disabled="incDisabled"
-      @change="incHandle"
+      @touchend.native="incHandle"
       ></v-button>
 
       <v-button
       ref="dec"
-      class="c-counter-dec"
+      :class="['c-counter-dec', decDisabled ? 'c-counter-left-border' : '']"
       icon="minus"
       size="large"
-      :longTap="longTap"
       :disabled="decDisabled"
-      @change="decHandle"
+      @touchend.native="decHandle"
       ></v-button>
     </v-button-group>
   </div>
@@ -88,12 +86,10 @@ export default {
     value(val) {
       if (val >= this.max) {
         this.incDisabled = true;
-        this.$refs.inc.stopInterval();
         return;
       }
       if (val <= this.min) {
         this.decDisabled = true;
-        this.$refs.dec.stopInterval();
         return;
       }
 
@@ -129,8 +125,10 @@ export default {
     },
   },
 };
-// width: 206.7;
-// height: 69.44;
-// + : 22.60
-
 </script>
+
+<style>
+.c-counter-dec.c-counter-left-border {
+  border-left-color: #59B8FC;
+}
+</style>

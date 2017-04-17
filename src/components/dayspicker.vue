@@ -1,36 +1,30 @@
 <template>
   <div :class="['c-dayspicker']">
     <div class="c-dayspicker-quick">
-      <!-- <v-button-group :items="quick_list">
+      <!-- <v-button-switch-group :items="quick_list">
       </v-button-group> -->
-      <v-button
+      <v-button-switch
         v-for="(item, index) in quick_list"
         ref="quick"
-        type="toggle"
         size="small"
         radius="small"
-        :init_status="quick_state_list[index]"
-        @turnOn="quickOnHandle(index)"
-        @touchend.native="quickEndNativeHandle(index)"
-        @touchcancel.native="quickEndNativeHandle(index)"
+        :value="quick_state_list[index]"
+        @touchend.native="quickOnHandle(index)"
       >
       {{ item }}
-      </v-button>
+    </v-button-switch>
     </div>
     <div class="c-dayspicker-body">
-      <v-button
+      <v-button-switch
         v-for="(item, index) in days_list"
         ref="days"
-        :text="item"
-        type="toggle"
         size="small"
         radius="small"
-        :init_status="days_state_list[index]"
-        @turnOn="daysOnHandle(index)"
-        @turnOff="daysOffHandle(index)"
+        :value="days_state_list[index]"
+        @change="daysHandle(index)"
       >
       {{ item }}
-      </v-button>
+    </v-button-switch>
     </div>
   </div>
 </template>
@@ -85,17 +79,17 @@
           // '周末'选中
           this.quick_list.forEach((val, ind) => {
             if (ind === 2) {
-              this.$refs.quick[ind].update(true);
+              this.quick_state_list.splice(ind, 1, true);
             } else {
-              this.$refs.quick[ind].update(false);
+              this.quick_state_list.splice(ind, 1, false);
             }
           });
 
           this.days_list.forEach((val, ind) => {
             if (ind >= 5) {
-              this.$refs.days[ind].update(true);
+              this.days_state_list.splice(ind, 1, true);
             } else {
-              this.$refs.days[ind].update(false);
+              this.days_state_list.splice(ind, 1, false);
             }
           });
 
@@ -104,17 +98,17 @@
           // '工作日'选中
           this.quick_list.forEach((val, ind) => {
             if (ind === 1) {
-              this.$refs.quick[ind].update(true);
+              this.quick_state_list.splice(ind, 1, true);
             } else {
-              this.$refs.quick[ind].update(false);
+              this.quick_state_list.splice(ind, 1, false);
             }
           });
 
           this.days_list.forEach((val, ind) => {
             if (ind >= 5) {
-              this.$refs.days[ind].update(false);
+              this.days_state_list.splice(ind, 1, false);
             } else {
-              this.$refs.days[ind].update(true);
+              this.days_state_list.splice(ind, 1, true);
             }
           });
 
@@ -123,40 +117,41 @@
           // '每天'选中
           this.quick_list.forEach((val, ind) => {
             if (ind === 0) {
-              this.$refs.quick[ind].update(true);
+              this.quick_state_list.splice(ind, 1, true);
             } else {
-              this.$refs.quick[ind].update(false);
+              this.quick_state_list.splice(ind, 1, false);
             }
           });
 
           this.days_list.forEach((val, ind) => {
-
-            this.$refs.days[ind].update(true);
+            this.days_state_list.splice(ind, 1, true);
           });
 
         } else {
 
           // 全不选中
           this.quick_list.forEach((val, ind) => {
-
-            this.$refs.quick[ind].update(false);
+            this.quick_state_list.splice(ind, 1, false);
           });
 
           // 如果选择的天数为0
           if (value.length === 0) {
 
             this.days_list.forEach((val, ind) => {
-              this.$refs.days[ind].update(false);
+              this.days_state_list.splice(ind, 1, false);
             });
 
           } else {
-            value.forEach((val) => {
-              this.$refs.days[parseInt((val - 1), 10)].update(true);
-            });
+
+            for (let i = 1; i < 8; i += 1) {
+              if (value.indexOf(i) !== -1) {
+                this.days_state_list.splice(parseInt((i - 1), 10), 1, true);
+              } else {
+                this.days_state_list.splice(parseInt((i - 1), 10), 1, false);
+              }
+            }
           }
-
         }
-
       },
 
       quickOnHandle(index) {
@@ -207,8 +202,15 @@
         // this.$emit('change', this.selected_days);
       },
 
-      daysOnHandle(index) {
+      daysHandle(index) {
+        if (this.days_state_list[index]) {
+          this.daysOffHandle(index);
+        } else {
+          this.daysOnHandle(index);
+        }
+      },
 
+      daysOnHandle(index) {
         const currVal = index + 1;
         // 判断this.selected_days里是否存在
         const has = this.selected_days.findIndex((val) => val === currVal);
@@ -239,14 +241,13 @@
       quickEndNativeHandle(index) {
 
         const thisStatus = this.$refs.quick[index].status;
-
+        console.log(thisStatus);
         if (!thisStatus) {
           this.days_list.forEach((val, ind) => {
-            this.$refs.days[ind].update(false);
+            this.days_state_list.splice(ind, 1, false);
           });
 
           this.selected_days = [];
-          // this.$emit('change', this.selected_days);
         }
       },
     },
