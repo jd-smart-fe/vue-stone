@@ -7,6 +7,13 @@
         <div slot="title" class="c-panel-title">Switch: </div>
         <v-switch slot="main" v-model="switch_state" ref="switch"></v-switch>
       </div>
+
+      <div slot="body" class="c-panel-body u-cross-center">
+        <div class="c-panel-title">Async Switch: </div>
+        <v-switch v-model="switch_async_state" ref="asyncSwitch"
+          :hold="true" @change="update"
+          ></v-switch>
+      </div>
     </v-panel>
 
     <v-panel>
@@ -26,6 +33,7 @@
     data() {
       return {
         switch_state: true,
+        switch_async_state: true,
         power_state: true,
       };
     },
@@ -43,6 +51,12 @@
     },
 
     methods: {
+      update(val) {
+        this.$log(val);
+        setTimeout(() => {
+          this.switch_async_state = val;
+        }, 1000);
+      },
     },
   };
 </script>

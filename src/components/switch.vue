@@ -42,12 +42,12 @@
           return;
         }
 
+        const val = !this.value;
         if (this.hold) {
-          this.$emit('change', this.value);
+          this.$emit('change', val);
           return;
         }
 
-        const val = !this.value;
         this.$emit('input', val);
         this.$emit('change', val);
       },

@@ -6,9 +6,7 @@
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="">Show Toast</div>
-        <v-button ref="btn" @change="toast_show = true">
-          Show
-        </v-button>
+        <v-button ref="btn" @click.native="toast_show = true"> Show </v-button>
       </div>
     </v-panel>
 
