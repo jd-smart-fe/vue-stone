@@ -21,9 +21,6 @@ size  | String  | 'base' |  定义按钮大小，可选值 'small', 'base', 'lar
 icon  | String  | ''  |  定义按钮图标。
 radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle',
 disabled | Boolean | false | 是否禁用按钮。
-longTap   | Boolean | false | 是否开启长按功能。
-initStatus | Boolean |  false |  按钮初始状态，当值为true时，按钮处于激活状态。只支持type值为toggle的按钮。
-hold | Boolean | false | 按钮是否维持住当前状态。值为true时，点击按钮不会改变按钮的状态，会触发change事件。
 htmlType | String | 'button' | 设置按钮原生 type 参数
 
 

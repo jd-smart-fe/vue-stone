@@ -1,7 +1,7 @@
 <template lang="html">
   <v-button :size="size" :icon='icon' :radius='radius' :disabled='disabled' :htmlType='htmlType'
     :class="[
-      value ? 'c-btn-on' : ''
+      insideValue ? 'c-btn-on' : ''
     ]"
     @touchend.native="handleTouchend">
     <slot></slot></v-button>
@@ -10,10 +10,15 @@
 <script>
 export default {
   name: 'v-button-switch',
+
   data() {
     return {
+      // insideValue 保证了在组件不依赖与 value 值的传入
+      insideValue: this.value,
+      keep: false,
     };
   },
+
   props: {
     value: {
       type: Boolean,
@@ -45,12 +50,32 @@ export default {
     },
   },
 
-  methods: {
-    handleTouchend() {
-      if (this.disabled || this.hold) return;
+  watch: {
+    value(val) {
+      this.insideValue = val;
+      this.keep = false;
+    },
 
-      this.$emit('change', !this.value);
-      this.$emit('input', !this.value);
+    insideValue(val) {
+      this.$emit('input', val);
+    },
+  },
+
+  methods: {
+    update(val) {
+      this.$emit('input', val);
+    },
+
+    handleTouchend() {
+      if (this.disabled || this.keep) return;
+
+      this.$emit('change', !this.insideValue);
+
+      if (this.hold && !this.keep) {
+        this.keep = true;
+        return;
+      }
+      this.insideValue = !this.insideValue;
     },
   },
 };

@@ -45,6 +45,16 @@ export default {
       }
     },
   },
+
+  methods: {
+    close() {
+      this.$emit('input', false);
+    },
+
+    open() {
+      this.$emit('input', true);
+    },
+  },
 };
 </script>
 

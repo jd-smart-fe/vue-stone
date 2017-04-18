@@ -7,15 +7,6 @@
 <script>
 export default {
   name: 'v-button-group',
-
-  data() {
-    return {
-    };
-  },
-
-  props: {
-
-  },
 };
 </script>
 

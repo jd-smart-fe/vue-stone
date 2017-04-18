@@ -41,11 +41,16 @@
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div slot="title" class="c-panel-title ">开关 button-switch </div>
+        <div class="c-panel-title ">开关 button-switch </div>
       </div>
       <div slot="body" style="padding: .12rem;">
         <v-button-switch v-model="buttonSwitchValue">toggle</v-button-switch>
         <v-button-switch v-model="switchValue" icon="power" radius="circle"></v-button-switch>
+      </div>
+
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div class="c-panel-title ">Async button-switch: </div>
+        <v-button-switch :hold="true" v-model="asyncSwitchValue" @change="handleAsync">确认</v-button-switch>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
@@ -70,6 +75,7 @@
 
     data() {
       return {
+        asyncSwitchValue: false,
         switchValue: false,
         buttonSwitchValue: false,
         power_state: true,
@@ -118,6 +124,14 @@
 
       exclusiveChangeHandle(index) {
         console.log(`第${index}个按钮被激活`);
+      },
+
+      handleAsync(val) {
+        console.log(val);
+
+        setTimeout(() => {
+          this.asyncSwitchValue = !this.asyncSwitchValue;
+        }, 1000);
       },
     },
   };

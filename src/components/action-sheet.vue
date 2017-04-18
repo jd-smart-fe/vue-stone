@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-action-box :value="value">
+  <v-action-box :value="value" ref="box">
     <div class="c-action-sheet-warpper">
       <div
       v-for="(item, index) in items"
@@ -96,6 +96,14 @@ export default {
     cancelHandle() {
       this.$emit('change', -1);
       this.$emit('input', false);
+    },
+
+    close() {
+      this.$refs.box.close();
+    },
+
+    open() {
+      this.$refs.box.open();
     },
   },
 };
