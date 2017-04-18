@@ -39,7 +39,7 @@ $orange: #f76b46;
 
 $dayspicker-item-width: 0.5rem;
 $dayspicker-item-height: 0.22rem;
-$dayspicker-item-radius: 0.04rem;
+$dayspicker-item-radius: 4px;
 $dayspicker-padding-y: 0.12rem;
 
 $t-dayspicker-font-size: $font-size-sm;
@@ -50,12 +50,12 @@ $t-dayspicker-lightcolor: $blue;
 
 /********************  range  ********************/
 $range-padding-y: 0.16rem;
-$range-slide-height: 0.02rem;
-$range-slide-button-size: 0.24rem;
+$range-slide-height: 2px;
+$range-slide-button-size: 24px;
 $range-padding-x: calc($range-slide-button-size/2);
-$range-slide-button-border: 0.02rem;
-$range-slide-stepdot-size: 0.04rem;
-$range-slide-dot-size: 0.24rem;
+$range-slide-button-border: 2px;
+$range-slide-stepdot-size: 4px;
+$range-slide-dot-size: 24px;
 
 $t-range-defcolor: $gray-lighter;
 $t-range-lightcolor: $c-primary;
