@@ -14,6 +14,11 @@
           :hold="true" @change="update"
           ></v-switch>
       </div>
+
+      <div slot="body" class="c-panel-body u-cross-center">
+        <div class="c-panel-title">Disabled Switch: </div>
+        <v-switch v-model="switch_disabled_state" :disabled="true"></v-switch>
+      </div>
     </v-panel>
 
     <v-panel>
@@ -34,6 +39,7 @@
       return {
         switch_state: true,
         switch_async_state: true,
+        switch_disabled_state: false,
         power_state: true,
       };
     },

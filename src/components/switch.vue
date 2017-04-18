@@ -1,7 +1,8 @@
 <template>
 
-	<div
-    :class="['c-switch', disabled ? 'is-disabled' : '', value ? 'is-on' : 'is-off']"
+	<div :class="['c-switch',
+      disabled && 'c-switch-disabled',
+      value ? 'c-switch-on' : 'c-switch-off']"
     @click="handle">
 		<span class="c-switch-button"></span>
 	</div>
@@ -32,7 +33,18 @@
     },
 
     data() {
-      return {};
+      return {
+        keep: false,  // false: 可以响应，true： 不可响应交互
+      };
+    },
+
+    watch: {
+
+      value() {
+        if (this.hold) {
+          this.keep = false;
+        }
+      },
     },
 
     methods: {
@@ -42,8 +54,13 @@
           return;
         }
 
+        if (this.keep) {
+          return;
+        }
+
         const val = !this.value;
         if (this.hold) {
+          this.keep = true;
           this.$emit('change', val);
           return;
         }
@@ -71,7 +88,9 @@
 	@import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-	.c-switch {
+  $prefix: .c-switch;
+
+	$prefix {
 
     position: relative;
 		display: inline-block;
@@ -84,7 +103,8 @@
 		border-radius: 50px;
     -webkit-flex:none;
     flex:none;
-		.c-switch-button {
+
+    $(prefix)-button {
 
 			top: calc($swtich-height / 2);
 	    left: 0;
@@ -99,21 +119,21 @@
 	    z-index: 2;
 	    background-color: $t-switch-offcolor;
 		}
-
-    &.is-disable {
-      /* TODO: border-color, background-clor */
-    }
-
-    &.is-on {
-      border-color: $t-switch-oncolor;
-      .c-switch-button {
-        background-color: $t-switch-oncolor;
-        transform: translate(calc($switch-width - $switch-button-padding-x - $swtich-button-size), calc(-$swtich-button-size / 2));
-      }
-    }
-
-    &.is-off {
-
-    }
 	}
+
+  $(prefix)-disabled {
+    /* TODO: border-color, background-clor */
+    /* on 和 off 都需要*/
+  }
+
+  $(prefix)-on {
+    border-color: $t-switch-oncolor;
+    $(prefix)-button {
+      background-color: $t-switch-oncolor;
+      transform: translate(calc($switch-width - $switch-button-padding-x - $swtich-button-size), calc(-$swtich-button-size / 2));
+    }
+  }
+  $(prefix)-off {
+
+  }
 </style>
