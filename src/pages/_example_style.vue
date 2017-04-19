@@ -22,6 +22,7 @@
   .page-header {
 
     @mixin box-shadow;
+    @mixin cross-center;
 
     line-height: calc($grid-size * 2);
     font-size: 16px;
@@ -34,6 +35,7 @@
 
     .page-header-left {
       padding: 0 10px;
+      @mixin cross-center;
     }
 
     .back-link {

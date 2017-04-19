@@ -34,6 +34,14 @@
 }
 
 
+@define-mixin cross-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
 /*  TODO: 未用到，后续可以删除。
 @define-mixin without-padding $main: 1, $cross: 1 {
 

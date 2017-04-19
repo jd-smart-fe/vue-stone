@@ -102,8 +102,5 @@ $btn-hover: #efefef; /* 按钮按下底色 */
 $counter-width: 1.03rem;
 $counter-height: 0.35rem;
 
-/************************  panel   ************************/
-$panel-width: $main-width;
-
 /************************  modal   ************************/
 $c-dialog-title: #ff6375

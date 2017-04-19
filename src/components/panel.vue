@@ -1,6 +1,6 @@
 <template>
 
-  <div :class="['c-panel', cls]">
+  <div class="c-panel">
     <slot name="header"></slot>
     <slot name="body"></slot>
     <slot name="footer"></slot>
@@ -11,12 +11,6 @@
 
   export default {
     name: 'v-panel',
-    props: {
-      cls: {
-        type: String,
-        default: '',
-      },
-    },
   };
 </script>
 
@@ -25,10 +19,13 @@
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
+  $fullwidth: 97.5%;
+  $padding: 3.75%;
+  $desc-padding: 2.5%;
   $prefix: .c-panel;
 
   $prefix {
-    width: $panel-width;
+    width: $fullwidth;
     margin: auto;
     font-size: $font-size-lg;
     @mixin border;
@@ -43,15 +40,23 @@
     }
   }
 
-  $(prefix)-header {
-    padding: 0.12rem;
+  $(prefix)-header, $(prefix)-footer {
+    @mixin cross-center;
+    padding: $padding;
 
     min-height: calc(2 * $grid-size);
-    border-bottom: 1px solid #eee;
 
     font-size: $font-size-lg;
     color: $gray-dark;
     box-sizing: border-box;
+  }
+
+  $(prefix)-header {
+    border-bottom: 1px solid #eee;
+  }
+
+  $(prefix)-footer {
+    border-top: 1px solid #eee;
   }
 
   $(prefix)-extra {
@@ -64,17 +69,15 @@
   }
 
   $(prefix)-body {
-    padding: 0.12rem;
+    padding: $padding;
   }
 
   $(prefix)-description{
     font-size: $font-size-sm;
-    padding-top: 0.08rem;
+    padding-top: $desc-padding;
   }
 
-  /* TODO */
-  $(prefix)-footer {
-
+  $(prefix)-title {
+    font-weight: 500;
   }
-
 </style>
