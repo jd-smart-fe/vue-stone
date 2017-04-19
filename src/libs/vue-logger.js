@@ -18,14 +18,27 @@ VueLogger.install = (Vue, options) => {
   //   methods,
   // });
 
+  const defaults = {
+    silent: Vue.config.silent,
+    format: (...str) => {
+      str.unshift('[Vue Logger]: ');
+      return str;
+    },
+  };
+
+  options = Object.assign({}, defaults, options);
+
+
   /* eslint-disable func-names  */
   ['log', 'warn', 'error'].forEach((op) => {
     Vue.prototype[`$${op}`] = function (...str) {
-      if (process.env.NODE_ENV === 'production') {
+
+      if (options.silent) {
         return;
       }
 
-      str.unshift(`[Vue Component ${this.$options.name}]: `);
+      str = options.format.apply(this, str);
+
       console[op](...str);
     };
   });

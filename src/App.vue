@@ -7,112 +7,112 @@
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('button')">
-        <div class="c-panel-title"> Buttons </div>
+        <div > Buttons </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('range')">
-        <div class="c-panel-title"> Range </div>
+        <div > Range </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('panel')">
-        <div class="c-panel-title"> Panel </div>
+        <div > Panel </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('icons')">
-        <div class="c-panel-title"> Icon set </div>
+        <div > Icon set </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('days-picker')">
-        <div class="c-panel-title"> Days Picker </div>
+        <div > Days Picker </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('modes')">
-        <div class="c-panel-title"> Modes </div>
+        <div > Modes </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('slider')">
-        <div class="c-panel-title"> Slider </div>
+        <div > Slider </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('timer')">
-        <div class="c-panel-title"> Alarm </div>
+        <div > Alarm </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('action-sheet')">
-        <div class="c-panel-title"> Action Sheet </div>
+        <div > Action Sheet </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('dialog')">
-        <div class="c-panel-title"> Dialog </div>
+        <div > Dialog </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('form')">
-        <div class="c-panel-title"> Form </div>
+        <div > Form </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('counter')">
-        <div class="c-panel-title"> Counter </div>
+        <div > Counter </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('picker')">
-        <div class="c-panel-title"> Picker </div>
+        <div > Picker </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('switch')">
-        <div class="c-panel-title"> Switch </div>
+        <div > Switch </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('transition')">
-        <div class="c-panel-title"> Transition </div>
+        <div > Transition </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('toast')">
-        <div class="c-panel-title"> Toast </div>
+        <div > Toast </div>
         <span class='icon icon-pull-right'></span>
       </div>
     </v-panel>

@@ -46,7 +46,13 @@ const list = [{
 Vue.use(VueRouter);
 Store.install(Vue);
 Store.plugins.forEach((plugin) => {
-  Vue.use(plugin);
+  Vue.use(plugin, {
+    /* eslint-disable func-names  */
+    format(...str) {
+      str.unshift(`[Vue Component ${this.$options.name}]: `);
+      return str;
+    },
+  });
 });
 
 Vue.component('tmpl-back', TmplBack);

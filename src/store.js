@@ -30,7 +30,13 @@ install.installed = false;
 
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
-  VueLogger.install(window.Vue);
+  VueLogger.install(window.Vue, {
+    /* eslint-disable func-names  */
+    format(...str) {
+      str.unshift(`[Vue Component ${this.$options.name}]: `);
+      return str;
+    },
+  });
 }
 
 const Store = {

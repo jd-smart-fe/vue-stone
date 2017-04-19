@@ -38,6 +38,14 @@
   @mixin cross-center;
 }
 
+.u-main-center {
+  @mixin main-center;
+}
+
+.u-center {
+  @mixin center;
+}
+
 /********************  Padding  ********************/
 .u-without-main-padding {
   padding-left: 0 !important;
