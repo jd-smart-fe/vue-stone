@@ -48,7 +48,7 @@
 
       relive() {
         this.keep = false;
-      }
+      },
     },
 
     methods: {
