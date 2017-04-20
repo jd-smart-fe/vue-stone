@@ -45,6 +45,10 @@
           this.keep = false;
         }
       },
+
+      relive() {
+        this.keep = false;
+      }
     },
 
     methods: {
