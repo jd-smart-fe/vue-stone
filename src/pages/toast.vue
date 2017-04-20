@@ -17,7 +17,7 @@
 <script>
 
   export default {
-    name: 'Form',
+    name: 'Toast',
 
     data() {
       return {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-mask :shown="modal" ref="mask">
+    <v-mask :shown="shown" ref="mask">
     </v-mask>
-    <div class="c-dialog" v-show="showDialog">
+    <div class="c-dialog" v-show="shown">
       <h4 class="c-dialog-title">{{dialog.title}}</h4>
       <div class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
         <div>
@@ -33,7 +33,7 @@
       };
     },
     props: {
-      showDialog: {
+      shown: {
         type: Boolean,
         required: false,
         default: false,
@@ -98,27 +98,6 @@
             break;
         }
         return className;
-      },
-    },
-    watch: {
-      showDialog(value) {
-        // 如果dialog为false则modal也为false
-        if (!value) {
-          this.modal = value;
-        }
-        // 若果没有传递值默认是模态的
-        switch (this.options.isModal && value) {
-          case undefined:
-            this.modal = value;
-            break;
-          case false:
-            this.modal = false;
-            break;
-          default:
-            this.modal = true;
-            break;
-        }
-        // console.debug(`showDialog发生了改变${value}`);
       },
     },
   };

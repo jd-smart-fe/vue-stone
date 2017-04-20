@@ -5,12 +5,12 @@
 
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center">
-        <div class="">Show/Hide Dialog</div>
-        <v-button @click.native="click">action</v-button>
+        <div class="">Dialog</div>
+        <v-button @click.native="click">Show</v-button>
       </div>
     </v-panel>
 
-    <v-dialog ref="dialog" :showDialog="showDialog" :options="dialogOptions">
+    <v-dialog ref="dialog" :shown="showDialog" :options="dialogOptions">
     </v-dialog>
 
   </div>
