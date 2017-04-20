@@ -4,9 +4,6 @@ import './components/_style_transition';
 import list from '../libs/comlist';
 import VueLogger from './libs/vue-logger';
 
-const plugins = [];
-plugins.push(VueLogger);
-
 const install = (Vue, options = {}) => {
   if (install.installed) {
     return;
@@ -31,23 +28,23 @@ const install = (Vue, options = {}) => {
     Vue.component(Component.options.name, Component);
   });
 
-  install.installed = true;
-};
-install.installed = false;
-
-if (typeof window !== 'undefined' && window.Vue) {
-  install(window.Vue);
-  VueLogger.install(window.Vue, {
+  VueLogger.install(Vue, {
     /* eslint-disable func-names  */
     format(...str) {
       str.unshift(`[Vue Component ${this.$options.name}]: `);
       return str;
     },
   });
+
+  install.installed = true;
+};
+install.installed = false;
+
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue);
 }
 
 const Store = {
   install,
-  plugins,
 };
 export default Store;

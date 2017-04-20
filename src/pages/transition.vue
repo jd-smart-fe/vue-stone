@@ -10,7 +10,7 @@
 
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <v-button type="click" ref="btn_transition"
-          @change="transition_status = !transition_status">
+          @click.native="transition_status = !transition_status">
           过渡效果
         </v-button>
         <v-transition name="fade" time="1">
@@ -20,7 +20,7 @@
 
       <div slot="body" class="c-panel-body row-2 u-cross-center">
         <v-button ref="btn_animation"
-          @change="animation_status = !animation_status"
+          @click.native="animation_status = !animation_status"
         > 动画效果 </v-button>
         <v-transition enter="bounceIn" leave="bounceOut" time="1">
           <div v-show="animation_status" class="square"></div>
