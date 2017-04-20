@@ -45,10 +45,6 @@
           this.keep = false;
         }
       },
-
-      relive() {
-        this.keep = false;
-      },
     },
 
     methods: {
@@ -82,6 +78,10 @@
 
         this.$emit('change', val);
         this.$emit('input', val);
+      },
+
+      relive() {
+        this.keep = false;
       },
     },
   };
