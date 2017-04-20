@@ -147,72 +147,71 @@ export default {
     border-color: $btn-disabled;
     /*background-color: $btn-disabled;*/
   }
-}
-
-.c-btn-hover{
-  background: $btn-hover;
-}
-
-.c-btn-small {
-  font-size: $btn-fontsize-sm;
-  line-height: $btn-fontsize-sm;
-
-  padding: $btn-padding-sm;
-}
-
-.c-btn-large {
-  font-size: $btn-fontsize-lg;
-  line-height: $btn-fontsize-lg;
-
-  padding: $btn-padding-lg;
-}
-
-.c-btn-radius-circle {
-  border-radius: 999rem;
-}
-
-.c-btn-content {
-  vertical-align: middle;
-}
-
-.c-btn-icon{
-  display: inline-block;
-
-  vertical-align: middle;
-  /*font-size: calc($font-size-base + 4px);*/
-
-  &:before{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  &.c-btn-hover{
+    background: $btn-hover;
   }
-
-  + span {
-    margin-left: 0.05rem;
-  }
-}
-
-.c-btn-icon-only {
-
-  padding: 0;
-  border-radius: 100%;
-
-  width: .32rem;
-  height: .32rem;
-  font-size: .16rem;
 
   &.c-btn-small {
-    width: .24rem;
-    height: .24rem;
-    font-size: .12rem;
+    font-size: $btn-fontsize-sm;
+    line-height: $btn-fontsize-sm;
+
+    padding: $btn-padding-sm;
   }
 
   &.c-btn-large {
-    width: .44rem;
-    height: .44rem;
-    font-size: .22rem;
+    font-size: $btn-fontsize-lg;
+    line-height: $btn-fontsize-lg;
+
+    padding: $btn-padding-lg;
+  }
+
+  &.c-btn-radius-circle {
+    border-radius: 999rem;
+  }
+
+  &.c-btn-icon-only {
+
+    padding: 0;
+    border-radius: 100%;
+
+    width: .32rem;
+    height: .32rem;
+    font-size: .16rem;
+
+    &.c-btn-small {
+      width: .24rem;
+      height: .24rem;
+      font-size: .12rem;
+    }
+
+    &.c-btn-large {
+      width: .44rem;
+      height: .44rem;
+      font-size: .22rem;
+    }
+  }
+
+  .c-btn-content {
+    vertical-align: middle;
+  }
+
+  .c-btn-icon{
+    display: inline-block;
+
+    vertical-align: middle;
+    /*font-size: calc($font-size-base + 4px);*/
+
+    &:before{
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    + span {
+      margin-left: 0.05rem;
+    }
   }
 }
 

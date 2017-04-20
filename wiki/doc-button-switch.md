@@ -49,10 +49,10 @@ htmlType | String | 'button' | 设置按钮原生 type 参数
 
 ```CSS
 .c-btn  /*按钮基本样式*/
-.c-btn-hover  /*按钮按下样式*/
-.c-btn-disabled  /*按钮禁用样式*/
-.c-btn-icon-only  /*仅有图标时 圆形按钮额外样式*/
+.c-btn.c-btn-hover  /*按钮按下样式*/
+.c-btn.c-btn-disabled  /*按钮禁用样式*/
+.c-btn.c-btn-icon-only  /*仅有图标时 圆形按钮额外样式*/
 
-.c-btn-on  /*按钮激活状态样式*/
-.c-btn-on.c-btn-hover  /*按钮激活时按下样式*/
+.c-btn.c-btn-on  /*按钮激活状态样式*/
+.c-btn.c-btn-on.c-btn-hover  /*按钮激活时按下样式*/
 ```
