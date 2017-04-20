@@ -121,6 +121,12 @@
       @mixin cross-center;
       border-radius: $l-radius;
       flex-direction: column;
+
+      .c-toast-text {
+        margin-bottom: 12px;
+        height: 30px;
+        line-height: 30px;
+      }
     }
 
     &.c-toast-hide {
