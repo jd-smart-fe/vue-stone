@@ -23,4 +23,5 @@ module.exports = [
   "transition",
   "slide",
   'toast',
+  'loading',
 ];

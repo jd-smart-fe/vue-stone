@@ -27,12 +27,14 @@ if (process.env.NODE_ENV !== 'production') {
       "transition",
       "slide",
       'toast',
+      'loading',
   ];
 }
 
 module.exports = {
   list,
   dependence: {
+    "loading": ["toast"],
     "dayspicker": ["button"],
     "dialog": ["mask"],
     "counter": ["button"],
