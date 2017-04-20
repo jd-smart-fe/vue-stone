@@ -1,4 +1,6 @@
-const VueLogger = {};
+const VueLogger = {
+  name: 'vue-logger',
+};
 
 VueLogger.install = (Vue, options) => {
 

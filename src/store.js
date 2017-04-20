@@ -21,6 +21,13 @@ const install = (Vue, options = {}) => {
 
     const Component = Vue.extend(require(`./components/${val}.vue`)); // eslint-disable-line global-require
     // Utils.logWrapper(Component);
+
+    if (Component.options.type === 'singleton') {
+      const instance = new Component({
+        el: document.createElement(Component.options.tag || 'div'),
+      });
+      Vue.prototype[`$${Component.options.name.replace('v-', '')}`] = instance;
+    }
     Vue.component(Component.options.name, Component);
   });
 

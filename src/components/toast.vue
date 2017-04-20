@@ -1,49 +1,90 @@
 <template>
-  <div
-    :class="['c-toast', value ? 'c-toast-show' : 'c-toast-hide']">
+  <div :class="['c-toast',
+    icon && 'c-toast-withicon',
+    shown ? 'c-toast-show' : 'c-toast-hide']">
+
+    <span v-if="icon" :class="['c-toast-icon', `${icon}`,
+      icon.indexOf('icon-') == 0 && 'icon']"></span>
+
     <span class="c-toast-text">{{text}}</span>
   </div>
 </template>
 
 <script>
 
+  const defaults = {
+    autohide: true,
+    shown: false,
+    duration: 2000,
+    icon: '',
+  };
+
   export default {
     name: 'v-toast',
-    props: {
-      value: {
-        type: Boolean,
-        default: false,
-      },
-      duration: {
-        type: Number,
-        default: 3000,
-      },
-      text: {
-        type: String,
-        default: '',
-      },
-    },
+    type: 'singleton',
 
     data() {
       return {
+
+        ...Object.assign({}, defaults),
+
+        text: '',
         timer: null,
       };
     },
 
-    updated() {
-      if (!this.value) {
-        return;
-      }
-      this.timer = setTimeout(() => {
-        this.$log('hide');
-        this.hide(false);
-      }, this.duration);
+    created() {
+      this.inited = false;
     },
 
     methods: {
 
-      hide(val) {
-        this.$emit('input', val);
+      init() {
+
+        document.body.appendChild(this.$el);
+        this.inited = true;
+      },
+
+      config(cfg) {
+
+        cfg = Object.assign({}, defaults, cfg);
+
+        for (const prop in cfg) {
+          if (Object.prototype.hasOwnProperty.call(cfg, prop)) {
+            this[prop] = cfg[prop];
+          }
+        }
+      },
+
+      destroy() {
+        document.body.removeChild(this.$el);
+        this.inited = false;
+      },
+
+      show(opt) {
+
+        if (!this.inited) {
+          this.init();
+        }
+
+        if (typeof opt === 'string') {
+          opt = {
+            text: opt,
+          };
+        }
+        clearTimeout(this.timer);
+        this.config(opt);
+        this.shown = true;
+
+        if (!this.autohide) {
+          return;
+        }
+        this.timer = setTimeout(() => {
+          this.hide();
+        }, this.duration);
+      },
+      hide() {
+        this.shown = false;
       },
     },
   };
@@ -71,13 +112,32 @@
     background: rgba(0, 0, 0, 0.8);
     border-radius: $l-radius;
 
+    height: 40px;
+    line-height: 40px;
+
+    &.c-toast-withicon {
+      width: 100px;
+      height: 100px;
+      @mixin cross-center;
+      border-radius: $l-radius;
+      flex-direction: column;
+    }
+
     &.c-toast-hide {
       display: none;
     }
 
     &.c-toast-show {
-      display: block;
+      /*display: block;*/
     }
+  }
+
+  .c-toast-icon {
+    display: block;
+    color: white;
+    margin-top: 20px;
+    font-size: 30px;
+    margin-bottom: 5px;
   }
 
   .c-toast-text {
@@ -90,7 +150,6 @@
 
     max-width: 100%;
     width: auto;
-    padding: 10px 10px;
   }
 
 </style>
