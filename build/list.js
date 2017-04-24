@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== 'production') {
       "slide",
       'toast',
       'loading',
+      'checkboard'
   ];
 }
 

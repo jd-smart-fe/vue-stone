@@ -1,11 +1,7 @@
 <template lang="html">
   <div class="c-checkboard">
-    <label for="" v-for="item in items" @click="handle(item)"
-    :class="item.id === value ? 'c-checkboard-active': '' "
-    >
-      {{ item.text }}
-      <span class="c-checkboard-icon icon-check"></span>
-    </label>
+    <slot name="item" class="c-checkboard-active"></slot>
+    <input type="text" :name="htmlName" :value="value" style="display: none;" />
   </div>
 </template>
 
@@ -15,34 +11,122 @@ export default {
 
   data() {
     return {
-      active_id: this.value,
+      items: null,
     };
   },
 
   props: {
-    items: {
-      type: Array,
-      required: false,
-      default() {
-        return [{
-          id: 0,
-        }];
-      },
-    },
-
     value: {
-      type: Number,
+      type: [Number, String, Array],
       required: false,
       default: 0,
     },
+
+    multi: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+
+    htmlName: {
+      type: String,
+      default: '',
+    },
+  },
+
+  watch: {
+    value(val, oldval) {
+      if (this.multi) {
+        this.handleMultiple(val);
+      } else {
+        this.handleSingle(val, oldval);
+      }
+    },
+  },
+
+  mounted() {
+    this.items = this.$slots.item;
+
+    // 1. 记录初始激活 item 的索引值。
+    // 2. 为每个 item 添加事件。
+    this.items.forEach(item => {
+      const value = item.elm.dataset.value;
+
+      if (value === this.value) {
+        // 单选初始激活
+        item.elm.setAttribute('checked', true);
+
+      } else if (this.multi && this.value.indexOf(value) !== -1) {
+
+        // 多选初始激活
+        item.elm.setAttribute('checked', true);
+      }
+
+      item.elm.addEventListener('touchstart', () => {
+        item.elm.classList.add('c-checkboard-hover');
+      });
+
+      item.elm.addEventListener('touchend', () => {
+        item.elm.classList.remove('c-checkboard-hover');
+
+        if (this.multi) {
+          // 多选
+          this.emitMultiple(value);
+        } else {
+          // 单选
+          this.emitSingle(value);
+        }
+      });
+
+      item.elm.addEventListener('touchcancel', () => {
+        item.elm.classList.remove('c-checkboard-hover');
+      });
+    });
   },
 
   methods: {
-    handle(item) {
-      const val = item.id;
+    updateView(value) {
+      this.$emit('input', value);
+      this.$emit('change', value);
+    },
 
-      this.$emit('input', val);
-      this.$emit('change', val);
+    emitMultiple(val) {
+      const index = this.value.indexOf(val);
+      const copyValue = this.value.concat();
+
+      if (index !== -1) {
+        copyValue.splice(index, 1);
+      } else {
+        copyValue.push(val);
+      }
+
+      this.updateView(copyValue);
+    },
+
+    emitSingle(val) {
+      this.updateView(val);
+    },
+
+    handleSingle(val, oldval) {
+      this.items.forEach(item => {
+        if (item.elm.dataset.value === val) {
+          item.elm.setAttribute('checked', true);
+        }
+        if (item.elm.dataset.value === oldval) {
+          item.elm.setAttribute('checked', false);
+        }
+      });
+    },
+
+    handleMultiple(val) {
+      this.items.forEach(item => {
+        const datavalue = item.elm.dataset.value;
+        if (this.value.indexOf(datavalue) === -1) {
+          item.elm.setAttribute('checked', false);
+        } else {
+          item.elm.setAttribute('checked', true);
+        }
+      });
     },
   },
 };
@@ -52,39 +136,49 @@ export default {
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 
-  .c-checkboard{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+$c-checkboard-item-padding: 0.08rem 0;
+$c-checkboard-icon-width: 0.1rem;
+$c-checkboard-icon-height: 0.1rem;
 
-    label{
-      padding: 0.16rem 0.12rem;
-    }
+.c-checkboard{
+  display: flex;
+  flex-direction: column;
 
-    label + label{
-      border-top: 1px solid $gray-lighter;
-    }
+  padding: 0 3.75%;
 
-    .c-checkboard-active{
-      position: relative;
+  > div{
+    position: relative;
+    padding: $c-checkboard-item-padding;
+  }
 
-      .c-checkboard-icon{
-        display: block;
-        color: #00a678;
-        font-weight: bolder;
-        width: 16px;
-        height: 16px;
-        position: absolute;
-        right: 0.12rem;
-        top: 50%;
-        transform: translate(0, calc(-@height / 2));
-      }
-    }
+  > div[checked="true"] {
+    /*background-color: red;*/
 
-    .c-checkboard-icon{
-      display: none;
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+
+      width: $c-checkboard-icon-width;
+      height: $c-checkboard-icon-height;
+
+      background-color: $blue;
+
+      transition: .2s linear all;
     }
   }
+
+  > div + div{
+    border-top: 1px solid $gray-lightest;
+  }
+
+  .c-checkboard-hover {
+    opacity: .8;
+  }
+}
 
 
 </style>

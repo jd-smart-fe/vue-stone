@@ -10,6 +10,7 @@ module.exports = [
   "button-switch",
   "button-group",
   "counter",
+  "checkboard",
   "modes",
   "mask",
   "picker",

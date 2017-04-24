@@ -1,6 +1,6 @@
 <template>
   <div class="c-input">
-    <input ref="input" type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
+    <input ref="input" :name="htmlName" type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
     <span title="清空" class="c-input-delquery icon-round-close" @touchstart="clear" v-show="_show"></span>
   </div>
 </template>
@@ -38,6 +38,10 @@
         required: false,
         default: '请输入',
       },
+      htmlName: {
+        type: String,
+        default: '',
+      },
     },
 
     mounted() {
@@ -68,7 +72,6 @@
 
 </script>
 <style>
-  @import '../styles/default-theme/variables.css';
 .c-input {
     background: #fff none repeat scroll 0 0;
     position: relative;
