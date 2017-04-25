@@ -1,14 +1,13 @@
 var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
 var precss = require('precss');
-var list = require('../libs/comlist').list;
-
 var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
-var components = list.join('|');
 
-var componentsReg = new RegExp(`(${components})\.vue$`);
+var projectRoot = path.resolve(__dirname, '../')
+var list = require('../vue-stone.config.js').components;
+var comsreg = new RegExp(`(${list.join('|')})\.vue$`);
+
 var env = process.env.NODE_ENV
 // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
 // various preprocessor loaders added to vue-loader at the end of this file
@@ -92,7 +91,7 @@ module.exports = {
   plugins: [
     new ContextReplacementPlugin(
       /components$/,
-      componentsReg
+      comsreg
     )
   ],
   vue: {
