@@ -4,7 +4,7 @@ import './components/_style_transition';
 import Initializer from '../libs/initializer';
 import intactify from '../libs/intactify';
 import dependencies from '../libs/dependencies';
-import VueLogger from './libs/vue-logger';
+import VueLogger from '../libs/vue-logger';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -13,6 +13,7 @@ const install = (Vue, options = {}) => {
 
   const components = intactify(dependencies,
     options.components ? options.components : Initializer.components);
+  const singletonComponents = [];
 
   /* eslint-disable global-require */
   components.every(val => {
@@ -23,16 +24,18 @@ const install = (Vue, options = {}) => {
     }
 
     const Component = Vue.extend(require(`./components/${val}.vue`));
-
     if (Component.options.type === 'singleton') {
-      const instance = new Component({
-        el: document.createElement(Component.options.tag || 'div'),
-      });
-      Vue.prototype[`$${Component.options.name.replace('v-', '')}`] = instance;
+      singletonComponents.push(Component);
     }
-
     Vue.component(Component.options.name, Component);
     return true;
+  });
+
+  singletonComponents.forEach((Component) => {
+    const instance = new Component({
+      el: document.createElement(Component.options.tag || 'div'),
+    });
+    Vue.prototype[`$${Component.options.name.replace('v-', '')}`] = instance;
   });
 
   VueLogger.install(Vue, {

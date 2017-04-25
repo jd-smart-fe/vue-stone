@@ -14,7 +14,7 @@ var env = process.env.NODE_ENV === 'testing'
 var webpackConfig = merge(baseWebpackConfig, {
 
   entry: {
-    'vue-stone': './src/store.js',
+    'vue-stone': './src/index.js',
   },
 
   module: {
