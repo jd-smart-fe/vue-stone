@@ -119,7 +119,7 @@
 
 <style>
 
-  @import '../styles/mixins.css';
+  @import '../../src/styles/mixins.css';
 
   .c-panel-body {
 

@@ -29,6 +29,7 @@ module.exports = {
       'js': 'never',
       'vue': 'never'
     }],
+    "import/imports-first": 0,
     'import/no-dynamic-require': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,

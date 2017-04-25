@@ -49,7 +49,9 @@
 
 <style>
 
-  @import '../styles/default-theme/variables.css';
+  @import '../../src/styles/default-theme/variables.css';
+  @import '../../src/styles/mixins.css';
+
   .number-text{
     font-size: $font-size-32;
     color: $c-primary;

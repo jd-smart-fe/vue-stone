@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import units from '../units/default';
+import units from 'src/units/default';
 
 export default {
   name: 'v-app',

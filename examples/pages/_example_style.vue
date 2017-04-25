@@ -1,8 +1,8 @@
 
 
 <style>
-  @import '../styles/default-theme/variables.css';
-  @import '../styles/mixins.css';
+  @import '../../src/styles/default-theme/variables.css';
+  @import '../../src/styles/mixins.css';
 
   body {
     background-color: #efefef;
