@@ -1,10 +1,6 @@
-const L = require('../build/list');
+module.exports = intactify;
 
-const initList = L.list;
-const dependence = L.dependence;
-const list = componentsList(dependence, initList);
-
-function componentsList(depe_, list_) {
+function intactify(depe_, list_) {
   const length = list_.length;
   const _list = list_.concat();
 
@@ -27,7 +23,5 @@ function componentsList(depe_, list_) {
   }
 
   // 递归调用
-  return componentsList(depe_, _list);
+  return intactify(depe_, _list);
 }
-
-module.exports = { list };
