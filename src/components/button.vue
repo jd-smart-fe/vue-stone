@@ -19,18 +19,12 @@
 </template>
 
 <script>
-import units from '../units/default';
-
-let longTapFlagInterval = null;
-let longTapInterval = null;
-
 export default {
   name: 'v-button',
 
   data() {
     return {
       active: false,
-      longTapFlag: false,
       status: this.init_status,
       iconOnly: false,
     };

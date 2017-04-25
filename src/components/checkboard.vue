@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="c-checkboard">
     <slot name="item" class="c-checkboard-active"></slot>
-    <input type="text" :name="htmlName" :value="value" style="display: none;" />
+    <input type="hidden" :name="htmlName" :value="value" />
   </div>
 </template>
 

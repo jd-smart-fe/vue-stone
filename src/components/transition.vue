@@ -15,16 +15,10 @@ time 设置元素动画持续时间 默认值 1 单位s
 
 <template lang="html">
   <transition
-    :name="name"
-    :time="time"
-    :type="_type"
-    @before-enter="__beforeEnter"
-    @after-enter="__afterEnter"
-    @enterCancelled="__enterCancelled"
-
-    @before-leave="__beforeLeave"
-    @after-leave="__afterLeave"
-    @leaveCancelled="__leaveCancelled"
+    :enter-active-class="_enterActCls"
+    :leave-active-class="_leaveActCls"
+    :enter-class="_enterCls"
+    :leave-class="_leaveCls"
   >
     <slot></slot>
   </transition>
@@ -36,7 +30,8 @@ export default {
 
   data() {
     return {
-      str: Math.random().toString(36).substr(2),
+      str: `_${Math.random().toString(36).substr(2)}`,
+      // str: `uid${this._uid}`,
     };
   },
 
@@ -73,87 +68,87 @@ export default {
       return 'animation';
     },
 
-    _enterCls() {
+    _enterActCls() {
       if (this.enter) {
-        return ['animated', this.enter];
+        return [
+          'animated',
+          this.enter,
+          `c-animated-duration_${this.str}`,
+        ].join(' ');
       }
-      return [];
+      return [
+        'fade-enter-active',
+        `c-transition-duration_${this.str}`,
+      ].join(' ');
+    },
+
+    _leaveActCls() {
+      if (this.leave) {
+        return [
+          'animated',
+          this.leave,
+          `c-animated-duration_${this.str}`,
+        ].join(' ');
+      }
+      return [
+        'fade-leave-active',
+        `c-transition-duration_${this.str}`,
+      ].join(' ');
+    },
+
+    _enterCls() {
+      if (this.name) {
+        return `${this.name}-enter`;
+      }
+      return '';
     },
 
     _leaveCls() {
-      if (this.leave) {
-        return ['animated', this.leave];
+      if (this.name) {
+        return `${this.name}-leave`;
       }
-      return [];
+      return '';
     },
   },
 
   mounted() {
+    if (this._type === 'animation') {
+      this.__mountedAni();
+    } else if (this._type === 'transition') {
+      this.__mountedTrans();
+    } else {
+      this.$error('props error, please check props again!');
+    }
+  },
 
-    if (this.time !== 1) {
+  // 实例销毁前删除相应的样式表
+  beforeDestroy() {
+    console.debug('beforeDestroy');
+    const styleSheet = document.querySelector(`#${this.str}`);
+    document.head.removeChild(styleSheet);
+  },
+
+  methods: {
+    __mountedAni() {
+      if (this.time === -1) { return; }
+
       this.__addSheet([
-        `.c-transition-duration_${this.str} {
-          transition-duration: ${this.time}s !important;
-          -webkit-transition-duration: ${this.time}s !important;
-        }`,
         `.c-animated-duration_${this.str} {
           animation-duration: ${this.time}s !important;
           webkit-animation-duration: ${this.time}s !important;
         }`,
       ]);
-    }
-  },
-
-  methods: {
-    __beforeEnter(el) {
-      this.__addCls(el, this._enterCls);
-    },
-    __afterEnter(el) {
-      this.__rmCls(el, this._enterCls);
-    },
-    __enterCancelled(el) {
-      this.__rmCls(el, this._enterCls);
     },
 
-    __beforeLeave(el) {
-      this.__addCls(el, this._leaveCls);
-    },
-    __afterLeave(el) {
-      this.__rmCls(el, this._leaveCls);
-    },
-    __leaveCancelled(el) {
-      this.__rmCls(el, this._leaveCls);
-    },
+    __mountedTrans() {
+      if (this.time === -1) { return; }
 
-    __addCls(el, cls) {
-      // 添加一次判断，避免不要的操作。
-      // 执行动画的情况
-      if (this._leaveCls.length > 0 || this._enterCls.length > 0) {
-        el.classList.add(...cls);
-
-        if (this.time !== -1) {
-          el.classList.add(`c-animated-duration_${this.str}`);
-        }
-
-      // 执行过渡的情况
-      } else if (this.time !== -1) {
-        el.classList.add(`c-transition-duration_${this.str}`);
-      }
-    },
-
-    __rmCls(el, cls) {
-      // 执行动画的情况
-      if (this._leaveCls.length > 0 || this._enterCls.length > 0) {
-        el.classList.remove(...cls);
-
-        if (this.time !== -1) {
-          el.classList.remove(`c-animated-duration_${this.str}`);
-        }
-
-      // 执行过渡的情况
-      } else if (this.time !== -1) {
-        el.classList.remove(`c-transition-duration_${this.str}`);
-      }
+      this.__addSheet([
+        `.c-transition-duration_${this.str} {
+          transition-duration: ${this.time}s !important;
+          -webkit-transition-duration: ${this.time}s !important;
+        }`,
+      ]);
     },
 
     // 动态插入css规则样式表
@@ -163,6 +158,7 @@ export default {
       // webkit 布丁
       style.appendChild(document.createTextNode(''));
 
+      style.id = this.str;
       document.head.appendChild(style);
 
       rules.forEach(rule => {
