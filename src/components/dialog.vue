@@ -1,10 +1,10 @@
 <template>
   <div>
     <v-mask :shown="shown" ref="mask">
-      </v-mask>
+    </v-mask>
     <div class="c-dialog" v-show="shown">
       <h4 v-if="dialog.title" class="c-dialog-title">{{dialog.title}}</h4>
-      <div  v-if="dialog.description"  class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
+      <div v-if="dialog.description" class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
         <div>
           <p>{{dialog.description}}</p>
         </div>
@@ -12,12 +12,11 @@
       <div class="c-dialog-footer">
         <div class="c-dialog-buttons" :class="getButtonClass()">
           <template v-if="dialog.buttons.length===0">
-              <a href="#"@click.prevent="confirm">确定</a>
-              <!--<a href="#"@click.prevent="rightBtn">取消</a>-->
-          </template >
+            <a href="#" @click.prevent="confirm">确定</a>
+          </template>
           <template v-else>
-            <a href="#" v-for="(item,index) in dialog.buttons" @click.prevent="item.callback">{{item.text}}</a>
-          </template >
+            <a href="#" v-for="(item,index) in dialog.buttons" @click.prevent="handle(index)">{{item.text}}</a>
+          </template>
         </div>
       </div>
     </div>
@@ -30,7 +29,7 @@ const def = {
   description: '',
   buttons: [
     // { text: '取消', callback: () => { } },
-    { text: '确定', callback: () => { this.log(this); } },
+    { text: '确定', callback: () => { this.shown = false; } },
   ],
 };
 export default {
@@ -43,12 +42,27 @@ export default {
       dialog: def,
     };
   },
+  watch: {
+    shown(val) {
+
+      if (!val) {
+        this.$emit('dialog.close');
+      }
+    },
+  },
   mounted() {
     this.$refs.mask.$on('click', () => {
       this.shown = false;
     });
   },
   methods: {
+    handle(index) {
+      if (this.dialog.buttons[index].callback) {
+        this.dialog.buttons[index].callback();
+      } else {
+        this.$emit('dialog.button.click', index);
+      }
+    },
     init() {
       if (!this.inited) {
         document.body.appendChild(this.$el);
@@ -142,6 +156,8 @@ export default {
 }
 
 
+
+
 /**
    *一个按钮样式
    */
@@ -151,6 +167,8 @@ export default {
 }
 
 
+
+
 /**
    *两个按钮样式
    */
@@ -158,6 +176,8 @@ export default {
 .c-dialog-button-2>a {
   width: 49.8%;
 }
+
+
 
 
 /**
