@@ -147,7 +147,11 @@
     <div v-show="currentPage === 'notice'">
       <v-panel>
         <div slot="body" class="c-panel-body u-without-padding u-border m-border">
-          <v-checkboard :items="checkboardItems" v-model="notice"></v-checkboard>
+          <v-checkboard :multi="true" v-model="notice">
+            <div slot="item" data-value="-1">不通知</div>
+            <div slot="item" data-value="0">仅失败通知</div>
+            <div slot="item" data-value="1">均通知</div>
+          </v-checkboard>
         </div>
       </v-panel>
     </div>
@@ -156,309 +160,309 @@
 </template>
 
 <script>
-import units from '../units/default';
+  import units from '../units/default';
 
-export default {
-  name: 'v-timer',
+  export default {
+    name: 'v-timer',
 
-  data() {
-    return {
-      currentPage: 'main',
-      days: [], // 储存重复日期,
-      taskValue: [], // taskpage提供的新数据
-      task_name: this.options.mainpage.task_name, // 定时名称
-      notice: this.options.mainpage.pmg_setting * 1, // pmg_setting值
-      time: this._initTime, // 初始时间
-      taskText: this._task, // 执行命令 显示的文本
-      showDialog: false, // 弹窗
-      dialogOptions: {
-        title: '确定删除定时？',
-        // description: '热水器过热',
-        isModal: true,
-        buttons: [
-          {
-            text: '点错啦',
-          },
-          {
-            text: '确定',
-          },
-        ],
+    data() {
+      return {
+        currentPage: 'main',
+        days: [], // 储存重复日期,
+        taskValue: [], // taskpage提供的新数据
+        task_name: this.options.mainpage.task_name, // 定时名称
+        notice: this.options.mainpage.pmg_setting * 1, // pmg_setting值
+        time: this._initTime, // 初始时间
+        taskText: this._task, // 执行命令 显示的文本
+        showDialog: false, // 弹窗
+        dialogOptions: {
+          title: '确定删除定时？',
+          // description: '热水器过热',
+          isModal: true,
+          buttons: [
+            {
+              text: '点错啦',
+            },
+            {
+              text: '确定',
+            },
+          ],
+        },
+
+        switch_active_id: this.options.mainpage.simple.status ? 1 : 0,
+        switch_data: [{
+          text: '定时关闭',
+          id: 0,
+        }, {
+          text: '定时开启',
+          id: 1,
+        }],
+
+        checkboardItems: [{
+          text: '不通知',
+          id: -1,
+        }, {
+          text: '仅失败时通知',
+          id: 0,
+        }, {
+          text: '均通知',
+          id: 1,
+        }],
+
+        repeat_switch: false,
+      };
+    },
+
+    props: {
+      options: {
+        type: Object,
+        required: true,
+      },
+    },
+
+
+    watch: {
+      _task(val) {
+        this.taskText = val;
       },
 
-      switch_active_id: this.options.mainpage.simple.status ? 1 : 0,
-      switch_data: [{
-        text: '定时关闭',
-        id: 0,
-      }, {
-        text: '定时开启',
-        id: 1,
-      }],
-
-      checkboardItems: [{
-        text: '不通知',
-        id: -1,
-      }, {
-        text: '仅失败时通知',
-        id: 0,
-      }, {
-        text: '均通知',
-        id: 1,
-      }],
-
-      repeat_switch: false,
-    };
-  },
-
-  props: {
-    options: {
-      type: Object,
-      required: true,
-    },
-  },
-
-
-  watch: {
-    _task(val) {
-      this.taskText = val;
-    },
-
-    options(val, oldVal) {
-      // 时间参数没有发生变化，需要手动调用timepicker的update方法重置picker
-      if (val.mainpage.task_time_express === oldVal.mainpage.task_time_express) {
-        this.$refs.timepicker.update();
-      }
-
-      // dom更新后调用
-      this.$nextTick(() => {
-        this._created();
-        this._mounted();
-        this.switch_active_id = this.options.mainpage.simple.status ? 1 : 0;
-        this.task_name = this.options.mainpage.task_name;
-        this.notice = this.options.mainpage.pmg_setting * 1;
-      });
-    },
-  },
-
-  computed: {
-    _repeat() {
-      if (!this.repeat_switch || this.days.length === 0) {
-        return '执行一次';
-      }
-
-      const str = units.weekArrToStr(this.days);
-      return str;
-    },
-
-    _notice() {
-      const n = this.notice;
-
-      switch (n) {
-        case -1:
-          return '不通知';
-        case 0:
-          return '仅失败时通知';
-        case 1:
-          return '均通知';
-        default:
-          return '参数错误';
-      }
-    },
-
-    _initTime() {
-      let time = {};
-
-      // 如果是新建任务``
-      if (!this.options.mainpage.task_time_express) {
-        time = {
-          min: new Date().getMinutes(),
-          hour: new Date().getHours(),
-        };
-
-      // 如果是已有任务
-      } else {
-
-        // 解析时间表达式
-        const min = this.options.mainpage.task_time_express.split('_')[0] * 1;
-        const hour = this.options.mainpage.task_time_express.split('_')[1] * 1;
-
-        time = {
-          hour,
-          min,
-        };
-      }
-      return time;
-    },
-
-    _task() {
-      // 解析taskValue;
-      if (this.taskValue.length === 0) return '';
-      let arr = [];
-
-      // onOff
-      if (this.taskValue[0].name === 'onOff' && !this.taskValue[0].value) {
-        return '定时关闭';
-      }
-
-      // task
-      arr = this.taskValue.map(val => val.text);
-
-      return arr.join('/');
-    },
-
-    _showDelect() {
-      if (this.options.mainpage.show_delete) return true;
-      return false;
-    },
-  },
-
-  created() {
-    this._created(this);
-  },
-
-  mounted() {
-    this._mounted();
-  },
-
-  methods: {
-    // 获取组件数据
-    getValue() {
-      let taskTimeExpress = '';
-
-      // 定时重复的value
-      if (this.repeat_switch && this.days.length > 0) {
-        // 开启重复的情况
-        taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], '*', '*', this.days);
-      } else {
-
-        // 只执行一次的情况
-        const nowdate = this.getNowDate();
-
-        // 如果设置时间小于等于现在时间，则任务默认为第二天进行
-        if ((this.time[0] * 60) + this.time[1]
-        <= (nowdate.hour * 60) + nowdate.min) {
-
-          taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date + 1, nowdate.month, '*', nowdate.year);
-        } else {
-
-          // 否则任务默认为今天进行
-          taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date, nowdate.month, '*', nowdate.year);
+      options(val, oldVal) {
+        // 时间参数没有发生变化，需要手动调用timepicker的update方法重置picker
+        if (val.mainpage.task_time_express === oldVal.mainpage.task_time_express) {
+          this.$refs.timepicker.update();
         }
-      }
 
-      // 任务时间表达式，结果通知，任务名称
-      const value = {
-        task_time_express: taskTimeExpress,
-        notice: this.notice,
-        task_name: this.task_name,
-      };
-
-      // 简单开关的value
-      if (this.options.mainpage.simple) {
-        Object.assign(value, {
-          simple_switch: this.switch_active_id === 1,
+        // dom更新后调用
+        this.$nextTick(() => {
+          this._created();
+          this._mounted();
+          this.switch_active_id = this.options.mainpage.simple.status ? 1 : 0;
+          this.task_name = this.options.mainpage.task_name;
+          this.notice = this.options.mainpage.pmg_setting * 1;
         });
-      }
-
-      // 复杂开关的value
-      if (this.taskValue.length > 0) {
-        Object.assign(value, {
-          taskList: this.taskValue,
-        });
-      }
-      return value;
+      },
     },
 
-    update() {
-      this.$forceUpdate();
-    },
+    computed: {
+      _repeat() {
+        if (!this.repeat_switch || this.days.length === 0) {
+          return '执行一次';
+        }
 
-    // 设置任务字符串
-    setTaskText(val) {
-      this.taskText = val;
-    },
+        const str = units.weekArrToStr(this.days);
+        return str;
+      },
 
-    // 获取当前时间
-    getNowDate() {
-      const date = new Date();
-      return {
-        hour: date.getHours(),
-        min: date.getMinutes(),
-        date: date.getDate(),
-        month: date.getMonth() + 1,
-        year: date.getFullYear(),
-      };
-    },
+      _notice() {
+        const n = this.notice;
 
-    jump(val) {
-      // 只执行一次时关闭重复按钮
-      if (this._repeat === '执行一次') {
-        this.repeat_switch = false;
-      }
+        switch (n) {
+          case -1:
+            return '不通知';
+          case 0:
+            return '仅失败时通知';
+          case 1:
+            return '均通知';
+          default:
+            return '参数错误';
+        }
+      },
 
-      this.currentPage = val;
-    },
+      _initTime() {
+        let time = {};
 
-    _emitJump(val) {
-      this.$emit('jump', val);
-    },
+        // 如果是新建任务``
+        if (!this.options.mainpage.task_time_express) {
+          time = {
+            min: new Date().getMinutes(),
+            hour: new Date().getHours(),
+          };
 
-    _dayspickerHandle(val) {
-      this.days = val;
-    },
-
-    _pickerHandle(val) {
-      this.time = val;
-    },
-
-    _taskHandle(val) {
-      this.taskValue = val;
-    },
-
-    _created() {
-      // console.log(JSON.stringify(this.options));
-
-      // 根据传入参数初始化星期
-      // 如果是读取已有定时任务
-      if (this.options.mainpage.task_time_express) {
-
-        const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
-
-        // 如果是重复任务
-        if (week.length > 0) {
-          this.days = week;
-          this.repeat_switch = true;
-
-        // 否则是一次性任务
+        // 如果是已有任务
         } else {
+
+          // 解析时间表达式
+          const min = this.options.mainpage.task_time_express.split('_')[0] * 1;
+          const hour = this.options.mainpage.task_time_express.split('_')[1] * 1;
+
+          time = {
+            hour,
+            min,
+          };
+        }
+        return time;
+      },
+
+      _task() {
+        // 解析taskValue;
+        if (this.taskValue.length === 0) return '';
+        let arr = [];
+
+        // onOff
+        if (this.taskValue[0].name === 'onOff' && !this.taskValue[0].value) {
+          return '定时关闭';
+        }
+
+        // task
+        arr = this.taskValue.map(val => val.text);
+
+        return arr.join('/');
+      },
+
+      _showDelect() {
+        if (this.options.mainpage.show_delete) return true;
+        return false;
+      },
+    },
+
+    created() {
+      this._created(this);
+    },
+
+    mounted() {
+      this._mounted();
+    },
+
+    methods: {
+      // 获取组件数据
+      getValue() {
+        let taskTimeExpress = '';
+
+        // 定时重复的value
+        if (this.repeat_switch && this.days.length > 0) {
+          // 开启重复的情况
+          taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], '*', '*', this.days);
+        } else {
+
+          // 只执行一次的情况
+          const nowdate = this.getNowDate();
+
+          // 如果设置时间小于等于现在时间，则任务默认为第二天进行
+          if ((this.time[0] * 60) + this.time[1]
+          <= (nowdate.hour * 60) + nowdate.min) {
+
+            taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date + 1, nowdate.month, '*', nowdate.year);
+          } else {
+
+            // 否则任务默认为今天进行
+            taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date, nowdate.month, '*', nowdate.year);
+          }
+        }
+
+        // 任务时间表达式，结果通知，任务名称
+        const value = {
+          task_time_express: taskTimeExpress,
+          notice: this.notice,
+          task_name: this.task_name,
+        };
+
+        // 简单开关的value
+        if (this.options.mainpage.simple) {
+          Object.assign(value, {
+            simple_switch: this.switch_active_id === 1,
+          });
+        }
+
+        // 复杂开关的value
+        if (this.taskValue.length > 0) {
+          Object.assign(value, {
+            taskList: this.taskValue,
+          });
+        }
+        return value;
+      },
+
+      update() {
+        this.$forceUpdate();
+      },
+
+      // 设置任务字符串
+      setTaskText(val) {
+        this.taskText = val;
+      },
+
+      // 获取当前时间
+      getNowDate() {
+        const date = new Date();
+        return {
+          hour: date.getHours(),
+          min: date.getMinutes(),
+          date: date.getDate(),
+          month: date.getMonth() + 1,
+          year: date.getFullYear(),
+        };
+      },
+
+      jump(val) {
+        // 只执行一次时关闭重复按钮
+        if (this._repeat === '执行一次') {
           this.repeat_switch = false;
         }
 
-      // 否则为新建任务
-      } else {
-        this.repeat_switch = false;
-      }
-    },
+        this.currentPage = val;
+      },
 
-    _mounted() {
-      if (this.options.mainpage.show_delete) {
-        this.$refs.btn_delete.addEventListener('click', () => {
-          this.showDialog = true;
+      _emitJump(val) {
+        this.$emit('jump', val);
+      },
+
+      _dayspickerHandle(val) {
+        this.days = val;
+      },
+
+      _pickerHandle(val) {
+        this.time = val;
+      },
+
+      _taskHandle(val) {
+        this.taskValue = val;
+      },
+
+      _created() {
+        // console.log(JSON.stringify(this.options));
+
+        // 根据传入参数初始化星期
+        // 如果是读取已有定时任务
+        if (this.options.mainpage.task_time_express) {
+
+          const week = units.arrayTaskTimeExpress(this.options.mainpage.task_time_express);
+
+          // 如果是重复任务
+          if (week.length > 0) {
+            this.days = week;
+            this.repeat_switch = true;
+
+          // 否则是一次性任务
+          } else {
+            this.repeat_switch = false;
+          }
+
+        // 否则为新建任务
+        } else {
+          this.repeat_switch = false;
+        }
+      },
+
+      _mounted() {
+        if (this.options.mainpage.show_delete) {
+          this.$refs.btn_delete.addEventListener('click', () => {
+            this.showDialog = true;
+          });
+        }
+
+        // 取消
+        this.$refs.dialog_delete.$on('defaultClick', () => {
+          this.showDialog = false;
         });
-      }
 
-      // 取消
-      this.$refs.dialog_delete.$on('defaultClick', () => {
-        this.showDialog = false;
-      });
-
-      // 确定
-      this.$refs.dialog_delete.$on('primaryClick', () => {
-        this.showDialog = false;
-        this.$emit('delete');
-      });
+        // 确定
+        this.$refs.dialog_delete.$on('primaryClick', () => {
+          this.showDialog = false;
+          this.$emit('delete');
+        });
+      },
     },
-  },
-};
+  };
 
 </script>
 

@@ -24,13 +24,13 @@
     </v-timer>
 
     <div class="clearfix timer-buttons">
-      <v-button @change="jumpMainpage">
+      <v-button @click.native="jumpMainpage">
         mainpage
       </v-button>
-      <v-button @change="update">
+      <v-button @click.native="update">
         update
       </v-button>
-      <v-button @change="getValue">
+      <v-button @click.native="getValue">
         get value
       </v-button>
     </div>

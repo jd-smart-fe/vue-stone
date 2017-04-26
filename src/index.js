@@ -1,4 +1,3 @@
-import './units/default';
 import './components/_style';
 import './components/_style_transition';
 import Initializer from '../libs/initializer';

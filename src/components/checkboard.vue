@@ -50,31 +50,37 @@ export default {
     // 1. 记录初始激活 item 的索引值。
     // 2. 为每个 item 添加事件。
     this.items.forEach(item => {
-      const value = item.elm.dataset.value;
+      const datasetValue = item.elm.dataset.value;
 
-      if (value === this.value) {
-        // 单选初始激活
+      // 单选初始激活
+      if (datasetValue === this.value.toString()) {
         item.elm.setAttribute('checked', true);
 
-      } else if (this.multi && this.value.indexOf(value) !== -1) {
-
-        // 多选初始激活
+      // 多选初始激活
+      } else if (
+        this.multi &&
+        this.value.find(val => val.toString() === datasetValue) !== undefined
+      ) {
         item.elm.setAttribute('checked', true);
       }
 
+      // 监听事件，为按钮添加按下效果
       item.elm.addEventListener('touchstart', () => {
         item.elm.classList.add('c-checkboard-hover');
       });
 
+      // 按钮效果
+      // 按下逻辑分流
       item.elm.addEventListener('touchend', () => {
         item.elm.classList.remove('c-checkboard-hover');
 
+        // 多选
         if (this.multi) {
-          // 多选
-          this.emitMultiple(value);
+          this.emitMultiple(datasetValue);
+
+        // 单选
         } else {
-          // 单选
-          this.emitSingle(value);
+          this.emitSingle(datasetValue);
         }
       });
 
@@ -90,9 +96,16 @@ export default {
       this.$emit('change', value);
     },
 
+    // 多选
     emitMultiple(val) {
-      const index = this.value.indexOf(val);
       const copyValue = this.value.concat();
+      let index = -1;
+
+      this.value.forEach((_value, _index) => {
+        if (_value.toString() === val) {
+          index = _index;
+        }
+      });
 
       if (index !== -1) {
         copyValue.splice(index, 1);
@@ -103,28 +116,35 @@ export default {
       this.updateView(copyValue);
     },
 
+    // 单选
     emitSingle(val) {
       this.updateView(val);
     },
 
+    // watch value 单选
     handleSingle(val, oldval) {
       this.items.forEach(item => {
-        if (item.elm.dataset.value === val) {
-          item.elm.setAttribute('checked', true);
-        }
-        if (item.elm.dataset.value === oldval) {
+        const datasetValue = item.elm.dataset.value;
+
+        if (datasetValue === oldval.toString()) {
           item.elm.setAttribute('checked', false);
+        }
+
+        if (datasetValue === val.toString()) {
+          item.elm.setAttribute('checked', true);
         }
       });
     },
 
+    // watch value 多选
     handleMultiple(val) {
       this.items.forEach(item => {
-        const datavalue = item.elm.dataset.value;
-        if (this.value.indexOf(datavalue) === -1) {
-          item.elm.setAttribute('checked', false);
-        } else {
+        const datasetValue = item.elm.dataset.value;
+
+        if (this.value.find(v => v.toString() === datasetValue) !== undefined) {
           item.elm.setAttribute('checked', true);
+        } else {
+          item.elm.setAttribute('checked', false);
         }
       });
     },
@@ -136,7 +156,7 @@ export default {
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 
-$c-checkboard-item-padding: 0.08rem 0;
+$c-checkboard-item-padding: 0.12rem 0;
 $c-checkboard-icon-width: 0.1rem;
 $c-checkboard-icon-height: 0.1rem;
 

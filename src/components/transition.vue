@@ -123,7 +123,6 @@ export default {
 
   // 实例销毁前删除相应的样式表
   beforeDestroy() {
-    console.debug('beforeDestroy');
     const styleSheet = document.querySelector(`#${this.str}`);
     document.head.removeChild(styleSheet);
   },
