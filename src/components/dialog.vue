@@ -3,8 +3,8 @@
     <v-mask :shown="shown" ref="mask">
       </v-mask>
     <div class="c-dialog" v-show="shown">
-      <h4 class="c-dialog-title">{{dialog.title}}</h4>
-      <div class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
+      <h4 v-if="dialog.title" class="c-dialog-title">{{dialog.title}}</h4>
+      <div  v-if="dialog.description"  class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
         <div>
           <p>{{dialog.description}}</p>
         </div>
@@ -12,8 +12,8 @@
       <div class="c-dialog-footer">
         <div class="c-dialog-buttons" :class="getButtonClass()">
           <template v-if="dialog.buttons.length===0">
-              <a href="#"@click.prevent="leftBtn">确定</a>
-              <a href="#"@click.prevent="rightBtn">取消</a>
+              <a href="#"@click.prevent="confirm">确定</a>
+              <!--<a href="#"@click.prevent="rightBtn">取消</a>-->
           </template >
           <template v-else>
             <a href="#" v-for="(item,index) in dialog.buttons" @click.prevent="item.callback">{{item.text}}</a>
@@ -26,11 +26,11 @@
 <script>
 
 const def = {
-  title: '提示',
-  description: '描述',
+  title: '',
+  description: '',
   buttons: [
-    { text: '取消', callback: () => { } },
-    { text: '确定', callback: () => { } },
+    // { text: '取消', callback: () => { } },
+    { text: '确定', callback: () => { this.log(this); } },
   ],
 };
 export default {
@@ -55,12 +55,19 @@ export default {
         this.inited = true;
       }
     },
+    confirm() {
+      this.shown = false;
+    },
     show(options) {
       if (!this.inited) {
         this.init();
       }
+      const obj = Object.assign(def, options);
+      if (!obj.title && !obj.description) {
+        obj.title = 'JDSmart';
+      }
+      this.dialog = obj;
       this.shown = true;
-      this.dialog = Object.assign(def, options);
     },
     hide() {
       this.shown = false;
@@ -69,6 +76,7 @@ export default {
       const buttonLength = this.dialog.buttons.length;
       let className = 'c-dialog-button-2';
       switch (buttonLength) {
+        case 0:
         case 1:
           className = 'c-dialog-button-1';
           break;

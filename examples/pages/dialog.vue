@@ -27,7 +27,7 @@
         this.$dialog.show({
           buttons: [
             { text: '确定', callback: this.left.bind(this) },
-            // { text: '取消', callback: this.right.bind(this) },
+            { text: '取消', callback: this.right.bind(this) },
           ],
           title: 'JDSmart',
           description: 'No Smart No Goods',
