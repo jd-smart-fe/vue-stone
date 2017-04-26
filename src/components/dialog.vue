@@ -14,7 +14,7 @@
           <template v-if="dialog.buttons.length===0">
               <a href="#"@click.prevent="leftBtn">确定</a>
               <a href="#"@click.prevent="rightBtn">取消</a>
-            </template >
+          </template >
           <template v-else>
             <a href="#" v-for="(item,index) in dialog.buttons" @click.prevent="item.callback">{{item.text}}</a>
           </template >
@@ -31,8 +31,6 @@ const def = {
   buttons: [
     { text: '取消', callback: () => { } },
     { text: '确定', callback: () => { } },
-    // { text: '取消', callback: false },
-    // { text: '确定', callback: false },
   ],
 };
 export default {
@@ -45,19 +43,10 @@ export default {
       dialog: def,
     };
   },
-  // props: {
-  //   shown: {
-  //     type: Boolean,
-  //     required: false,
-  //     default: true,
-  //   },
-
-  // },
-
   mounted() {
-    // this.$refs.mask.$on('click', () => {
-    //   this.$emit('maskClick');// mask的click事件向上抛
-    // });
+    this.$refs.mask.$on('click', () => {
+      this.shown = false;
+    });
   },
   methods: {
     init() {
@@ -72,8 +61,6 @@ export default {
       }
       this.shown = true;
       this.dialog = Object.assign(def, options);
-      // this.shown = true;
-      // console.debug(666);
     },
     hide() {
       this.shown = false;
