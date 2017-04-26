@@ -41,6 +41,17 @@
         >
         </v-range>
       </div>
+      <div slot="body" class="c-panel-body">
+          range - disabled
+      </div>
+      <div slot="body" class="c-panel-body row-3 u-cross-center">
+        <v-range slot="main" ref="range"
+          value="20"
+          :dots="range_data.dots"
+          :disabled="true"
+        >
+        </v-range>
+      </div>
     </v-panel>
 
   </div>

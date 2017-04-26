@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-range']">
+  <div :class="['c-range', disabled ? 'c-range-disabled' : '']">
     <!-- <input type="text"
       :value="currentValue"
     > -->
@@ -15,7 +15,7 @@
       <div class="c-range-slider-line">
         <div class="c-range-slider-process" ref="range-process"
          :style="{width : processPercent + '%'}" >
-          <span class="c-range-slider-button">
+          <span v-show="!disappear" class="c-range-slider-button">
             <transition name="fadetip">
               <em v-show="show_tip && show_tip_state" class="text">{{tipText}}</em>
             </transition>
@@ -449,6 +449,18 @@
     width:100%;
     padding:0 $range-padding-x;
     box-sizing: border-box;
+
+    &.c-range-disabled {
+      pointer-events: none;
+
+      .c-range-slider-process{
+        /*background-color: $t-range-defcolor;*/
+      }
+
+      .c-range-slider-button{
+          border-color: $t-range-defcolor;
+      }
+    }
   }
   .c-range-slider{
     width:100%;
