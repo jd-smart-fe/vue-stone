@@ -10,7 +10,7 @@
 
   #app {
     color: #2c3e50;
-    margin-top: 60px;
+    margin-top: 80px;
     margin-bottom: 60px;
   }
 
@@ -29,7 +29,10 @@
     text-align: center;
     display: block;
 
-    margin-top: -60px;
+    margin-top: -80px;
+
+    width: 100%;
+    position: fixed;
 
     background: whitesmoke;
 
