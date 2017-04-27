@@ -15,7 +15,7 @@
       <div class="c-range-slider-line">
         <div class="c-range-slider-process" ref="range-process"
          :style="{width : processPercent + '%'}" >
-          <span v-show="!disappear" class="c-range-slider-button">
+          <span class="c-range-slider-button">
             <transition name="fadetip">
               <em v-show="show_tip && show_tip_state" class="text">{{tipText}}</em>
             </transition>
@@ -112,12 +112,6 @@
 
       // 禁止滑动
       disabled: {
-        type: Boolean,
-        default: false,
-      },
-
-      // 控制圆球消失
-      disappear: {
         type: Boolean,
         default: false,
       },
