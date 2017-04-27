@@ -1,7 +1,10 @@
 <template>
   <div class="c-input">
     <input ref="input" :name="htmlName" type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
-    <span title="清空" class="c-input-delquery icon-round-close" @touchstart="clear" v-show="_show"></span>
+
+    <div class="c-input-closebox">
+      <span title="清空" class="c-input-delquery icon-round-close" @touchstart="clear" v-show="_show"></span>
+    </div>
   </div>
 </template>
 
@@ -73,28 +76,29 @@
 </script>
 <style>
 .c-input {
+    display: flex;
     background: #fff none repeat scroll 0 0;
-    position: relative;
-    padding-right: 0.2rem;
+}
 
-    .c-input-delquery {
-      cursor: pointer;
-      position: absolute;
-      right: 0;
-      top: 0;
-      font-size: $font-size-xl;
-      color: #999;
-    }
+.c-input-closebox {
+  width: $font-size-xl;
+}
 
-    .c-input-key { /*input框*/
-      background: none;
-      border: 0;
-      font: 16px/22px arial;
-      height: 0.16rem;
-      outline:none;
-      padding: 1px 0;
-      padding-right: 0.2rem;
-      width: 100%;
-    }
+.c-input-delquery {
+  cursor: pointer;
+  font-size: $font-size-xl;
+  color: #999;
+  vertical-align: middle;
+}
+
+.c-input-key { /*input框*/
+  background: none;
+  border: 0;
+  font: 16px/22px arial;
+  height: 0.16rem;
+  outline:none;
+  padding: 1px 0;
+  padding-right: 0.06rem;
+  width: 100%;
 }
 </style>
