@@ -12,7 +12,7 @@
       <div class="c-dialog-footer">
         <div class="c-dialog-buttons" :class="getButtonClass()">
           <template v-if="dialog.buttons.length===0">
-            <a href="#" @click.prevent="confirm">确定</a>
+            <a href="#" @click.prevent="handle(dialog.buttons.length)">确定</a>
           </template>
           <template v-else>
             <a href="#" v-for="(item,index) in dialog.buttons" @click.prevent="handle(index)">{{item.text}}</a>
@@ -29,7 +29,7 @@ const def = {
   description: '',
   buttons: [
     // { text: '取消', callback: () => { } },
-    { text: '确定', callback: () => { this.shown = false; } },
+    // { text: '确定', callback: () => { this.shown = false; } },
   ],
 };
 export default {
@@ -39,12 +39,15 @@ export default {
   data() {
     return {
       shown: false,
-      dialog: def,
+      dialog: {
+        title: '',
+        description: '',
+        buttons: [],
+      },
     };
   },
   watch: {
     shown(val) {
-
       if (!val) {
         this.$emit('dialog.close');
       }
@@ -57,7 +60,7 @@ export default {
   },
   methods: {
     handle(index) {
-      if (this.dialog.buttons[index].callback) {
+      if (this.dialog.buttons.length && this.dialog.buttons[index].callback) {
         this.dialog.buttons[index].callback();
       } else {
         this.$emit('dialog.button.click', index);
@@ -68,9 +71,6 @@ export default {
         document.body.appendChild(this.$el);
         this.inited = true;
       }
-    },
-    confirm() {
-      this.shown = false;
     },
     show(options) {
       if (!this.inited) {
@@ -158,6 +158,7 @@ export default {
 
 
 
+
 /**
    *一个按钮样式
    */
@@ -169,6 +170,7 @@ export default {
 
 
 
+
 /**
    *两个按钮样式
    */
@@ -176,6 +178,7 @@ export default {
 .c-dialog-button-2>a {
   width: 49.8%;
 }
+
 
 
 

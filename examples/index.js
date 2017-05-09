@@ -29,6 +29,9 @@ const list = [{
   name: 'action-sheet',
 }, {
   name: 'dialog',
+},
+{
+  name: 'alert',
 }, {
   name: 'form',
 }, {

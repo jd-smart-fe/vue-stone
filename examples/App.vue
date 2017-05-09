@@ -74,6 +74,10 @@
         <div > Dialog </div>
         <span class='icon icon-pull-right'></span>
       </div>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('alert')">
+        <div > alert </div>
+        <span class='icon icon-pull-right'></span>
+      </div>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('toast')">
         <div > Toast </div>
         <span class='icon icon-pull-right'></span>

@@ -5,9 +5,7 @@
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="">Dialog</div>
         <v-button @click.native="click">Show</v-button>
-
       </div>
-
     </v-panel>
 
     <!--<v-dialog ref="dialog" :shown="showDialog" :options="dialogOptions">
