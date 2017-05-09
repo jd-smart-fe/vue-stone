@@ -22,5 +22,6 @@ export default {
       this.$dialog.hide();
     },
   },
+
 };
 </script>

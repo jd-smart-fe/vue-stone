@@ -8,7 +8,7 @@
       </div>
     </v-panel>
     <!--<v-dialog ref="dialog" :shown="showDialog" :options="dialogOptions">
-        </v-dialog>-->
+          </v-dialog>-->
 
   </div>
 </template>
@@ -17,16 +17,16 @@ export default {
   name: 'alert',
   data() {
     return {
-      potions: {
-        title: 'alert',
-        // buttons: [
-        //   {
-        //     text: 'ok',
-        //     callback: this.ok.bind(this),
-        //   },
-        // ],
-      },
-      // potions: 'alert',
+      // potions: {
+      //   title: 'alert',
+      //   buttons: [
+      //     {
+      //       text: 'ok',
+      //       callback: this.ok.bind(this),
+      //     },
+      //   ],
+      // },
+      potions: 'alert',
     };
   },
   methods: {
@@ -37,6 +37,15 @@ export default {
       this.$log('click ok');
       this.$alert.hide();
     },
+  },
+  mounted() {
+    this.$dialog.$on('dialog.button.click', (val) => {
+      this.$log(`${val}`);
+      this.$alert.hide();
+    });
+    this.$dialog.$on('dialog.close', () => {
+      this.$log('alert close');
+    });
   },
 };
 </script>
