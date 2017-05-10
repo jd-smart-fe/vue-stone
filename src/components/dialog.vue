@@ -51,7 +51,7 @@ export default {
   watch: {
     shown(val) {
       if (!val) {
-        this.$emit('dialog.close');
+        this.$emit('dialog.close', this.dialog.type);
       }
     },
   },
@@ -65,7 +65,15 @@ export default {
   methods: {
     handle(index) {
       if (this.dialog.type === 'alert' || this.dialog.type === 'confirm') {
-        this.shown = false;
+        if (this.dialog.type === 'alert') {
+          this.shown = false;
+        } else if (this.dialog.type === 'confirm') {
+          if (this.dialog.buttons[index].callback) {
+            this.dialog.buttons[index].callback();
+          } else {
+            this.shown = false;
+          }
+        }
       } else if (this.dialog.buttons.length && this.dialog.buttons[index].callback) {
         this.dialog.buttons[index].callback();
       } else {

@@ -9,6 +9,7 @@ module.exports = {
     'panel',
     'dialog',
     'alert',
+    'confirm',
     'button',
     'button-switch',
     'button-group',

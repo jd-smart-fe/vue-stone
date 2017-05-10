@@ -1,13 +1,13 @@
 <script>
 export default {
-  name: 'v-alert',
+  name: 'v-confirm',
   type: 'singleton',
   data() {
     return {
       options: {
         title: '',
         description: '',
-        type: 'alert',
+        type: 'confirm',
       },
     };
   },
@@ -16,9 +16,18 @@ export default {
       if (typeof options === 'string') {
         options = { title: options };
       }
-      const a = { button: [{ text: options.buttonText || '确定' }] };
-      const obj = Object.assign(this.options, options);
+      const btnDefault = {
+        buttons: [
+        { text: '取消' },
+        { text: '确定', callback: options.callback || this.confirm.bind(this) },
+        ],
+      };
+      const obj = Object.assign(this.options, btnDefault, options);
       this.$dialog.show(this.options);
+    },
+    confirm() {
+      this.$log('default config');
+      this.hide();
     },
     hide() {
       this.$dialog.hide();
@@ -26,8 +35,8 @@ export default {
   },
   mounted() {
     this.$dialog.$on('dialog.close', (val) => {
-      if (val === 'alert') {
-        this.$emit('alert.close');
+      if (val === 'confirm') {
+        this.$emit('confirm.close');
       }
     });
   },
