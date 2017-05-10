@@ -7,10 +7,6 @@
         <v-button @click.native="click">Show</v-button>
       </div>
     </v-panel>
-
-    <!--<v-dialog ref="dialog" :shown="showDialog" :options="dialogOptions">
-      </v-dialog>-->
-
   </div>
 </template>
 <script>
@@ -30,7 +26,10 @@ export default {
         ],
         title: 'JDSmart',
         description: 'No Smart No Goods',
-
+        // style: {
+        //   tcolor: 'red',
+        //   dcolor: 'pink',
+        // },
       });
     },
     left() {
@@ -43,14 +42,19 @@ export default {
     },
   },
   mounted() {
+    this.$dialog.$on('dialog.button.click', (val) => {
+      this.$log(`${val}`);
+      this.$dialog.hide();
+    });
     this.$dialog.$on('dialog.close', () => {
-      this.test = 'dialog.close';
-      this.$log(this.test);
+      this.$log('dialog.close');
     });
   },
 };
 </script>
 
 <style>
-
+.cls{
+  color: pink
+}
 </style>

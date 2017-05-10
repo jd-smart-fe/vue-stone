@@ -7,6 +7,7 @@ export default {
       options: {
         title: '',
         description: '',
+        type: 'alert',
       },
     };
   },
@@ -15,6 +16,7 @@ export default {
       if (typeof options === 'string') {
         options = { title: options };
       }
+      const a = { button: [{ text: options.buttonText || '确定' }] };
       const obj = Object.assign(this.options, options);
       this.$dialog.show(this.options);
     },

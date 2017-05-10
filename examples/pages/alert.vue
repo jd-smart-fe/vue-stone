@@ -19,12 +19,7 @@ export default {
     return {
       // potions: {
       //   title: 'alert',
-      //   buttons: [
-      //     {
-      //       text: 'ok',
-      //       callback: this.ok.bind(this),
-      //     },
-      //   ],
+      //   buttonText: 'ok',
       // },
       potions: 'alert',
     };
@@ -33,16 +28,8 @@ export default {
     click() {
       this.$alert.show(this.potions);
     },
-    ok() {
-      this.$log('click ok');
-      this.$alert.hide();
-    },
   },
   mounted() {
-    this.$dialog.$on('dialog.button.click', (val) => {
-      this.$log(`${val}`);
-      this.$alert.hide();
-    });
     this.$dialog.$on('dialog.close', () => {
       this.$log('alert close');
     });

@@ -2,11 +2,11 @@
   <div>
     <v-mask :shown="shown" ref="mask">
     </v-mask>
-    <div class="c-dialog" v-show="shown">
-      <h4 v-if="dialog.title" class="c-dialog-title">{{dialog.title}}</h4>
+    <div class="c-dialog" v-show="shown" >
+      <h4 v-if="dialog.title" class="c-dialog-title" :style="{color:dialog.style.tcolor}" >{{dialog.title}}</h4>
       <div v-if="dialog.description" class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
         <div>
-          <p>{{dialog.description}}</p>
+          <p :style="{color:dialog.style.dcolor}">{{dialog.description}}</p>
         </div>
       </div>
       <div class="c-dialog-footer">
@@ -31,6 +31,7 @@ const def = {
     // { text: '取消', callback: () => { } },
     // { text: '确定', callback: () => { this.shown = false; } },
   ],
+  style: {},
 };
 export default {
   name: 'v-dialog',
@@ -43,6 +44,7 @@ export default {
         title: '',
         description: '',
         buttons: [],
+        style: {},
       },
     };
   },
@@ -55,12 +57,16 @@ export default {
   },
   mounted() {
     this.$refs.mask.$on('click', () => {
-      this.shown = false;
+      if (!this.dialog.type) {
+        this.shown = false;
+      }
     });
   },
   methods: {
     handle(index) {
-      if (this.dialog.buttons.length && this.dialog.buttons[index].callback) {
+      if (this.dialog.type === 'alert' || this.dialog.type === 'confirm') {
+        this.shown = false;
+      } else if (this.dialog.buttons.length && this.dialog.buttons[index].callback) {
         this.dialog.buttons[index].callback();
       } else {
         this.$emit('dialog.button.click', index);
@@ -76,7 +82,8 @@ export default {
       if (!this.inited) {
         this.init();
       }
-      const obj = Object.assign(def, options);
+      // console.log('ready');
+      const obj = Object.assign({}, def, options);
       if (!obj.title && !obj.description) {
         obj.title = 'JDSmart';
       }
