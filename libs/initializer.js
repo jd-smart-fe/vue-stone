@@ -9,6 +9,8 @@ if (process.env.NODE_ENV !== 'production') {
     'power',
     'panel',
     'dialog',
+    'alert',
+    'confirm',
     'button',
     'button-switch',
     'button-group',

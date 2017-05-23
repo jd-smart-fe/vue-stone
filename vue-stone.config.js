@@ -8,6 +8,8 @@ module.exports = {
     'power',
     'panel',
     'dialog',
+    'alert',
+    'confirm',
     'button',
     'button-switch',
     'button-group',
