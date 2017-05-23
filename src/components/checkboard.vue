@@ -45,6 +45,10 @@ export default {
   },
 
   mounted() {
+    if (this.multi === true && !Array.isArray(this.value)) {
+      console.error('value must be Array when the value of multi is true!');
+    }
+
     this.items = this.$slots.item;
 
     // 1. 记录初始激活 item 的索引值。

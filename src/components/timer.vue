@@ -147,7 +147,7 @@
     <div v-show="currentPage === 'notice'">
       <v-panel>
         <div slot="body" class="c-panel-body u-without-padding u-border m-border">
-          <v-checkboard :multi="true" v-model="notice">
+          <v-checkboard v-model="notice">
             <div slot="item" data-value="-1">不通知</div>
             <div slot="item" data-value="0">仅失败通知</div>
             <div slot="item" data-value="1">均通知</div>
