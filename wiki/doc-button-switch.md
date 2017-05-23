@@ -37,7 +37,7 @@ htmlType | String | 'button' | 设置按钮原生 type 参数
 
 **方法：**
 - `update(value)`
-      可改变激活按钮状态，`value` 参数为即将改变的状态。
+      可改变激活按钮状态，`value` 参数为即将改变的状态。可传入`true, false, 'toggle'`。
 
 - `relive()`
       当 `hold` 为 `true` 时，未改变按钮状态前，按钮仅能触发一次 `change` 事件，触发事件后再调用本方法，可以让按钮在下次点击时能再触发一次 `change` 事件。 一般用于异步方法失败时的回调。

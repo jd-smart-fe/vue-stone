@@ -2,7 +2,7 @@
 
 	<div :class="['c-switch',
       disabled && 'c-switch-disabled',
-      value ? 'c-switch-on' : 'c-switch-off']"
+      insideValue ? 'c-switch-on' : 'c-switch-off']"
     @click="handle">
 		<span class="c-switch-button"></span>
 	</div>
@@ -12,6 +12,14 @@
 
   export default {
     name: 'v-switch',
+
+    data() {
+      return {
+        insideValue: this.value,
+        keep: false,  // false: 可以响应，true： 不可响应交互
+      };
+    },
+
     props: {
 
       value: {
@@ -32,18 +40,19 @@
       },
     },
 
-    data() {
-      return {
-        keep: false,  // false: 可以响应，true： 不可响应交互
-      };
-    },
-
     watch: {
-
-      value() {
+      insideValue(val) {
         if (this.hold) {
           this.keep = false;
         }
+        this.$emit('input', val);
+      },
+
+      value(val) {
+        if (this.hold) {
+          this.keep = false;
+        }
+        this.insideValue = val;
       },
     },
 
@@ -65,19 +74,19 @@
           return;
         }
 
-        this.$emit('input', val);
+        this.insideValue = val;
         this.$emit('change', val);
       },
 
       update(val) {
         if (val === 'toggle') {
-          this.$emit('change', !this.value);
-          this.$emit('input', !this.value);
+          this.$emit('change', !this.insideValue);
+          this.insideValue = !this.insideValue;
           return;
         }
 
         this.$emit('change', val);
-        this.$emit('input', val);
+        this.insideValue = val;
       },
 
       relive() {
