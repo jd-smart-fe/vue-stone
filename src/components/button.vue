@@ -101,8 +101,8 @@ export default {
 
 .c-btn {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  /*align-items: center;
+  justify-content: center;*/
 
   padding: $btn-padding-base;
 
@@ -133,6 +133,10 @@ export default {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
   }
 
   &.c-btn-disabled {
