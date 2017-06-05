@@ -56,13 +56,23 @@
       this.days_state_list = new Array(this.days_list.length).fill(false);
       this.days.forEach((val) => {
         this.days_state_list.splice((parseInt(val, 10) - 1), 1, true);
-
       });
     },
 
     watch: {
       selected_days() {
         this.$emit('change', this.selected_days);
+      },
+
+      // change days
+      days() {
+        this.selected_days = this.days.concat();
+
+        this.days.forEach((val) => {
+          this.days_state_list.splice((parseInt(val, 10) - 1), 1, true);
+        });
+
+        this.setQuickState(this.days);
       },
     },
 
