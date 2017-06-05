@@ -18,7 +18,7 @@
     </v-panel>
 
     <v-action-sheet
-      ref="action" v-model="shown" :items="items" @click.native="updateInfo"></v-action-sheet>
+      ref="action" v-model="shown" :items="items" @change="updateInfo"></v-action-sheet>
     <v-action-box
       v-model="shownBox">
       <div style="background: #fff; padding: .1rem 0;">
