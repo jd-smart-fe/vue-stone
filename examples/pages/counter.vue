@@ -5,14 +5,14 @@
 
     <v-panel>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <div slot="title" class="c-panel-title ">counter:
+        <div slot="title" class="c-panel-title ">冷藏室温度设置:
           <div class="number-text">
             {{ countNumber }}
           </div>
         </div>
         <v-counter
           slot="main" ref="counter" v-model="countNumber"
-          :max="10" :min="0" :step="1" :longTap="true">
+          :max="6" :min="-8" :step="1" :longTap="true">
         </v-counter>
       </div>
     </v-panel>
@@ -27,7 +27,7 @@
 
     data() {
       return {
-        countNumber: 5,
+        countNumber: 0,
       };
     },
 
@@ -53,7 +53,7 @@
   @import '../../src/styles/mixins.css';
 
   .number-text{
-    font-size: $font-size-32;
+    font-size: .3rem;
     color: $c-primary;
   }
 

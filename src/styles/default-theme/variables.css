@@ -85,15 +85,15 @@ $btn-height-base: 0.28rem;
 $btn-width-lg: 1.29rem;
 $btn-height-lg: 0.42rem;*/
 
-$btn-padding-sm: 0.04rem 0.08rem;
+$btn-padding-sm: 0.08rem 0.08rem;
 $btn-fontsize-sm: $font-size-sm;
 $btn-radius-sm: 0.05rem;
 
-$btn-padding-base: 0.08rem 0.12rem;
-$btn-fontsize-base: $font-size-base;
+$btn-padding-base: 0.08rem 0.2rem;
+$btn-fontsize-base: $font-size-sm;
 
-$btn-padding-lg: 0.12rem 0.19rem;
-$btn-fontsize-lg: $font-size-lg;
+$btn-padding-lg: 0.16rem 0.36rem;
+$btn-fontsize-lg: $font-size-base;
 
 $btn-disabled: #efefef;
 $btn-hover: #efefef; /* 按钮按下底色 */

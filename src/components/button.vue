@@ -195,21 +195,21 @@ export default {
 .c-btn-icon-only {
 
   padding: 0;
-  border-radius: 100%;
+  border-radius: 9999px;
 
-  width: .32rem;
-  height: .32rem;
+  width: .4rem;
+  height: .4rem;
   font-size: .16rem;
 
   &.c-btn-small {
-    width: .24rem;
-    height: .24rem;
+    width: .3rem;
+    height: .3rem;
     font-size: .12rem;
   }
 
   &.c-btn-large {
-    width: .44rem;
-    height: .44rem;
+    width: .5rem;
+    height: .5rem;
     font-size: .22rem;
   }
 }
