@@ -1,6 +1,6 @@
 # stone
 
-Store, 基于 vue 的组件库
+Store, 基于 vue 的组件库.
 
 ## Build
 
