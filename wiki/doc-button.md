@@ -18,6 +18,7 @@
 ----    | ----    | ----    | ----    |
 type |  String  | 'click' | 定义按钮类型，可选值'toggle', 'click' 。
 size  | String  | 'base' |  定义按钮大小，可选值 'small', 'base', 'large'。
+full  | Boolean | false  | 按钮是否展示为满屏宽度
 icon  | String  | ''  |  定义按钮图标。
 radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle',
 disabled | Boolean | false | 是否禁用按钮。
