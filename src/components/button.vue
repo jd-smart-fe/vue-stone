@@ -204,7 +204,7 @@ export default {
 .c-btn-icon-only {
 
   padding: 0;
-  border-radius: 100%;
+  border-radius: 9999px;
 
   width: .38rem;
   height: .38rem;
