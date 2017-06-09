@@ -25,11 +25,20 @@
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div> 形状 radius</div>
       </div>
+
       <div slot="body" style="padding: .12rem;">
         <v-button @click.native="btnClickHandle">small</v-button>
         <v-button radius="circle" @click.native="btnClickHandle">circle</v-button>
         <v-button radius="circle" icon="power" @click.native="btnClickHandle"></v-button>
       </div>
+
+      <div slot="body" class="c-panel-body row-1 u-cross-center">
+        <div> 满宽按钮 </div>
+      </div>
+      <div slot="body" style="padding: .12rem;">
+        <v-button :full='true'>长按钮</v-button>
+      </div>
+
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
         <div> 图标 icon</div>
@@ -54,7 +63,7 @@
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div> 按钮组 button-group</div>
+        <div> Button group</div>
       </div>
       <div slot="body" style="padding: .12rem;">
         <v-button-group>

@@ -7,6 +7,7 @@
               status ? 'c-btn-on' : '',
               iconOnly ? 'c-btn-icon-only' : '',
               radius ? 'c-btn-radius-' + radius: '',
+              full ? 'c-btn-full' : '',
             ]"
     :type="htmlType"
     @touchstart="touchstartHandle"
@@ -31,10 +32,14 @@ export default {
   },
 
   props: {
-    // 按钮大小
+    // 按钮大小  small base large full
     size: {
       type: String,
       default: '',
+    },
+    full: {
+      type: Boolean,
+      dafault: false,
     },
     // 按钮图标
     icon: {
@@ -101,9 +106,6 @@ export default {
 
 .c-btn {
   display: inline-flex;
-  /*align-items: center;
-  justify-content: center;*/
-
   padding: $btn-padding-base;
 
   @mixin border;
@@ -120,8 +122,11 @@ export default {
 
   /**
    * 解决 Android 4.2 版本 border-radius 和 background 的 Bug
+   *
+   * background-clip: padding-box;
+   *
+   * 但是造成了更多手机背景色与border之间出现空隙的问题
    */
-  background-clip: padding-box;
   background-color: transparent;
 
   @mixin transition;
@@ -144,6 +149,10 @@ export default {
     color: $btn-disabled;
     border-color: $btn-disabled;
     /*background-color: $btn-disabled;*/
+  }
+
+  &.c-btn-full {
+    width: 100%;
   }
 }
 
@@ -197,13 +206,13 @@ export default {
   padding: 0;
   border-radius: 100%;
 
-  width: .32rem;
-  height: .32rem;
+  width: .38rem;
+  height: .38rem;
   font-size: .16rem;
 
   &.c-btn-small {
-    width: .24rem;
-    height: .24rem;
+    width: .3rem;
+    height: .3rem;
     font-size: .12rem;
   }
 
