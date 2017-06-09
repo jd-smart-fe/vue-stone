@@ -128,25 +128,7 @@ export default {
 </script>
 
 <style>
-$width: 0.6rem;
-$height: 0.38rem;
-$icon-size: 0.16rem;
-$left-icon-left-margin: 0.04rem;
-$right-icon-right-margin: 0.04rem;
-
-
 .c-counter-dec.c-counter-left-border {
   border-left-color: #59B8FC;
-}
-.c-counter button.c-btn-icon-only {
-  width: $width;
-  height: $height;
-  font-size: $icon-size;
-}
-.c-counter-inc .c-btn-icon {
-  margin-left: $left-icon-left-margin
-}
-.c-counter-dec .c-btn-icon {
-  margin-right: $right-icon-right-margin
 }
 </style>

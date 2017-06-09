@@ -17,9 +17,9 @@
         <div> 尺寸 size</div>
       </div>
       <div slot="body" style="padding: .12rem;">
-        <v-button size="small" radius="circle" @click.native="btnClickHandle">小按钮</v-button>
-        <v-button radius="circle" @click.native="btnClickHandle">中按钮</v-button>
-        <v-button size="large" radius="circle" @click.native="btnClickHandle">大啊按钮</v-button>
+        <v-button size="small" @click.native="btnClickHandle">小按钮</v-button>
+        <v-button @click.native="btnClickHandle">中按钮</v-button>
+        <v-button size="large" @click.native="btnClickHandle">大按钮</v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
@@ -41,12 +41,11 @@
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
-        <div class="c-panel-title">开关 button-switch </div>
+        <div class="c-panel-title ">开关 button-switch </div>
       </div>
       <div slot="body" style="padding: .12rem;">
-        <v-button-switch radius="circle" v-model="buttonSwitchValue">toggle</v-button-switch>
+        <v-button-switch v-model="buttonSwitchValue">toggle</v-button-switch>
         <v-button-switch v-model="switchValue" icon="power" radius="circle"></v-button-switch>
-        <v-button-switch v-model="largeSwitchValue"  icon="power" radius="circle" size="large"></v-button-switch>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">
@@ -81,7 +80,6 @@
         buttonSwitchValue: false,
         power_state: true,
         buttonGroup_value: 2,
-        largeSwitchValue: false,
         buttonGroup1: [
           {
             text: '第一个',
