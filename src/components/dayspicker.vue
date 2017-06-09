@@ -267,6 +267,8 @@
 <style>
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
+  $width: 0.46rem;
+  $height: 0.22rem;
 
   .c-dayspicker{
     .c-btn{
@@ -277,8 +279,12 @@
       border-color: $t-dayspicker-defcolor;
       color: $t-dayspicker-defcolor;
       box-sizing: border-box;
-      margin-left:0.15rem;
+      margin-left:0.1rem;
       float:left;
+      padding: 0;
+      width: $width;
+      height: $height;
+
 
       &.c-btn-base{
         width: $dayspicker-item-width;
