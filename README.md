@@ -1,5 +1,5 @@
 # vue-stone
-
+[![GitHub issues](https://img.shields.io/github/issues/JD-Smart-FE/vue-stone.svg?style=flat-square)](https://github.com/JD-Smart-FE/vue-stone/issues)
 > A components library for vue2.x. 一个基于 vue2.x 的组件库
 
 
