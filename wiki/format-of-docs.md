@@ -75,4 +75,4 @@ open | 打开 Action-box 组件 | 无
 
 ## 一个成熟的示例
 
-[Button-switch](./wiki/doc-button-switch.md)
+[Button-switch](./doc-button-switch.md)
