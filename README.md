@@ -1,27 +1,52 @@
-# stone
+# vue-stone
 
-Store, 基于 vue 的组件库.
+> A components library for vue2.x. 一个基于 vue2.x 的组件库
 
-## Build
 
-``` bash
-# 安装依赖
-npm install
+## Install
+`npm install vue-stone`
 
-# 本地开发调试
-npm run dev
+## Usage
 
-# 基于生产环境的构建（静态资源压缩）
-npm run build
+Import vue-stone and register components
 
-# 启动单元测试
-npm test
+```js
+// In ES6 modules
+import Stone from 'vue-stone';
+import 'vue-stone/dist/vue-stone.css';
+
+// In CommonJs
+// var Stone = require('vue-stone');
+// require('vue-stone/dist/vue-stone.css');
+
+import Vue from 'vue';
+
+Vue.use(Stone);   // register components
 ```
 
-备注：暂时未用到 e2e 测试 （npm run e2e）。
+## Documents
+Vue-stone provide those components below:
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
-## Resource
-
-* [Thoughtful CSS Architecture](https://seesparkbox.com/foundry/thoughtful_css_architecture)
+- [Action-box](./wiki/doc-action-box.md)
+- [Action-sheet]() (Docs unfinish)
+- [Alert]() (Docs unfinish)
+- [Button](./wiki/doc-button.md)
+- [Button-group](./wiki/doc-button-group.md) (Docs unfinish)
+- [Button-switch](./wiki/doc-button-switch.md)
+- [Checkboard](./wiki/doc-checkboard.md)
+- [Confirm]() (Docs unfinish)
+- [Counter](./wiki/doc-counter.md)
+- [Dayspicker]() (Docs unfinish)
+- [Dialog](./wiki/doc-dialog.md)
+- [Grid]() (Docs unfinish)
+- [Input]() (Docs unfinish)
+- [Loading]() (Docs unfinish)
+- [Mask](./wiki/doc-mask.md)
+- [Modes]() (Docs unfinish)
+- [Panel]() (Docs unfinish)
+- [Picker]() (Docs unfinish)
+- [Range](./wiki/doc-range.md)
+- [Slide]() (Docs unfinish)
+- [Switch]() (Docs unfinish)
+- [Timepicker]() (Docs unfinish)
+- [Toast]() (Docs unfinish)

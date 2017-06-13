@@ -1,12 +1,11 @@
 {
-  "name": "stone",
-  "version": "1.0.0",
+  "name": "vue-stone",
+  "version": "0.0.1",
   "description": "vue component",
   "author": "zhengyuelin zhengyuelin@jd.com",
   "private": true,
+  "main": "dist/vue-stone.js",
   "scripts": {
-    "deploy:48": "karrier -n env_48",
-    "deploy:49": "karrier -n env_49",
     "start": "npm run dev",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
