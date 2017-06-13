@@ -28,7 +28,7 @@
 
         <v-button @click.native="shownBox = false">close</v-button>
       </div>
-      </v-action-box>
+    </v-action-box>
   </div>
 </template>
 
@@ -50,7 +50,8 @@
       };
     },
 
-    mounted() {},
+    mounted() {
+    },
 
     methods: {
       showActionSheet() {

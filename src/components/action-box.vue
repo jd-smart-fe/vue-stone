@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="">
-    <div :class='["c-action", value ? "c-action-active" : "" ]'>
+    <div :class='["c-action", insideValue ? "c-action-active" : "" ]'>
       <slot></slot>
     </div>
 
     <transition name="fade">
-      <v-mask v-show="value" :shown="mask_shown"></v-mask>
+      <v-mask v-show="insideValue" :shown="mask_shown"></v-mask>
     </transition>
   </div>
 </template>
@@ -17,10 +17,8 @@ export default {
   data() {
     return {
       mask_shown: this.value,
+      insideValue: this.value,
     };
-  },
-
-  computed: {
   },
 
   props: {
@@ -33,11 +31,16 @@ export default {
 
   watch: {
     value(val) {
+      this.insideValue = val;
+    },
+
+    insideValue(val) {
+      this.$emit('input', val);
+
       if (val) {
-
         this.mask_shown = true;
-      } else {
 
+      } else {
         // 300ms 是为了能够触发mask消失时的过渡动画
         setTimeout(() => {
           this.mask_shown = false;
@@ -48,11 +51,11 @@ export default {
 
   methods: {
     close() {
-      this.$emit('input', false);
+      this.insideValue = false;
     },
 
     open() {
-      this.$emit('input', true);
+      this.insideValue = true;
     },
   },
 };
