@@ -1,10 +1,9 @@
-## 遮罩组件：
+# Range：
 
-### range
+## Tag Name
+`v-range`
 
-**v-range**
-
-**属性：**
+## Options
 
 属性名   |    类型    |    默认值    |   说明
 ----    | ----      | ----        | ----    |
@@ -19,14 +18,8 @@ disabled | Boolean | false | 是否禁用滑杆，默认不仅用
 disappear | Boolean | false | 是否另滑杆上的控制球消失，默认不消失
 
 
-**事件**
-
-- `input`:
-  参数: `val` value值。
-
-  拖动时数值发生改变就触发。
-
-- `change`:
-  参数: `val` value值。
-
-  拖动结束时触发。
+## Events
+事件名称  |   说明   |   参数  |
+----    |   ----    |    ----     |
+input |  滑杆拖动时连续触发 | 当前滑杆的 value 值
+change | 滑杆拖动结束时触发 | 当前滑杆的 value 值

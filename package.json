@@ -1,8 +1,8 @@
 {
   "name": "vue-stone",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "vue component",
-  "author": "zhengyuelin zhengyuelin@jd.com",
+  "author": "zhengyuelin zhengyuelin@jd.com pspgbhu<brotherchun001@gmail.com>",
   "private": true,
   "main": "dist/vue-stone.js",
   "scripts": {
