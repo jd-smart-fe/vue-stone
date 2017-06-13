@@ -3,8 +3,14 @@
   "version": "0.1.0",
   "description": "vue component",
   "author": "zhengyuelin zhengyuelin@jd.com pspgbhu<brotherchun001@gmail.com>",
-  "private": true,
   "main": "dist/vue-stone.js",
+  "keywords": [
+    "vue",
+    "components"
+  ],
+  "bugs": {
+    "url": "https://github.com/JD-Smart-FE/vue-stone/issues"
+  },
   "scripts": {
     "start": "npm run dev",
     "dev": "node build/dev-server.js",
@@ -16,10 +22,10 @@
   },
   "dependencies": {
     "core-js": "^2.4.1",
-    "vue": "^2.1.0",
-    "vue-router": "^2.4.0"
   },
   "devDependencies": {
+    "vue": "^2.1.0",
+    "vue-router": "^2.4.0",
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",

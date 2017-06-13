@@ -75,4 +75,4 @@ open | 打开 Action-box 组件 | 无
 
 ## 一个成熟的示例
 
-[Button-switch](./doc-button-switch.md)
+[Button-switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button-switch.md)
