@@ -3,6 +3,7 @@
 .editorconfig
 .eslintrc.js
 .gitignore
+.eslintignore
 .karrierconfig.js
 index.html
 TODO.md
@@ -17,3 +18,4 @@ node_modules/
 examples/
 config/
 build/
+wiki/
