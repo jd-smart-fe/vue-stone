@@ -6,10 +6,38 @@
 > A components library for vue2.x. 一个基于 vue2.x 的组件库
 
 
-## Install
+## 安装
 `npm install vue-stone`
 
-## Usage
+## 使用
+
+### 使用前注意
+本项目采用了 rem 布局方案，因此在引入该组件库前请在 HTML 文件 head 标签內添加下面一段 script：
+
+```html
+<script>
+  (function() {
+    var baseFontSize = 100;
+    var baseWidth = 375;
+
+    var set = function() {
+      var clientWidth = document.documentElement.clientWidth || window.innerWidth;
+
+      var rem = 100;
+      if (clientWidth != baseWidth) {
+        rem = Math.floor(clientWidth / baseWidth * baseFontSize);
+      }
+
+      document.querySelector('html').style.fontSize = rem + 'px';
+    }
+    set();
+
+    window.addEventListener('resize', set);
+  }());
+</script>
+```
+
+### 开始使用
 
 Import vue-stone and register components
 
@@ -27,7 +55,7 @@ import Vue from 'vue';
 Vue.use(Stone);   // register components
 ```
 
-## Documents
+## 文档
 Vue-stone provide those components below:
 
 - [Action-box](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-box.md)

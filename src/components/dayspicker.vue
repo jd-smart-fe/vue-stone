@@ -12,7 +12,10 @@
         @touchend.native="quickOnHandle(index)"
       >
       {{ item }}
-    </v-button-switch>
+      </v-button-switch>
+    </div>
+    <div class="c-dayspicker-line">
+
     </div>
     <div class="c-dayspicker-body">
       <v-button-switch
@@ -267,8 +270,6 @@
 <style>
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
-  $width: 0.46rem;
-  $height: 0.22rem;
 
   .c-dayspicker{
     .c-btn{
@@ -282,8 +283,8 @@
       margin-left:0.1rem;
       float:left;
       padding: 0;
-      width: $width;
-      height: $height;
+      width: $dayspicker-item-width;
+      height: $dayspicker-item-height;
 
 
       &.c-btn-base{
@@ -301,18 +302,21 @@
   }
   .c-dayspicker-quick{
     padding:$dayspicker-padding-y 0;
-    border-bottom:#e5e5e5 solid 1px;
     overflow:hidden;
-    margin-left: -0.15rem;
+    margin-left: -0.1rem;
   }
   .c-dayspicker-body{
-    width:100%;
     padding:0 0 $dayspicker-padding-y 0;
     overflow:hidden;
-    margin-left: -0.15rem;
+    margin-left: -0.1rem;
 
     .c-btn{
       margin-top:$dayspicker-padding-y;
     }
+  }
+  .c-dayspicker-line {
+    width: 100%;
+    height: 1px;
+    background-color: #e5e5e5;
   }
 </style>

@@ -37,8 +37,8 @@ $orange: #f76b46;
 
 /********************  dayspicker  ********************/
 
-$dayspicker-item-width: 0.5rem;
-$dayspicker-item-height: 0.22rem;
+$dayspicker-item-width: 0.54rem;
+$dayspicker-item-height: 0.26rem;
 $dayspicker-item-radius: 4px;
 $dayspicker-padding-y: 0.12rem;
 
@@ -85,15 +85,17 @@ $btn-height-base: 0.28rem;
 $btn-width-lg: 1.29rem;
 $btn-height-lg: 0.42rem;*/
 
-$btn-padding-sm: 0.04rem 0.08rem;
+$btn-padding-sm: 0.06rem 0.08rem;
 $btn-fontsize-sm: $font-size-sm;
 $btn-radius-sm: 0.05rem;
 
-$btn-padding-base: 0.08rem 0.12rem;
+$btn-padding-base: 0.1rem 0.16rem;
 $btn-fontsize-base: $font-size-base;
 
-$btn-padding-lg: 0.12rem 0.19rem;
+$btn-padding-lg: 0.14rem 0.26rem;
 $btn-fontsize-lg: $font-size-lg;
+
+$btn-icon-only-width-base: 0.36rem;
 
 $btn-disabled: #efefef;
 $btn-hover: #efefef; /* 按钮按下底色 */

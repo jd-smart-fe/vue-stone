@@ -206,19 +206,20 @@ export default {
   padding: 0;
   border-radius: 9999px;
 
-  width: .38rem;
-  height: .38rem;
+  width: $btn-icon-only-width-base;
+  height: $btn-icon-only-width-base;
   font-size: .16rem;
+  vertical-align: top;
 
   &.c-btn-small {
-    width: .3rem;
-    height: .3rem;
+    width: $btn-icon-only-width-sm;
+    height: $btn-icon-only-width-sm;
     font-size: .12rem;
   }
 
   &.c-btn-large {
-    width: .44rem;
-    height: .44rem;
+    width: $btn-icon-only-width-lg;
+    height: $btn-icon-only-width-lg;
     font-size: .22rem;
   }
 }
