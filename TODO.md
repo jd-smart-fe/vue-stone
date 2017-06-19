@@ -2,8 +2,8 @@
 
 * [ ] To finish those docs of components, refer the format of [format-of-docs](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/format-of-docs.md)
 * [ ] Formatting docs that have existed, refer the format of [format-of-docs](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/format-of-docs.md)
-  * [ ] checkboard
-  * [ ] counter
+  * [x] checkboard
+  * [x] counter
   * [ ] dialog
   * [ ] mask
   * [ ] range

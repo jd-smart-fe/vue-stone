@@ -1,21 +1,20 @@
-## checkboard：
+# Checkboard：
 
-**v-checkboard**
+## Tag Name
+
+`v-checkboard`
+
+## Usage
+
+**每个选项必须添加属性 `data-value`**
+
+你可以通过一个简单的 for 循环来写出所有的 item。
 
 单选模式：
 ```html
 <v-checkboard v-model="value">
-  <div slot="item" data-value="item1">
-    item1
-  </div>
-  <div slot="item" data-value="item2">
-    item2
-  </div>
-  <div slot="item" data-value="item3">
-    item3
-  </div>
-  <div slot="item" data-value="item4">
-    item4
+  <div v-for="i in list" slot="item" :data-value="i.value">
+    {{ i.text }}
   </div>
 </v-checkboard>
 ```
@@ -30,17 +29,8 @@ data() {
 复选模式：
 ```html
 <v-checkboard v-model="value" :multi="true">
-  <div slot="item" data-value="item1">
-    item1
-  </div>
-  <div slot="item" data-value="item2">
-    item2
-  </div>
-  <div slot="item" data-value="item3">
-    item3
-  </div>
-  <div slot="item" data-value="item4">
-    item4
+  <div v-for="i in list" slot="item" :data-value="i.value">
+    {{ i.text }}
   </div>
 </v-checkboard>
 ```
@@ -51,9 +41,20 @@ data() {
   };
 },
 ```
-*每个选项必须添加属性 `data-value`，且值唯一*
 
-**属性：**
+组件绑定的值为 data-value 的值，但同时你令你的组件显示出不同于 data-value 的值。如：
+```html
+<v-checkboard v-model="value" :multi="true">
+  <div slot="item" data-value="realValue">
+    this is display value
+  </div>
+</v-checkboard>
+```
+
+
+
+
+## Options
 
 属性名   |    类型   |     默认值     |     说明
 ----    | ----    | ----    | ----    |
