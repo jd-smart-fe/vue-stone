@@ -112,10 +112,10 @@ export default {
       : setTranslateXnormal;
 
 
-      this.ele.addEventListener('touchstart', startHandle);
-      this.ele.addEventListener('touchmove', moveHandle);
-      this.ele.addEventListener('touchend', endHandle);
-      this.ele.addEventListener('touchcancel', endHandle);
+      this.$el.addEventListener('touchstart', startHandle);
+      this.$el.addEventListener('touchmove', moveHandle);
+      this.$el.addEventListener('touchend', endHandle);
+      this.$el.addEventListener('touchcancel', endHandle);
 
       function startHandle(e) {
         // 清零
