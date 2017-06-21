@@ -1,10 +1,10 @@
-## 模态组件：
+# Modal
 
-### modal
+## Tag Name
 
-**v-modal**
+`v-modal`
 
-**属性：**
+## Options
 
 属性名   |    类型    |    默认值    |   说明
 ----    | ----    | ----    | ----    |
@@ -12,7 +12,7 @@ showModal | Boolean | false | 是否显示摸态框
 option |  Object  |  Object |  展示 标题、信息、按钮文本、响应事件。
 
 option说明
-```
+```js
 options : {
     title：标题,
     description：描述,
@@ -28,18 +28,12 @@ options : {
 }
 ```
 
-**事件**
-- `maskClick`:
-  参数:`无`
-  点击蒙版出发事件。
-
-**默认事件**
-- `defaultClick`:
-  参数:`无`
-  左按钮点击事件。
-- `primaryClick`:
-  参数:`无`
-  右按钮点击事件。
+## Events
+事件名称   |    说明    |  参数
+----    | ----       | ----    |
+maskClick | 点击蒙版出发事件  | 无
+defaultClick |  左按钮点击事件  |  无
+primaryClick | 右按钮点击事件  | 无
 
 单按钮监听`defaultClick`事件
 

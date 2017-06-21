@@ -1,13 +1,16 @@
 # 定时组模
 
-**`v-timer`**
 
+## Tag Name
+`v-timer`
+
+## Usage
 
 ```html
 <v-timer :options="options"></v-timer>
 ```
 
-## 属性：
+## Options
 
 属性名   |    类型   |     默认值     |     说明
 ----    | ----    | ----    | ----    |
@@ -16,19 +19,20 @@ options |  Object  |  | 必须值，定义组件内容
 
 相关用法，请看下面示例
 
-## 方法：
+## Methods
 
-- `getValue()` 返回值为组件内部的值
+方法名称   |    说明   |     参数
+----    | ----    | ----
+getValue |  返回值为组件内部的值   |  无
+jumpMainpage | 跳会组件首页 | 无
 
-- `jumpMainpage()` 跳会组件首页
+## Events
 
-## 事件
+方法名称   |    说明   |     参数
+----    | ----    | ----
+delete |  当点击删除按钮并确定时，触发该事件   |  无
 
-- `delete` 当点击删除按钮并确定时，触发该事件。
-
-
-## 示例：
-
+## Example
 
 ### 开关类定时模块：
 
