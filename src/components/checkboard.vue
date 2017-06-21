@@ -160,10 +160,6 @@ export default {
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 
-$c-checkboard-item-padding: 0.12rem 0;
-$c-checkboard-icon-width: 0.1rem;
-$c-checkboard-icon-height: 0.1rem;
-
 .c-checkboard{
   display: flex;
   flex-direction: column;
@@ -179,17 +175,28 @@ $c-checkboard-icon-height: 0.1rem;
     /*background-color: red;*/
 
     &:after {
-      content: "";
+      /* icon-select */
+      content: "\e901";
+      font-family: 'iconfont' !important;
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
       position: absolute;
       right: 0;
       top: 0;
       bottom: 0;
       margin: auto;
-
+      font-size: $c-checkboard-icon-size;
       width: $c-checkboard-icon-width;
       height: $c-checkboard-icon-height;
-
-      background-color: $blue;
 
       transition: .2s linear all;
     }

@@ -6,4 +6,5 @@
   @import '../styles/utils.css';
   @import '../styles/base.css';
 
+  @import '../styles/dependenciesFonts/style.css';
 </style>

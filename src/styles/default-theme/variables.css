@@ -78,13 +78,6 @@ $t-power-offcolor: #fff;
 $t-power-oncolor: $c-primary;
 
 /************************  button  ************************/
-/*$btn-width-sm: 0.75rem;
-$btn-height-sm: 0.18rem;
-$btn-width-base: 0.86rem;
-$btn-height-base: 0.28rem;
-$btn-width-lg: 1.29rem;
-$btn-height-lg: 0.42rem;*/
-
 $btn-padding-sm: 0.06rem 0.08rem;
 $btn-fontsize-sm: $font-size-sm;
 $btn-radius-sm: 0.05rem;
@@ -103,6 +96,13 @@ $btn-hover: #efefef; /* 按钮按下底色 */
 /************************  counter  ************************/
 $counter-width: 1.03rem;
 $counter-height: 0.35rem;
+
+
+/************************  checkboard  ************************/
+$c-checkboard-item-padding: 0.12rem 0;
+$c-checkboard-icon-width: 0.1rem;
+$c-checkboard-icon-height: 0.1rem;
+$c-checkboard-icon-size: 0.14rem;
 
 /************************  modal   ************************/
 $c-dialog-title: #1f2d3d

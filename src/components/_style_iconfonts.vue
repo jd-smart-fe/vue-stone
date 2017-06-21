@@ -1,3 +1,3 @@
 <style>
-  @import '../styles/iconfont.css';
+  @import '../styles/fonts/style.css';
 </style>
