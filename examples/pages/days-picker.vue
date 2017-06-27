@@ -12,7 +12,7 @@
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">dayspicker</div>
       <div slot="body" class="c-panel-body row-5 u-cross-center">
-        <v-dayspicker ref="dayspicker" :days="dayspicker_list">
+        <v-dayspicker ref="dayspicker" v-model="dayspickerList">
         </v-dayspicker>
       </div>
     </v-panel>
@@ -27,7 +27,7 @@
 
     data() {
       return {
-        dayspicker_list: [6, 7],
+        dayspickerList: [6, 7],
       };
     },
 

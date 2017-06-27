@@ -4,26 +4,29 @@
       <!-- <v-button-switch-group :items="quick_list">
       </v-button-group> -->
       <v-button-switch
-        v-for="(item, index) in quick_list"
+        v-for="(item, index) in quickList"
+        :key="index"
         ref="quick"
         size="small"
         radius="small"
-        :value="quick_state_list[index]"
+        :hold="true"
+        :value="index === quickListValue"
         @touchend.native="quickOnHandle(index)"
       >
       {{ item }}
       </v-button-switch>
     </div>
-    <div class="c-dayspicker-line">
 
-    </div>
+    <div class="c-dayspicker-line"></div>
+
     <div class="c-dayspicker-body">
       <v-button-switch
-        v-for="(item, index) in days_list"
-        ref="days"
+        v-for="(item, index) in daysList"
+        :key="index"
         size="small"
         radius="small"
-        :value="days_state_list[index]"
+        :hold="true"
+        :value="1 === daysValueForArray[index]"
         @change="daysHandle(index)"
       >
       {{ item }}
@@ -35,233 +38,142 @@
 <script>
   export default {
     name: 'v-dayspicker',
+
     props: {
+      // 保留旧有的 api
       days: {
+        type: Array,
+        default() {
+          return null;
+        },
+      },
+
+      // 新的双向绑定的
+      value: {
         type: Array,
         default() {
           return [];
         },
       },
     },
+
     data() {
       return {
-        quick_list: ['每天', '工作日', '周末'],
-        days_list: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-        quick_state_list: [],
-        days_state_list: [],
-        selected_days: this.days.concat(),
+        quickList: ['每天', '工作日', '周末'],
+        daysList: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        selectedDays: this.value,
       };
     },
 
     created() {
+      // 兼容旧 api
+      if (this.value === [] && this.days !== null) {
+        this.selectedDays = this.days;
+      }
+    },
 
-      this.quick_state_list = new Array(this.quick_list.length).fill(false);
-      this.days_state_list = new Array(this.days_list.length).fill(false);
-      this.days.forEach((val) => {
-        this.days_state_list.splice((parseInt(val, 10) - 1), 1, true);
-      });
+    computed: {
+      daysValueForArray() {
+        const arr = [];
+        arr.length = 7;
+        arr.fill(0);
+
+        this.selectedDays.forEach(item => {
+          arr[item - 1] = 1;
+        });
+
+        return arr;
+      },
+
+      quickListValue() {
+        const selectedDays = this.selectedDays.toString();
+        switch (selectedDays) {
+          case [1, 2, 3, 4, 5, 6, 7].toString():
+            return 0;
+
+          case [1, 2, 3, 4, 5].toString():
+            return 1;
+
+          case [6, 7].toString():
+            return 2;
+
+          default:
+            return -1;
+        }
+      },
     },
 
     watch: {
-      selected_days() {
-        this.$emit('change', this.selected_days);
+      days(val) {
+        this.selectedDays = val;
       },
 
-      // change days
-      days() {
-        this.selected_days = this.days.concat();
+      value(val) {
+        this.selectedDays = val;
+      },
 
-        this.days.forEach((val) => {
-          this.days_state_list.splice((parseInt(val, 10) - 1), 1, true);
-        });
-
-        this.setQuickState(this.days);
+      selectedDays(val) {
+        this.$emit('input', val);
+        this.$emit('change', val);
       },
     },
 
     mounted() {
-      this.setQuickState(this.days);
     },
 
     methods: {
-
-      setQuickState(value) {
-
-        if ((value.length === 2) && value.includes(6) && value.includes(7)) {
-
-          // '周末'选中
-          this.quick_list.forEach((val, ind) => {
-            if (ind === 2) {
-              this.quick_state_list.splice(ind, 1, true);
-            } else {
-              this.quick_state_list.splice(ind, 1, false);
-            }
-          });
-
-          this.days_list.forEach((val, ind) => {
-            if (ind >= 5) {
-              this.days_state_list.splice(ind, 1, true);
-            } else {
-              this.days_state_list.splice(ind, 1, false);
-            }
-          });
-
-        } else if (value.length === 5 && !(value.includes(6) || value.includes(7))) {
-
-          // '工作日'选中
-          this.quick_list.forEach((val, ind) => {
-            if (ind === 1) {
-              this.quick_state_list.splice(ind, 1, true);
-            } else {
-              this.quick_state_list.splice(ind, 1, false);
-            }
-          });
-
-          this.days_list.forEach((val, ind) => {
-            if (ind >= 5) {
-              this.days_state_list.splice(ind, 1, false);
-            } else {
-              this.days_state_list.splice(ind, 1, true);
-            }
-          });
-
-        } else if (value.length === 7) {
-
-          // '每天'选中
-          this.quick_list.forEach((val, ind) => {
-            if (ind === 0) {
-              this.quick_state_list.splice(ind, 1, true);
-            } else {
-              this.quick_state_list.splice(ind, 1, false);
-            }
-          });
-
-          this.days_list.forEach((val, ind) => {
-            this.days_state_list.splice(ind, 1, true);
-          });
-
-        } else {
-
-          // 全不选中
-          this.quick_list.forEach((val, ind) => {
-            this.quick_state_list.splice(ind, 1, false);
-          });
-
-          // 如果选择的天数为0
-          if (value.length === 0) {
-
-            this.days_list.forEach((val, ind) => {
-              this.days_state_list.splice(ind, 1, false);
-            });
-
-          } else {
-
-            for (let i = 1; i < 8; i += 1) {
-              if (value.indexOf(i) !== -1) {
-                this.days_state_list.splice(parseInt((i - 1), 10), 1, true);
-              } else {
-                this.days_state_list.splice(parseInt((i - 1), 10), 1, false);
-              }
-            }
-          }
-        }
-      },
-
       quickOnHandle(index) {
 
-        let isSame = false;
+        // 每天
+        if (index === 0) {
 
-        switch (index) {
-          case 0:
+          if (this.selectedDays.toString() === [1, 2, 3, 4, 5, 6, 7].toString()) {
+            this.selectedDays = [];
+            return;
+          }
 
-            if (this.selected_days.toString() === [1, 2, 3, 4, 5, 6, 7].toString()) {
-              isSame = true;
-              break;
-            }
-
-            this.selected_days = [1, 2, 3, 4, 5, 6, 7];
-            break;
-
-          case 1:
-
-            if (this.selected_days.toString() === [1, 2, 3, 4, 5].toString()) {
-              isSame = true;
-              break;
-            }
-
-            this.selected_days = [1, 2, 3, 4, 5];
-            break;
-
-          case 2:
-            if (this.selected_days.toString() === [6, 7].toString()) {
-              isSame = true;
-              break;
-            }
-
-            this.selected_days = [6, 7];
-            break;
-
-          default:
-            break;
-        }
-
-        // 防止在点击days按钮时 执行两次 this.setQuickState方法;
-        if (isSame) {
+          this.selectedDays = [1, 2, 3, 4, 5, 6, 7];
           return;
         }
 
-        this.setQuickState(this.selected_days);
+        // 工作日
+        if (index === 1) {
 
-        // this.$emit('change', this.selected_days);
+          if (this.selectedDays.toString() === [1, 2, 3, 4, 5].toString()) {
+            this.selectedDays = [];
+            return;
+          }
+
+          this.selectedDays = [1, 2, 3, 4, 5];
+          return;
+        }
+
+        // 周末
+        if (index === 2) {
+          if (this.selectedDays.toString() === [6, 7].toString()) {
+            this.selectedDays = [];
+            return;
+          }
+
+          this.selectedDays = [6, 7];
+          return;
+        }
       },
 
       daysHandle(index) {
-        if (this.days_state_list[index]) {
-          this.daysOffHandle(index);
+        const dayIndex = index + 1;
+        const chooseIndex = this.selectedDays.indexOf(dayIndex);
+
+        if (chooseIndex !== -1) {
+          this.selectedDays.splice(chooseIndex, 1);
+
         } else {
-          this.daysOnHandle(index);
+          this.selectedDays = this.sortArray(this.selectedDays.concat([dayIndex]));
         }
       },
 
-      daysOnHandle(index) {
-        const currVal = index + 1;
-        // 判断this.selected_days里是否存在
-        const has = this.selected_days.findIndex((val) => val === currVal);
-        if (has >= 0) {
-          return;
-        }
-
-        this.selected_days.push(currVal);
-        this.selected_days.sort();
-        this.setQuickState(this.selected_days);
-        // this.$emit('input', this.selected_days);
-
-      },
-
-      daysOffHandle(index) {
-
-        const offVal = index + 1;
-        const offValIndex = this.selected_days.findIndex((val) => val === offVal);
-
-        if (offValIndex >= 0) {
-          this.selected_days.splice(offValIndex, 1);
-          this.selected_days.sort();
-          this.setQuickState(this.selected_days);
-        }
-
-      },
-
-      quickEndNativeHandle(index) {
-
-        const thisStatus = this.$refs.quick[index].status;
-        console.log(thisStatus);
-        if (!thisStatus) {
-          this.days_list.forEach((val, ind) => {
-            this.days_state_list.splice(ind, 1, false);
-          });
-
-          this.selected_days = [];
-        }
+      sortArray(arr) {
+        return arr.sort((a, b) => a - b);
       },
     },
   };
