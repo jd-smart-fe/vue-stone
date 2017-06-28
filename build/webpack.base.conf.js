@@ -5,7 +5,7 @@ var precss = require('precss');
 var ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
 
 var projectRoot = path.resolve(__dirname, '../')
-var list = require('../vue-stone.config.js').components;
+var list = require('../libs/initializer.js').components;
 var comsreg = new RegExp(`(${list.join('|')})\.vue$`);
 
 var env = process.env.NODE_ENV

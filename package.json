@@ -20,7 +20,8 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "patch": "npm version patch && npm publish"
+    "release:patch": "npm run build && npm version patch && npm publish && git push --follow-tags",
+    "release:minor": "npm run build && npm version minor && npm publish && git push --follow-tags"
   },
   "dependencies": {
     "core-js": "^2.4.1"

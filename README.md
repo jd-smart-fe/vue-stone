@@ -59,19 +59,18 @@ Vue.use(Stone);   // register components
 Vue-stone provide those components below:
 
 - [Action-box](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-box.md)
-- [Action-sheet]() (Docs unfinish)
+- [Action-sheet](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-sheet.md)
 - [Alert]() (Docs unfinish)
 - [Button](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button.md)
-- [Button-group](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button-group.md) (Docs unfinish)
+- [Button-group](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button-group.md)
 - [Button-switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button-switch.md)
 - [Checkboard](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-checkboard.md)
 - [Confirm]() (Docs unfinish)
 - [Counter](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-counter.md)
-- [Dayspicker]() (Docs unfinish)
+- [Dayspicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-dayspicker.md)
 - [Dialog](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-dialog.md)
-- [Grid]() (Docs unfinish)
-- [Input]() (Docs unfinish)
-- [Loading]() (Docs unfinish)
+- [Input](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-input.md)
+- [Loading](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-loading.md)
 - [Mask](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-mask.md)
 - [Modes]() (Docs unfinish)
 - [Panel]() (Docs unfinish)
@@ -80,9 +79,9 @@ Vue-stone provide those components below:
 - [Slide]() (Docs unfinish)
 - [Switch]() (Docs unfinish)
 - [Timepicker]() (Docs unfinish)
-- [Toast]() (Docs unfinish)
+- [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 
 
-## TODO
+## TODO & MEMO
 
-[Todo List](https://github.com/JD-Smart-FE/vue-stone/blob/master/TODO.md)
+[Todo List](https://github.com/JD-Smart-FE/vue-stone/blob/master/MEMO.md)

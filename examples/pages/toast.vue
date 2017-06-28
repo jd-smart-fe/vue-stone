@@ -34,11 +34,25 @@
       };
     },
 
+    mounted() {
+      // this.$toast.show({
+      //   icon: 'icon-home',
+      //   text: '操作成功',
+      //   duration: 500,
+      //   autohide: false,
+      // });
+
+      // setTimeout(() => {
+      //   this.$toast.hide();
+      // }, 2000);
+    },
+
     methods: {
       showWithIcon() {
         this.$toast.show({
           icon: 'icon-home',
           text: '操作成功',
+          duration: 500,
         });
       },
 

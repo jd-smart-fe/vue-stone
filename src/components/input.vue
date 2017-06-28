@@ -1,6 +1,15 @@
 <template>
   <div class="c-input">
-    <input ref="input" :name="htmlName" type="text" class="c-input-key" v-model="invalue" :placeholder="placeholder" @input="change">
+    <input
+      class="c-input-key"
+      ref="input"
+      :name="htmlName"
+      type="text"
+      v-model="invalue"
+      :placeholder="placeholder"
+      @input="input"
+      @change="change"
+    ></input>
 
     <div class="c-input-closebox">
       <span title="清空" class="c-input-delquery icon-round-close" @touchstart="clear" v-show="_show"></span>
@@ -65,8 +74,11 @@
         this.$emit('change', this.invalue);
       },
 
-      change() {
+      input() {
         this.$emit('input', this.invalue);
+      },
+
+      change() {
         this.$emit('change', this.invalue);
       },
     },

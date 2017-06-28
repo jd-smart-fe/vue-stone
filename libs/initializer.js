@@ -1,7 +1,5 @@
-const CONFIG = require('../vue-stone.config.js');
-
-if (process.env.NODE_ENV !== 'production') {
-  CONFIG.components = [
+module.exports = {
+  components: [
     '_style_iconfonts',
     'dayspicker',
     'range',
@@ -29,9 +27,5 @@ if (process.env.NODE_ENV !== 'production') {
     'slide',
     'toast',
     'loading',
-  ];
-}
-
-module.exports = {
-  components: CONFIG.components,
+  ],
 };

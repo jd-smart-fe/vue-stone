@@ -1,5 +1,4 @@
 import './components/_style';
-import './components/_style_transition';
 import Initializer from '../libs/initializer';
 import intactify from '../libs/intactify';
 import dependencies from '../libs/dependencies';
@@ -56,4 +55,5 @@ if (typeof window !== 'undefined' && window.Vue) {
 const Store = {
   install,
 };
+
 export default Store;
