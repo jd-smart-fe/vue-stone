@@ -61,14 +61,14 @@
       return {
         quickList: ['每天', '工作日', '周末'],
         daysList: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-        selectedDays: this.value,
+        selectedDays: this.sortArray(this.value),
       };
     },
 
     created() {
       // 兼容旧 api
       if (this.value === [] && this.days !== null) {
-        this.selectedDays = this.days;
+        this.selectedDays = this.sortArray(this.days);
       }
     },
 
