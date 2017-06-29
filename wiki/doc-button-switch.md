@@ -19,13 +19,16 @@ icon  | String  | ''  |  定义按钮图标。
 radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle',
 disabled | Boolean | false | 是否禁用按钮。
 hold | Boolean | false | 值为true时，点击按钮不会改变按钮的状态，但会触发change事件。
+syncHold | Boolean | false | 值为true时，点击按钮不会改变按钮的状态，但会触发change事件。
 htmlType | String | 'button' | 设置按钮原生 type 参数
 
 <!-- longTap   | Boolean | false | 是否开启长按功能。 -->
 **备注：**
 1. 在没有文本的情况下，传入 icon 参数且 radius 设置为 circle 按钮会变成圆形。
 
-2. 可以使用 `hold` 参数很好的处理组件状态的异步改变。同时为了避免触发多次无意义的 `change` 事件，当 `hold` 时，多次点击按钮仅触发一次 `change` 事件，直到按钮状态被改变，或调用组件 `relive` 方法。
+2. 可以使用 `hold` 参数很好的处理组件状态的异步改变。同时为了避免触发多次无意义的 `change` 事件，当 `hold` 时，多次点击按钮仅触发一次 `change` 事件，直到按钮状态被改变，或调用组件 `relive()` 方法。
+
+3. `syncHold` 功能和 hold 属性类似，但不具备 hold 属性改变一次状态前只会触发一次 change 事件的特性。
 
 
 ## Events

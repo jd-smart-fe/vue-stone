@@ -48,6 +48,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    syncHold: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   watch: {
@@ -71,11 +75,21 @@ export default {
 
       this.$emit('change', !this.insideValue);
 
-      if (this.hold && !this.keep) {
+      // sync hold
+      if (this.syncHold) {
+        return;
+
+      // async hold
+      } else if (this.hold && !this.keep) {
         this.keep = true;
         return;
       }
+
       this.insideValue = !this.insideValue;
+    },
+
+    relive() {
+      this.keep = false;
     },
   },
 };

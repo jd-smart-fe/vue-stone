@@ -6,6 +6,8 @@
 
 - Range 组件中采用下划线式命名的属性将在下个大版本中不支持。
 
+- Button 新增 syncHold 属性，值为 true 时会忽略 hold 属性，作用和 hold 属性类似，但不具备 hold 属性改变一次状态前只会触发一次 change 事件的特性。
+
 ## Todo
 
 * [ ] To finish those docs of components, refer the format of [format-of-docs](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/format-of-docs.md)

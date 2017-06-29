@@ -9,7 +9,7 @@
         ref="quick"
         size="small"
         radius="small"
-        :hold="true"
+        :sync-hold="true"
         :value="index === quickListValue"
         @touchend.native="quickOnHandle(index)"
       >
@@ -25,7 +25,7 @@
         :key="index"
         size="small"
         radius="small"
-        :hold="true"
+        :sync-hold="true"
         :value="1 === daysValueForArray[index]"
         @change="daysHandle(index)"
       >
@@ -164,8 +164,16 @@
 
       daysHandle(index) {
         const dayIndex = index + 1;
-        const chooseIndex = this.selectedDays.indexOf(dayIndex);
 
+        // 兼容 用户传入数组 item 为字符串的情况
+        const numberChooseIndex = this.selectedDays.indexOf(dayIndex);
+        const stringChooseIndex = this.selectedDays.indexOf(dayIndex.toString());
+
+        const chooseIndex = numberChooseIndex > -1
+          ? numberChooseIndex
+          : stringChooseIndex;
+
+        console.log(chooseIndex);
         if (chooseIndex !== -1) {
           this.selectedDays.splice(chooseIndex, 1);
 
