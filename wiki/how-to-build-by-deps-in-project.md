@@ -34,11 +34,37 @@ module.exports = {
   test: /\.js$/,
   loader: 'babel-loader',
   include: [
-    resolve('src'),
-    resolve('node_modules/vue-stone')   // 添加此项以增加 babel 对于 vue-stone 源码的编译
+    path.join(__dirname, '../src'),
+    path.join(__dirname, '../node_modules/vue-stone')  // 添加此项以增加 babel 对于 vue-stone 源码的编译
   ],
 },
 ```
+
+**注意 ⚠️ ：**  由于 `babel-loader` 不能转译软链文件，因此使用 `cnpm install` 安装项目时可能会造成 babel 无法正确转译 vue-stone 源码的情况。
+
+解决方案有两种：
+
+1. 方案一：
+
+使用 yarn 或者 npm 安装项目依赖。
+
+2. 方案二：
+
+为 babel-loader 配置真实的 vue-stone 地址
+
+```js
+const fs = require('fs');
+
+{
+  test: /\.js$/,
+  loader: 'babel-loader',
+  include: [
+    path.join(__dirname, '../src'),
+    fs.realpathSync(path.join(__dirname, '../node_modules/vue-stone'))  // 获取真实的文件地址
+  ],
+},
+```
+
 
 ### Final step: 打包你需要的组件
 
