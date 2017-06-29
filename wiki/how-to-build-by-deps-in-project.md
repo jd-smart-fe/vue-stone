@@ -40,7 +40,7 @@ module.exports = {
 },
 ```
 
-### Final step: 配置 webpack 以满足按需打包
+### Final step: 打包你需要的组件
 
 要满足这一点，需要借助 webpack 自带的`ContextReplacementPlugin`。
 
@@ -51,7 +51,9 @@ module.exports = {
 Vue.use(Store, {
   components: ['panel', 'loading']
 });
+```
 
+```js
 // webpack.config.js, (code snip 2)
 const ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
 const intactify = require('vue-stone/libs/intactify');
