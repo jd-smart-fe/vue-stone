@@ -67,9 +67,11 @@
 
     created() {
       // 兼容旧 api
+      // To delete it in next major version
       if (this.value === [] && this.days !== null) {
         this.selectedDays = this.sortArray(this.days);
       }
+      // Delete end
     },
 
     computed: {
