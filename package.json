@@ -21,9 +21,10 @@
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "version": "npm run build && git add -A dist",
-    "release:beta": "npm version prerelease && npm publish --tag beta",
-    "release:patch": "npm version patch && npm publish && git push --follow-tags",
-    "release:minor": "npm version minor && npm publish && git push --follow-tags"
+    "postversion": "npm publish && git push --follow-tags",
+    "release:beta": "npm version prerelease",
+    "release:patch": "npm version patch",
+    "release:minor": "npm version minor"
   },
   "dependencies": {
     "core-js": "^2.4.1"

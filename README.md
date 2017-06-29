@@ -55,6 +55,12 @@ import Vue from 'vue';
 Vue.use(Stone);   // register components
 ```
 
+### 按需加载组件
+
+受 webpack 打包策略所限，我们目前并没有将按需打包做的很简练，但至少目前还是做到了，具体步骤请查阅 [按需加载组件](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/how-to-build-by-deps-in-project.md)
+
+如果你有更好的 idea，欢迎你为 vue-stone 贡献出一份力量。
+
 ## 文档
 Vue-stone provide those components below:
 
