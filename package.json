@@ -1,6 +1,6 @@
 {
   "name": "vue-stone",
-  "version": "0.1.3",
+  "version": "0.1.4-0",
   "description": "vue component",
   "author": "zhengyuelin zhengyuelin@jd.com pspgbhu<brotherchun001@gmail.com>",
   "main": "dist/vue-stone.js",
@@ -20,8 +20,10 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "release:patch": "npm run build && npm version patch && npm publish && git push --follow-tags",
-    "release:minor": "npm run build && npm version minor && npm publish && git push --follow-tags"
+    "version": "npm run build && git add -A dist",
+    "release:beta": "npm version prerelease && npm publish --tag beta",
+    "release:patch": "npm version patch && npm publish && git push --follow-tags",
+    "release:minor": "npm version minor && npm publish && git push --follow-tags"
   },
   "dependencies": {
     "core-js": "^2.4.1"
