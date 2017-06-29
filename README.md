@@ -7,7 +7,7 @@
 
 
 ## 安装
-`npm install vue-stone`
+`npm install --save vue-stone`
 
 ## 使用
 

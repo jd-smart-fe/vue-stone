@@ -100,11 +100,11 @@ export default {
 @import '../styles/mixins.css';
 
 
-.c-btn-hover.c-btn-on{
+.c-btn.c-btn-hover.c-btn-on{
   background-color: $c-primary-on;
 }
 
-.c-btn-on{
+.c-btn.c-btn-on{
   color: $white;
   background-color: $blue;
 

@@ -173,7 +173,6 @@
           ? numberChooseIndex
           : stringChooseIndex;
 
-        console.log(chooseIndex);
         if (chooseIndex !== -1) {
           this.selectedDays.splice(chooseIndex, 1);
 
