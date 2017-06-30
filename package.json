@@ -28,7 +28,8 @@
     "release:minor": "npm version minor"
   },
   "dependencies": {
-    "core-js": "^2.4.1"
+    "core-js": "^2.4.1",
+    "vue": "^2.3.4"
   },
   "peerDependencies": {
     "vue": "2.x"

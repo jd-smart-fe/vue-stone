@@ -41,12 +41,12 @@
 
     props: {
       // 保留旧有的 api
-      days: {
-        type: Array,
-        default() {
-          return null;
-        },
-      },
+      // days: {
+      //   type: Array,
+      //   default() {
+      //     return null;
+      //   },
+      // },
 
       // 新的双向绑定的
       value: {
@@ -68,9 +68,9 @@
     created() {
       // 兼容旧 api
       // To delete it in next major version
-      if (this.value === [] && this.days !== null) {
-        this.selectedDays = this.sortArray(this.days);
-      }
+      // if (this.value === [] && this.days !== null) {
+      //   this.selectedDays = this.sortArray(this.days);
+      // }
       // Delete end
     },
 

@@ -17,23 +17,23 @@
          :style="{width : processPercent + '%'}" >
           <span class="c-range-slider-button">
             <transition name="fadetip">
-              <em v-show="show_tip && show_tip_state" class="text">{{tipText}}</em>
+              <em v-show="showTip && showTipState" class="text">{{tipText}}</em>
             </transition>
           </span>
         </div>
-        <div v-if="is_step" class="c-range-slider-step">
+        <div v-if="isStep" class="c-range-slider-step">
           <span v-for="info in dotInfoList" class="step-dot" :style="{left : info.left + '%'}"></span>
         </div>
       </div>
     </div>
     <div v-if="dots.length > 0" class="c-range-dots">
-      <template v-if="show_icon_dots">
+      <template v-if="showIconDots">
         <span v-for="(info, index) in dotInfoList"
           :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]"
           :style="{left : info.left + '%'}">
         </span>
       </template>
-      <template v-if="show_text_dots">
+      <template v-if="showTextDots">
         <span v-for="(info, index) in dotInfoList"
           class="dot-item"
           :style="{left : info.left + '%'}"
@@ -71,7 +71,7 @@
         default: 50,
       },
       // 滑动时是否显示提示 默认显示
-      show_tip: {
+      showTip: {
         type: Boolean,
         default: true,
       },
@@ -83,7 +83,7 @@
         },
       },
       // 是否是有级 默认是无级
-      is_step: {
+      isStep: {
         type: Boolean,
         default: false,
       },
@@ -100,12 +100,12 @@
         },
       },
       // 显示图标dots
-      // show_icon_dots: {
+      // showIconDots: {
       //   type: Boolean,
       //   default: false,
       // },
       // 显示文字dots
-      // show_text_dots: {
+      // showTextDots: {
       //   type: Boolean,
       //   default: true,
       // },
@@ -133,10 +133,10 @@
         dotsData: this.dots,
         dotsLength: this.dots.length,
         dotsHasChanged: false,
-        show_tip_state: false,
-        show_tip_timer: null,
-        show_icon_dots: false,
-        show_text_dots: false,
+        showTipState: false,
+        showTipTimer: null,
+        showIconDots: false,
+        showTextDots: false,
       };
     },
 
@@ -234,8 +234,8 @@
       // 判断dots是否有icon或者text;
       // 显示优先级：如果icon与text都存在，优先显示icon;
       if (this.dotsData.length > 0) {
-        this.show_icon_dots = !!this.dotsData[0].icon;
-        this.show_text_dots = !!this.dotsData[0].text && !this.dotsData[0].icon;
+        this.showIconDots = !!this.dotsData[0].icon;
+        this.showTextDots = !!this.dotsData[0].text && !this.dotsData[0].icon;
       }
 
     },
@@ -274,7 +274,7 @@
           this.dotsHasChanged = false;
 
           // 无级
-          if (!this.is_step) {
+          if (!this.isStep) {
 
             if (val < this.min) {
               this.$emit('input', this.min);
@@ -323,7 +323,7 @@
         let currentValue = null;
 
         // 无级
-        if (!this.is_step) {
+        if (!this.isStep) {
 
           const valueDiff = this.max - this.min;
 
@@ -375,9 +375,9 @@
         this.isHorizontalMoved = false;
 
         // 如果用户设置了显示当前值得话 在滑动时显示其当前值层;
-        // if (this.show_tip) {
-        //   clearTimeout(this.show_tip_timer);
-        //   this.show_tip_state = true;
+        // if (this.showTip) {
+        //   clearTimeout(this.showTipTimer);
+        //   this.showTipState = true;
         // }
       },
 
@@ -394,9 +394,9 @@
           if (diffX * 0.8 > diffY) {
             this.isHorizontalMoved = true;
             // 如果用户设置了显示当前值得话 在滑动时显示其当前值层;
-            if (this.show_tip) {
-              clearTimeout(this.show_tip_timer);
-              this.show_tip_state = true;
+            if (this.showTip) {
+              clearTimeout(this.showTipTimer);
+              this.showTipState = true;
             }
           }
           this.isTouched = false;
@@ -423,9 +423,9 @@
         this.$emit('change', this.currentValue);
 
         // 如果用户设置了显示当前值得话 在滑动结束时隐藏其层;
-        if (this.show_tip) {
-          this.show_tip_timer = setTimeout(() => {
-            this.show_tip_state = false;
+        if (this.showTip) {
+          this.showTipTimer = setTimeout(() => {
+            this.showTipState = false;
           }, 1000);
         }
       },
