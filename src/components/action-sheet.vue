@@ -105,11 +105,11 @@ export default {
       this.insideValue = false;
     },
 
-    close() {
+    hide() {
       this.insideValue = true;
     },
 
-    open() {
+    show() {
       this.insideValue = false;
     },
   },

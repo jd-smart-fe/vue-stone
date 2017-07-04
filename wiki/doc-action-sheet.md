@@ -35,5 +35,5 @@ items: [
 ## Methods
 方法名称   |    说明    |    参数    |
 ----    | ----      | ----        |
-close | 关闭 Action-box 组件 | 无
-open | 打开 Action-box 组件 | 无
+hide | 关闭 Action-box 组件 | 无
+show | 打开 Action-box 组件 | 无

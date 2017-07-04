@@ -50,11 +50,11 @@ export default {
   },
 
   methods: {
-    close() {
+    hide() {
       this.insideValue = false;
     },
 
-    open() {
+    show() {
       this.insideValue = true;
     },
   },
