@@ -12,7 +12,7 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
     mode !== 'inline' ? 'c-picker-modal' : 'c-picker-inline',
     shown ? 'c-picker-modal-show' : '']">
 
-  <div v-if="mode!=='inline'" class="c-picker-head" :style="{color:button_color}">
+  <div v-if="mode!=='inline'" class="c-picker-head" :style="{color:buttonColor}">
     <span class="c-picker-head-cancel" @click="handle('cancel')">{{cancelText}}</span>
     <span class="c-picker-head-test">{{title}}</span>
     <span class="c-picker-head-determine" @click="handle('determine')">{{determineText}}</span>
@@ -64,7 +64,7 @@ export default {
   },
 
   props: {
-    rotate_effect: {
+    rotateEffect: {
       type: Boolean,
       default: false,
     },
@@ -82,7 +82,7 @@ export default {
       required: false,
       default: 'inline',
     },
-    button_color: {
+    buttonColor: {
       type: String,
       required: false,
       default: '#59B8FC',
@@ -130,7 +130,7 @@ export default {
     this._callPickerHandle();
     this.init = true;
     this.$refs.mask.$on('click', () => {
-      this.$emit('pickerMaskClick');
+      this.$emit('maskclick');
     });
     const units = this.$refs.unit;
 
@@ -242,7 +242,7 @@ function picker(container, cols, vm) {
     el.minTranslate = minTranslate;
     el.startTranslate = startTranslate;
     el.currentTranslate = currentTranslate;
-    el.rotateEffect = vm.rotate_effect;
+    el.rotateEffect = vm.rotateEffect;
 
 
     // const marginTopBase = (itemList.length / 3) * itemHeight;
