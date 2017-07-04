@@ -66,12 +66,12 @@ Vue-stone provide those components below:
 
 - [Action-box](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-box.md)
 - [Action-sheet](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-sheet.md)
-- [Alert]() (Docs unfinish)
+- [Alert](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-alert.md)
 - [Button](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button.md)
 - [Button-group](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button-group.md)
 - [Button-switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-button-switch.md)
 - [Checkboard](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-checkboard.md)
-- [Confirm]() (Docs unfinish)
+- [Confirm](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-confirm.md)
 - [Counter](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-counter.md)
 - [Dayspicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-dayspicker.md)
 - [Dialog](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-dialog.md)
@@ -87,6 +87,16 @@ Vue-stone provide those components below:
 - [Timepicker]() (Docs unfinish)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 
+## Notice
+
+- 如果你使用 Dayspicker 组件中的 days 属性，请使用用 v-model 代替之。 days 属性在 v0.3.0 中不会在支持。
+
+- Range 组件中采用下划线式命名的属性将会被重命名为驼峰式，如 `show_tip` 将会被重命名为 `showTip`，这些都将会在 v0.3.0 中改动
+
+- Button 新增 syncHold 属性，值为 true 时会忽略 hold 属性的设置，作用和 hold 属性类似，但不具备 hold 属性改变一次状态前只会触发一次 change 事件的特性。
+
+- 组件执行隐藏动作的方法名统一为 `hide`，组件执行显示动作的方法名统一为 `show`。v0.3.0 中将执行这些改动，改动涉及以下组件
+  - Action-box 和 Action-sheet 组件中 `close` 方法重命名为 `hide`， `open` 方法重命名为 `show`
 
 ## TODO & MEMO
 

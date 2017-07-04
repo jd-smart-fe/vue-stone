@@ -1,13 +1,5 @@
 # MEMO
 
-## Notice
-
-- 如果你使用 Dayspicker 组件中的 days 属性，请使用用 v-model 代替之。 days 属性在 v0.3.0 中不会在支持。
-
-- Range 组件中采用下划线式命名的属性将会被重命名为驼峰式，如 `show_tip` 将会被重命名为 `showTip`，这些都将会在 v0.3.0 中改动
-
-- Button 新增 syncHold 属性，值为 true 时会忽略 hold 属性的设置，作用和 hold 属性类似，但不具备 hold 属性改变一次状态前只会触发一次 change 事件的特性。
-
 ## Todo
 
 * [ ] To finish those docs of components, refer the format of [format-of-docs](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/format-of-docs.md)
@@ -18,6 +10,8 @@
 * [ ] 有些组件依赖与个别icon，如 checkboard 选中状态下的小对勾。应当把这些组件必须的 icon 和 非必需 icon 分别对待。
   * [x] checkborad
   * [ ] Loading
+
+* [ ] Alert 组件的 buttonText 属性目前无法生效，需要修复。
 
 * [ ] Vue 2.2 以上要求 for 循环需要添加 key 属性，因此需要为组件库里用到 for 循环的组件添加 key.
 

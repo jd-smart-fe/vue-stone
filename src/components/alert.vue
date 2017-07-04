@@ -25,9 +25,9 @@ export default {
     },
   },
   mounted() {
-    this.$dialog.$on('dialog.close', (val) => {
+    this.$dialog.$on('close', (val) => {
       if (val === 'alert') {
-        this.$emit('alert.close');
+        this.$emit('close');
       }
     });
   },

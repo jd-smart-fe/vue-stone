@@ -17,7 +17,7 @@ this.$toast.show({
 
 `this.$toast.show(opt)` 方法接受一个参数来配置 toast，参数可以是一个字符串，或者是一个对象。
 
-## 参数为对象完整的配置
+## 方法参数
 
 ```js
 this.$toast.show({

@@ -1,6 +1,8 @@
 
 /* eslint-disable no-var */
 var dependences = {
+  alert: ['dialog'],
+  confirm: ['dialog'],
   loading: ['toast'],
   dayspicker: ['button'],
   dialog: ['mask'],

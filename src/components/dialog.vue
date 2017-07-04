@@ -51,7 +51,7 @@ export default {
   watch: {
     shown(val) {
       if (!val) {
-        this.$emit('dialog.close', this.dialog.type);
+        this.$emit('close', this.dialog.type);
       }
     },
   },
@@ -77,7 +77,7 @@ export default {
       } else if (this.dialog.buttons.length && this.dialog.buttons[index].callback) {
         this.dialog.buttons[index].callback();
       } else {
-        this.$emit('dialog.button.click', index);
+        this.$emit('button.click', index);
       }
     },
     init() {
@@ -171,9 +171,6 @@ export default {
 }
 
 
-
-
-
 /**
    *一个按钮样式
    */
@@ -184,8 +181,6 @@ export default {
 
 
 
-
-
 /**
    *两个按钮样式
    */
@@ -193,8 +188,6 @@ export default {
 .c-dialog-button-2>a {
   width: 49.8%;
 }
-
-
 
 
 

@@ -23,14 +23,16 @@ export default {
   name: 'alert',
   data() {
     return {
-      // potions: {
-      //   title: 'alert',
-      //   buttonText: 'ok',
-      // },
-      potions: 'alert',
+      potions: {
+        title: 'title',
+        description: 'This is alert content',
+        buttonText: '确定',
+      },
+      // potions: 'alert',
       // confirm: 'confirm',
       confirm: {
         title: 'confirm',
+        description: 'This is confirm content',
         callback: this.clickConfirm.bind(this),
       },
     };
@@ -41,6 +43,7 @@ export default {
     },
     determine() {
       this.$confirm.show(this.confirm);
+      // this.$confirm.show('Hello World');
     },
     clickConfirm() {
       console.debug('callback');
@@ -48,13 +51,12 @@ export default {
     },
   },
   mounted() {
-    this.$confirm.$on('confirm.close', () => {
+    this.$confirm.$on('close', () => {
       this.$log('alert close');
     });
-    this.$alert.$on('alert.close', () => {
+    this.$alert.$on('close', () => {
       this.$log('confirm close');
     });
-
   },
 };
 </script>

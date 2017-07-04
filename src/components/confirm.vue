@@ -36,7 +36,7 @@ export default {
   mounted() {
     this.$dialog.$on('dialog.close', (val) => {
       if (val === 'confirm') {
-        this.$emit('confirm.close');
+        this.$emit('close');
       }
     });
   },
