@@ -24,4 +24,12 @@ function intactify(depe_, list_) {
   return intactify(depe_, _list);
 }
 
+/**
+ * 这里用 export default 而不是 module.exports 是因为在 webpack2 下，
+ * 会对 `module.exports intactify` 报错 `Cannot assign to read only property 'exports' of object '#<Object>' (mix require and export) `
+ * 令人费解。
+ *
+ * https://github.com/webpack/webpack/issues/4039  这个 issue 指明了 混用 require 和 export 会产生报错，
+ * 但是在这里并不存在 require 和 export 混用的情况。因此这个报错令人费解
+ */
 export default intactify;
