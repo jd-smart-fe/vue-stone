@@ -82,9 +82,9 @@ Vue-stone provide those components below:
 - [Panel]() (Docs unfinish)
 - [Picker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-picker.md)
 - [Range](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-range.md)
-- [Slide]() (Docs unfinish)
-- [Switch]() (Docs unfinish)
-- [Timepicker]() (Docs unfinish)
+- [Slide](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-slide.md)
+- [Switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-switch.md)
+- [Timepicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-timerpciker.md) (Docs unfinish)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 
 ## Notice

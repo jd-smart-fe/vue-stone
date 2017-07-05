@@ -54,6 +54,7 @@ export default {
     insideValue(val) {
 
       this.$emit('input', val);
+      this.$emit('change', val);
     },
   },
 
