@@ -1,16 +1,15 @@
 import './components/_style';
-import Initializer from '../libs/initializer';
-import intactify from '../libs/intactify';
-import dependencies from '../libs/dependencies';
 import VueLogger from '../libs/vue-logger';
+
+const Initializer = require('../libs/initializer');
+const dependencies = require('../libs/dependencies');
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
     return;
   }
 
-  const components = intactify(dependencies,
-    options.components ? options.components : Initializer.components);
+  const components = dependencies(options.components ? options.components : Initializer.components);
   const singletonComponents = [];
 
   /* eslint-disable global-require */

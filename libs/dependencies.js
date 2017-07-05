@@ -1,6 +1,7 @@
+const intactify = require('./intactify');
 
 /* eslint-disable no-var */
-var dependences = {
+var dependencies = {
   alert: ['dialog'],
   confirm: ['dialog'],
   loading: ['toast'],
@@ -18,4 +19,6 @@ var dependences = {
   timepicker: ['picker'],
 };
 
-module.exports = dependences;
+module.exports = function dep(list) {
+  return intactify(dependencies, list);
+};
