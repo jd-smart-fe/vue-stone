@@ -1,5 +1,3 @@
-module.exports = intactify;
-
 function intactify(depe_, list_) {
   const length = list_.length;
   const _list = list_.concat();
@@ -25,3 +23,5 @@ function intactify(depe_, list_) {
   // 递归调用
   return intactify(depe_, _list);
 }
+
+export default intactify;
