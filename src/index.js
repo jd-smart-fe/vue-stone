@@ -1,8 +1,7 @@
 import './components/_style';
 import VueLogger from '../libs/vue-logger';
-
-const Initializer = require('../libs/initializer');
-const dependencies = require('../libs/dependencies');
+import Initializer from '../libs/initializer';
+import dependencies from '../libs/dependencies';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
