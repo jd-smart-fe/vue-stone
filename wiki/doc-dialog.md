@@ -9,14 +9,17 @@
 属性名   |    类型    |    默认值    |   说明
 ----    | ----    | ----    | ----    |
 showModal | Boolean | false | 是否显示摸态框
-option |  Object  |  Object |  展示 标题、信息、按钮文本、响应事件。
+option |  Object  |  Object |  展示 标题、信息、按钮文本、标题颜色、响应事件。
 
 option说明
 ```js
 options : {
     title：标题,
     description：描述,
-    isModal: true,//true模态,false非模态(不传默认是true)
+    isModal: true,//true模态,false非模态(不传默认是true)，
+    style: {
+      tcolor: 'red',// 设置标题颜色
+    },
     buttons: [
           {
             text: '左按钮文本',
