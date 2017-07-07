@@ -1,118 +1,126 @@
 <template>
   <div>
-    <v-mask :shown="shown" ref="mask">
+
+    <v-mask :shown="insideValue" @click.native="maskClick">
     </v-mask>
-    <div class="c-dialog" v-show="shown" >
-      <h4 v-if="dialog.title" class="c-dialog-title" :style="{color:dialog.style.tcolor}" >{{dialog.title}}</h4>
-      <div v-if="dialog.description" class="c-dialog-body" :class="[!dialog.description ? 'c-dialog-body-empty':'']">
+
+    <!-- dialog start -->
+    <div class="c-dialog" v-show="insideValue" >
+
+      <h4 v-if=" title !== '' " class="c-dialog-title" :style="{ color: tcolor }" >{{title}}</h4>
+
+      <div v-if=" desc !== '' " class="c-dialog-desc" >
         <div>
-          <p :style="{color:dialog.style.dcolor}">{{dialog.description}}</p>
+          <p :style="{ color: dcolor }">{{ desc }}</p>
         </div>
       </div>
+
+      <div>
+        <slot></slot>
+      </div>
+
       <div class="c-dialog-footer">
-        <div class="c-dialog-buttons" :class="getButtonClass()">
-          <template v-if="dialog.buttons.length===0">
-            <a href="#" @click.prevent="handle(dialog.buttons.length)">确定</a>
-          </template>
-          <template v-else>
-            <a href="#" v-for="(item,index) in dialog.buttons" @click.prevent="handle(index)">{{item.text}}</a>
-          </template>
+        <div class="c-dialog-buttons">
+
+          <a
+            v-for="(item, index) in buttons"
+            :key="item.text"
+            :style="item.color ? 'color:' + item.color : ''"
+            href="#"
+            @click.prevent="buttonClick(index)"
+          >{{ item.text }}</a>
+
         </div>
       </div>
+
     </div>
+    <!-- dialog end -->
   </div>
 </template>
 <script>
 
-const def = {
-  title: '',
-  description: '',
-  buttons: [
-    // { text: '取消', callback: () => { } },
-    // { text: '确定', callback: () => { this.shown = false; } },
-  ],
-  style: {},
-};
 export default {
   name: 'v-dialog',
-  type: 'singleton',
+  // type: 'singleton',
 
   data() {
     return {
-      shown: false,
-      dialog: {
-        title: '',
-        description: '',
-        buttons: [],
-        style: {},
-      },
+      insideValue: this.value,
     };
   },
+
+  props: {
+    value: {
+      type: Boolean,
+      default: true,
+    },
+    title: {
+      type: String,
+      default: '提示',
+    },
+    desc: {
+      type: String,
+      default: '',
+    },
+    buttons: {
+      type: Array,
+      default() {
+        return [{ text: '确定' }];
+      },
+    },
+    tcolor: {
+      type: String,
+      default: '#333',
+    },
+    dcolor: {
+      type: String,
+      default: '#999',
+    },
+    preventClose: {
+      type: Boolean,
+      default: false,
+    },
+  },
+
   watch: {
-    shown(val) {
-      if (!val) {
-        this.$emit('close', this.dialog.type);
-      }
-    },
-  },
-  mounted() {
-    this.$refs.mask.$on('click', () => {
-      if (!this.dialog.type) {
-        this.shown = false;
-      }
-    });
-  },
-  methods: {
-    handle(index) {
-      if (this.dialog.type === 'alert' || this.dialog.type === 'confirm') {
-        if (this.dialog.type === 'alert') {
-          this.shown = false;
-        } else if (this.dialog.type === 'confirm') {
-          if (this.dialog.buttons[index].callback) {
-            this.dialog.buttons[index].callback();
-          } else {
-            this.shown = false;
-          }
-        }
-      } else if (this.dialog.buttons.length && this.dialog.buttons[index].callback) {
-        this.dialog.buttons[index].callback();
+    insideValue(val) {
+      this.$emit('input', val);
+
+      if (val) {
+        this.$emit('show');
       } else {
-        this.$emit('button.click', index);
+        this.$emit('hide');
       }
     },
-    init() {
-      if (!this.inited) {
-        document.body.appendChild(this.$el);
-        this.inited = true;
+
+    value(val) {
+      if (val !== this.insideValue) {
+        this.insideValue = val;
       }
     },
-    show(options) {
-      if (!this.inited) {
-        this.init();
-      }
-      // console.log('ready');
-      const obj = Object.assign({}, def, options);
-      if (!obj.title && !obj.description) {
-        obj.title = 'JDSmart';
-      }
-      this.dialog = obj;
-      this.shown = true;
+  },
+
+  methods: {
+    buttonClick(index) {
+      this.$emit(`button${this.transNumber(index)}`);
+      this.insideValue = false;
     },
+
+    maskClick() {
+      this.$emit('maskclick');
+    },
+
+    transNumber(number) {
+      const rank = ['first', 'second', 'third', 'fourth', 'fifth'];
+      return rank[number];
+    },
+
+    show() {
+      this.insideValue = true;
+    },
+
     hide() {
-      this.shown = false;
-    },
-    getButtonClass() {
-      const buttonLength = this.dialog.buttons.length;
-      let className = 'c-dialog-button-2';
-      switch (buttonLength) {
-        case 0:
-        case 1:
-          className = 'c-dialog-button-1';
-          break;
-        default:
-          break;
-      }
-      return className;
+      this.insideValue = false;
     },
   },
 };
@@ -121,43 +129,54 @@ export default {
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 .c-dialog {
+  box-sizing: border-box;
   width: 2.62rem;
   max-height: 2rem;
-  position: fixed;
-  z-index: 101;
+
+  padding-top: 0.3rem;
+  border-radius: 0.02rem;
+
   background-color: $white;
+
+  font-size: .14rem;
+
+  position: fixed;
   top: 50%;
   left: 50%;
-  padding: 0.3rem 0 0.4rem;
+  z-index: 101;
+
   transform: translateX(-50%) translateY(-50%);
-  box-sizing: border-box;
-  border-radius: 0.02rem;
+
   .c-dialog-title {
+    font-weight: normal;
+
     text-align: center;
     color: $c-dialog-title;
     margin: 0 0 0.3rem;
   }
-  >.c-dialog-body {
+
+  > .c-dialog-desc {
     padding-bottom: 0.3rem;
-    >div {
+    > div {
       max-height: 0.48rem;
       overflow: auto;
-      >p {
+      > p {
         color: $gray-light;
         text-align: center;
         margin: 0;
       }
     }
   }
-  .c-dialog-footer>.c-dialog-buttons {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 0.40rem;
+
+  .c-dialog-footer > .c-dialog-buttons {
     line-height: 0.40rem;
     border-top: 0.01rem $gray-lighter solid;
+
     display: flex;
-    >a {
+    width: 100%;
+    height: 0.40rem;
+
+    > a {
       flex: 1;
       display: block;
       height: 100%;
@@ -165,29 +184,11 @@ export default {
       text-decoration: none;
       color: $gray;
     }
-    a+a {
+
+    a + a {
       border-left: 0.01rem $gray-lighter solid;
     }
   }
-}
-
-
-/**
-   *一个按钮样式
-   */
-
-.c-dialog-button-1>a {
-  width: 100%;
-}
-
-
-
-/**
-   *两个按钮样式
-   */
-
-.c-dialog-button-2>a {
-  width: 49.8%;
 }
 
 
@@ -196,7 +197,7 @@ export default {
    *没有text样式
    */
 
-.c-dialog>.c-dialog-body-empty {
+.c-dialog > .c-dialog-body-empty {
   padding: 0;
 }
 </style>

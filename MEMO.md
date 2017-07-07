@@ -30,3 +30,8 @@
   3. 或者是均支持。
 
 * [ ] Button 和 Switch 组件中属性 hold === true 时，点击按钮，按钮状态不会发生改变，同时会触发一次 `change` 事件。 `change` 这个单词从语义上理解是 `改变`，但此时按钮状态未发生改变，却触发了一个叫做 “change” 的事件，这里这个事件名称是否合理？或者只有在按钮发生状态改变的时候才会触发 `change` 事件？
+
+## Release notes
+* [ ] dialog 改版
+* [ ] button 合并 sise 和 full
+* [ ] dialog 添加过渡动画

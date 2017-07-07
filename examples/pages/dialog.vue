@@ -7,6 +7,7 @@
         <v-button @click.native="click">Show</v-button>
       </div>
     </v-panel>
+    <v-dialog ref="dialog" v-model="dialogShown" :desc="desc"></v-dialog>
   </div>
 </template>
 <script>
@@ -15,46 +16,22 @@ export default {
   data() {
     return {
       test: '',
+      dialogShown: false,
+      desc: 'This is content',
     };
   },
   methods: {
     click() {
-      this.$dialog.show({
-        buttons: [
-          { text: '确定', callback: this.left.bind(this) },
-          { text: '取消', callback: this.right.bind(this) },
-        ],
-        title: 'JDSmart',
-        description: 'No Smart No Goods',
-        // style: {
-        //   tcolor: 'red',
-        //   dcolor: 'pink',
-        // },
-      });
-    },
-    left() {
-      this.$log('click left button');
-      this.$dialog.hide();
-    },
-    right() {
-      this.$log('click right button');
-      this.$dialog.hide();
+      this.dialogShown = !this.dialogShown;
     },
   },
   mounted() {
-    this.$dialog.$on('dialog.button.click', (val) => {
-      this.$log(`${val}`);
-      this.$dialog.hide();
-    });
-    this.$dialog.$on('dialog.close', () => {
-      this.$log('dialog.close');
+    this.$refs.dialog.$on('buttonfirst', () => {
+      this.dialogShown = false;
     });
   },
 };
 </script>
 
 <style>
-.cls{
-  color: pink
-}
 </style>

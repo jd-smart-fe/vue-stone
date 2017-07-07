@@ -1,35 +1,93 @@
+<template>
+  <v-dialog ref="dialog" v-model="shown" :title="title" :desc="desc" :buttons="button"></v-dialog>
+</template>
+
+
 <script>
 export default {
   name: 'v-alert',
+
   type: 'singleton',
+
   data() {
     return {
-      options: {
-        title: '',
-        description: '',
-        type: 'alert',
-      },
+      title: '提示',
+      desc: '',
+      shown: false,
+      button: [{ text: '确定' }],
+      inited: false,
+      promise: [],
     };
   },
-  methods: {
-    show(options) {
-      if (typeof options === 'string') {
-        options = { title: options };
+
+  watch: {
+    shown(val) {
+      if (val === false) {
+        this.$emit('hide');
+        return;
       }
-      const a = { button: [{ text: options.buttonText || '确定' }] };
-      const obj = Object.assign(this.options, options);
-      this.$dialog.show(this.options);
-    },
-    hide() {
-      this.$dialog.hide();
+      this.$emit('show');
     },
   },
-  mounted() {
-    this.$dialog.$on('close', (val) => {
-      if (val === 'alert') {
-        this.$emit('close');
+
+  methods: {
+
+    hide() {
+      this.shown = false;
+    },
+
+    show(options) {
+      this.init();
+
+      return new Promise((resolve, reject) => {
+
+        this.$refs.dialog.$on('buttonfirst', () => {
+          this.$refs.dialog.$off('buttonfirst');
+          resolve();
+        });
+
+        if (typeof options === 'string') {
+          this.title = options;
+          this.desc = '';
+          this.shown = true;
+          return;
+        }
+
+        this.title = options.title;
+        this.desc = options.desc;
+
+        const button = {};
+        let buttonNoChange = true;
+
+        if (Object.prototype.hasOwnProperty.call(options, 'buttonText')) {
+          button.text = options.buttonText;
+          buttonNoChange = false;
+        } else {
+          button.text = '确定';
+        }
+
+        if (Object.prototype.hasOwnProperty.call(options, 'buttonColor')) {
+          buttonNoChange = false;
+          button.color = options.buttonColor;
+        }
+
+        if (!buttonNoChange) {
+          this.button = button;
+        }
+
+        this.shown = true;
+      });
+
+
+    },
+
+    init() {
+      if (this.inited) {
+        return;
       }
-    });
+      this.inited = true;
+      document.body.appendChild(this.$el);
+    },
   },
 };
 </script>

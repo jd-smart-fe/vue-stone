@@ -1,20 +1,20 @@
 <template>
   <div>
     <tmpl-back></tmpl-back>
+
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="">alert</div>
-        <v-button @click.native="click">Show</v-button>
+        <v-button @click.native="alertClick">Show</v-button>
       </div>
     </v-panel>
+
     <v-panel>
       <div slot="body" class="c-panel-body u-cross-center">
         <div class="">confirm</div>
-        <v-button @click.native="determine">Show</v-button>
+        <v-button @click.native="confirmClick">Show</v-button>
       </div>
     </v-panel>
-    <!--<v-dialog ref="dialog" :shown="showDialog" :options="dialogOptions">
-            </v-dialog>-->
 
   </div>
 </template>
@@ -28,35 +28,30 @@ export default {
         description: 'This is alert content',
         buttonText: '确定',
       },
-      // potions: 'alert',
-      // confirm: 'confirm',
       confirm: {
         title: 'confirm',
         description: 'This is confirm content',
-        callback: this.clickConfirm.bind(this),
       },
     };
   },
   methods: {
-    click() {
-      this.$alert.show(this.potions);
+
+    alertClick() {
+      this.$alert.show('啦啦啦').then(() => {
+        console.log('弹窗关闭了');
+      });
     },
-    determine() {
-      this.$confirm.show(this.confirm);
-      // this.$confirm.show('Hello World');
-    },
-    clickConfirm() {
-      console.debug('callback');
-      this.$confirm.hide();
+
+    confirmClick() {
+      this.$confirm.show('啦啦啦').then(() => {
+        console.log('点击确定');
+      }, () => {
+        console.log('点击取消');
+      });
     },
   },
   mounted() {
-    this.$confirm.$on('close', () => {
-      this.$log('alert close');
-    });
-    this.$alert.$on('close', () => {
-      this.$log('confirm close');
-    });
+    console.log('mounted');
   },
 };
 </script>
