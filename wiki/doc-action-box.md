@@ -16,7 +16,7 @@
 
 属性名   |    类型    |    默认值    |   说明
 ----    | ----      | ----        | ----    |
-v-model  | Boolean | 无 |  控制组件的显隐，true为显示
+v-model  | Boolean | false |  控制组件的显隐，true为显示。
 
 ## Methods
 方法名称   |    说明    |    参数    |

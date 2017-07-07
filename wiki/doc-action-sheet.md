@@ -15,7 +15,7 @@
 
 属性名   |    类型    |    默认值    |   说明
 ----    | ----      | ----        | ----    |
-v-model  | Boolean | 无 |  控制组件的显隐，true为显示
+v-model  | Boolean | false |  控制组件的显隐，true为显示 （非必需属性）
 items | Array |  `[{ text: '确定' }]` |  可配置多个按钮
 
 

@@ -8,7 +8,7 @@
 
 属性名   |    类型   |     默认值     |     说明
 ----    | ----    | ----    | ----    |
-v-model | Number    |   0      |   计数器初始值，必填。
+v-model | Number    |   必需属性      |   计数器初始值，必填。
 max     | Number  |   Infinity |  计数器最大值，计数若超过最大值时，加号按钮会自动置为disabled状态。
 min     | Number  |   -Infinity |  计数器最小值，计数若超过最小值时，减号按钮会自动置为disabled状态。
 step    | Number   |  1   | 步距，点一次加减号会加减相应的值。
