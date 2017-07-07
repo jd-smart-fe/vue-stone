@@ -117,7 +117,7 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="postcss">
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 .c-dialog {
@@ -156,10 +156,11 @@ export default {
     height: 0.40rem;
     line-height: 0.40rem;
     border-top: 0.01rem $gray-lighter solid;
+    display: flex;
     >a {
+      flex: 1;
       display: block;
       height: 100%;
-      float: left;
       text-align: center;
       text-decoration: none;
       color: $gray;
