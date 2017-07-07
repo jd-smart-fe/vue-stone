@@ -33,5 +33,6 @@
 
 ## Release notes
 * [ ] dialog 改版
-* [ ] button 合并 sise 和 full
 * [ ] dialog 添加过渡动画
+* [ ] comfirm 和 alert 的 show 方法返回 promise 对象。
+* [ ] button 合并 sise 和 full
