@@ -27,15 +27,11 @@
 
     data() {
       return {
-        dayspickerList: [],
+        dayspickerList: [1, 2, 3, 4, 5],
       };
     },
 
     mounted() {
-      setTimeout(() => {
-        this.dayspickerList = [1, 2, 3, 4, 5];
-      }, 1000);
-
       this.$refs.dayspicker.$on('change', (value) => {
         console.log(`当前的星期选择是: ${value}`);
       });

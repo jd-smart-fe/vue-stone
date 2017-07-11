@@ -1,35 +1,50 @@
 <template>
-  <div class="c-mask" v-show="shown" @click="handle"></div>
+  <transition :name="transition">
+    <div class="c-mask" v-show="value" @click="handle"></div>
+  </transition>
 </template>
 
 <script>
 
   export default {
     name: 'v-mask',
+
+    data() {
+      return {
+      };
+    },
+
     props: {
-      shown: {
+      value: {
         type: Boolean,
-        default: true,
+        default: false,
+      },
+      transition: {
+        type: String,
+        default: 'fade',
       },
     },
-    methods: {
-      handle() {
-        this.$emit('click');
-      },
-    },
+
     watch: {
-      shown() {
-        if (this.shown) {
+      value(val) {
+        if (this.value) {
           document.body.classList.add('u-ofh');
         } else {
           document.body.classList.remove('u-ofh');
         }
       },
     },
+
     mounted() {
       if (this.shown) {
         document.body.classList.add('u-ofh');
       }
+    },
+
+    methods: {
+      handle() {
+        this.$emit('click');
+      },
     },
   };
 </script>

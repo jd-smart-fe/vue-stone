@@ -12,11 +12,10 @@
 
 属性名   |    类型   |     默认值     |     说明
 ----    | ----    | ----    | ----    |
-type |  String  | 'click' | 定义按钮类型，可选值'toggle', 'click' 。
 size  | String  | 'base' |  定义按钮大小，可选值 'small', 'base', 'large'。
 full  | Boolean | false  | 按钮是否展示为满屏宽度
 icon  | String  | ''  |  定义按钮图标。
-radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle',
+radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle'。
 disabled | Boolean | false | 是否禁用按钮。
 htmlType | String | 'button' | 设置按钮原生 type 参数
 

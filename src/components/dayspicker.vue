@@ -5,7 +5,7 @@
       </v-button-group> -->
       <v-button-switch
         v-for="(item, index) in quickList"
-        :key="index"
+        :key="item"
         ref="quick"
         size="small"
         radius="small"
@@ -22,7 +22,7 @@
     <div class="c-dayspicker-body">
       <v-button-switch
         v-for="(item, index) in daysList"
-        :key="index"
+        :key="item"
         size="small"
         radius="small"
         :sync-hold="true"

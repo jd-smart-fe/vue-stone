@@ -22,7 +22,7 @@
           </span>
         </div>
         <div v-if="isStep" class="c-range-slider-step">
-          <span v-for="info in dotInfoList" class="step-dot" :style="{left : info.left + '%'}"></span>
+          <span v-for="(info,index) in dotInfoList" :class="['step-dot', info.left > processPercent?'':'c-range-choosen-spot']" :style="{left : info.left + '%'}" :key="index"></span>
         </div>
       </div>
     </div>
@@ -30,13 +30,14 @@
       <template v-if="showIconDots">
         <span v-for="(info, index) in dotInfoList"
           :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]"
-          :style="{left : info.left + '%'}">
+          :style="{left : info.left + '%'}" :key="index">
         </span>
       </template>
       <template v-if="showTextDots">
         <span v-for="(info, index) in dotInfoList"
           class="dot-item"
           :style="{left : info.left + '%'}"
+          :key="index"
         >{{info.text}}</span>
       </template>
     </div>
@@ -525,7 +526,7 @@
     z-index: 2;
     width:100%;
     height: $range-slide-height;
-    background-color: $t-range-lightcolor;
+    /*background-color: $t-range-lightcolor;*/
     .step-dot{
       display: inline-block;
       position:absolute;
@@ -533,8 +534,11 @@
       transform: translate3d(-50%, -50%, 0);
       width: $range-slide-stepdot-size;
       height: $range-slide-stepdot-size;
-      background: $t-range-lightcolor;
+      background: #ccc;
       border-radius:100%;
+    }
+    .c-range-choosen-spot{
+      background-color: $t-range-lightcolor;
     }
   }
   .c-range-dots{

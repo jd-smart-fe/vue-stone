@@ -55,11 +55,20 @@ import Vue from 'vue';
 Vue.use(Stone);   // register components
 ```
 
-### 按需加载组件
+### 按需打包组件
 
 受 webpack 打包策略所限，我们目前并没有将按需打包做的很简练，但至少目前还是做到了，具体步骤请查阅 [按需加载组件](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/how-to-build-by-deps-in-project.md)
 
 如果你有更好的 idea，欢迎你为 vue-stone 贡献出一份力量。
+
+### 字体图标
+
+默认状态下字体图标是被打包在组件库样式文件中的，不需要在额外引用。
+
+但是如果你使用了按需打包组件，就需要再额外引用字体图标样式文件了
+```js
+import 'vue-stone/dist/iconfonts.css';
+```
 
 ## 文档
 Vue-stone provide those components below:
@@ -79,7 +88,7 @@ Vue-stone provide those components below:
 - [Loading](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-loading.md)
 - [Mask](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-mask.md)
 - [Modes](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-modes.md)
-- [Panel]() (Docs unfinish)
+- [Panel](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-panel.md)
 - [Picker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-picker.md)
 - [Range](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-range.md)
 - [Slide](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-slide.md)
@@ -87,18 +96,9 @@ Vue-stone provide those components below:
 - [Timepicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-timerpciker.md) (Docs unfinish)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 
-## Notice
+## Release Notes
 
-v0.3.0 进行了如下的改动：
-
-- 如果你使用 Dayspicker 组件中的 days 属性，请使用用 v-model 代替之。 days 属性在 v0.3.0 中不会在支持。
-
-- Range 组件中采用下划线式命名的属性将会被重命名为驼峰式，如 `show_tip` 将会被重命名为 `showTip`
-
-- Button 新增 syncHold 属性，值为 true 时会忽略 hold 属性的设置，作用和 hold 属性类似，但不具备 hold 属性改变一次状态前只会触发一次 change 事件的特性。
-
-- 组件执行隐藏动作的方法名统一为 `hide`，组件执行显示动作的方法名统一为 `show`。
-  - Action-box 和 Action-sheet 组件中 `close` 方法重命名为 `hide`， `open` 方法重命名为 `show`
+[查看更新内容](https://github.com/JD-Smart-FE/vue-stone/releases)
 
 ## TODO & MEMO
 

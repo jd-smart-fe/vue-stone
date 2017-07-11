@@ -85,7 +85,7 @@ export default {
 
 </script>
 
-<style lang="css">
+<style lang="postcss">
 
   $fontSize: 16px;
   $height: calc(16px + 14px);
@@ -102,12 +102,18 @@ export default {
     .c-timepicker-unit{
       position: absolute;
       top: 50%;
-      width: 100%;
-      height: $fontSize;
-      transform: translate(0, -55%);
       left: 0;
+
+      width: 100%;
+      height: 30px;
+      margin-top: 1px;
+
       font-size: calc($fontSize + 2px);
+      line-height: 30px;
+
+      transform: translate(0, -55%);
       pointer-events: none;
+
       .c-timepicker-unit-colon{
         position: absolute;
         left: 0;
@@ -122,24 +128,26 @@ export default {
 
       .c-timepicker-unit-hour{
         position: absolute;
-        left: -0.68rem;
+        left: -0.88rem;
         top: 50%;
-        transform: translateY(-50%);
         right: 0;
-        margin: auto;
+
+        transform: translateY(-50%);
         width: calc($fontSize + 2px);
+        margin: auto;
         text-align: center;
       }
 
       .c-timepicker-unit-min{
-            position: absolute;
-            left: 0;
-            top: 50%;
-            right: -1.65rem;
-            margin: auto;
-            width: calc(16px + 2px);
-            text-align: center;
-            transform: translateY(-50%);
+          position: absolute;
+          left: 0;
+          top: 50%;
+          right: -2.16rem;
+
+          margin: auto;
+          width: calc(16px + 2px);
+          text-align: center;
+          transform: translateY(-50%);
       }
     }
   }

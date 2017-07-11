@@ -4,9 +4,7 @@
       <slot></slot>
     </div>
 
-    <transition name="fade">
-      <v-mask v-show="insideValue" :shown="mask_shown"></v-mask>
-    </transition>
+    <v-mask :value="insideValue"></v-mask>
   </div>
 </template>
 
@@ -16,7 +14,6 @@ export default {
 
   data() {
     return {
-      mask_shown: this.value,
       insideValue: this.value,
     };
   },
@@ -36,16 +33,6 @@ export default {
 
     insideValue(val) {
       this.$emit('input', val);
-
-      if (val) {
-        this.mask_shown = true;
-
-      } else {
-        // 300ms 是为了能够触发mask消失时的过渡动画
-        setTimeout(() => {
-          this.mask_shown = false;
-        }, 300);
-      }
     },
   },
 

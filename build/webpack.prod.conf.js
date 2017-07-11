@@ -13,10 +13,6 @@ var env = process.env.NODE_ENV === 'testing'
 
 var webpackConfig = merge(baseWebpackConfig, {
 
-  entry: {
-    'vue-stone': './src/index.js',
-  },
-
   module: {
     loaders: utils.styleLoaders({ sourceMap: config.build.productionSourceMap, extract: true })
   },
@@ -61,8 +57,6 @@ var webpackConfig = merge(baseWebpackConfig, {
     // }),
   ]
 })
-
-delete webpackConfig.entry.app;
 
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')

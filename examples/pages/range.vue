@@ -19,7 +19,7 @@
         </v-range>
       </div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-range slot="main" ref="rangeObj" v-model="range_data_obj_value" :is_step="range_data_obj.isStep" :dots="range_data_obj.dots">
+        <v-range slot="main" ref="rangeObj" v-model="range_data_obj_value" :is-step="range_data_obj.isStep" :dots="range_data_obj.dots">
         </v-range>
       </div>
       <div slot="body" class="c-panel-body">

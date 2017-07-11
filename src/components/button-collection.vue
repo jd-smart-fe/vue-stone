@@ -1,7 +1,7 @@
 <template>
   <div class="c-btngroup">
       <v-button class="c-btngroup-btn" v-for="(item, index) in items"
-      :key="index"
+      :key="item"
       ref="btn"
       type="toggle"
       :size="size"

@@ -82,11 +82,10 @@ Vue.use(Store, {
 ```js
 // webpack.config.js, (code snip 2)
 const ContextReplacementPlugin = require("webpack/lib/ContextReplacementPlugin");
-const intactify = require('vue-stone/libs/intactify');
 const dependencies = require('vue-stone/libs/dependencies');
 
 let components = ['panel', 'loading']; // 项目中所要用到的组件列表
-components = intactify(dependencies, components); // 构造真实的组件列表
+components = dependencies(components); // 构造真实的组件列表
 plugins: [
   // ...
   new ContextReplacementPlugin(

@@ -13,7 +13,6 @@
 属性名   |    类型   |     默认值     |     说明
 ----    | ----    | ----    | ----    |
 v-model | Boolean | false | 按钮激活状态
-type |  String  | 'click' | 定义按钮类型，可选值'toggle', 'click' 。
 size  | String  | 'base' |  定义按钮大小，可选值 'small', 'base', 'large'。
 icon  | String  | ''  |  定义按钮图标。
 radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle',

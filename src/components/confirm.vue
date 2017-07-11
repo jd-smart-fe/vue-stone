@@ -1,44 +1,66 @@
+<template>
+  <v-dialog ref="dialog" v-model="shown" :title="title" :desc="desc" :buttons="button"></v-dialog>
+</template>
+
 <script>
 export default {
   name: 'v-confirm',
   type: 'singleton',
   data() {
     return {
-      options: {
-        title: '',
-        description: '',
-        type: 'confirm',
-      },
+      shown: false,
+      title: '提示',
+      desc: '',
+      button: [{ text: '取消' }, { text: '确定' }],
+      inited: false,
+      resolve: [],
+      reject: [],
     };
   },
+
   methods: {
     show(options) {
-      if (typeof options === 'string') {
-        options = { title: options };
-      }
-      const btnDefault = {
-        buttons: [
-        { text: '取消' },
-        { text: '确定', callback: options.callback || this.confirm.bind(this) },
-        ],
-      };
-      const obj = Object.assign(this.options, btnDefault, options);
-      this.$dialog.show(this.options);
+      return new Promise((resolve, reject) => {
+        this.showDialog(options);
+
+        this.$refs.dialog.$on('buttonfirst', () => {
+          this.$refs.dialog.$off('buttonfirst');
+          this.$refs.dialog.$off('buttonsecond');
+          reject();
+        });
+
+        this.$refs.dialog.$on('buttonsecond', () => {
+          this.$refs.dialog.$off('buttonfirst');
+          this.$refs.dialog.$off('buttonsecond');
+          resolve();
+        });
+      });
     },
-    confirm() {
-      this.$log('default config');
-      this.hide();
-    },
+
     hide() {
-      this.$dialog.hide();
+      this.shown = false;
     },
-  },
-  mounted() {
-    this.$dialog.$on('dialog.close', (val) => {
-      if (val === 'confirm') {
-        this.$emit('close');
+
+    showDialog(options) {
+      this.init();
+
+      if (typeof options === 'string') {
+        this.title = options;
+        this.desc = '';
+        this.shown = true;
+        return;
       }
-    });
+
+      this.shown = true;
+    },
+
+    init() {
+      if (this.inited) {
+        return;
+      }
+      this.inited = true;
+      document.body.appendChild(this.$el);
+    },
   },
 };
 </script>
