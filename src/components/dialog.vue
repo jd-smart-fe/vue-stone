@@ -7,7 +7,13 @@
     <!-- dialog start -->
     <div class="c-dialog" v-show="insideValue" >
 
-      <h4 v-if=" title !== '' " class="c-dialog-title" :style="{ color: tcolor }" >{{title}}</h4>
+      <h4
+        v-if=" title !== '' "
+        :class="['c-dialog-title', onlyTitle ? 'c-dialog-only-title' : '']"
+        :style="{ color: tcolor }"
+      >
+        {{title}}
+      </h4>
 
       <div v-if=" desc !== '' " class="c-dialog-desc" >
         <div>
@@ -46,6 +52,7 @@ export default {
   data() {
     return {
       insideValue: this.value,
+      hasSlot: false,
     };
   },
 
@@ -65,7 +72,7 @@ export default {
     buttons: {
       type: Array,
       default() {
-        return [{ text: '确定' }];
+        return [{ text: '确定', color: '#59B8FC' }];
       },
     },
     tcolor: {
@@ -79,6 +86,15 @@ export default {
     preventClose: {
       type: Boolean,
       default: false,
+    },
+  },
+
+  computed: {
+    onlyTitle() {
+      if (this.desc === '' && !this.hasSlot) {
+        return true;
+      }
+      return false;
     },
   },
 
@@ -98,6 +114,12 @@ export default {
         this.insideValue = val;
       }
     },
+  },
+
+  mounted() {
+    if (this.$slots.default && this.$slots.default.length > 0) {
+      this.hasSlot = true;
+    }
   },
 
   methods: {
@@ -128,16 +150,13 @@ export default {
 <style lang="postcss">
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
+
 .c-dialog {
   box-sizing: border-box;
   width: 2.62rem;
-  max-height: 2rem;
-
-  padding-top: 0.3rem;
   border-radius: 0.02rem;
 
   background-color: $white;
-
   font-size: .14rem;
 
   position: fixed;
@@ -149,17 +168,26 @@ export default {
 
   .c-dialog-title {
     font-weight: normal;
-
     text-align: center;
     color: $c-dialog-title;
-    margin: 0 0 0.3rem;
+
+    padding: 0.2rem 0;
+    margin: 0;
+
+    &.c-dialog-only-title{
+      padding: 0.3rem 0;
+    }
   }
+
 
   > .c-dialog-desc {
     padding-bottom: 0.3rem;
+    padding-top: 0.1rem;
+
     > div {
       max-height: 0.48rem;
       overflow: auto;
+
       > p {
         color: $gray-light;
         text-align: center;
@@ -182,7 +210,7 @@ export default {
       height: 100%;
       text-align: center;
       text-decoration: none;
-      color: $gray;
+      color: $c-primary;
     }
 
     a + a {

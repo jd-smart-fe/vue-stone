@@ -3,7 +3,7 @@
 ## Usage
 
 ```html
-<v-dialog ref="dialog" v-model="shown" title="Title" :desc="desc"></v-dialog>
+<v-dialog ref="dialog" v-model="shown" title="Title" desc="desc"></v-dialog>
 ```
 
 ## Options
@@ -25,10 +25,10 @@ buttons 属性：
 // 数组每一项对应一个按钮，最多可配置五个按钮
 buttons: [{
     text: '确定',      // 按钮文本
-    color: '#666',    // 按钮颜色 默认 '#666'
+    color: '#666',    // 按钮颜色 默认 '#59B8FC'
   },{
     text: '取消',      // 按钮文本
-    color: 'red',     // 按钮颜色 默认 '#666'
+    color: 'red',     // 按钮颜色 默认 '#59B8FC'
 }]
 ```
 

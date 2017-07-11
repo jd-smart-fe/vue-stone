@@ -11,22 +11,11 @@ export default {
       shown: false,
       title: '提示',
       desc: '',
-      button: [{ text: '确定', color: '#59B8FC' }, { text: '取消' }],
+      button: [{ text: '取消' }, { text: '确定' }],
       inited: false,
       resolve: [],
       reject: [],
     };
-  },
-
-  mounted() {
-
-    this.$refs.dialog.$on('buttonfirst', () => {
-      console.log('确定');
-    });
-
-    this.$refs.dialog.$on('buttonsecond', () => {
-      console.log('取消');
-    });
   },
 
   methods: {
@@ -37,13 +26,13 @@ export default {
         this.$refs.dialog.$on('buttonfirst', () => {
           this.$refs.dialog.$off('buttonfirst');
           this.$refs.dialog.$off('buttonsecond');
-          resolve();
+          reject();
         });
 
         this.$refs.dialog.$on('buttonsecond', () => {
           this.$refs.dialog.$off('buttonfirst');
           this.$refs.dialog.$off('buttonsecond');
-          reject();
+          resolve();
         });
       });
     },
