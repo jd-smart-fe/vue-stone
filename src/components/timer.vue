@@ -101,7 +101,9 @@
       </div>
 
       <!-- 删除定时 弹窗 -->
-      <v-dialog ref="dialog_delete" :showDialog="showDialog" :options="dialogOptions"></v-dialog>
+      <v-dialog ref="dialog_delete" v-model="showDialog"
+        :title="dialogOptions.title"
+        :buttons="dialogOptions.buttons"></v-dialog>
     </div>
 
     <!-- 新页面： 选择重复日期 -->
@@ -160,7 +162,7 @@
 </template>
 
 <script>
-  import units from '../units/default';
+  import units from '../utils/timer';
 
   export default {
     name: 'v-timer',
