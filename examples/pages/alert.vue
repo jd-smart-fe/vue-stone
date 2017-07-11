@@ -23,27 +23,23 @@ export default {
   name: 'alert',
   data() {
     return {
-      potions: {
-        title: 'title',
-        description: 'This is alert content',
-        buttonText: '确定',
-      },
-      confirm: {
-        title: 'confirm',
-        description: 'This is confirm content',
+      alert: {
+        title: '弹窗标题',
+        desc: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内。',
+        // desc: '弹窗内容',
       },
     };
   },
   methods: {
 
     alertClick() {
-      this.$alert.show('啦啦啦').then(() => {
+      this.$alert.show(this.alert).then(() => {
         console.log('弹窗关闭了');
       });
     },
 
     confirmClick() {
-      this.$confirm.show('啦啦啦').then(() => {
+      this.$confirm.show('弹窗标题').then(() => {
         console.log('点击确定');
       }, () => {
         console.log('点击取消');

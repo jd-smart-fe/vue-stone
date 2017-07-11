@@ -6,7 +6,7 @@ itemHeight 以后要动态获取，目前改变窗口大小后可能会无法正
 <template lang="html">
 <div>
 
-  <v-mask :shown="mode !== 'inline' && shown" ref="mask"></v-mask>
+  <v-mask :value="mode !== 'inline' && shown" ref="mask"></v-mask>
 
   <div :class="[
     mode !== 'inline' ? 'c-picker-modal' : 'c-picker-inline',

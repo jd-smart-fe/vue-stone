@@ -1,45 +1,45 @@
 <template>
   <div>
 
-    <v-mask :shown="insideValue" @click.native="maskClick">
+    <v-mask :value="insideValue" @click.native="maskClick">
     </v-mask>
 
     <!-- dialog start -->
-    <div class="c-dialog" v-show="insideValue" >
+    <transition name="fade">
+      <div class="c-dialog" v-show="insideValue" >
 
-      <h4
-        v-if=" title !== '' "
-        :class="['c-dialog-title', onlyTitle ? 'c-dialog-only-title' : '']"
-        :style="{ color: tcolor }"
-      >
-        {{title}}
-      </h4>
+        <h4
+          v-if=" title !== '' "
+          :class="['c-dialog-title', onlyTitle ? 'c-dialog-only-title' : '']"
+          :style="{ color: tcolor }"
+        >
+          {{title}}
+        </h4>
 
-      <div v-if=" desc !== '' " class="c-dialog-desc" >
+        <div v-if=" desc !== '' " class="c-dialog-desc" >
+          <span :style="{ color: dcolor }">{{ desc }}</span>
+        </div>
+
         <div>
-          <p :style="{ color: dcolor }">{{ desc }}</p>
+          <slot></slot>
         </div>
-      </div>
 
-      <div>
-        <slot></slot>
-      </div>
+        <div class="c-dialog-footer">
+          <div class="c-dialog-buttons">
 
-      <div class="c-dialog-footer">
-        <div class="c-dialog-buttons">
+            <a
+              v-for="(item, index) in buttons"
+              :key="item.text"
+              :style="item.color ? 'color:' + item.color : ''"
+              href="#"
+              @click.prevent="buttonClick(index)"
+            >{{ item.text }}</a>
 
-          <a
-            v-for="(item, index) in buttons"
-            :key="item.text"
-            :style="item.color ? 'color:' + item.color : ''"
-            href="#"
-            @click.prevent="buttonClick(index)"
-          >{{ item.text }}</a>
-
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div>
+    </transition>
     <!-- dialog end -->
   </div>
 </template>
@@ -181,18 +181,18 @@ export default {
 
 
   > .c-dialog-desc {
-    padding-bottom: 0.3rem;
-    padding-top: 0.1rem;
+    display: flex;
+    align-item: center;
+    justify-content: center;
+    padding: 0.1rem 0.25rem 0.3rem;;
 
-    > div {
-      max-height: 0.48rem;
-      overflow: auto;
+    > p {
+      flex: none;
+      display: inline;
+      margin: 0;
 
-      > p {
-        color: $gray-light;
-        text-align: center;
-        margin: 0;
-      }
+      color: $gray-light;
+      text-align: left;
     }
   }
 
@@ -217,15 +217,5 @@ export default {
       border-left: 0.01rem $gray-lighter solid;
     }
   }
-}
-
-
-
-/**
-   *没有text样式
-   */
-
-.c-dialog > .c-dialog-body-empty {
-  padding: 0;
 }
 </style>
