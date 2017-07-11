@@ -15,6 +15,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 
   entry: {
     'vue-stone': './src/index.js',
+    'iconfonts': './src/iconfonts.js',
   },
 
   module: {

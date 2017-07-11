@@ -37,4 +37,5 @@
 * [x] confirm 和 alert 的 show 方法返回 promise 对象。
 * [x] range 组件 isStep 开启的情况下，样式显示更加合理。
 * [ ] mask 组件添加默认过渡动画，shown 属性更改为 v-model，添加 transition 属性( 可配置 transition name 属性值)
-* [ ] 额外单独打包一份 iconfont
+* [x] 额外单独打包一份 iconfont
+* [ ] 修复 timepicker 样式bug
