@@ -450,7 +450,6 @@ function picker(container, cols, vm) {
     font-size: $fontSize;
     width: 100%;
     text-align: center;
-
   }
  .c-picker-col-wrapper-3d > .c-picker-item{
     height: $height;

@@ -29,8 +29,7 @@ const list = [{
   name: 'action-sheet',
 }, {
   name: 'dialog',
-},
-{
+}, {
   name: 'alert',
 }, {
   name: 'form',
@@ -38,6 +37,8 @@ const list = [{
   name: 'counter',
 }, {
   name: 'picker',
+}, {
+  name: 'timepicker',
 }, {
   name: 'switch',
 }, {

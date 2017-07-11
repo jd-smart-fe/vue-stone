@@ -61,6 +61,10 @@
         <div > Days Picker </div>
         <span class='icon icon-pull-right'></span>
       </div>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('timepicker')">
+        <div > Timepicker </div>
+        <span class='icon icon-pull-right'></span>
+      </div>
     </v-panel>
 
     <v-panel>
