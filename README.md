@@ -71,7 +71,7 @@ import 'vue-stone/dist/iconfonts.css';
 ```
 
 ## 文档
-Vue-stone provide those components below:
+vue-stone 组件库提供了下述组件，每个组件都带有详细的文档，组件展示可参考 [example](https://jd-smart-fe.github.io/vue-stone/)
 
 - [Action-box](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-box.md)
 - [Action-sheet](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-action-sheet.md)
@@ -93,7 +93,7 @@ Vue-stone provide those components below:
 - [Range](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-range.md)
 - [Slide](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-slide.md)
 - [Switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-switch.md)
-- [Timepicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-timerpciker.md) (Docs unfinish)
+- [Timepicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-timerpciker.md)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 
 ## Release Notes
