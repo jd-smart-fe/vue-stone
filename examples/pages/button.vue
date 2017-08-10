@@ -47,6 +47,8 @@
         <v-button icon="mode-holiday">取暖</v-button>
         <v-button icon="shirt" radius="circle" @click.native="btnClickHandle">洗衣</v-button>
         <v-button radius="circle" icon="power" @click.native="btnClickHandle"></v-button>
+        <v-button radius="circle" size="large" icon="power" @click.native="btnClickHandle"></v-button>
+        <v-button radius="circle" size="small" icon="power" @click.native="btnClickHandle"></v-button>
       </div>
 
       <div slot="body" class="c-panel-body row-1 u-cross-center">

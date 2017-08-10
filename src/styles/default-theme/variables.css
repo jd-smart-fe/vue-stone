@@ -89,7 +89,9 @@ $btn-fontsize-base: $font-size-base;
 $btn-padding-lg: 0.14rem 0.26rem;
 $btn-fontsize-lg: $font-size-lg;
 
+$btn-icon-only-width-lg: 0.52rem;
 $btn-icon-only-width-base: 0.36rem;
+$btn-icon-only-width-sm: 0.24rem;
 
 $btn-disabled: #efefef;
 $btn-hover: #efefef; /* 按钮按下底色 */
