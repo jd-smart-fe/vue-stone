@@ -207,7 +207,6 @@
       width: $dayspicker-item-width;
       height: $dayspicker-item-height;
 
-
       &.c-btn-base{
         width: $dayspicker-item-width;
         height: $dayspicker-item-height;

@@ -138,7 +138,7 @@ export default {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
+    display: block;
     width: 100%;
     text-align: center;
     white-space: nowrap;

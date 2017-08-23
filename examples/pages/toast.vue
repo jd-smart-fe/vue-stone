@@ -59,9 +59,9 @@
       showLoading() {
 
         this.$loading.show();
-        setTimeout(() => {
-          this.$loading.hide();
-        }, 3000);
+        // setTimeout(() => {
+        //   this.$loading.hide();
+        // }, 3000);
       },
 
       hideLoading() {
