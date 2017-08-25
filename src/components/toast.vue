@@ -118,9 +118,15 @@
     &.c-toast-withicon {
       width: 100px;
       height: 100px;
-      @mixin cross-center;
+
+      /* position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto; */
+
       border-radius: $l-radius;
-      flex-direction: column;
 
       .c-toast-text {
         margin-bottom: 12px;

@@ -39,11 +39,23 @@ export default {
     },
 
     confirmClick() {
-      this.$confirm.show('弹窗标题').then(() => {
-        console.log('点击确定');
-      }, () => {
-        console.log('点击取消');
+      this.$confirm.show({
+        // buttons: [
+        //  { text: '否', callback: this.noFon.bind(this) },
+        //  { text: '是', callback: this.yesFon.bind(this) },
+        // ],
+        title: '是否删除该定时任务',
+        desc: self.error_text,
+      }).then(() => {
+        // this.onFon();
+      }).catch(() => {
+        // this.yesFon();
       });
+      // this.$confirm.show('弹窗标题').then(() => {
+      //   console.log('点击确定');
+      // }, () => {
+      //   console.log('点击取消');
+      // });
     },
   },
   mounted() {

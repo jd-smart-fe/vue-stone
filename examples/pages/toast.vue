@@ -52,7 +52,7 @@
         this.$toast.show({
           icon: 'icon-home',
           text: '操作成功',
-          duration: 500,
+          duration: 999999,
         });
       },
 

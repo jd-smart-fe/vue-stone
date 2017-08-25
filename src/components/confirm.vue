@@ -47,8 +47,10 @@ export default {
       if (typeof options === 'string') {
         this.title = options;
         this.desc = '';
-        this.shown = true;
-        return;
+      } else {
+        this.title = options.title || this.title;
+        this.desc = options.desc || this.desc;
+        this.button = options.button || this.button;
       }
 
       this.shown = true;
