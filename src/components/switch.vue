@@ -2,7 +2,8 @@
 
 	<div :class="['c-switch',
       disabled && 'c-switch-disabled',
-      insideValue ? 'c-switch-on' : 'c-switch-off']"
+      insideValue ? 'c-switch-on' : 'c-switch-off',
+      isAndroid_v4_2 ? 'c-switch-fix-bug' : '']"
     @click="handle">
 		<span class="c-switch-button"></span>
 	</div>
@@ -17,6 +18,7 @@
       return {
         insideValue: this.value,
         keep: false,  // false: 可以响应，true： 不可响应交互
+        isAndroid_v4_2: false,
       };
     },
 
@@ -54,6 +56,13 @@
         }
         this.insideValue = val;
       },
+    },
+
+    created() {
+      /**
+       * 修复 Android 4.2 样式bug
+       */
+      this.isAndroid_v4_2 = /Android 4\.2/.test(window.navigator.userAgent);
     },
 
     methods: {
@@ -96,57 +105,65 @@
   };
 </script>
 
-<style>
-
+<style lang="postcss">
 	@import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  $prefix: .c-switch;
+  /**
+  *  Andriod 4.2.x 在有 border-radius 的情况下，background 溢出。
+  */
+  .c-switch-fix-bug {
+    background-clip: padding-box;
+  }
 
-	$prefix {
+	.c-switch {
 
     position: relative;
 		display: inline-block;
 		width: $switch-width;
-		height: $swtich-height;
-    /*box-sizing: border-box;*/
+		height: $switch-height;
 
-    @mixin border;
-    border-color: $t-switch-offcolor;
 		border-radius: 50px;
-    -webkit-flex:none;
     flex:none;
 
-    $(prefix)-button {
+    background-color: $switch-background-color-off;
+    border-color: $switch-background-color-off;
 
-			top: calc($swtich-height / 2);
-	    left: 0;
-      width: $swtich-button-size;
-      height: $swtich-button-size;
-      transform: translate($switch-button-padding-x, calc(-$swtich-button-size / 2));
+    transition-property: border-color, background-color, transform;
+    transition-duration: .3s;
+    transition-timing-function: ease;
 
-	    position: absolute;
-	    border-radius: 100%;
-      @mixin transition transform;
-
-	    z-index: 2;
-	    background-color: $t-switch-offcolor;
-		}
 	}
 
-  $(prefix)-disabled {
-    /* TODO: border-color, background-clor */
-    /* on 和 off 都需要*/
+  .c-switch-button {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto 0;
+    width: $switch-btn-width;
+    height: $switch-btn-height;
+    transform: translate3d($switch-transform-x-off, 0, 0);
+
+    position: absolute;
+    border-radius: 100%;
+    transition-property: border-color, transform;
+    transition-duration: .3s;
+    transition-timing-function: ease;
+    z-index: 2;
+    background-color: $switch-btn-background-color;
   }
 
-  $(prefix)-on {
-    border-color: $t-switch-oncolor;
-    $(prefix)-button {
-      background-color: $t-switch-oncolor;
-      transform: translate(calc($switch-width - $switch-button-padding-x - $swtich-button-size), calc(-$swtich-button-size / 2));
+  .c-switch-disabled{
+    opacity: .7;
+  }
+
+  .c-switch-on {
+    background-color: $switch-background-color-on;
+    border-color: $switch-background-color-on;
+
+    .c-switch-button {
+      transform: translate3d($switch-transform-x-on, 0, 0);
     }
   }
-  $(prefix)-off {
 
-  }
 </style>

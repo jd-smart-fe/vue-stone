@@ -59,13 +59,17 @@ $t-range-lightcolor: $c-primary;
 
 /************************  switch   ************************/
 
-$switch-width: 0.53rem;
-$swtich-height: 0.26rem;
-$swtich-button-size: 0.1rem;
-$switch-button-padding-x: 0.08rem;
+$switch-width: 0.58rem;
+$switch-height: 0.28rem;
+$switch-background-color-off: #d5d5d5;
+$switch-background-color-on: $c-primary;
 
-$t-switch-oncolor: $c-primary;
-$t-switch-offcolor: $gray-lighter;
+$switch-btn-width: .22rem;
+$switch-btn-height: .22rem;
+$switch-btn-background-color: #fff;
+
+$switch-transform-x-off: .04rem;
+$switch-transform-x-on: 0.32rem;
 
 /************************  power   ************************/
 $power-width: 0.45rem;
@@ -85,7 +89,9 @@ $btn-fontsize-base: $font-size-base;
 $btn-padding-lg: 0.14rem 0.26rem;
 $btn-fontsize-lg: $font-size-lg;
 
+$btn-icon-only-width-lg: 0.52rem;
 $btn-icon-only-width-base: 0.36rem;
+$btn-icon-only-width-sm: 0.24rem;
 
 $btn-disabled: #efefef;
 $btn-hover: #efefef; /* 按钮按下底色 */

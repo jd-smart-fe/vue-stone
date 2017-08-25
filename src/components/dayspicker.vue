@@ -36,6 +36,7 @@
 </template>
 
 <script>
+
   export default {
     name: 'v-dayspicker',
 
@@ -206,7 +207,6 @@
       padding: 0;
       width: $dayspicker-item-width;
       height: $dayspicker-item-height;
-
 
       &.c-btn-base{
         width: $dayspicker-item-width;

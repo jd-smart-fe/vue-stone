@@ -127,7 +127,7 @@ export default {
     text-align: center;
     font-size: 18px;
 
-    width: 3.1rem;
+    width: 100%;
 
     z-index: 101;
 
