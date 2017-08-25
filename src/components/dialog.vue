@@ -75,10 +75,12 @@ export default {
         return [{ text: '确定', color: '#59B8FC' }];
       },
     },
+    // title color
     tcolor: {
       type: String,
       default: '#333',
     },
+    // desc color
     dcolor: {
       type: String,
       default: '#999',
@@ -198,7 +200,8 @@ export default {
 
   .c-dialog-footer > .c-dialog-buttons {
     line-height: 0.40rem;
-    border-top: 0.01rem $gray-lighter solid;
+
+    border-top: 1px $gray-lighter solid;
 
     display: flex;
     width: 100%;
@@ -214,7 +217,15 @@ export default {
     }
 
     a + a {
-      border-left: 0.01rem $gray-lighter solid;
+      border-left: 1px $gray-lighter solid;
+    }
+  }
+
+  .hairlines .c-dialog-footer > .c-dialog-buttons {
+    border-top: .5px $gray-lighter solid;
+
+    a + a {
+      border-left: .5px $gray-lighter solid;
     }
   }
 }

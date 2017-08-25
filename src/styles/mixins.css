@@ -37,12 +37,15 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   justify-content: space-between;
 }
+
 @define-mixin main-center {
   display: flex;
   justify-content: center;
 }
+
 @define-mixin center {
   display: flex;
   align-items: center;

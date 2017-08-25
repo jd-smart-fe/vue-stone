@@ -2,6 +2,7 @@ import './components/_style';
 import VueLogger from '../libs/vue-logger';
 import Initializer from '../libs/initializer';
 import dependencies from '../libs/dependencies';
+import './utils/common';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
