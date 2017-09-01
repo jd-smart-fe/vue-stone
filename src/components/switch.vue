@@ -151,6 +151,8 @@
     transition-timing-function: ease;
     z-index: 2;
     background-color: $switch-btn-background-color;
+
+    box-shadow: 0px 3px 4px rgba(100,100,100,.25);
   }
 
   .c-switch-disabled{
