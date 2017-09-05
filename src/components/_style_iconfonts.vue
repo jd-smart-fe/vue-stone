@@ -27,7 +27,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-rang-large:before {
+  content: "\e937";
+}
 .icon-mode-auto:before {
   content: "\e92b";
   color: #fff;
