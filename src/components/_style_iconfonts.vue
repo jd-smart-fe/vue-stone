@@ -27,7 +27,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-rang-large:before {
+.icon-range-small:before {
+  content: "\e938";
+}
+.icon-range-large:before {
   content: "\e937";
 }
 .icon-mode-auto:before {

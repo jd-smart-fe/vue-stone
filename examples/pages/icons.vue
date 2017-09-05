@@ -10,7 +10,8 @@
         <span class='icon icon-quick-wash-30'></span>
         <span class='icon icon-quick-wash-15'></span>
         <span class='icon icon-washing-liquid'></span>
-        <span class='icon icon-rang-large'></span>
+        <span class='icon icon-range-small'></span>
+        <span class='icon icon-range-large'></span>
         <span class='icon icon-mode-dry'></span>
         ...
       </div>
