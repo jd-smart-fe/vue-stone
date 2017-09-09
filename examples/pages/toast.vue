@@ -35,16 +35,16 @@
     },
 
     mounted() {
-      // this.$toast.show({
-      //   icon: 'icon-home',
-      //   text: '操作成功',
-      //   duration: 500,
-      //   autohide: false,
-      // });
+      this.$toast.show({
+        icon: 'icon-home',
+        text: '操作成功',
+        duration: 2000,
+        autohide: false,
+      });
 
-      // setTimeout(() => {
-      //   this.$toast.hide();
-      // }, 2000);
+      setTimeout(() => {
+        this.$toast.hide();
+      }, 2000);
     },
 
     methods: {
@@ -52,16 +52,16 @@
         this.$toast.show({
           icon: 'icon-home',
           text: '操作成功',
-          duration: 999999,
+          duration: 2000,
         });
       },
 
       showLoading() {
 
         this.$loading.show();
-        // setTimeout(() => {
-        //   this.$loading.hide();
-        // }, 3000);
+        setTimeout(() => {
+          this.$loading.hide();
+        }, 3000);
       },
 
       hideLoading() {
