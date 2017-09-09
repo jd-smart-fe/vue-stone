@@ -52,16 +52,16 @@
         this.$toast.show({
           icon: 'icon-home',
           text: '操作成功',
-          duration: 2000,
+          duration: 999999,
         });
       },
 
       showLoading() {
 
         this.$loading.show();
-        setTimeout(() => {
-          this.$loading.hide();
-        }, 3000);
+        // setTimeout(() => {
+        //   this.$loading.hide();
+        // }, 3000);
       },
 
       hideLoading() {
@@ -69,7 +69,7 @@
       },
 
       show() {
-        this.$toast.show('布谷，布谷');
+        this.$toast.show('布谷，布谷。');
       },
     },
   };
