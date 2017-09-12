@@ -326,28 +326,31 @@
     },
 
     methods: {
+
       // 获取组件数据
       getValue() {
         let taskTimeExpress = '';
-
+        const activeTime = this.time.active;
+        // console.log(`${JSON.stringify(this.time)}`);
         // 定时重复的value
         if (this.repeat_switch && this.days.length > 0) {
           // 开启重复的情况
-          taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], '*', '*', this.days);
+
+          taskTimeExpress = units.taskTimeExpress(activeTime[1], activeTime[0], '*', '*', this.days);
         } else {
 
           // 只执行一次的情况
           const nowdate = this.getNowDate();
 
           // 如果设置时间小于等于现在时间，则任务默认为第二天进行
-          if ((this.time[0] * 60) + this.time[1]
+          if ((activeTime[0] * 60) + activeTime[1]
           <= (nowdate.hour * 60) + nowdate.min) {
 
-            taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date + 1, nowdate.month, '*', nowdate.year);
+            taskTimeExpress = units.taskTimeExpress(activeTime[1], activeTime[0], nowdate.date + 1, nowdate.month, '*', nowdate.year);
           } else {
 
             // 否则任务默认为今天进行
-            taskTimeExpress = units.taskTimeExpress(this.time[1], this.time[0], nowdate.date, nowdate.month, '*', nowdate.year);
+            taskTimeExpress = units.taskTimeExpress(activeTime[1], activeTime[0], nowdate.date, nowdate.month, '*', nowdate.year);
           }
         }
 
