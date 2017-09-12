@@ -256,7 +256,7 @@
       },
 
       _notice() {
-        const n = this.notice;
+        const n = window.parseInt(this.notice);
 
         switch (n) {
           case -1:
@@ -456,12 +456,12 @@
         }
 
         // 取消
-        this.$refs.dialog_delete.$on('defaultClick', () => {
+        this.$refs.dialog_delete.$on('buttonfirst', () => {
           this.showDialog = false;
         });
 
         // 确定
-        this.$refs.dialog_delete.$on('primaryClick', () => {
+        this.$refs.dialog_delete.$on('buttonsecond', () => {
           this.showDialog = false;
           this.$emit('delete');
         });
