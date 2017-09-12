@@ -17,5 +17,5 @@
 例如：
 
 ```
-fix: To fix bug in button component
+feat: add a new feature in button component
 ```
