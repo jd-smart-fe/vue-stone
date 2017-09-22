@@ -307,11 +307,16 @@ function picker(container, cols, vm) {
     if (this.isMoved || this.isTouched) return;
     e.preventDefault();
     this.isTouched = true;
+    // console.log(e.target.parentNode);
+    const parent = e.target.parentNode;
+    parent.style.transition = '-webkit-transform 0.001s';
     touchStartY = touchCurrentY = e.type === 'touchstart' ? e.targetTouches[0].pageY : e.pageY;
     this.startTranslate = this.currentTranslate;
   }
 
   function touchmoveHandle(e) {
+    const parent = e.target.parentNode;
+    parent.style.transition = '-webkit-transform 0s';
     if (!this.isTouched) return;
     e.preventDefault();
     touchCurrentY = e.type === 'touchmove' ? e.targetTouches[0].pageY : e.pageY;
@@ -343,7 +348,10 @@ function picker(container, cols, vm) {
     setTranslate(this, this.currentTranslate);
   }
 
-  function touchendHandle() {
+  function touchendHandle(e) {
+
+    const parent = e.target.parentNode;
+    parent.style.transition = '-webkit-transform 0.1s';
 
     if (!this.isTouched || !this.isMoved) {
       this.isTouched = this.isMoved = false;
@@ -377,7 +385,7 @@ function picker(container, cols, vm) {
         const n = innerItems;
         n.active += step;
         vm.innerItems.splice(that.colIndex, 1, n);
-      }, 300);
+      }, 100);
     }
 
     setTranslate(this, this.currentTranslate);
@@ -386,159 +394,165 @@ function picker(container, cols, vm) {
 </script>
 
 <style lang="css">
- @import '../styles/default-theme/variables.css';
+@import '../styles/default-theme/variables.css';
 
-  $fontSize: 16px;
-  $height: calc(16px + 14px);
-  $colHeight: calc((16px + 14px) * 7);
+$fontSize: 16px;
+$height: calc(16px + 14px);
+$colHeight: calc((16px + 14px) * 7);
 
-  .c-picker {
-    position: relative;
-    width: 100%;
+.c-picker {
+  position: relative;
+  width: 100%;
 
-    background-color: #fff;
-    overflow: hidden;
-  }
+  background-color: #fff;
+  overflow: hidden;
+}
 
-  .c-picker-slideIn{
-    transform: translate3d(0, -100%, 0);
-  }
+.c-picker-slideIn {
+  transform: translate3d(0, -100%, 0);
+}
 
-  .c-picker-body{
-    flex: auto;
-    display: flex;
-    justify-content: center;
-    -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 5%, white 20%, white 80%, transparent 98%, transparent);
-    -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 98%, transparent);
+.c-picker-body {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  -webkit-mask-box-image: -webkit-linear-gradient(bottom, transparent, transparent 5%, white 20%, white 80%, transparent 98%, transparent);
+  -webkit-mask-box-image: linear-gradient(to top, transparent, transparent 5%, white 20%, white 80%, transparent 98%, transparent);
 
-    height: $colHeight;
+  height: $colHeight;
 
 
-    position: relative;
-    left: 0;
-    top: 0;
-  }
+  position: relative;
+  left: 0;
+  top: 0;
+}
 
- .c-picker-col{
-    /*flex: auto;*/
-    flex: 1;
-    overflow: hidden;
-    position:relative;
+.c-picker-col {
+  /*flex: auto;*/
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
 
-  }
+.c-picker-col-wrapper {
+  /*transition: transform 300ms ease-out;*/
+  position: relative;
+}
 
-  .c-picker-col-wrapper{
-    transition: transform 300ms ease-out;
-    position:relative;
-  }
-  .c-picker-col-wrapper-3d{
-    position:relative;
-    transition: transform 300ms ease-out;
-    transform-style: "preserve-3d";
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-perspective:700px;
-    perspective:700px;
-  }
-  .c-picker-item{
-    height: $height;
-    line-height: $height;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #333;
-    font-size: $fontSize;
-    width: 100%;
-    text-align: center;
-  }
- .c-picker-col-wrapper-3d > .c-picker-item{
-    height: $height;
-    line-height: $height;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #333;
-    font-size: $fontSize;
-    width: 100%;
-    text-align: center;
-	  transform-style: preserve-3d;
-    white-space: nowrap;
-    position:absolute;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    left: 0;
-    top: 0;
-    box-sizing: border-box;
-    transition: .3s;
-    transform-origin: center center -90px;
-    backface-visibility: hidden;
-    transition-timing-function: ease-out;
+.c-picker-col-wrapper-3d {
+  position: relative;
+  transition: transform 300ms ease-out;
+  transform-style: "preserve-3d";
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-perspective: 700px;
+  perspective: 700px;
+}
 
-  }
+.c-picker-item {
+  height: $height;
+  line-height: $height;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+  font-size: $fontSize;
+  width: 100%;
+  text-align: center;
+}
 
-  .c-picker-mask-top{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc($height * 3 - 1px);
-    background-color: rgba(255,255,255,0.6);
-    border-bottom: 1px solid #ccc;
-    pointer-events: none;
-  }
+.c-picker-col-wrapper-3d>.c-picker-item {
+  height: $height;
+  line-height: $height;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+  font-size: $fontSize;
+  width: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+  white-space: nowrap;
+  position: absolute;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  transition: .3s;
+  transform-origin: center center -90px;
+  backface-visibility: hidden;
+  transition-timing-function: ease-out;
+}
 
-  .c-picker-mask-bottom{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: calc($height * 3 - 1px);
-    background-color: rgba(255,255,255,0.6);
-    border-top: 1px solid #ccc;
-    pointer-events: none;
-  }
-  .c-picker-head{
-    margin: 0.05rem 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-bottom: #ccc solid 0.01rem;
-  }
-  .c-picker-head > span{
-    display: flex;
-    width:0.5rem;
-    height:0.3rem;
-    justify-content:center;
-    align-items: center;
-  }
-  .c-picker-head > .c-picker-head-test{
-    color : $gray;
-    width: auto;
-  }
-  .c-picker-item-active{
-  }
-  .c-picker-modal{
-    position :fixed;
-    bottom: 0;
-    left:0;
-    width: 100%;
-    transform: translateY(100%);
-    background-color:$white;
-    transition: transform 0.5s;
-    border-top:0.01rem solid #ccc;
-    z-index:101;
-  }
-  .c-picker-modal-show{
-    transform: translateY(0);
-  }
-  .c-picker-unit{
-    position: absolute;
-    height: 0.3rem;
-    top: 50%;
-    margin-top: -0.15rem;
-    z-index: 100;
-    line-height: 0.3rem;
-    text-align: center;
+.c-picker-mask-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc($height * 3 - 1px);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid #ccc;
+  pointer-events: none;
+}
 
+.c-picker-mask-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: calc($height * 3 - 1px);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid #ccc;
+  pointer-events: none;
+}
+
+.c-picker-head {
+  margin: 0.05rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: #ccc solid 0.01rem;
+}
+
+.c-picker-head>span {
+  display: flex;
+  width: 0.5rem;
+  height: 0.3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-picker-head>.c-picker-head-test {
+  color: $gray;
+  width: auto;
+}
+
+.c-picker-item-active {}
+
+.c-picker-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(100%);
+  background-color: $white;
+  transition: transform 0.5s;
+  border-top: 0.01rem solid #ccc;
+  z-index: 101;
+}
+
+.c-picker-modal-show {
+  transform: translateY(0);
+}
+
+.c-picker-unit {
+  position: absolute;
+  height: 0.3rem;
+  top: 50%;
+  margin-top: -0.15rem;
+  z-index: 100;
+  line-height: 0.3rem;
+  text-align: center;
 }
 </style>

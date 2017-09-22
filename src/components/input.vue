@@ -107,7 +107,6 @@
   background: none;
   border: 0;
   font: 16px/22px arial;
-  height: 0.16rem;
   outline:none;
   padding: 1px 0;
   padding-right: 0.06rem;

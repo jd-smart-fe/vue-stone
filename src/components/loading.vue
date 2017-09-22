@@ -38,6 +38,10 @@
     height: 30px;
     background-size: cover;
     animation: rotation 1s infinite;
+
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 5px;
   }
 
 </style>
