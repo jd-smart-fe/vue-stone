@@ -18,7 +18,7 @@ npm install --save vue-stone
 
 在本项目发布 1.0.0 版本之前，第二位版本号的更新大多将包含不向下兼容更新，第三位版本号优化或 BUG 修复更新。
 
-> 重要：请将 package.json 中 dependencies 字段下 `"vue-stone": "^0.4.0"` 版本号前面的 "^" 更改为 "~"，暨 `"vue-stone": "~0.4.0"`。这样再执行 npm install 时，将只会安装第三位版本号的最新版。
+因此请**注意这里**：将 package.json 中 dependencies 字段下 `"vue-stone": "^0.4.0"` 版本号前面的 "^" 更改为 "~"，暨 `"vue-stone": "~0.4.0"`。这样再执行 npm install 时，将只会安装第三位版本号的最新版。
 
 ### 使用前注意
 本项目采用了 rem 布局方案，因此在引入该组件库前请在 HTML 文件 head 标签內添加下面一段 script：
