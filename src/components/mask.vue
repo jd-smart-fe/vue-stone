@@ -1,6 +1,6 @@
 <template>
   <transition :name="transition">
-    <div class="c-mask" v-show="value" @click="handle"></div>
+    <div :class="['c-mask',cls]" v-show="value" @click="handle"></div>
   </transition>
 </template>
 
@@ -22,6 +22,10 @@
       transition: {
         type: String,
         default: 'fade',
+      },
+      cls: {
+        type: String,
+        default: '',
       },
     },
 
@@ -50,7 +54,6 @@
 </script>
 
 <style>
-
   .c-mask{
     position:fixed;
     top:0;
