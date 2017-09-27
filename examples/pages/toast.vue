@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <tmpl-back></tmpl-back>
 
@@ -25,54 +24,54 @@
 
 <script>
 
-  export default {
-    name: 'Toast',
+export default {
+  name: 'Toast',
 
-    data() {
-      return {
-        toast_show: false,
-      };
-    },
+  data() {
+    return {
+      toast_show: false,
+    };
+  },
 
-    mounted() {
+  mounted() {
+    this.$toast.show({
+      icon: 'icon-home',
+      text: '操作成功',
+      duration: 2000,
+      autohide: false,
+    });
+
+    setTimeout(() => {
+      this.$toast.hide();
+    }, 2000);
+  },
+
+  methods: {
+    showWithIcon() {
       this.$toast.show({
         icon: 'icon-home',
         text: '操作成功',
         duration: 2000,
-        autohide: false,
       });
+    },
 
+    showLoading() {
+
+      this.$loading.show({ modal: true, text: '正在控制' });
       setTimeout(() => {
-        this.$toast.hide();
-      }, 2000);
-    },
-
-    methods: {
-      showWithIcon() {
-        this.$toast.show({
-          icon: 'icon-home',
-          text: '操作成功',
-          duration: 2000,
-        });
-      },
-
-      showLoading() {
-
-        this.$loading.show();
-        setTimeout(() => {
-          this.$loading.hide();
-        }, 3000);
-      },
-
-      hideLoading() {
         this.$loading.hide();
-      },
-
-      show() {
-        this.$toast.show('布谷，布谷。');
-      },
+      }, 3000);
     },
-  };
+
+    hideLoading() {
+      this.$loading.hide();
+    },
+
+    show() {
+      this.$toast.show('布谷，布谷。');
+    },
+  },
+};
 </script>
 
 <style>
