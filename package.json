@@ -23,10 +23,11 @@
     "lint": "eslint --ext .js,.vue src",
     "preversion": "npm run lint",
     "version": "npm run build && git add -A dist",
-    "postversion": "npm publish && git push --follow-tags",
+    "postversion": "npm publish && git push --follow-tags && npm run ghpages",
     "release:beta": "npm version prerelease",
     "release:patch": "npm version patch",
-    "release:minor": "npm version minor"
+    "release:minor": "npm version minor",
+    "ghpages": "./bin/ghpages-merge.sh"
   },
   "dependencies": {
     "core-js": "^2.4.1",
