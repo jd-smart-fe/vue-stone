@@ -6,9 +6,9 @@
   @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/fonts/iconfont.ttf?p42mi1') format('truetype'),
-    url('../styles/fonts/fonts/iconfont.woff?p42mi1') format('woff'),
-    url('../styles/fonts/fonts/iconfont.svg?p42mi1#iconfont') format('svg');
+    url('../styles/fonts/fonts/iconfont.ttf?acx3t1') format('truetype'),
+    url('../styles/fonts/fonts/iconfont.woff?acx3t1') format('woff'),
+    url('../styles/fonts/fonts/iconfont.svg?acx3t1#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -26,6 +26,10 @@
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.icon-more:before {
+  content: "\e939";
+  color: #999;
 }
 .icon-range-small:before {
   content: "\e938";
