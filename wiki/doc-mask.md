@@ -10,7 +10,8 @@
 
 属性名   |    类型    |    默认值    |   说明
 ----    | ----    | ----    | ----    |
-v-model |  Boolean  | false | 是否显示mask 。
+v-model |  Boolean  | false | 是否显示mask
+cls | string | '' | 可传入自定义css类名
 transition | String | 'fade' | 更改 vue transition 的 name 属性值
 
 ## Events

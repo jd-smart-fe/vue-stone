@@ -104,6 +104,7 @@
 }
 
 .c-input-key { /*input框*/
+  -webkit-user-select:auto;
   background: none;
   border: 0;
   font: 16px/22px arial;

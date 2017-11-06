@@ -47,7 +47,7 @@
               {{ options.mainpage.simple.title }}
             </div>
             <div slot="body" class="c-panel-body u-without-padding">
-              <v-modes v-model="switch_active_id"
+              <v-modes v-model="switch_active_id" @change="modeChange"
               :numberal="2" :items="switch_data"
               ></v-modes>
             </div>
@@ -326,7 +326,9 @@
     },
 
     methods: {
-
+      modeChange(val, obj) {
+        this.task_name = obj.text;
+      },
       // 获取组件数据
       getValue() {
         let taskTimeExpress = '';
