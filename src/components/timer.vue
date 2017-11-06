@@ -326,8 +326,9 @@
     },
 
     methods: {
-      modeChange(val, obj) {
-        this.task_name = obj.text;
+      modeChange(val) {
+        console.log(val);
+        console.log(this.switch_data[val].text);
       },
       // 获取组件数据
       getValue() {
