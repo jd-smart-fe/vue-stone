@@ -89,9 +89,8 @@
 
       handle(item) {
         const val = item.id;
-
         this.$emit('input', val);
-        this.$emit('change', val);
+        this.$emit('change', val, item);
       },
     },
   };
