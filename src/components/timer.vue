@@ -326,9 +326,10 @@
     },
 
     methods: {
-      modeChange(val) {
+      modeChange(val, obj) {
         console.log(val);
-        console.log(this.switch_data[val].text);
+        this.task_name = obj.text;
+        // console.log(this.switch_data[val].text);
       },
       // 获取组件数据
       getValue() {
