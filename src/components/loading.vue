@@ -49,7 +49,7 @@ export default {
     hide() {
       this.maskShown = false;
       this.loadingShown = false;
-      this.$toast.hide();
+      // this.$toast.hide();
     },
     destroy() {
       document.body.removeChild(this.$el);
