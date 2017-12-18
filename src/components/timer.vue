@@ -118,7 +118,7 @@
           </div>
         </div>
         <div v-show="repeat_switch" slot="body" class="c-panel-body row-5 u-without-padding c-timer-border-top">
-          <v-dayspicker ref="dayspicker" :days="days" @change="_dayspickerHandle">
+          <v-dayspicker ref="dayspicker" v-model="days" @change="_dayspickerHandle">
           </v-dayspicker>
         </div>
       </v-panel>
