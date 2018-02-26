@@ -27,6 +27,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-large-volume:before {
+  content: "\e93a";
+}
+.icon-small-volume:before {
+  content: "\e93b";
+}
+.icon-mode-sleep:before {
+  content: "\e93c";
+}
+.icon-mode-automatic:before {
+  content: "\e93d";
+}
 .icon-more:before {
   content: "\e939";
   color: #999;
@@ -207,5 +219,6 @@
 .icon-mode-freeze:before {
   content: "\e915";
 }
+
 
 </style>
