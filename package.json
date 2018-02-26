@@ -1,6 +1,6 @@
 {
   "name": "vue-stone",
-  "version": "0.4.17",
+  "version": "0.4.20",
   "description": "vue component",
   "author": "zhengyuelin zhengyuelin@jd.com pspgbhu<brotherchun001@gmail.com>",
   "main": "dist/vue-stone.js",
@@ -23,7 +23,7 @@
     "lint": "eslint --ext .js,.vue src",
     "preversion": "npm run lint",
     "version": "npm run build && git add -A dist",
-    "postversion": "npm publish && git push --follow-tags && npm run ghpages",
+    "postversion": "npm publish && git push && npm run ghpages",
     "release:beta": "npm version prerelease",
     "release:patch": "npm version patch",
     "release:minor": "npm version minor",

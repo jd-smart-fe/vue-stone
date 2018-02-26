@@ -17,5 +17,5 @@
 例如：
 
 ```
-feat: add a new feature in button component
+$ git commit -m "feat: add a new feature in button component"
 ```

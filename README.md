@@ -102,7 +102,7 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 - [Range](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-range.md)
 - [Slide](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-slide.md)
 - [Switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-switch.md)
-- [Timepicker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-timerpciker.md)
+- [Timepicker](https://github.com/jd-smart-fe/vue-stone/blob/master/wiki/doc-timepicker.md)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 
 ## Contribute

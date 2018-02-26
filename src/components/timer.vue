@@ -118,7 +118,7 @@
           </div>
         </div>
         <div v-show="repeat_switch" slot="body" class="c-panel-body row-5 u-without-padding c-timer-border-top">
-          <v-dayspicker ref="dayspicker" :days="days" @change="_dayspickerHandle">
+          <v-dayspicker ref="dayspicker" v-model="days" @change="_dayspickerHandle">
           </v-dayspicker>
         </div>
       </v-panel>
@@ -347,17 +347,23 @@
           const nowdate = this.getNowDate();
 
           // 如果设置时间小于等于现在时间，则任务默认为第二天进行
-          if ((activeTime[0] * 60) + activeTime[1]
+          // console.log(this.time[0]);
+          const time = this.time.active;
+          console.log(time);
+          if ((time[0] * 60) + time[1]
           <= (nowdate.hour * 60) + nowdate.min) {
 
-            taskTimeExpress = units.taskTimeExpress(activeTime[1], activeTime[0], nowdate.date + 1, nowdate.month, '*', nowdate.year);
+            const date = new Date();
+            date.setDate(nowdate.date + 1);
+
+            taskTimeExpress = units.taskTimeExpress(time[1], time[0], date.getDate(), date.getMonth() + 1, '*', date.getFullYear());
           } else {
 
             // 否则任务默认为今天进行
-            taskTimeExpress = units.taskTimeExpress(activeTime[1], activeTime[0], nowdate.date, nowdate.month, '*', nowdate.year);
+            taskTimeExpress = units.taskTimeExpress(time[1], time[0], nowdate.date, nowdate.month, '*', nowdate.year);
           }
         }
-
+        // console.log(this.time[);
         // 任务时间表达式，结果通知，任务名称
         const value = {
           task_time_express: taskTimeExpress,
