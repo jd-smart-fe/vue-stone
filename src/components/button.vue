@@ -100,7 +100,7 @@ export default {
 
 </script>
 
-<style>
+<style lang="postcss">
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 
@@ -145,7 +145,7 @@ export default {
   }
 
   &.c-btn-disabled {
-    /*opacity: .6;*/
+    // opacity: .6;
     color: $btn-disabled;
     border-color: $btn-disabled;
     /*background-color: $btn-disabled;*/
