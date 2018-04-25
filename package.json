@@ -1,6 +1,6 @@
 {
   "name": "vue-stone",
-  "version": "0.4.22",
+  "version": "0.5.0-alpha1",
   "description": "vue component",
   "author": "zhengyuelin zhengyuelin@jd.com pspgbhu<brotherchun001@gmail.com>",
   "main": "dist/vue-stone.js",
@@ -37,7 +37,6 @@
     "vue": "2.x"
   },
   "devDependencies": {
-    "vue-router": "^2.4.0",
     "autoprefixer": "^6.4.0",
     "babel-core": "^6.0.0",
     "babel-eslint": "^7.0.0",
@@ -74,10 +73,11 @@
     "ora": "^0.3.0",
     "precss": "^1.4.0",
     "selenium-server": "2.53.1",
-    "semver": "^5.3.0",
+    "semver": "^5.5.0",
     "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
     "vue-loader": "^10.0.0",
+    "vue-router": "^2.4.0",
     "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^1.13.2",
