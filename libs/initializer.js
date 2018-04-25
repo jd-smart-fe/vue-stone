@@ -1,6 +1,5 @@
 module.exports = {
   components: [
-    '_style_iconfonts',
     'dayspicker',
     'range',
     'switch',

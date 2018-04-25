@@ -1,6 +1,9 @@
 const intactify = require('./intactify');
 
 /* eslint-disable no-var */
+/**
+ * 列出了组件间的相互依赖关系
+ */
 var dependencies = {
   alert: ['dialog'],
   confirm: ['dialog'],

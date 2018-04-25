@@ -1,7 +1,3 @@
-<script>
-  import './_style_dependencies_fonts';
-</script>
-
 <style>
   @font-face {
   font-family: 'iconfont';

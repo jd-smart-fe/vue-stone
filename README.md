@@ -51,13 +51,11 @@ npm install --save vue-stone
 Import vue-stone and register components
 
 ```js
-// In ES6 modules
 import Stone from 'vue-stone';
 import 'vue-stone/dist/vue-stone.css';
 
-// In CommonJs
-// var Stone = require('vue-stone');
-// require('vue-stone/dist/vue-stone.css');
+// 如果你需要使用组件库中字体图标，请单独引入字体图标的 CSS 文件
+// import 'vue-stone/dist/iconfonts.css';
 
 import Vue from 'vue';
 
@@ -70,14 +68,6 @@ Vue.use(Stone);   // register components
 
 如果你有更好的 idea，欢迎你为 vue-stone 贡献出一份力量。
 
-### 字体图标
-
-默认状态下字体图标是被打包在组件库样式文件中的，不需要在额外引用。
-
-但是如果你使用了按需打包组件，就需要再额外引用字体图标样式文件了
-```js
-import 'vue-stone/dist/iconfonts.css';
-```
 
 ## 文档
 vue-stone 组件库提供了下述组件，每个组件都带有详细的文档，组件展示可参考 [example](https://jd-smart-fe.github.io/vue-stone/)
