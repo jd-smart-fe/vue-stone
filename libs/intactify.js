@@ -31,5 +31,9 @@ function intactify(depe_, list_) {
  *
  * https://github.com/webpack/webpack/issues/4039  这个 issue 指明了 混用 require 和 export 会产生报错，
  * 但是在这里并不存在 require 和 export 混用的情况。因此这个报错令人费解
+ *
+ * 2018-04-25
+ * @pspgbhu
+ * 又将 export default 改回了 module.exports，因为在 webpack 3 下不再出现这个问题了。
  */
-export default intactify;
+module.exports = intactify;

@@ -1,4 +1,4 @@
-const intactify = require('./intactify').default;
+const intactify = require('./intactify');
 
 /* eslint-disable no-var */
 var dependencies = {
