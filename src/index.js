@@ -23,7 +23,11 @@ const install = (Vue, options = {}) => {
     //   return true;
     // }
 
-    const Component = Vue.extend(require(`./components/${val}.vue`));
+    const comp = require(`./components/${val}.vue`);
+    // 按需打包的时候，有时需要用 comp.default 才能访问到组件对象
+    const Component = Vue.extend(
+      comp.name ? comp : comp.default
+    );
     if (Component.options.type === 'singleton') {
       singletonComponents.push(Component);
     }
