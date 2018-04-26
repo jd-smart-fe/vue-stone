@@ -31,7 +31,7 @@
           <div class="title-not-flex">重复</div>
           <div class="c-timer-content control-field">
             {{ this._repeat }}
-            <span class="icon icon-pull-right"></span>
+            <span class="icon v-icon-pull-right"></span>
           </div>
         </a>
 
@@ -64,7 +64,7 @@
           <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="_emitJump('task')" >
             <div class="title-not-flex">执行命令</div>
             <div class="c-timer-content control-field">
-              {{ this.taskText }} <span class="icon icon-pull-right"></span>
+              {{ this.taskText }} <span class="icon v-icon-pull-right"></span>
             </div>
           </a>
         </v-panel>
@@ -77,7 +77,7 @@
           <div class="title-not-flex">定时名称</div>
           <div class="c-timer-content control-field">
             {{ task_name }}
-            <span class="icon icon-pull-right"></span>
+            <span class="icon v-icon-pull-right"></span>
 
           </div>
         </a>
@@ -88,7 +88,7 @@
         <a slot="body" class="u-relative c-panel-body row-1 u-cross-center" @click="_emitJump('notice')">
           <div class="title-not-flex">执行结果通知</div>
           <div class="c-timer-content">
-            {{ this._notice }} <span class="icon icon-pull-right"></span>
+            {{ this._notice }} <span class="icon v-icon-pull-right"></span>
           </div>
         </a>
       </v-panel>

@@ -14,7 +14,7 @@
     @touchend="touchendHandle"
     @touchcancel="touchcancelHandle"
   >
-    <span v-if="icon !== '' " :class="['c-btn-icon', `icon-${icon}`]"></span>
+    <span v-if="icon !== '' " :class="['c-btn-icon', `v-icon-${icon}`]"></span>
     <span v-show="!iconOnly" class="c-btn-content"><slot></slot></span>
   </button>
 </template>

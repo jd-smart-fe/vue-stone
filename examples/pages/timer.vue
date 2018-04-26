@@ -4,7 +4,7 @@
     <div class="page-header row-2 u-cross-center">
       <div class="page-header-left u-cross-center row-2">
         <router-link to="/" class="back-link">
-          <span class="icon icon-pull-left page-header-icon"></span>返回
+          <span class="icon v-icon-pull-left page-header-icon"></span>返回
         </router-link>
       </div>
     </div>

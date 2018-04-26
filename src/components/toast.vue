@@ -4,7 +4,7 @@
     shown ? 'c-toast-show' : 'c-toast-hide']">
 
     <span v-if="icon" :class="['c-toast-icon', `${icon}`,
-      icon.indexOf('icon-') == 0 && 'icon']"></span>
+      icon.indexOf('v-icon-') == 0 && 'icon']"></span>
 
     <span class="c-toast-text">{{text}}</span>
   </div>

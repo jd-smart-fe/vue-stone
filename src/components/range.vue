@@ -29,7 +29,7 @@
     <div v-if="dots.length > 0" class="c-range-dots">
       <template v-if="showIconDots">
         <span v-for="(info, index) in dotInfoList"
-          :class="[' dot-icon ', ' dot-icon-' + index, ' icon-' + info.icon]"
+          :class="[' dot-icon ', ' dot-icon-' + index, ' v-icon-' + info.icon]"
           :style="{left : info.left + '%'}" :key="index">
         </span>
       </template>
@@ -435,7 +435,7 @@
   };
 </script>
 
-<style>
+<style lang="postcss">
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 

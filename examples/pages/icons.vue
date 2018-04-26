@@ -6,13 +6,13 @@
       <div slot="header" class="c-panel-header row-1 u-cross-center">Icons set</div>
 
       <div slot="body" class="c-panel-body">
-        <span class='icon icon-mode-smart'></span>
-        <span class='icon icon-quick-wash-30'></span>
-        <span class='icon icon-quick-wash-15'></span>
-        <span class='icon icon-mode-sleep'></span>
-        <span class='icon icon-mode-automatic'></span>
-        <span class='icon icon-small-volume'></span>
-        <span class='icon icon-large-volume'></span>
+        <span class='icon v-icon-mode-smart'></span>
+        <span class='icon v-icon-quick-wash-30'></span>
+        <span class='icon v-icon-quick-wash-15'></span>
+        <span class='icon v-icon-mode-sleep'></span>
+        <span class='icon v-icon-mode-automatic'></span>
+        <span class='icon v-icon-small-volume'></span>
+        <span class='icon v-icon-large-volume'></span>
         ...
       </div>
     </v-panel>
