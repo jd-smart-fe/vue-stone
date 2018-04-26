@@ -103,6 +103,3 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 
 [查看更新内容](https://github.com/JD-Smart-FE/vue-stone/releases)
 
-## Todo List
-
-[Todo List](https://github.com/JD-Smart-FE/vue-stone/blob/master/MEMO.md)
