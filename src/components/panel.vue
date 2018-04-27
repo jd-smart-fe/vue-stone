@@ -14,7 +14,7 @@
   };
 </script>
 
-<style>
+<style lang="postcss">
 
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';

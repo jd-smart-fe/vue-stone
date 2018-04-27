@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="postcss">
   .c-action{
     position: fixed;
     top: 100%;

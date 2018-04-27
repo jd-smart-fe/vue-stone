@@ -20,8 +20,12 @@
         ></v-modes>
         <div class="space"></div> -->
 
-        <v-modes v-model="gridActiveId" ref="modes"
-          :numberal="3" more="更多设置" :items="gridData3"
+        <v-modes
+          v-model="gridActiveId"
+          ref="modes"
+          more="更多设置"
+          :numberal="3"
+          :items="gridData3"
         ></v-modes>
         <div class="space"></div>
 
