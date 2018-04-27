@@ -62,27 +62,27 @@
 
         gridData3: [{
           text: '标准加热',
-          icon: 'mode-holiday',
+          icon: 'icon-mode-holiday',
           id: 1,
         }, {
           text: '半胆加热',
-          icon: 'mode-freeze',
+          icon: 'icon-mode-freeze',
           id: 2,
         }, {
           text: '正胆加热',
-          icon: 'mode-cool',
+          icon: 'icon-mode-cool',
           id: 3,
         }, {
           text: '上下加热',
-          icon: 'mode-holiday',
+          icon: 'icon-mode-holiday',
           id: 4,
         }, {
           text: '奇葩加热',
-          icon: 'mode-freeze',
+          icon: 'icon-mode-freeze',
           id: 5,
         }, {
           text: '无敌加热',
-          icon: 'mode-cool',
+          icon: 'icon-mode-cool',
           id: 6,
         }],
 

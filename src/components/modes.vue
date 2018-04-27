@@ -6,12 +6,12 @@
 
       <div
         v-for="(item) in defaultItems"
-        :key="item"
+        :key="item.id"
         :class="['c-mode-item', {
           'c-mode-item-active': value == item.id,
         }]"
         @click="handle(item)">
-        <span :class="['c-mode-item-icon', `v-icon-${item.icon}`]" v-if="item.icon"></span>
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
         <span class="c-mode-item-text">{{item.text}}</span>
       </div>
     </div>
@@ -22,13 +22,13 @@
           :class="['c-mode', 'c-mode-more', `c-mode-${numberal}`]" >
           <div
             v-for="(item) in extraItems"
-            :key="item"
+            :key="item.id"
             :class="['c-mode-item', {
               'c-mode-item-active': value == item.id,
             }]"
             @click="handle(item)">
             <span v-if="item.icon"
-              :class="['c-mode-item-icon', `v-icon-${item.icon}`]"></span>
+              :class="['c-mode-item-icon', item.icon]"></span>
             <span class="c-mode-item-text">{{item.text}}</span>
           </div>
         </div>
