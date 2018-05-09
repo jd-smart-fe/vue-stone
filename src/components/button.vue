@@ -145,7 +145,6 @@ export default {
   }
 
   &.c-btn-disabled {
-    // opacity: .6;
     color: $btn-disabled;
     border-color: $btn-disabled;
     /*background-color: $btn-disabled;*/
