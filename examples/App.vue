@@ -116,6 +116,10 @@
         <div > Modes </div>
         <span class='icon v-icon-pull-right'></span>
       </div>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('control-center')">
+        <div > Control Center </div>
+        <span class='icon icon-pull-right'></span>
+      </div>
     </v-panel>
 
     <v-panel>
