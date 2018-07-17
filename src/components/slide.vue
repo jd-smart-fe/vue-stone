@@ -7,7 +7,10 @@
     </div>
     <div v-if="pagination" class="c-slide-pagination">
       <div class="c-slide-pagination-bar">
-        <i v-for="item in length" :class="['c-slide-pagination-item', item - 1 === insideValue ? 'active': '']"></i>
+        <i
+          v-for="item in length"
+          :key="item"
+          :class="['c-slide-pagination-item', item - 1 === insideValue ? 'active': '']"></i>
       </div>
     </div>
   </div>
@@ -284,7 +287,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="postcss">
   .c-slide{
     width: 100%;
     overflow: hidden;

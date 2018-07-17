@@ -1,11 +1,21 @@
 # Button
 
+## Release Notes
+
+- v0.5.1: 修改 icon 属性的入参，现在需要传入完整的 icon 样式类名。
+
 ## Tag Name
 `v-button`
 
 ## Usage
 ```html
 <v-button>Button</v-button>
+
+<v-button
+  size="large"
+  radius="circle"
+  icon="v-icon-power"
+></v-button>
 ```
 
 ## Options
@@ -14,7 +24,7 @@
 ----    | ----    | ----    | ----    |
 size  | String  | 'base' |  定义按钮大小，可选值 'small', 'base', 'large'。
 full  | Boolean | false  | 按钮是否展示为满屏宽度
-icon  | String  | ''  |  定义按钮图标。
+icon  | String  | ''  |  定义按钮图标，传入完整的图标样式类名。
 radius | String | 'small' | 定义圆角大小， 可选 'small', 'circle'。
 disabled | Boolean | false | 是否禁用按钮。
 htmlType | String | 'button' | 设置按钮原生 type 参数

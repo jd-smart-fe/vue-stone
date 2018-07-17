@@ -10,6 +10,7 @@
 
 ## Let's do it
 
+
 ### Step 1: 引入项目对于 precss 的支持
 
 precss 是一个基于 [postcss](https://github.com/postcss/postcss) 的插件。
@@ -65,19 +66,26 @@ const fs = require('fs');
 },
 ```
 
-
 ### Final step: 打包你需要的组件
 
-要满足这一点，需要借助 webpack 自带的`ContextReplacementPlugin`。
-
-简单得说，将在项目中需要用到的组件，构成一个正则表达式，传入`ContextReplacementPlugin`的参数即可。
+首先需要改变组件库的引用方式。
 
 ```javascript
 // in project, (code snip 1)
-Vue.use(Store, {
-  components: ['panel', 'loading']
+
+// 要注意，这里不需要再引入组件库的样式文件了。
+// import 'vue-stone/dist/vue-stone.css';
+
+import Stone from 'vue-stone/src/index' // 直接引用 vue-stone 源码的入口文件
+
+Vue.use(Stone, {
+  components: ['panel', 'loading']  // 需要注册的组件列表
 });
 ```
+
+要满足按需打包组件，需要借助 webpack 自带的`ContextReplacementPlugin`。
+
+简单得说，将在项目中需要用到的组件，构成一个正则表达式，传入`ContextReplacementPlugin`的参数即可。
 
 ```js
 // webpack.config.js, (code snip 2)
@@ -98,7 +106,7 @@ plugins: [
 
 注意, 受限于 ES6 和 Webpack 的设计, 模块的设计思想必须是静态化的, 使得打包工具能够在编译期就能确定模块的依赖关系.
 
-所以回到按需打包组件这个场景下, 必须在项目构建阶段就需要完成确定 `ContextReplacementPlugin` 的参数值. 这也是为什么按需打包功能并没有在 vue-stone 组件库中完成的原因所在. 同时也意味着当webpack 处于运行状态时, 动态添加删除程序中(如 code snip 1所示)的所用到的组件列表时, 将不会生效, 必须通过重启 Webpack 构建进程方可.
+所以回到按需打包组件这个场景下, 必须在项目构建阶段就需要完成确定 `ContextReplacementPlugin` 的参数值. 这也是为什么按需打包功能并没有在 vue-stone 组件库中完成的原因所在. 同时也意味着当 webpack 处于运行状态时, 动态添加删除程序中(如 code snip 1所示)的所用到的组件列表时, 将不会生效, 必须通过重启 Webpack 构建进程方可.
 
 ## Referrence
 

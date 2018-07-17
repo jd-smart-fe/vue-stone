@@ -4,7 +4,7 @@
       <v-button
       ref="inc"
       class="c-counter-inc"
-      icon="plus"
+      icon="v-icon-plus"
       size="large"
       :disabled="incDisabled"
       @touchend.native="incHandle"
@@ -13,7 +13,7 @@
       <v-button
       ref="dec"
       :class="['c-counter-dec', decDisabled ? 'c-counter-left-border' : '']"
-      icon="minus"
+      icon="v-icon-minus"
       size="large"
       :disabled="decDisabled"
       @touchend.native="decHandle"

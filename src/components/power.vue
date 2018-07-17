@@ -5,7 +5,7 @@
     @click="handle">
     <input v-model="_value" :disabled="disabled"
       type="checkbox" class="u-hidden c-power-checkbox" />
-    <span class="c-power-icon icon-power"></span>
+    <span class="c-power-icon v-icon-power"></span>
   </div>
 </template>
 
@@ -75,7 +75,7 @@
   };
 </script>
 
-<style>
+<style lang="postcss">
 
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';

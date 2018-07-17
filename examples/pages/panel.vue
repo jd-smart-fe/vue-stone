@@ -6,7 +6,7 @@
       <div slot="header" class="c-panel-header ">
         <div class="c-panel-title">Panel Header with Right Icon</div>
         <div class="c-panel-extra">
-          <span class='icon icon-mode-smart'></span>
+          <span class='icon v-icon-mode-smart'></span>
         </div>
       </div>
       <div slot="body" class="c-panel-body">
@@ -19,7 +19,7 @@
         <div class="c-panel-title">Gudo...
           <div class="c-panel-description">description</div>
         </div>
-        <span class='icon icon-pull-right'></span>
+        <span class='icon v-icon-pull-right'></span>
       </div>
     </v-panel>
 

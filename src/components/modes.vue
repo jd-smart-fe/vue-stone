@@ -4,12 +4,14 @@
 
     <div :class="['c-mode', `c-mode-${numberal}`]" >
 
-      <div v-for="(item, index) in defaultItems"
+      <div
+        v-for="(item) in defaultItems"
+        :key="item.id"
         :class="['c-mode-item', {
           'c-mode-item-active': value == item.id,
         }]"
         @click="handle(item)">
-        <span :class="['c-mode-item-icon', `icon-${item.icon}`]" v-if="item.icon"></span>
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
         <span class="c-mode-item-text">{{item.text}}</span>
       </div>
     </div>
@@ -18,13 +20,15 @@
       <transition name="fade">
         <div v-show="extraShow"
           :class="['c-mode', 'c-mode-more', `c-mode-${numberal}`]" >
-          <div v-for="(item, index) in extraItems"
+          <div
+            v-for="(item) in extraItems"
+            :key="item.id"
             :class="['c-mode-item', {
               'c-mode-item-active': value == item.id,
             }]"
             @click="handle(item)">
             <span v-if="item.icon"
-              :class="['c-mode-item-icon', `icon-${item.icon}`]"></span>
+              :class="['c-mode-item-icon', item.icon]"></span>
             <span class="c-mode-item-text">{{item.text}}</span>
           </div>
         </div>
@@ -35,8 +39,8 @@
       class="c-mode-more-hook u-cross-center"
       @click="extraShow = !extraShow" >
       {{more}}
-      <span :class="['c-mode-toggle', 'icon-pull-down', {
-        'icon-pull-down-rotate': extraShow,
+      <span :class="['c-mode-toggle', 'v-icon-pull-down', {
+        'v-icon-pull-down-rotate': extraShow,
         }]"></span>
     </div>
   </div>
@@ -96,7 +100,7 @@
   };
 </script>
 
-<style>
+<style lang="postcss">
 
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
@@ -172,11 +176,11 @@
     font-size: $font-size-xl;
   }
 
-  .icon-pull-down {
+  .v-icon-pull-down {
     @mixin transition transform;
     transform: rotate(0);
   }
-  .icon-pull-down-rotate {
+  .v-icon-pull-down-rotate {
     transform: rotate(-180deg);
   }
 </style>

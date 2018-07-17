@@ -1,6 +1,8 @@
 <script>
   import './_style_transition';
   import './_style_dependencies_fonts';
+
+  export default { };
 </script>
 
 <style>

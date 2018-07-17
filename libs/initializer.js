@@ -1,6 +1,5 @@
 module.exports = {
   components: [
-    '_style_iconfonts',
     'dayspicker',
     'range',
     'switch',
@@ -23,9 +22,10 @@ module.exports = {
     'timer',
     'timer-task',
     'timepicker',
-    'transition',
+    // 'transition', // 引入了整个 animation.css 导致样式文件过大
     'slide',
     'toast',
     'loading',
+    'control-center',
   ],
 };

@@ -35,7 +35,7 @@ export default {
 
   mounted() {
     this.$toast.show({
-      icon: 'icon-home',
+      icon: 'v-icon-home',
       text: '操作成功',
       duration: 2000,
       autohide: false,
@@ -49,7 +49,7 @@ export default {
   methods: {
     showWithIcon() {
       this.$toast.show({
-        icon: 'icon-home',
+        icon: 'v-icon-home',
         text: '操作成功',
         duration: 2000,
       });

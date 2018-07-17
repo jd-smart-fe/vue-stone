@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 import App from './App';
 import Store from 'src/index';
+import '../src/components/_style_iconfonts';
 
 import './pages/_example_style';
 import TmplBack from './pages/_tmpl_back';
@@ -45,6 +46,8 @@ const list = [{
   name: 'transition',
 }, {
   name: 'toast',
+}, {
+  name: 'control-center',
 }];
 
 Vue.use(VueRouter);

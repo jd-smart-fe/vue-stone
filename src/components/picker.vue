@@ -393,8 +393,8 @@ function picker(container, cols, vm) {
 }
 </script>
 
-<style lang="css">
-@import '../styles/default-theme/variables.css';
+<style lang="postcss">
+  @import '../styles/default-theme/variables.css';
 
 $fontSize: 16px;
 $height: calc(16px + 14px);

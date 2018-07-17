@@ -1,8 +1,10 @@
-import './components/_style';
 import VueLogger from '../libs/vue-logger';
 import Initializer from '../libs/initializer';
 import dependencies from '../libs/dependencies';
 import './utils/common';
+
+// 引入全局样式
+import './components/_style';
 
 const install = (Vue, options = {}) => {
   if (install.installed) {
@@ -14,13 +16,18 @@ const install = (Vue, options = {}) => {
 
   /* eslint-disable global-require */
   components.every(val => {
-    // _style 开头的样式组件，只需引入不需要注册为组件
-    if (val.indexOf('_style') !== -1) {
-      require(`./components/${val}.vue`);
-      return true;
-    }
 
-    const Component = Vue.extend(require(`./components/${val}.vue`));
+    // _style 开头的样式组件，只需引入不需要注册为组件
+    // if (val.indexOf('_style') !== -1) {
+    //   require(`./components/${val}.vue`);
+    //   return true;
+    // }
+
+    const comp = require(`./components/${val}.vue`);
+    // 按需打包的时候，有时需要用 comp.default 才能访问到组件对象
+    const Component = Vue.extend(
+      comp.name ? comp : comp.default
+    );
     if (Component.options.type === 'singleton') {
       singletonComponents.push(Component);
     }
@@ -51,8 +58,8 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-const Store = {
+const Stone = {
   install,
 };
 
-export default Store;
+export default Stone;

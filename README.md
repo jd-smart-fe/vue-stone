@@ -16,7 +16,7 @@ npm install --save vue-stone
 
 ### 本项目版本号规定
 
-在本项目发布 1.0.0 版本之前，第二位版本号的更新大多将包含不向下兼容更新，第三位版本号优化或 BUG 修复更新。
+在本项目发布 1.0.0 版本之前，第二位版本号的更新**将不向下兼容**，第三位版本号向下兼容，通常为优化或 BUG 修复更新。
 
 因此请**注意这里**：将 package.json 中 dependencies 字段下 `"vue-stone": "^0.4.0"` 版本号前面的 "^" 更改为 "~"，暨 `"vue-stone": "~0.4.0"`。这样再执行 npm install 时，将只会安装第三位版本号的最新版。
 
@@ -51,13 +51,11 @@ npm install --save vue-stone
 Import vue-stone and register components
 
 ```js
-// In ES6 modules
 import Stone from 'vue-stone';
 import 'vue-stone/dist/vue-stone.css';
 
-// In CommonJs
-// var Stone = require('vue-stone');
-// require('vue-stone/dist/vue-stone.css');
+// 如果你需要使用组件库中字体图标，请单独引入字体图标的 CSS 文件
+// import 'vue-stone/dist/iconfonts.css';
 
 import Vue from 'vue';
 
@@ -70,14 +68,6 @@ Vue.use(Stone);   // register components
 
 如果你有更好的 idea，欢迎你为 vue-stone 贡献出一份力量。
 
-### 字体图标
-
-默认状态下字体图标是被打包在组件库样式文件中的，不需要在额外引用。
-
-但是如果你使用了按需打包组件，就需要再额外引用字体图标样式文件了
-```js
-import 'vue-stone/dist/iconfonts.css';
-```
 
 ## 文档
 vue-stone 组件库提供了下述组件，每个组件都带有详细的文档，组件展示可参考 [example](https://jd-smart-fe.github.io/vue-stone/)
@@ -104,6 +94,7 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 - [Switch](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-switch.md)
 - [Timepicker](https://github.com/jd-smart-fe/vue-stone/blob/master/wiki/doc-timepicker.md)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
+- [Control-center](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-control-center.md)
 
 ## Contribute
 
@@ -113,6 +104,3 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 
 [查看更新内容](https://github.com/JD-Smart-FE/vue-stone/releases)
 
-## Todo List
-
-[Todo List](https://github.com/JD-Smart-FE/vue-stone/blob/master/MEMO.md)

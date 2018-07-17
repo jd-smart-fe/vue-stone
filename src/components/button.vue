@@ -14,7 +14,7 @@
     @touchend="touchendHandle"
     @touchcancel="touchcancelHandle"
   >
-    <span v-if="icon !== '' " :class="['c-btn-icon', `icon-${icon}`]"></span>
+    <span v-if="icon !== '' " :class="['c-btn-icon', icon]"></span>
     <span v-show="!iconOnly" class="c-btn-content"><slot></slot></span>
   </button>
 </template>
@@ -145,7 +145,6 @@ export default {
   }
 
   &.c-btn-disabled {
-    // opacity: .6;
     color: $btn-disabled;
     border-color: $btn-disabled;
     /*background-color: $btn-disabled;*/

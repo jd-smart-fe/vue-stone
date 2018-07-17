@@ -1,9 +1,12 @@
 # Modes
 
+## Release Notes
+
+- v0.5.1: 修改 icon 属性的入参，现在需要传入完整的 icon 样式类名。
+
 ## Tag Name
 
 `v-modes`
-
 
 ## Options
 
@@ -18,15 +21,15 @@ items | Array |  必传参数 | 配置每个按钮，下面会详细介绍
 ```js
 items: [{
     text: '标准加热',   // 按钮文案
-    icon: 'mode-holiday',    // 按钮图标   需引入组件图标库
+    icon: 'v-icon-mode-holiday',    // 按钮图标   需引入组件图标库
     id: 1,    // 按钮唯一 id
   }, {
     text: '快速加热',   // 按钮文案
-    icon: 'mode-holiday',   // 按钮图标     需引入组件图标库
+    icon: 'v-icon-mode-holiday',   // 按钮图标     需引入组件图标库
     id: 2,    // 按钮唯一 id
   }, {
     text: '超级加热',   // 按钮文案
-    icon: 'mode-holiday',   // 按钮图标     需引入组件图标库
+    icon: 'v-icon-mode-holiday',   // 按钮图标     需引入组件图标库
     id: 3,    // 按钮唯一 id
 }]
 ```

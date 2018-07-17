@@ -95,7 +95,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="postcss">
 @import '../styles/default-theme/variables.css';
 @import '../styles/mixins.css';
 

@@ -9,10 +9,10 @@
       :placeholder="placeholder"
       @input="input"
       @change="change"
-    ></input>
+    />
 
     <div class="c-input-closebox">
-      <span title="清空" class="c-input-delquery icon-round-close" @touchstart="clear" v-show="_show"></span>
+      <span title="清空" class="c-input-delquery v-icon-round-close" @touchstart="clear" v-show="_show"></span>
     </div>
   </div>
 </template>
@@ -86,31 +86,33 @@
   };
 
 </script>
-<style>
-.c-input {
-    display: flex;
-    background: #fff none repeat scroll 0 0;
-}
+<style lang="postcss">
+  @import '../styles/default-theme/variables.css';
 
-.c-input-closebox {
-  width: $font-size-xl;
-}
+  .c-input {
+      display: flex;
+      background: #fff none repeat scroll 0 0;
+  }
 
-.c-input-delquery {
-  cursor: pointer;
-  font-size: $font-size-xl;
-  color: #999;
-  vertical-align: middle;
-}
+  .c-input-closebox {
+    width: $font-size-xl;
+  }
 
-.c-input-key { /*input框*/
-  -webkit-user-select:auto;
-  background: none;
-  border: 0;
-  font: 16px/22px arial;
-  outline:none;
-  padding: 1px 0;
-  padding-right: 0.06rem;
-  width: 100%;
-}
+  .c-input-delquery {
+    cursor: pointer;
+    font-size: $font-size-xl;
+    color: #999;
+    vertical-align: middle;
+  }
+
+  .c-input-key { /*input框*/
+    -webkit-user-select:auto;
+    background: none;
+    border: 0;
+    font: 16px/22px arial;
+    outline:none;
+    padding: 1px 0;
+    padding-right: 0.06rem;
+    width: 100%;
+  }
 </style>
