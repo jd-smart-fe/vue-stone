@@ -35,7 +35,7 @@
             <dt :class="['icon-bottom']">
               <img :src="bottom_icon"/>
             </dt>
-            <dd>{{bottom_text === '静音' ? '' : bottom_text}}</dd>
+            <dd>{{bottom_text === '' ? '静音' : bottom_text}}</dd>
           </dl>
         </button>
         <button

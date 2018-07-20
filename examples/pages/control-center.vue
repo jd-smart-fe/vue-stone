@@ -5,33 +5,17 @@
 
     <v-control-center
       ref="controlCenter"
-      top_text="上部"
-      :top_icon="topIcon"
-      bottom_text="下部"
-      :bottom_icon="bottomIcon"
-      left_text="左部"
-      :left_icon="leftIcon"
-      right_text="右部"
-      :right_icon="rightIcon"
       center_text="OK"
     ></v-control-center>
   </div>
 </template>
 
 <script>
-import topIcon from '../../src/assets/home.png';
-import bottomIcon from '../../src/assets/mute.png';
-import leftIcon from '../../src/assets/menu.png';
-import rightIcon from '../../src/assets/return.png';
 
 export default {
   name: 'Control-center',
   data() {
     return {
-      topIcon,
-      bottomIcon,
-      leftIcon,
-      rightIcon,
     };
   },
   mounted() {
