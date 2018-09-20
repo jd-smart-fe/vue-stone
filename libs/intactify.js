@@ -20,8 +20,7 @@ module.exports = function intactify(depe_, list_) {
   var _l = list_.filter(val => {
     for (var key in depe_) {
       if (Object.prototype.hasOwnProperty.call(depe_, key)) {
-        const value = depe_[key];
-        if (value === val) {
+        if (key === val) {
           return true;
         }
       }
