@@ -194,7 +194,10 @@ export default {
   },
 
 };
-
+const prefixTransition = [
+  'transition',
+  'WebkitTransition',
+];
 
 function picker(container, cols, vm) {
   let timer = null;
@@ -303,7 +306,11 @@ function picker(container, cols, vm) {
   }
 
   function touchstartHandle(e) {
-
+    const wrapper = e.target.parentNode;
+    // touchstart时 transform 的 duration 设为 0ms 用于解决 touchmove 时候抖动的问题
+    prefixTransition.forEach((item) => {
+      wrapper.style[item] = 'transform 0ms ease';
+    });
     if (this.isMoved || this.isTouched) return;
     e.preventDefault();
     this.isTouched = true;
@@ -343,13 +350,17 @@ function picker(container, cols, vm) {
     setTranslate(this, this.currentTranslate);
   }
 
-  function touchendHandle() {
+  function touchendHandle(e) {
 
+    const wrapper = e.target.parentNode;
+    // touchend时把 transition 的 duration 属性设置为 300ms。
+    prefixTransition.forEach((item) => {
+      wrapper.style[item] = 'transform 300ms ease';
+    });
     if (!this.isTouched || !this.isMoved) {
       this.isTouched = this.isMoved = false;
       return;
     }
-
     this.isTouched = this.isMoved = false;
 
     // 卡对步距
@@ -428,12 +439,12 @@ function picker(container, cols, vm) {
   }
 
   .c-picker-col-wrapper{
-    transition: transform 300ms ease-out;
+    /* transition: transform 300ms ease-out; */
     position:relative;
   }
   .c-picker-col-wrapper-3d{
     position:relative;
-    transition: transform 300ms ease-out;
+    /* transition: transform 300ms ease-out; */
     transform-style: "preserve-3d";
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
