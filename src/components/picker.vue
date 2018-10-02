@@ -194,7 +194,10 @@ export default {
   },
 
 };
-
+const prefixTransition = [
+  'transition',
+  'WebkitTransition',
+];
 
 function picker(container, cols, vm) {
   let timer = null;
@@ -303,7 +306,11 @@ function picker(container, cols, vm) {
   }
 
   function touchstartHandle(e) {
-
+    const wrapper = e.target.parentNode;
+    // touchstart时 transform 的 duration 设为 0ms 用于解决 touchmove 时候抖动的问题
+    prefixTransition.forEach((item) => {
+      wrapper.style[item] = 'transform 0ms ease';
+    });
     if (this.isMoved || this.isTouched) return;
     e.preventDefault();
     this.isTouched = true;
@@ -349,15 +356,22 @@ function picker(container, cols, vm) {
   }
 
   function touchendHandle(e) {
+<<<<<<< HEAD
 
     const parent = e.target.parentNode;
     parent.style.transition = '-webkit-transform 0.1s';
+=======
+>>>>>>> fix: picker 在 touchmove 的时候有轻微的抖动。
 
+    const wrapper = e.target.parentNode;
+    // touchend时把 transition 的 duration 属性设置为 300ms。
+    prefixTransition.forEach((item) => {
+      wrapper.style[item] = 'transform 300ms ease';
+    });
     if (!this.isTouched || !this.isMoved) {
       this.isTouched = this.isMoved = false;
       return;
     }
-
     this.isTouched = this.isMoved = false;
 
     // 卡对步距
@@ -439,15 +453,52 @@ $colHeight: calc((16px + 14px) * 7);
   position: relative;
 }
 
-.c-picker-col-wrapper-3d {
-  position: relative;
-  transition: transform 300ms ease-out;
-  transform-style: "preserve-3d";
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-perspective: 700px;
-  perspective: 700px;
-}
+  .c-picker-col-wrapper{
+    /* transition: transform 300ms ease-out; */
+    position:relative;
+  }
+  .c-picker-col-wrapper-3d{
+    position:relative;
+    /* transition: transform 300ms ease-out; */
+    transform-style: "preserve-3d";
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective:700px;
+    perspective:700px;
+  }
+  .c-picker-item{
+    height: $height;
+    line-height: $height;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font-size: $fontSize;
+    width: 100%;
+    text-align: center;
+  }
+ .c-picker-col-wrapper-3d > .c-picker-item{
+    height: $height;
+    line-height: $height;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    font-size: $fontSize;
+    width: 100%;
+    text-align: center;
+	  transform-style: preserve-3d;
+    white-space: nowrap;
+    position:absolute;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+    transition: .3s;
+    transform-origin: center center -90px;
+    backface-visibility: hidden;
+    transition-timing-function: ease-out;
 
 .c-picker-item {
   height: $height;
