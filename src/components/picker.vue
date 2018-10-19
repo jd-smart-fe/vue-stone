@@ -356,12 +356,6 @@ function picker(container, cols, vm) {
   }
 
   function touchendHandle(e) {
-<<<<<<< HEAD
-
-    const parent = e.target.parentNode;
-    parent.style.transition = '-webkit-transform 0.1s';
-=======
->>>>>>> fix: picker 在 touchmove 的时候有轻微的抖动。
 
     const wrapper = e.target.parentNode;
     // touchend时把 transition 的 duration 属性设置为 300ms。
