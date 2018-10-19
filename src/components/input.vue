@@ -12,7 +12,7 @@
     />
 
     <div class="c-input-closebox">
-      <span title="清空" class="c-input-delquery v-icon-round-close" @touchstart="clear" v-show="_show"></span>
+      <span title="清空" class="c-input-delquery icon-round-close" @click="clear" v-show="_show"></span>
     </div>
   </div>
 </template>
@@ -63,8 +63,10 @@
         this.focus = true;
       });
 
-      el.addEventListener('blur', () => {
-        this.focus = false;
+      el.addEventListener('blur', (e) => {
+        setTimeout(() => {
+          this.focus = false;
+        }, 0);
       });
     },
 
