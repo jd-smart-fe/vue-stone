@@ -87,14 +87,23 @@
       getResult(val) {
         if (!val) return [];
         return [
-          {
-            label: 'Apple',
-            id: '1111',
-          },
-          {
-            label: 'Lsg',
-            id: '2222',
-          },
+          'Apple',
+          'Banana',
+          'Orange',
+          'Durian',
+          'Lemon',
+          'Peach',
+          'Cherry',
+          'Berry',
+          'Core',
+          'Fig',
+          'Haw',
+          'Melon',
+          'Plum',
+          'Pear',
+          'Peanut',
+          'Other',
+          '中国',
         ].filter(value => new RegExp(val, 'i').test(value));
       },
     },

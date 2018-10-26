@@ -120,7 +120,6 @@
         this.focus = !this.focus;
       },
     },
-
   };
 
 </script>
@@ -130,7 +129,6 @@
   .c-input {
       display: flex;
       background: #fff none repeat scroll 0 0;
-      position: relative;
   }
 
   .c-input-closebox {
