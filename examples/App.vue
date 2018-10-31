@@ -41,6 +41,10 @@
         <div > Input </div>
         <span class='icon v-icon-pull-right'></span>
       </div>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('search')">
+        <div > Search </div>
+        <span class='icon v-icon-pull-right'></span>
+      </div>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('form')">
         <div > Checkboard </div>
         <span class='icon v-icon-pull-right'></span>

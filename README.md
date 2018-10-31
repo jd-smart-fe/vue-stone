@@ -95,6 +95,7 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 - [Timepicker](https://github.com/jd-smart-fe/vue-stone/blob/master/wiki/doc-timepicker.md)
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 - [Control-center](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-control-center.md)
+- [Search](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-search.md)
 
 ## Contribute
 

@@ -13,11 +13,6 @@
         <v-input ref="input" v-model="message" placeholder="未输入时提示内容"></v-input>
       </div>
     </v-panel>
-    <v-panel>
-      <div slot="body" class="c-panel-body">
-        <v-input :result="result" relation ref="input" v-model="message2" placeholder="带匹配的搜索"></v-input>
-      </div>
-    </v-panel>
 
     <v-panel>
       <div slot="header" class="c-panel-header">
@@ -74,43 +69,14 @@
     data() {
       return {
         message: '',
-        message2: '',
         value: 'item1',
         multipleValue: ['item1', 'item2'],
-        result: [],
       };
     },
 
     mounted() {
     },
     methods: {
-      getResult(val) {
-        if (!val) return [];
-        return [
-          'Apple',
-          'Banana',
-          'Orange',
-          'Durian',
-          'Lemon',
-          'Peach',
-          'Cherry',
-          'Berry',
-          'Core',
-          'Fig',
-          'Haw',
-          'Melon',
-          'Plum',
-          'Pear',
-          'Peanut',
-          'Other',
-          '中国',
-        ].filter(value => new RegExp(val, 'i').test(value));
-      },
-    },
-    watch: {
-      message2(val) {
-        this.result = this.getResult(val);
-      },
     },
   };
 </script>

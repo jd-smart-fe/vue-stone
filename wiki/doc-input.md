@@ -15,12 +15,6 @@ htmlName | String | '' | 原生 input 标签的 name 属性
 
 该组件暂时只支持 'text' 型的 input 输入框。
 
-## 带匹配结果
-属性名   |     类型   |  默认值    |     说明
-----    | ----  | ----    | ----     |
-:result  | Array | 'result'| 	匹配结果（relation为true时生效）支持对象数组或者字符串数组形式，对象数组需包含label属性，例如：[{label: 'Apple', id: '1111'}, {label: 'Orange', id: '2222'}...] 或者 ['Apple', 'Orange'...] |
-relation | -|- | 是否为带输入匹配为true时生效 通过 v-model 绑定的值 message2 获取匹配的结果；例如："<v-input :result="result" relation ref="input" v-model="message2"/>"|
-
 ## Events
 
 事件名称   |    说明    |    参数    |

@@ -48,6 +48,8 @@ const list = [{
   name: 'toast',
 }, {
   name: 'control-center',
+}, {
+  name: 'search',
 }];
 
 Vue.use(VueRouter);

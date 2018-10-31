@@ -27,5 +27,6 @@ module.exports = {
     'toast',
     'loading',
     'control-center',
+    'search',
   ],
 };
