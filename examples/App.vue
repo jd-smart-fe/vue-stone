@@ -45,7 +45,11 @@
         <div > Search </div>
         <span class='icon v-icon-pull-right'></span>
       </div>
-      <div slot="body" class="c-panel-body u-cross-center" @click="go('form')">
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('textarea')">
+        <div > Textarea </div>
+        <span class='icon v-icon-pull-right'></span>
+      </div>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('checkboard')">
         <div > Checkboard </div>
         <span class='icon v-icon-pull-right'></span>
       </div>

@@ -28,5 +28,6 @@ module.exports = {
     'loading',
     'control-center',
     'search',
+    'textarea',
   ],
 };

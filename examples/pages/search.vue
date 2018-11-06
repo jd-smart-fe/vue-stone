@@ -26,8 +26,6 @@
       return {
         message: '',
         message2: '',
-        value: 'item1',
-        multipleValue: ['item1', 'item2'],
         sourceResult: [
           'Apple',
           'Banana',

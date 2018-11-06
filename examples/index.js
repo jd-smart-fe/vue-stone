@@ -50,6 +50,10 @@ const list = [{
   name: 'control-center',
 }, {
   name: 'search',
+}, {
+  name: 'checkboard',
+}, {
+  name: 'textarea',
 }];
 
 Vue.use(VueRouter);
