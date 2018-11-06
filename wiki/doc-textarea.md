@@ -1,6 +1,6 @@
-# Switch
+# Textarea
 
-## Tag Name
+## Usage
 
 ```html
 <v-textarea maxlength="100" showCounter placeholder="请输入" ></v-textarea>
