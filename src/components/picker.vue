@@ -155,7 +155,7 @@ export default {
 
       const values = this.innerItems.values;
       const value = values[toIndex];
-      this.$emit('change', { id: this.id, value, active: toIndex + 1 });
+      this.$emit('change', { id: this.id, value, active: toIndex });
 
       // 取消 Transitionend 的时间监听，避免触发两次 scrollEnd。
       this._removeTransitionendEvent();
