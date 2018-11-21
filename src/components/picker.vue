@@ -50,11 +50,6 @@ export default {
     };
   },
   props: {
-    mode: {
-      type: String,
-      required: false,
-      default: 'inline',
-    },
     items: {
       type: Object,
       required: true,
@@ -120,7 +115,7 @@ export default {
 
         this.setOffsetPX();
       });
-      this.setValue(this.innerItems.active);
+      this.setIndex(this.innerItems.active);
     },
     calcOffsetIndex() {
       const itemHeight = this.itemHeight;
@@ -153,8 +148,8 @@ export default {
       this.iscroll.scrollerStyle.transitionDuration = `${transitionDuration}ms`;
       this.iscroll.scrollerStyle.transform = `translate(0px, ${-offsetPX}px) translateZ(0px)`;
     },
-    setValue(obj) {
-      this.iscroll.scrollTo(0, -obj * this.itemHeight);
+    setIndex(index) {
+      this.iscroll.scrollTo(0, -index * this.itemHeight);
     },
     _addTransitionendEvent() {
       TRANSITIONEND.forEach(item => {
