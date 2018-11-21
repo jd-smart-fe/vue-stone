@@ -1,18 +1,20 @@
 <template>
-  <!-- <div class="box"> -->
-     <div  :class="['c-picker-wrapper', `c-${id}`]"  :style="{height: `${itemHeight * (offsetLine + offsetLine + 1)}px`}">
+  <div>
 
-    <ul class="c-picker-scroller" >
-      <li v-for="index in offsetLine" :key="index" :style="{height: `${itemHeight}px`}"></li>
-      <li
-       v-for="(item,index) in innerItems.displayValues" :key="index + offsetLine + 1"
-       :style="{height: `${itemHeight}px`, lineHeight: `${itemHeight}px`}">{{item}}</li>
-      <li v-for="index in offsetLine" :key="innerItems.displayValues.length + offsetLine + index" :style="{height: `${itemHeight}px`}"></li>
-    </ul>
-    <div class="c-picker-mask-top" :style="{height: `${itemHeight * offsetLine}px`}"></div>
-    <div class="c-picker-mask-bottom" :style="{height: `${itemHeight * offsetLine}px`}"></div>
-</div>
-  <!-- </div> -->
+    <div  :class="['c-picker-wrapper', `c-${id}`]"  :style="{height: `${itemHeight * (offsetLine + offsetLine + 1)}px`}">
+
+      <ul class="c-picker-scroller" >
+        <li v-for="index in offsetLine" :key="index" :style="{height: `${itemHeight}px`}"></li>
+        <li
+        v-for="(item,index) in innerItems.displayValues" :key="index + offsetLine + 1"
+        :style="{height: `${itemHeight}px`, lineHeight: `${itemHeight}px`}">{{item}}</li>
+        <li v-for="index in offsetLine" :key="innerItems.displayValues.length + offsetLine + index" :style="{height: `${itemHeight}px`}"></li>
+      </ul>
+      <div class="c-picker-mask-top" :style="{height: `${itemHeight * offsetLine}px`}"></div>
+      <div class="c-picker-mask-bottom" :style="{height: `${itemHeight * offsetLine}px`}"></div>
+    </div>
+  </div>
+
 
 
 </template>
@@ -66,7 +68,7 @@ export default {
     offsetLine: {
       type: Number,
       required: false,
-      default: () => 2,
+      default: () => 3,
     },
     id: {
       type: String,
@@ -112,22 +114,8 @@ export default {
         false,
       );
       this.iscroll.on('scrollEnd', () => {
-        // console.log('end')
-        // const values = this.innerItems.values;
-        // window.console.log('cancel');
-        // const toIndex = this.calcOffsetIndex();
-        // this.$emit('change', { id: this.id, values: values[toIndex] });
         this.setOffsetPX();
       });
-      // /**
-      //  * 扩展事件，原库中没有这个事件，给原库增加了一个 touchend 事件
-      //  */
-      // this.iscroll.on('touchend', () => {
-      //   const values = this.innerItems.values;
-      //   const toIndex = this.calcOffsetIndex();
-      //   this.$emit('change', { id: this.id, values: values[toIndex] });
-      //   // this.setOffsetPX();
-      // });
       this.iscroll.on('scrollCancel', () => {
 
         this.setOffsetPX();
@@ -154,13 +142,14 @@ export default {
       this.iscroll.y = -offsetPX;
 
       const values = this.innerItems.values;
+      const displayValues = this.innerItems.displayValues;
       const value = values[toIndex];
-      this.$emit('change', { id: this.id, value, active: toIndex });
+      const displayValue = displayValues[toIndex];
+      this.$emit('change', { id: this.id, value, active: toIndex, displayValue });
 
       // 取消 Transitionend 的时间监听，避免触发两次 scrollEnd。
       this._removeTransitionendEvent();
       const transitionDuration = (remainder / itemHeight) * 600;
-      // window.console.log(transitionDuration);
       this.iscroll.scrollerStyle.transitionDuration = `${transitionDuration}ms`;
       this.iscroll.scrollerStyle.transform = `translate(0px, ${-offsetPX}px) translateZ(0px)`;
     },
@@ -190,17 +179,17 @@ export default {
     },
   },
   destroyed() {
-    // window.console.log('destroy');
     this.iscroll.destroy();
   },
 };
 </script>
 <style scoped>
+@import '../../src/styles/default-theme/variables.css';
 .c-picker-wrapper {
   position: relative;
   height: 200px;
   overflow: hidden;
-  /* border: 1px solid red; */
+  background-color: #fff;
 }
 .c-picker-scroller {
   position: absolute;
@@ -230,15 +219,9 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  /* height: calc(calc(40px) * 2 - 1px); */
   background-color: rgba(255, 255, 255, 0.6);
   border-top: 1px solid #ccc;
   pointer-events: none;
 }
-/* .box{
-  position: relative;
-  height:  150px;
-  width: 33%
-} */
 </style>
 
