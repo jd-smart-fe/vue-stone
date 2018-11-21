@@ -48,6 +48,12 @@ const list = [{
   name: 'toast',
 }, {
   name: 'control-center',
+}, {
+  name: 'search',
+}, {
+  name: 'checkboard',
+}, {
+  name: 'textarea',
 }];
 
 Vue.use(VueRouter);

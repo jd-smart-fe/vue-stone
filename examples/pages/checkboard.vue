@@ -9,12 +9,6 @@
       </div>
     </div>
     <v-panel>
-      <div slot="body" class="c-panel-body">
-        <v-input ref="input" v-model="message" placeholder="未输入时提示内容"></v-input>
-      </div>
-    </v-panel>
-
-    <v-panel>
       <div slot="header" class="c-panel-header">
         单选
       </div>
@@ -64,11 +58,10 @@
 <script>
 
   export default {
-    name: 'Form',
+    name: 'Checkboard',
 
     data() {
       return {
-        message: '',
         value: 'item1',
         multipleValue: ['item1', 'item2'],
       };

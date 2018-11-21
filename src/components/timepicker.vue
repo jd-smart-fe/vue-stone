@@ -1,16 +1,28 @@
 <template lang="html">
   <div class="c-timepicker">
-    <v-picker :items="_items" ref="picker"  :rotate_effect="rotate_effect"></v-picker>
-    <div class="c-timepicker-unit">
-      <span class="c-timepicker-unit-hour">时</span>
+     <v-picker class="c-timepicker-col" ref="hourpicker" :items="_items[0]" @change="hourChange">
+
+     </v-picker>
+     <v-picker class="c-timepicker-col" ref="mintuespicker" :items="_items[1]" @change="mintuesChange">
+
+     </v-picker>
+    <div class="c-timepicker-unit ">
+      <span class="c-timepicker-unit-hour">
+        <span class="text">时</span></span>
+
+       <span class="c-timepicker-unit-min">
+          <span class="text">分</span></span>
+         </span>
+    </div>
+    <div class="c-timepicker-dot">
       <span class="c-timepicker-unit-colon">:</span>
-      <span class="c-timepicker-unit-min">分</span>
     </div>
   </div>
 </template>
 
 <script>
 const hourCol = [];
+const hourDisplay = [];
 for (let i = 0; i <= 23; i += 1) {
   let n = 0;
   if (i < 10) {
@@ -18,10 +30,13 @@ for (let i = 0; i <= 23; i += 1) {
   } else {
     n = i;
   }
+  hourDisplay.push(i);
   hourCol.push(n);
+
 }
 // 60分钟
 const minCol = [];
+const minDisplay = [];
 for (let i = 0; i <= 59; i += 1) {
   let n = 0;
   if (i < 10) {
@@ -29,6 +44,7 @@ for (let i = 0; i <= 59; i += 1) {
   } else {
     n = i;
   }
+  minDisplay.push(i);
   minCol.push(n);
 }
 
@@ -37,7 +53,10 @@ export default {
 
   data() {
     return {
-
+      chooseHour: this.hour,
+      chooseMin: this.min,
+      chooseHourActive: this.hour,
+      chooseMinActive: this.min,
     };
   },
 
@@ -46,9 +65,11 @@ export default {
       const arr = [{
         values: hourCol,
         active: this.hour,
+        display: hourDisplay,
       }, {
         values: minCol,
         active: this.min,
+        display: minDisplay,
       }];
 
       return arr;
@@ -71,14 +92,36 @@ export default {
   },
 
   mounted() {
-    this.$refs.picker.$on('change', val => {
-      this.$emit('change', val);
-    });
+    // this.$refs.picker.$on('change', val => {
+    //   this.$emit('change', val);
+    // });
+    // this.chooseHour = this.hour;
+    // this.chooseMin = this.min;
   },
 
   methods: {
     update(val) {
       this.$refs.picker.update();
+    },
+    hourChange(val) {
+      const arr = {
+        value: [val.value, this.chooseMin],
+        display: [val.value, this.chooseMin],
+        active: [val.active, this.chooseMinActive],
+      };
+      this.chooseHour = val.value;
+      this.chooseHourActive = val.active;
+      this.$emit('change', arr);
+    },
+    mintuesChange(val) {
+      const arr = {
+        value: [this.chooseHour, val.value],
+        display: [this.chooseHour, val.value],
+        active: [this.chooseHourActive, val.active],
+      };
+      this.chooseMin = val.value;
+      this.chooseMinActive = val.active;
+      this.$emit('change', arr);
     },
   },
 };
@@ -98,8 +141,8 @@ export default {
   }
   .c-timepicker{
     position: relative;
-
-    .c-timepicker-unit{
+    display: flex;
+    .c-timepicker-dot{
       position: absolute;
       top: 50%;
       left: 0;
@@ -126,31 +169,53 @@ export default {
         text-align: center;
       }
 
-      .c-timepicker-unit-hour{
-        position: absolute;
-        left: -0.88rem;
-        top: 50%;
-        right: 0;
 
-        transform: translateY(-50%);
-        width: calc($fontSize + 2px);
-        margin: auto;
-        text-align: center;
+    }
+    .c-timepicker-unit {
+      pointer-events: none;
+      position: absolute;
+      display: flex;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translateY( -50%);
+      height: 30px;
+      /* text-align: right; */
+      .c-timepicker-unit-hour{
+        position: relative;
+        display: block;
+        left:0;
+        top:0;
+        width: 50%;
+        height: 30px;
+        .text{
+          display: inline-block;
+          position: absolute;
+          top: 0;
+          right:  .5rem;
+          line-height: 30px;
+        }
       }
 
       .c-timepicker-unit-min{
+        position: relative;
+        display: block;
+        left:0;
+        top:0;
+        width: 50%;
+        height: 30px;
+        .text{
+          display: inline-block;
           position: absolute;
-          left: 0;
-          top: 50%;
-          right: -2.16rem;
-
-          margin: auto;
-          width: calc(16px + 2px);
-          text-align: center;
-          transform: translateY(-50%);
+          top: 0;
+          right:  .5rem;
+          line-height: 30px;
+        }
       }
     }
   }
-
+ .c-timepicker-col {
+   width: 50%;
+ }
 
 </style>

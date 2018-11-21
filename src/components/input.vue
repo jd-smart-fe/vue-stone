@@ -10,7 +10,6 @@
       @input="input"
       @change="change"
     />
-
     <div class="c-input-closebox">
       <span title="清空" class="c-input-delquery icon-round-close" @click="clear" v-show="_show"></span>
     </div>
@@ -84,7 +83,6 @@
         this.$emit('change', this.invalue);
       },
     },
-
   };
 
 </script>
