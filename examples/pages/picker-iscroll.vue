@@ -1,5 +1,19 @@
-<template>
 
+<!--
+ * @Description: 流畅的 picker 组件
+ * @Author: 田猛
+ * @Date: 2018-11-21 15:02:32
+ * @LastEditTime: 2018-11-23 18:10:34
+ -->
+
+<!--
+ * 因为使用了 transition， 如果在滑动动画进行中的时候，父级元素 display：none 的话会导致滚动停止，
+ * 无法触发 transitionend 事件，导致不能触发 scrollEnd 事件，获取不到选择的数据。
+ * 看了 better scroll 的实现方式：只提供模态弹出方式，如果滑动动画没有结束，则无法关闭当前对话框。
+ * 需跟设计沟通值提供模态弹出方式是否可以，如果可以则替换掉 picker 组件。
+ -->
+
+<template>
   <div>
     <tmpl-back></tmpl-back>
 
@@ -56,6 +70,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 const dateAry = [
@@ -206,6 +221,13 @@ export default {
       ],
     };
   },
+  watch: {
+    ishown(val) {
+      this.$refs.ipickerYear.refresh();
+      this.$refs.ipickerMonth.refresh();
+      this.$refs.ipickerDate.refresh();
+    },
+  },
   methods: {
     handle(val) {
       if (val === 'cancel') {
@@ -217,6 +239,7 @@ export default {
       }
     },
     iupdate(val) {
+      console.log(val.id);
       switch (val.id) {
         case 'ipickerModalYear':
           this.chooseModalPicker.values[0] = val.value;
