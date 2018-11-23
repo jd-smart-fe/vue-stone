@@ -123,6 +123,10 @@ export default {
       this.chooseMinActive = val.active;
       this.$emit('change', arr);
     },
+    refresh() {
+      this.$refs.hourpicker.refresh();
+      this.$refs.mintuespicker.refresh();
+    },
   },
 };
 
