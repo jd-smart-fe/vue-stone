@@ -126,6 +126,7 @@ export default {
           displayValues: yearAry.slice(),
           active: yearAry.indexOf(curYear),
           unit: '年',
+          disableds: [0, 2, 4],
         },
         {
           values: monthAry.slice(),
