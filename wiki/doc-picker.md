@@ -19,6 +19,7 @@ id | Number | uuid | 组件的id。
     values: [2017, 2016, 2015],   // 每一个选项的 value
     displayValues: [2017, 2016, 2015],    // 对应每一个选项的显示文本，可忽略，如果忽略 displayValues === values
     active: 2,   // 当前激活选项的 value 的索引
+    disableds: [1], // 要禁用 displayValues 索引
 }
 ```
 
