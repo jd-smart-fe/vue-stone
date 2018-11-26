@@ -95,20 +95,20 @@ export default {
     count() {
       return this.innerItems.displayValues.length;
     },
-    active() {
-      return this.innerItems.active;
-    },
+    // active() {
+    //   return this.innerItems.active;
+    // },
     disableds() {
       return this.innerItems.disableds || [];
     },
   },
   watch: {
-    active() {
-      this.setIndex(this.active);
+    innerItems(val) {
+      this.setIndex(val.active);
     },
   },
   mounted() {
-    this.setIndex(this.active);
+    this.setIndex(this.innerItems.active);
   },
   methods: {
     onTouchStart(event) {
