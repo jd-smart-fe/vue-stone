@@ -75,7 +75,7 @@ export default {
     id: {
       type: String,
       required: false,
-      default: () => uuid,
+      default: () => uuid(),
     },
 
   },
