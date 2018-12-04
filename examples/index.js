@@ -54,6 +54,8 @@ const list = [{
   name: 'checkboard',
 }, {
   name: 'textarea',
+}, {
+  name: 'stastic',
 }];
 
 Vue.use(VueRouter);

@@ -1,0 +1,19 @@
+
+.header .c-mode-4 .c-mode-item {
+  height: .3rem;
+  border: 0;
+  border-left: 1px solid #45A3F1;
+
+}
+.header .c-mode-4 .c-mode-item:nth-child(1) {
+  height: .3rem;
+  border-left: 0;
+
+}
+.header .c-mode-item-active {
+  background: #45a3f1;
+
+}
+.header .c-mode-item-text {
+  font-size: 0.13rem;
+}
