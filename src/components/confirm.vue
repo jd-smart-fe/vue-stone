@@ -1,5 +1,11 @@
 <template>
-  <v-dialog ref="dialog" v-model="shown" :title="title" :desc="desc" :buttons="button"></v-dialog>
+  <v-dialog
+    ref="dialog"
+    v-model="shown"
+    :title="title"
+    :desc="desc"
+    :buttons="button"
+  ></v-dialog>
 </template>
 
 <script>
