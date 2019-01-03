@@ -127,9 +127,10 @@ export default {
   methods: {
     buttonClick(index) {
       this.$emit(`button${this.transNumber(index)}`);
-      this.insideValue = false;
+      if (!this.preventClose) {
+        this.insideValue = false;
+      }
     },
-
     maskClick() {
       this.$emit('maskclick');
     },
