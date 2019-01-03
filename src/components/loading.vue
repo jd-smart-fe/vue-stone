@@ -1,12 +1,16 @@
+<!--
+ * @Description: loading 组件 review 代码改版
+ * @Author: shilili1
+ * @Date: 2018-11-13 14:49:59
+ * @LastEditTime: 2019-01-03 17:30:08
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <div>
-    <v-mask :value="maskShown" :cls="cls">
-
-    </v-mask>
-    <div class="c-loading" v-show="loadingShown">
-      <div class="c-iconloading">
-
-      </div>
+    <v-mask :value="mask" :cls="cls"></v-mask>
+    <div
+      :class="['c-loading', pos]" v-show="loadingShown">
+      <div class="c-iconloading"> </div>
       <span class="c-iconloading-text">
         {{text}}
       </span>
@@ -22,35 +26,62 @@ export default {
   type: 'singleton',
   data() {
     return {
-      maskShown: false,
+      mask: true,
       loadingShown: false,
       text: '加载中',
+      pos: 'center',
+      duration: 3000, // 持续时间
       cls: 'c-bgc',
     };
   },
   methods: {
+    /**
+     * @description: 初始化
+     * @param {}
+     * @return:
+     */
     init() {
       document.body.appendChild(this.$el);
       this.inited = true;
     },
+
+    /**
+     * @description: 展示
+     * @param option {Object} 参数
+     * @return:
+     */
     show(option = {}) {
-      console.log(option.modal);
-      if (option.modal) {
-        this.maskShown = option.modal;
-      }
-      if (option.text) {
-        this.text = option.text;
-      }
+
+      this.mask = option.mask || this.mask;
+      this.text = option.text || this.text;
+      this.pos = option.pos || this.pos;
+      this.duration = option.duration || this.duration;
+
       if (!this.inited) {
         this.init();
       }
       this.loadingShown = true;
+
+      setTimeout(() => {
+        this.$loading.hide();
+      }, this.duration);
     },
+
+    /**
+     * @description: 隐藏
+     * @param {}
+     * @return:
+     */
     hide() {
-      this.maskShown = false;
+      this.mask = false;
       this.loadingShown = false;
-      // this.$toast.hide();
     },
+
+    /**
+     * @description: 生命周期销毁
+     * @param {}
+     * @return:
+     */
     destroy() {
       document.body.removeChild(this.$el);
       this.inited = false;
@@ -64,9 +95,6 @@ export default {
 @import '../styles/mixins.css';
 .c-loading {
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   width: 40%;
   background-color: rgba(0, 0, 0, .8);
   border-radius: $l-radius;
@@ -84,7 +112,6 @@ export default {
     transform: rotate3d(0, 0, 1, 360deg);
   }
 }
-
 .c-iconloading {
   background: transparent url(../assets/loading.png);
   width: 30px;
@@ -104,5 +131,36 @@ export default {
   text-align: center;
   color: #fff;
   width: 100%;
+}
+/* 增加位置信息 */
+.center{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.bottom{
+ left: 50%;
+ margin-left: -20%;
+ bottom: 10px;
+}
+.top{
+  left: 50%;
+  margin-left: -20%;
+  top: 10px;
+}
+.top,
+.bottom{
+  width: 50%;
+  padding: 10px 4px;
+  .c-iconloading{
+    display: none;
+  }
+  .c-iconloading-text{
+    &:after{
+      content: '....';
+      color: #fff;
+      font-size: 20px;
+    }
+  }
 }
 </style>

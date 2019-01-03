@@ -56,11 +56,8 @@ export default {
     },
 
     showLoading() {
+      this.$loading.show({ mask: true, text: '正在控制', pos: 'top', duration: 5000 });
 
-      this.$loading.show({ modal: true, text: '正在控制' });
-      setTimeout(() => {
-        this.$loading.hide();
-      }, 3000);
     },
 
     hideLoading() {

@@ -23,7 +23,7 @@ this.$confirm.show('Hello world');
 ## Methods
 | 方法名称 | 说明 | 参数 | 返回值 |
 | ----   | ---- | ---- | ---- |
-| show(options) | 显示弹窗 |  参加Options  |  promies 对象，点击确定时状态改变为 Resolved，点击取消时状态改变为 Rejected。|
+| show(options) | 显示弹窗 |  参考Options  |  promies 对象，点击确定时状态改变为 Resolved，点击取消时状态改变为 Rejected。|
 |hide() | 关闭弹窗 | 无 | 无 |
 
 **备注：**

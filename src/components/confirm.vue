@@ -69,6 +69,10 @@ export default {
       this.inited = true;
       document.body.appendChild(this.$el);
     },
+    destroy() {
+      document.body.removeChild(this.$el);
+      this.inited = false;
+    },
   },
 };
 </script>
