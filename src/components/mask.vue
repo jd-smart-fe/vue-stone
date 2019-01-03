@@ -1,6 +1,13 @@
+<!--
+ * @Description: 蒙层组件
+ * @Author: your name
+ * @Date: 2018-11-13 14:49:59
+ * @LastEditTime: 2019-01-03 18:06:21
+ * @LastEditors: Please set LastEditors
+ -->
 <template>
   <transition :name="transition">
-    <div :class="['c-mask',cls]" v-show="value" @click="handle"></div>
+    <div :class="['c-mask', cls]" v-show="value" @click="handle"></div>
   </transition>
 </template>
 
@@ -8,11 +15,6 @@
 
   export default {
     name: 'v-mask',
-
-    data() {
-      return {
-      };
-    },
 
     props: {
       value: {
@@ -30,6 +32,11 @@
     },
 
     watch: {
+      /**
+       * @description: 监听value的值的变化，是否有蒙层
+       * @param val {Boolean} value的值
+       * @return:
+       */
       value(val) {
         if (this.value) {
           document.body.classList.add('u-ofh');
@@ -46,6 +53,11 @@
     },
 
     methods: {
+      /**
+       * @description: 点击mask的时候触发该事件
+       * @param {}
+       * @return:
+       */
       handle() {
         this.$emit('click');
       },

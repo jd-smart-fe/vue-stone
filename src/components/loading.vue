@@ -2,7 +2,7 @@
  * @Description: loading 组件 review 代码改版
  * @Author: shilili1
  * @Date: 2018-11-13 14:49:59
- * @LastEditTime: 2019-01-03 17:30:08
+ * @LastEditTime: 2019-01-03 17:57:40
  * @LastEditors: Please set LastEditors
  -->
 <template>
