@@ -33,7 +33,7 @@ const list = [{
 }, {
   name: 'alert',
 }, {
-  name: 'form',
+  name: 'input',
 }, {
   name: 'counter',
 }, {

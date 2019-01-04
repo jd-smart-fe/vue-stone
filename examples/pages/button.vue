@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <tmpl-back></tmpl-back>
 
     <v-panel>

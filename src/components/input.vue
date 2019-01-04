@@ -1,17 +1,24 @@
 <template>
-  <div class="c-input">
+  <div
+  :class="['c-input', { 'has-border': hasB }, size, { 'disabled': disabled }, {'can-clear': !canClear}]"
+  >
     <input
       class="c-input-key"
       ref="input"
-      :name="htmlName"
-      type="text"
       v-model="invalue"
+      :name="htmlName"
       :placeholder="placeholder"
       @input="input"
       @change="change"
+      :disabled="disabled"
     />
     <div class="c-input-closebox">
-      <span title="清空" class="c-input-delquery icon-round-close" @click="clear" v-show="_show"></span>
+      <span
+        title="清空"
+        class="c-input-delquery icon-round-close"
+        @click="clear"
+        v-show="_show"
+      ></span>
     </div>
   </div>
 </template>
@@ -24,6 +31,10 @@
       return {
         invalue: this.value,
         focus: false,
+        // hasB: false,
+        // size: 'large',
+        // disabled: false,
+        // canClear: true,
       };
     },
 
@@ -53,13 +64,36 @@
         type: String,
         default: '',
       },
+      hasB: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      size: {
+        type: String,
+        required: false,
+        default: 'large',
+      },
+      disabled: {
+        type: Boolean,
+        required: false,
+        default: false,
+      },
+      canClear: {
+        type: Boolean,
+        required: false,
+        default: true,
+      },
     },
 
     mounted() {
       const el = this.$el.getElementsByTagName('input')[0];
+      const pNode = document.querySelector('.has-border');
+      console.log(pNode);
 
       el.addEventListener('focus', () => {
         this.focus = true;
+        pNode ? pNode.style.borderColor = '#409eff' : null;
       });
 
       el.addEventListener('blur', (e) => {
@@ -92,6 +126,29 @@
   .c-input {
       display: flex;
       background: #fff none repeat scroll 0 0;
+      box-sizing: border-box;
+      &.disabled{
+        color: #c0c4cc;
+      }
+      &.has-border{
+        border: 1px solid #dcdfe6;
+        padding: 2.5% 3.75%;
+        border-radius: 3px;
+        &.large{
+          width: 100%;
+        }
+        &.small{
+          width: 40%;
+        }
+        &.middle{
+          width: 50%;
+        }
+        &.disabled{
+          background-color: #f5f7fa;
+          border-color: #e4e7ed;
+          cursor: not-allowed;
+        }
+      }
   }
 
   .c-input-closebox {
@@ -114,5 +171,10 @@
     padding: 1px 0;
     padding-right: 0.06rem;
     width: 100%;
+  }
+  .c-input.can-clear{
+    .c-input-closebox{
+      display: none;
+    }
   }
 </style>

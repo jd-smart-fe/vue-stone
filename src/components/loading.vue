@@ -2,7 +2,7 @@
  * @Description: loading 组件 review 代码改版
  * @Author: shilili1
  * @Date: 2018-11-13 14:49:59
- * @LastEditTime: 2019-01-03 17:57:40
+ * @LastEditTime: 2019-01-03 18:12:38
  * @LastEditors: Please set LastEditors
  -->
 <template>
@@ -26,7 +26,7 @@ export default {
   type: 'singleton',
   data() {
     return {
-      mask: true,
+      mask: false,
       loadingShown: false,
       text: '加载中',
       pos: 'center',
