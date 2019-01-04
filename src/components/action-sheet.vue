@@ -91,7 +91,6 @@ export default {
     },
 
     insideValue(val) {
-      console.log(`111:${val}`);
       this.$emit('input', val);
 
       // if (val) {

@@ -42,7 +42,6 @@ export default {
     },
 
     insideValue(val) {
-      console.log(val);
       this.$emit('input', val);
     },
   },
