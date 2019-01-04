@@ -37,7 +37,7 @@
           <span class='icon v-icon-mode-smart'></span>
         </div>
       </div>
-      <div slot="body" class="c-panel-body u-cross-center" @click="go('form')">
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('input')">
         <div > Input </div>
         <span class='icon v-icon-pull-right'></span>
       </div>

@@ -15,7 +15,6 @@
         <v-button @click.native="confirmClick">Show</v-button>
       </div>
     </v-panel>
-
   </div>
 </template>
 <script>
@@ -63,4 +62,3 @@ export default {
   },
 };
 </script>
-

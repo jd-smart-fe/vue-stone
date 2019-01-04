@@ -2,7 +2,7 @@
 
 Toast 组件向 Vue 原型属性上添加了 `$confirm` 属性，通过调用当前 vue 实例 `$confirm` 属性的方法来使用 comfirm。
 
-`this.$confirm.show(opt)` 方法接受一个参数来配置 toast，参数可以是一个字符串，或者是一个对象。
+**`this.$confirm.show(opt)`** 方法接受一个参数来配置 toast，参数可以是一个字符串（表示的是title），或者是一个对象。
 
 ## Usage
 
@@ -21,12 +21,14 @@ this.$confirm.show('Hello world');
 
 
 ## Methods
-方法名称   |    说明    |    参数    |   返回值
-----      | ----      | ----      |
-show(options) | 显示弹窗 |  参见备注  |   promies 对象，点击确定时状态改变为 Resolved，点击取消时状态改变为 Rejected。
-hide() | 关闭弹窗 | 无 | 无
+| 方法名称 | 说明 | 参数 | 返回值 |
+| ----   | ---- | ---- | ---- |
+| show(options) | 显示弹窗 |  参考Options  |  promies 对象，点击确定时状态改变为 Resolved，点击取消时状态改变为 Rejected。|
+|hide() | 关闭弹窗 | 无 | 无 |
 
 **备注：**
+show 方法：
+
 ```js
 this.$confirm.show({
   title: 'Title',    // Alter 的 标题
@@ -40,6 +42,37 @@ this.$confirm.show({
 });
 ```
 
+
+## Options
+
+属性名   |    类型    |    默认值    |   说明
+----    | ----    | ----    | ----    |
+v-model | Boolean | false | 控制组件显隐
+title |  String  |  '提示' |  设置弹窗标题
+desc | String | 无 | 设置弹窗内容
+tcolor | String | '#333' | 设置标题颜色
+dcolor | String | '#999' | 设置内容颜色
+buttons | Array | [{ text: '确定' }] | 设置按钮文字及颜色
+preventClose | Boolean | false | 值为true时，点击按钮后不会自动关闭弹窗
+
+**备注：**
+buttons 属性：
+
+```js
+// 数组每一项对应一个按钮，最多可配置五个按钮
+buttons: [{
+    text: '确定',      // 按钮文本
+    color: '#666',    // 按钮颜色 默认 '#59B8FC'
+  },{
+    text: '取消',      // 按钮文本
+    color: 'red',     // 按钮颜色 默认 '#59B8FC'
+}]
+```
+
+title 属性：
+
+设置 title 属性为空字符串，`title=""`，组件将不会渲染 title 区域。
+
 ## Events
 
 事件名称   |    说明    |    参数    |
@@ -47,6 +80,7 @@ this.$confirm.show({
 show | 弹窗显示时触发此事件 | 无
 hide | 弹窗隐藏时触发此事件 | 无
 
+**备注：**
 ```js
 this.$confirm.$on('hide', () => {
   console.log('confirm close');
