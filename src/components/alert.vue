@@ -24,7 +24,7 @@ export default {
   props: {
     maskCloseable: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
 
@@ -67,6 +67,10 @@ export default {
 
         this.title = options.title;
         this.desc = options.desc;
+
+        if (Object.prototype.hasOwnProperty.call(options, 'maskCloseable')) {
+          this.maskCloseable = option.maskCloseable
+        }
 
         const button = {};
         let buttonNoChange = true;
