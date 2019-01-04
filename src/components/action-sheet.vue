@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-action-box :value="insideValue" ref="box">
+  <v-action-box v-model="insideValue" ref="box" :mask="mask" :maskCloseable="maskCloseable">
     <div class="c-action-sheet-warpper">
       <div
       v-for="(item, index) in items"
@@ -38,7 +38,7 @@ export default {
 
   data() {
     return {
-      mask_shown: this.value,
+      // mask_shown: this.value,
       insideValue: this.value,
     };
   },
@@ -72,6 +72,17 @@ export default {
         }];
       },
     },
+
+    mask: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    maskCloseable: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   watch: {
@@ -80,17 +91,18 @@ export default {
     },
 
     insideValue(val) {
+      console.log(`111:${val}`);
       this.$emit('input', val);
 
-      if (val) {
-        this.mask_shown = true;
+      // if (val) {
+      //   this.mask_shown = true;
 
-      } else {
-        // 300ms 是为了能够触发mask消失时的过渡动画
-        setTimeout(() => {
-          this.mask_shown = false;
-        }, 300);
-      }
+      // } else {
+      //   // 300ms 是为了能够触发mask消失时的过渡动画
+      //   setTimeout(() => {
+      //     this.mask_shown = false;
+      //   }, 300);
+      // }
     },
   },
 

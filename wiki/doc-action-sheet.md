@@ -17,6 +17,7 @@
 ----    | ----      | ----        | ----    |
 v-model  | Boolean | false |  控制组件的显隐，true为显示 （非必需属性）
 items | Array |  `[{ text: '确定' }]` |  可配置多个按钮
+maskCloseable| Boolean | false | 控制点击蒙层是否可关闭v-action-sheet
 
 
 items 结构：

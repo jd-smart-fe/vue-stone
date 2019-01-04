@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
 
-    <v-mask :value="insideValue"></v-mask>
+    <v-mask v-if="mask" :value="insideValue" @click.native="maskClick"></v-mask>
   </div>
 </template>
 
@@ -24,6 +24,16 @@ export default {
       required: false,
       default: false,
     },
+    mask: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    maskCloseable: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   watch: {
@@ -32,6 +42,7 @@ export default {
     },
 
     insideValue(val) {
+      console.log(val);
       this.$emit('input', val);
     },
   },
@@ -43,6 +54,12 @@ export default {
 
     show() {
       this.insideValue = true;
+    },
+
+    maskClick() {
+      if (this.maskCloseable) {
+        this.insideValue = false;
+      }
     },
   },
 };
