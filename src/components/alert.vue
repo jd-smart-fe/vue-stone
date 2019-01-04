@@ -69,7 +69,7 @@ export default {
         this.desc = options.desc;
 
         if (Object.prototype.hasOwnProperty.call(options, 'maskCloseable')) {
-          this.maskCloseable = option.maskCloseable
+          this.maskCloseable = options.maskCloseable;
         }
 
         const button = {};
