@@ -12,7 +12,6 @@
 ----    | ----         | ----    | ----    |
 hour    |  Number     |  0  |   设置初始的 小时
 min     |  Number     |  0  |   设置初始的 分钟
-rotate_effect  |  Boolean | false | 是否开启 3d 模式
 
 ## Event
 事件名称   |    说明      |     参数
