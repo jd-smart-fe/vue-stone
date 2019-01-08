@@ -34,22 +34,22 @@ export default {
   },
 
   mounted() {
-    this.$toast.show({
-      icon: 'v-icon-home',
-      text: '操作成功',
-      duration: 2000,
-      autohide: false,
-    });
+    // this.$toast.show({
+    //   icon: 'icon-home',
+    //   text: '操作成功',
+    //   duration: 2000,
+    //   autohide: false,
+    // });
 
-    setTimeout(() => {
-      this.$toast.hide();
-    }, 2000);
+    // setTimeout(() => {
+    //   this.$toast.hide();
+    // }, 2000);
   },
 
   methods: {
     showWithIcon() {
       this.$toast.show({
-        icon: 'v-icon-home',
+        icon: 'icon-home',
         text: '操作成功',
         duration: 2000,
       });
