@@ -12,6 +12,7 @@ Alert 组件向 Vue 原型属性上添加了 `$alert` 属性，通过调用当�
 this.$alert.show({
   title: 'alert',  // 标题
   desc: 'This is alert content',  // 内容区 默认无
+  maskCloseable: true, // 点击蒙层可关闭 alert 默认 false
 })
 ```
 
@@ -19,7 +20,6 @@ this.$alert.show({
 ```js
 this.$alert.show('Hello world');
 ```
-
 
 
 ## Methods

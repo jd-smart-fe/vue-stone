@@ -9,7 +9,7 @@
         :key="item.id"
         :class="['c-mode-item', {
           'c-mode-item-active': value == item.id,
-        }]"
+        },{'c-mode-item-disabled': item.disabled}]"
         @click="handle(item)">
         <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
         <span class="c-mode-item-text">{{item.text}}</span>
@@ -25,7 +25,7 @@
             :key="item.id"
             :class="['c-mode-item', {
               'c-mode-item-active': value == item.id,
-            }]"
+            },{'c-mode-item-disabled': item.disabled}]"
             @click="handle(item)">
             <span v-if="item.icon"
               :class="['c-mode-item-icon', item.icon]"></span>
@@ -92,9 +92,13 @@
     methods: {
 
       handle(item) {
+        if (item.disabled) {
+          return false;
+        }
         const val = item.id;
         this.$emit('input', val);
         this.$emit('change', val, item);
+        return true;
       },
     },
   };
@@ -126,6 +130,7 @@
     border-left: 1px solid $gray-lightest;
     border-bottom: 1px solid $gray-lightest;
   }
+
 
   .c-mode-item-icon {
     font-size: $font-size-xl;
@@ -163,6 +168,11 @@
   .c-mode-item-active {
     background: $c-primary;
     color: #fff;
+  }
+  .c-mode-item-disabled{
+    color: $gray-light;
+    cursor: not-allowed;
+    background-color: rgba(238, 238, 238, .4);
   }
 
   /* Toggle */

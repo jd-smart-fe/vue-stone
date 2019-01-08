@@ -12,6 +12,7 @@ v-model | Number    |   必需属性      |   计数器初始值，必填。
 max     | Number  |   Infinity |  计数器最大值，计数若超过最大值时，加号按钮会自动置为disabled状态。
 min     | Number  |   -Infinity |  计数器最小值，计数若超过最小值时，减号按钮会自动置为disabled状态。
 step    | Number   |  1   | 步距，点一次加减号会加减相应的值。
+disabled| Boolean  | false | 设置true表示组件为禁用状态。
 
 
 ## Events

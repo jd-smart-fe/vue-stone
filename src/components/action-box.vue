@@ -4,7 +4,7 @@
       <slot></slot>
     </div>
 
-    <v-mask :value="insideValue"></v-mask>
+    <v-mask v-if="mask" :value="insideValue" @click.native="maskClick"></v-mask>
   </div>
 </template>
 
@@ -20,6 +20,16 @@ export default {
 
   props: {
     value: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    mask: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    maskCloseable: {
       type: Boolean,
       required: false,
       default: false,
@@ -43,6 +53,12 @@ export default {
 
     show() {
       this.insideValue = true;
+    },
+
+    maskClick() {
+      if (this.maskCloseable) {
+        this.insideValue = false;
+      }
     },
   },
 };

@@ -12,7 +12,7 @@
 
       <v-button
       ref="dec"
-      :class="['c-counter-dec', decDisabled ? 'c-counter-left-border' : '']"
+      :class="['c-counter-dec', !disabled ? decDisabled ? 'c-counter-left-border' : '' : '']"
       icon="v-icon-minus"
       size="large"
       :disabled="decDisabled"
@@ -52,7 +52,12 @@
         required: false,
         default: 1,
       },
-      longTap: {
+      // longTap: {
+      //   type: Boolean,
+      //   required: false,
+      //   default: false,
+      // },
+      disabled: {
         type: Boolean,
         required: false,
         default: false,
@@ -72,8 +77,16 @@
       }
 
       // 验证传入数字是否正确
-      verification(this.current, this.max, this.min);
+      verification(this.value, this.max, this.min);
 
+
+      if (!this.disabled) {
+        this.incDisabled = false;
+        this.decDisabled = false;
+      } else {
+        this.incDisabled = true;
+        this.decDisabled = true;
+      }
       if (this.value >= this.max) {
         this.incDisabled = true;
       }
@@ -104,6 +117,7 @@
 
     methods: {
       incHandle() {
+        if (this.disabled) return;
         let value = this.value + this.step;
         if (value > this.max) {
           value = this.max;
@@ -115,6 +129,7 @@
         this.$emit('input', value); // v-model 双向绑定
       },
       decHandle() {
+        if (this.disabled) return;
         let value = this.value - this.step;
         if (value < this.min) {
           value = this.min;

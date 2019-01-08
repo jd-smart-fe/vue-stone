@@ -18,6 +18,31 @@
 ></v-button>
 ```
 
+## 代码演示
+禁用按钮
+```html
+<v-button :disabled="true">禁用按钮</v-button>
+```
+
+按钮大小
+```html
+<v-button>默认按钮</v-button>
+<v-button size="small">小按钮</v-button>
+<v-button size="large">大按钮</v-button>
+```
+
+按钮形状
+```html
+<v-button>默认形状</v-button>
+<v-button radius="circle" @click.native="btnClickHandle">圆角按钮</v-button>
+<v-button radius="circle" icon="v-icon-power"></v-button>
+```
+
+满宽按钮
+```html
+<v-button :full='true'>长按钮</v-button>
+```
+
 ## Options
 
 属性名   |    类型   |     默认值     |     说明

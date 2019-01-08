@@ -18,8 +18,13 @@
     </v-panel>
 
     <v-action-sheet
-      ref="action" v-model="shown" :items="items" @change="updateInfo"></v-action-sheet>
+      :maskCloseable="true"
+      ref="action" v-model="shown" :items="items" @change="updateInfo">
+    </v-action-sheet>
+
+
     <v-action-box
+      :maskCloseable="true"
       v-model="shownBox">
       <div style="background: #fff; padding: .1rem 0;">
         <h1 style="margin-top: 0;">自定义内容</h1>
@@ -51,6 +56,7 @@
     },
 
     mounted() {
+
     },
 
     methods: {
