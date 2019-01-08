@@ -1,6 +1,6 @@
 <template>
-  <div class="v-picker">
-    <div class="v-picker-columns" :style="{height: `${itemHeight * (offsetLine + offsetLine + 1)}px`}">
+  <div class="c-picker">
+    <div class="c-picker-columns" :style="{height: `${itemHeight * (offsetLine + offsetLine + 1)}px`}">
       <div :style="wrapperStyle">
         <ul
           @touchstart="onTouchStart"
@@ -181,7 +181,7 @@ export default {
 
 <style scoped>
 @import '../../src/styles/default-theme/variables.css';
-.v-picker {
+.c-picker {
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
@@ -189,7 +189,7 @@ export default {
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   text-align: center;
-  .v-picker-columns ul {
+  .c-picker-columns ul {
      list-style: none;
       margin: 0;
       padding: 0;
