@@ -72,7 +72,7 @@ export default {
     buttons: {
       type: Array,
       default() {
-        return [{ text: '确定', color: '#59B8FC' }];
+        return [{ text: '确定' }];
       },
     },
     // title color

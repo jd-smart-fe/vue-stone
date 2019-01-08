@@ -288,6 +288,8 @@ export default {
 </script>
 
 <style lang="postcss">
+@import '../styles/default-theme/variables.css';
+
   .c-slide{
     width: 100%;
     overflow: hidden;
@@ -335,7 +337,7 @@ export default {
 
     &.active{
       width: 20px;
-      background-color: rgb(72,163,241);
+      background-color: $c-primary;
     }
   }
 </style>

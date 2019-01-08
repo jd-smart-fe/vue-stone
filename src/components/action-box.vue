@@ -79,10 +79,12 @@ export default {
 
     z-index: 101;
 
-    transition: transform .3s ease-out;
+    transition: all .3s ease-out;
+    opacity: 0;
 
     &.c-action-active{
       transform: translate(0, -100%);
+      opacity: 1;
     }
   }
 </style>

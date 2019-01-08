@@ -215,8 +215,8 @@
       }
 
       &.c-btn-on{
-        color: $t-dayspicker-lightcolor;
-        border-color: $t-dayspicker-lightcolor;
+        color: $c-primary;
+        border-color: $c-primary;
         background: none;
       }
     }
