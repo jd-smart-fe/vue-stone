@@ -107,5 +107,13 @@ $c-checkboard-icon-width: 0.1rem;
 $c-checkboard-icon-height: 0.1rem;
 $c-checkboard-icon-size: 0.14rem;
 
+$c-checkboard-icon-size-round: 0.18rem;
+$c-checkboard-icon-height-round: 0.18rem;
+$c-checkboard-icon-size-round: 0.18rem;
+
+$c-checkboard-icon-size-square: 0.18rem;
+$c-checkboard-icon-height-square: 0.18rem;
+$c-checkboard-icon-size-square: 0.18rem;
+
 /************************  modal   ************************/
 $c-dialog-title: #333;

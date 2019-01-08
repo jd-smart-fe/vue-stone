@@ -13,7 +13,7 @@
         单选
       </div>
       <div slot="body">
-        <v-checkboard v-model="value">
+        <v-checkboard v-model="value" ref="test">
           <div slot="item" data-value="item1">
             item1
           </div>
@@ -68,6 +68,10 @@
     },
 
     mounted() {
+      console.log(this.$refs);
+      this.$refs.test.$on('change', ppp => {
+        console.log(ppp);
+      });
     },
     methods: {
     },
