@@ -69,13 +69,14 @@ data() {
 | input | 当切换选项的时候 | value |
 | change | 当切换选项的时候 | value |
 
-```
+```html
 <v-checkboard v-model="value" :multi="true" ref="box">
   <div slot="item" data-value="realValue">
     this is display value
   </div>
 </v-checkboard>
-
+```
+```js
 this.$refs.box.$on('input', value => {
   console.log(value);
 })
