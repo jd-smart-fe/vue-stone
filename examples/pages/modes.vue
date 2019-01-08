@@ -24,10 +24,9 @@
           v-model="gridActiveId"
           ref="modes"
           more="更多设置"
-          :numberal="3"
-          :items="gridData3"
+          :numberal="4"
+          :items="gridData4"
         ></v-modes>
-        <div class="space"></div>
 
         <!--
         <v-modes v-model="gridActiveId" ref="modes"
@@ -50,6 +49,7 @@
           text: '修改Wifi密码',
           icon: 'mode-holiday',
           id: 1,
+          disabled: true,
         }, {
           text: '黑名单管理',
           icon: 'mode-freeze',
@@ -94,6 +94,7 @@
           text: '智能模式',
           icon: 'mode-smart',
           id: 1,
+          disabled: true,
         }, {
           text: '速冷模式',
           icon: 'mode-cool',
@@ -122,6 +123,7 @@
           text: '假日模式',
           icon: 'mode-holiday',
           id: 8,
+          disabled: true,
         }],
       };
     },
