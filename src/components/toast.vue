@@ -1,13 +1,12 @@
 <template>
   <div :class="['c-toast',
-    icon && 'c-toast-withicon',
+    icon ? 'c-toast-withicon': 'c-toast-onlytext',
     shown ? 'c-toast-show' : 'c-toast-hide']">
 
     <span v-if="icon" :class="['c-toast-icon', `${icon}`,
       icon.indexOf('v-icon-') == 0 && 'icon']"></span>
 
-    <span class="c-toast-text">{{text}}</span>
-  </div>
+    <span class="c-toast-text">{{text}}</span></div>
 </template>
 
 <script>
@@ -111,9 +110,9 @@
 
     background: rgba(0, 0, 0, 0.8);
     border-radius: $l-radius;
-
-    height: 40px;
-    line-height: 40px;
+    
+    /* height: 0.40px;
+    line-height: 40px; */
 
     &.c-toast-withicon {
       width: 100px;
@@ -133,6 +132,14 @@
         height: 30px;
         line-height: 30px;
       }
+    }
+    &.c-toast-onlytext {
+      top: initial;
+      bottom: 10%;
+      /* width: auto;
+      padding:0 5px; */
+      width: auto;
+      padding: 0.145rem 0.305rem;
     }
 
     &.c-toast-hide {
@@ -159,7 +166,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    vertical-align: middle;
     max-width: 100%;
     width: auto;
   }
