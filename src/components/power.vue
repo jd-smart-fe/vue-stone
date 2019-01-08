@@ -49,13 +49,12 @@
     methods: {
 
       handle() {
-        if (this.hold) {
-          this.$emit('change', this.value);
-          return;
-        }
-
         // state: disabled
         if (this.disabled) {
+          return;
+        }
+        if (this.hold) {
+          this.$emit('change', this.value);
           return;
         }
         this._value = !this.value;
@@ -110,10 +109,15 @@
       color: $t-power-oncolor;
     }
 
-    &.is-disable {}
-
     &.is-on {
       background-color: $t-power-oncolor;
+      $(prefix)-icon {
+        color: $t-power-offcolor;
+      }
+    }
+
+    &.is-disabled {
+      background-color: $t-power-disabled;
       $(prefix)-icon {
         color: $t-power-offcolor;
       }

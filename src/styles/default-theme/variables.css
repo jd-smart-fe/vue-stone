@@ -77,6 +77,7 @@ $power-height: 0.45rem;
 
 $t-power-offcolor: #fff;
 $t-power-oncolor: $c-primary;
+$t-power-disabled: #efefef;
 
 /************************  button  ************************/
 $btn-padding-sm: 0.06rem 0.08rem;
