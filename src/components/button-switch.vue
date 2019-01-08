@@ -1,10 +1,15 @@
 <template lang="html">
-  <v-button :size="size" :icon='icon' :radius='radius' :disabled='disabled' :htmlType='htmlType'
-    :class="[
-      insideValue ? 'c-btn-on' : ''
-    ]"
-    @touchend.native="handleTouchend">
-    <slot></slot></v-button>
+  <v-button
+    :size="size"
+    :icon='icon'
+    :radius='radius'
+    :disabled='disabled'
+    :htmlType='htmlType'
+    :class="[insideValue ? 'c-btn-on' : '']"
+    @touchend.native="handleTouchend"
+  >
+    <slot></slot>
+  </v-button>
 </template>
 
 <script>
