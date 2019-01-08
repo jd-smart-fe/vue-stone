@@ -1,7 +1,14 @@
 <template>
 
   <div class="c-panel">
-    <slot name="header"></slot>
+    <slot name="header">
+      <div class="c-panel-header" v-if="title">
+        <div class="c-panel-title">{{title}}
+          <div class="c-panel-description" v-if="description">{{description}}</div>
+        </div>
+        <span class="c-panel-status">{{status}}</span>
+      </div>
+    </slot>
     <slot name="body"></slot>
     <slot name="footer"></slot>
   </div>
@@ -11,6 +18,11 @@
 
   export default {
     name: 'v-panel',
+    props: {
+      title: String,
+      description: String,
+      status: String,
+    },
   };
 </script>
 
@@ -79,5 +91,9 @@
 
   $(prefix)-title {
     font-weight: 500;
+  }
+
+  $(prefix)-status {
+    color: red;
   }
 </style>

@@ -9,6 +9,3 @@ export default {
   name: 'v-button-group',
 };
 </script>
-
-<style>
-</style>

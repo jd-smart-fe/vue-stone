@@ -30,7 +30,7 @@
           ref="input"
           v-model="message1"
           placeholder="未输入时提示内容"
-          hasB=true
+          hasB
         ></v-input>
       </div>
     </v-panel>

@@ -1,6 +1,6 @@
 # Panel
 
-此组件为 CSS 组件。
+此面板组件为 CSS 容器组件，里面可以放入自定义的内容。
 
 ## Usage
 ```html
@@ -22,7 +22,11 @@
 
 ## Options
 
-无
+属性名   |    类型   |     默认值     |     说明
+----    | ----    | ----    | ----    |
+title  | String  | - | 标题
+description  | String | -  | 描述
+status  | String | -  | 状态
 
 ## Events
 
