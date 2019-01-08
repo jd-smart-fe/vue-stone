@@ -34,6 +34,12 @@
       <div slot="footer" class="c-panel-footer "> Panel Footer </div>
     </v-panel>
 
+    <v-panel title="title" description="description" status="status">
+      <div slot="body" class="c-panel-body">
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+      </div>
+    </v-panel>
+
   </div>
 </template>
 
