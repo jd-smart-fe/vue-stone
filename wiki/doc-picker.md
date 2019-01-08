@@ -27,7 +27,6 @@ id | Number | uuid | 组件的id。
 方法名称   |    说明    |    参数    |
 ----    | ----      | ----        |
 change | 滚动完成后会触发此事件 | 当前被激活选项所组成的对象。
-refresh | 刷新组件 | 无。
 setIndex| 设置组件要选中的目标| 如果 `items.displayValues` 的索引。
 
 ---
