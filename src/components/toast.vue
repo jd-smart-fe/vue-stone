@@ -99,7 +99,7 @@
     position:fixed;
     top: 45%;
     left: 50%;
-    min-width: 2.1rem;
+    /* min-width: 2.1rem; */
     width: 80%;
     max-width: 80%;
     transform:translate(-50%,-50%);
@@ -121,6 +121,14 @@
         height: 30px;
         line-height: 30px;
       }
+    }
+    &.c-toast-onlytext {
+      top: initial;
+      bottom: 10%;
+      /* width: auto;
+      padding:0 5px; */
+      width: auto;
+      padding: 0.145rem 0.305rem;
     }
 
     &.c-toast-onlytext {
