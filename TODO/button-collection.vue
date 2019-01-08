@@ -1,26 +1,41 @@
 <template>
   <div class="c-btngroup">
-      <v-button class="c-btngroup-btn" v-for="(item, index) in items"
+    <v-button
+      v-for="(item, index) in buttonGroup1"
       :key="index"
-      ref="btn"
-      type="toggle"
       :size="size"
       :text="item.text"
       :init_status="item.id === value"
+      type="toggle"
       :hold="true"
+      ref="btn"
+      class="c-btngroup-btn"
       @touchend.native="touchendHandle(item.id)"
       @touchcancel.native="touchendHandle(item.id)"
-      ></v-button>
+    >
+    </v-button>
   </div>
 </template>
 
 <script>
 export default {
-
   name: 'v-button-collection',
-
   data() {
     return {
+      buttonGroup1: [
+        {
+          text: '第一个',
+          id: 1,
+        },
+        {
+          text: '第二个',
+          id: 2,
+        },
+        {
+          text: '第三个',
+          id: 3,
+        },
+      ],
     };
   },
 
