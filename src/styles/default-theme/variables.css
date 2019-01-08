@@ -1,9 +1,11 @@
+@import './themes.css';
+
 $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
-$main-color: #59B8FC;
+$main-color: $theme-ff516e;
 
-$c-primary: #59B8FC;
+$c-primary: $theme-ff516e;
 $c-primary-on: #2c99e6;
 /********************  length  ********************/
 $l-radius: 3px;
