@@ -3,7 +3,7 @@
 $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
-$main-color: $theme-ff516e;
+$main-color: $-ff516e;
 
 $c-primary: $theme-ff516e;
 $c-primary-on: #2c99e6;
