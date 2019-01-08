@@ -9,8 +9,6 @@ import './pages/_example_style';
 import TmplBack from './pages/_tmpl_back';
 
 const list = [{
-  name: 'timer',
-}, {
   name: '404',
 }, {
   name: 'button',
@@ -42,8 +40,6 @@ const list = [{
   name: 'timepicker',
 }, {
   name: 'switch',
-}, {
-  name: 'transition',
 }, {
   name: 'toast',
 }, {

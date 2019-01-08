@@ -108,14 +108,14 @@
           <span class='icon v-icon-mode-smart'></span>
         </div>
       </div>
-      <div slot="body" class="c-panel-body u-cross-center" @click="go('transition')">
+      <!-- <div slot="body" class="c-panel-body u-cross-center" @click="go('transition')">
         <div > Transition </div>
         <span class='icon v-icon-pull-right'></span>
-      </div>
-      <div slot="body" class="c-panel-body u-cross-center" @click="go('timer')">
+      </div> -->
+      <!-- <div slot="body" class="c-panel-body u-cross-center" @click="go('timer')">
         <div > Timer </div>
         <span class='icon v-icon-pull-right'></span>
-      </div>
+      </div> -->
       <div slot="body" class="c-panel-body u-cross-center" @click="go('counter')">
         <div > Counter </div>
         <span class='icon v-icon-pull-right'></span>
