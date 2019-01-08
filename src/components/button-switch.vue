@@ -111,7 +111,7 @@ export default {
 
 .c-btn.c-btn-on{
   color: $white;
-  background-color: $blue;
+  background-color: $c-primary-on;
 
   &.c-btn-disabled {
     opacity: .6;
