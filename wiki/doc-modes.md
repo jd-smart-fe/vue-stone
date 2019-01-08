@@ -1,5 +1,5 @@
 # Modes
-
+卡片样式选择设备模式
 ## Release Notes
 
 - v0.5.1: 修改 icon 属性的入参，现在需要传入完整的 icon 样式类名。
@@ -23,6 +23,7 @@ items: [{
     text: '标准加热',   // 按钮文案
     icon: 'v-icon-mode-holiday',    // 按钮图标   需引入组件图标库
     id: 1,    // 按钮唯一 id
+    disabled: true // 是否禁用当前模式，默认不禁用
   }, {
     text: '快速加热',   // 按钮文案
     icon: 'v-icon-mode-holiday',   // 按钮图标     需引入组件图标库
