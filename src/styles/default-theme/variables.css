@@ -4,9 +4,9 @@ $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
 /* 主题色 */
-$main-color: $theme-ff516e;
-$c-primary: $theme-ff516e;
-$c-primary-on: $theme-ff516e;
+$main-color: $theme-59b8fc;
+$c-primary: $theme-59b8fc;
+$c-primary-on: $theme-59b8fc;
 /********************  length  ********************/
 $l-radius: 3px;
 
