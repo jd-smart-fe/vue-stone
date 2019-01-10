@@ -29,5 +29,6 @@ module.exports = {
     'control-center',
     'search',
     'textarea',
+    'icon',
   ],
 };

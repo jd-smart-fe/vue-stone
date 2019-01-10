@@ -2,18 +2,17 @@
 
 一个时间选择器，只能选择 时 和 分。
 
+## Tag Name
+`v-icon`
+
 ## Usage
 ```html
-<v-timepicker :hour="10" :min="30"></v-timepicker>
+ <v-icon name="icon-large-volume" size="12px" color="#f0f"></v-icon>
 ```
 
 ## Options
-属性名   |    类型      |     默认值     |     说明
-----    | ----         | ----    | ----    |
-hour    |  Number     |  0  |   设置初始的 小时
-min     |  Number     |  0  |   设置初始的 分钟
-
-## Event
-事件名称   |    说明      |     参数
-----    | ----         | ----    |
-change  |  滑动完成后触发此事件 | 滑动完成后最新的选择时间  例：`{displayValue: [1, 2], value: [1, 2]}`
+| 属性名 | 类型 | 默认值 | 说明 |
+| ---- | ---- | ---- | ---- |
+| name | String | '' | 设置icon的名字 |
+| size | String | '' | 设置字体图标的大小，例如: '12rem' |
+| color | String | $c-primary | 设置字体图标的颜色，默认是主题色, 例如: '#000' |
