@@ -96,8 +96,7 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 - [Toast](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-toast.md)
 - [Control-center](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-control-center.md)
 - [Search](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-search.md)
-- [Textarea](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-textarea.md)
-- [Icon](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-icon.md)
+- [Textarea](https://github.com/JD-Smart-FE/vue-stone/blob/next/wiki/doc-textarea.md)
 ## Contribute
 
 贡献代码请遵循[代码贡献规范](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/contribute-guide.md)
