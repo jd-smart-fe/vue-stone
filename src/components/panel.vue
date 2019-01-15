@@ -31,8 +31,8 @@
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  $fullwidth: 97.5%;
-  $padding: 3.75%;
+  $fullwidth: 96.8%;
+  $padding: 3.325%;
   $desc-padding: 2.5%;
   $prefix: .c-panel;
 

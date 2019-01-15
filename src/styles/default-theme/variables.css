@@ -7,16 +7,24 @@ $main-width: 3.12rem;   /* 0.26 * 12 */
 $main-color: $theme-59b8fc;
 $c-primary: $theme-59b8fc;
 $c-primary-on: $theme-59b8fc;
+
 /********************  length  ********************/
 $l-radius: 3px;
 
 /********************  font size  ********************/
-$font-size-xs:   10px;
+/* $font-size-xs:   10px;
 $font-size-sm:   12px;
 $font-size-base: 14px;
 $font-size-lg:   16px;
 $font-size-xl:   18px;
-$font-size-32:   32px;
+$font-size-32:   32px; */
+
+$font-size-xs:   0.1rem;
+$font-size-sm:   0.12rem;
+$font-size-base: 0.14rem;
+$font-size-lg:   0.16rem;
+$font-size-xl:   0.18rem;
+$font-size-32:   0.32rem;
 
 
 /********************  color  ********************/
@@ -61,17 +69,17 @@ $t-range-lightcolor: $c-primary;
 
 /************************  switch   ************************/
 
-$switch-width: 0.58rem;
-$switch-height: 0.28rem;
-$switch-background-color-off: #d5d5d5;
+$switch-width: .60rem;
+$switch-height: .32rem;
+$switch-background-color-off: $theme-d5d5d5;
 $switch-background-color-on: $c-primary;
 
-$switch-btn-width: .22rem;
-$switch-btn-height: .22rem;
+$switch-btn-width: .26rem;
+$switch-btn-height: .26rem;
 $switch-btn-background-color: #fff;
 
-$switch-transform-x-off: .04rem;
-$switch-transform-x-on: 0.32rem;
+$switch-transform-x-off: .03rem;
+$switch-transform-x-on: .31rem;
 
 /************************  power   ************************/
 $power-width: 0.45rem;
