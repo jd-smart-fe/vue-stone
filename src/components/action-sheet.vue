@@ -134,14 +134,10 @@ export default {
     left: 0;
     right: 0;
     margin: auto;
-
     text-align: center;
-    font-size: 18px;
-
+    font-size: .16rem;
     width: 100%;
-
     z-index: 101;
-
     transition: transform .3s ease-out;
 
     &.c-action-active{
@@ -150,17 +146,16 @@ export default {
 
     .c-action-sheet-warpper{
       background: #fff;
-      border-radius: 4px;
+      border-radius: .04rem;
       margin: 0 .05rem;
-      margin-bottom: 12px;
+      margin-bottom: .05rem;
 
       > div{
-        padding: 12px;
+        padding: .21rem;
       }
     }
 
     .c-action-sheet-item{
-
       + .c-action-sheet-item{
         border-top: 1px solid #999;
       }

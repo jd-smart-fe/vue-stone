@@ -32,8 +32,4 @@
 
   @import '../styles/default-theme/variables.css';
 
-  .icon{
-    color: $c-primary;
-  }
-
 </style>
