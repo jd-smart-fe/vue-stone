@@ -82,8 +82,8 @@ $switch-transform-x-off: .03rem;
 $switch-transform-x-on: .31rem;
 
 /************************  power   ************************/
-$power-width: 0.45rem;
-$power-height: 0.45rem;
+$power-width: 0.4rem;
+$power-height: 0.4rem;
 
 $t-power-offcolor: #fff;
 $t-power-oncolor: $c-primary;
