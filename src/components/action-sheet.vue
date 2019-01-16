@@ -129,20 +129,19 @@ export default {
 
 <style lang="css">
   .c-action{
-    position: fixed;
+    /* position: fixed;
     top: 100%;
     left: 0;
     right: 0;
     margin: auto;
     text-align: center;
-    font-size: .16rem;
     width: 100%;
     z-index: 101;
     transition: transform .3s ease-out;
 
     &.c-action-active{
       transform: translate(0, -100%);
-    }
+    } */
 
     .c-action-sheet-warpper{
       background: #fff;

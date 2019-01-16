@@ -1,6 +1,6 @@
 @import './themes.css';
 
-$grid-size: 0.26rem;    /* 12 grid */
+$grid-size: 0.3rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
 /* 主题色 */
@@ -32,7 +32,7 @@ $gray-dark: #333;
 $gray: #666;
 $gray-light: #999;
 $gray-lighter: #ccc;
-$gray-lightest: #eee;
+$gray-lightest: #eaeaea;
 $white: #fff;
 $blue: #59B8FC;
 $orange: #f76b46;

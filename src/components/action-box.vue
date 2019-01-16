@@ -75,7 +75,7 @@ export default {
     width: 100%;
 
     text-align: center;
-    font-size: inherit;
+    font-size: 0.16rem;
 
     z-index: 101;
 
