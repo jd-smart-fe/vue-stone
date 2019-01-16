@@ -157,7 +157,7 @@ export default {
 
     .c-action-sheet-item{
       + .c-action-sheet-item{
-        border-top: 1px solid #999;
+        border-top: 1px solid #eaeaea;
       }
     }
   }
