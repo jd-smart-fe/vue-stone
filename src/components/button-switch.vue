@@ -7,6 +7,7 @@
     :htmlType='htmlType'
     :class="[insideValue ? 'c-btn-on' : '']"
     @touchend.native="handleTouchend"
+    :style="{'border-color': borderColor && !insideValue ? borderColor: ''}"
   >
     <slot></slot>
   </v-button>
@@ -56,6 +57,12 @@ export default {
     syncHold: {
       type: Boolean,
       default: false,
+    },
+    // 给添加一个borderColor, 进行颜色配置;
+    borderColor: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
 
@@ -107,11 +114,13 @@ export default {
 
 .c-btn.c-btn-hover.c-btn-on{
   background-color: $c-primary-on;
+  border-color: $c-primary-on;
 }
 
 .c-btn.c-btn-on{
   color: $white;
   background-color: $c-primary-on;
+  border-color: $c-primary-on;
 
   &.c-btn-disabled {
     opacity: .6;
