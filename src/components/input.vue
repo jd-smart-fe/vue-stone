@@ -152,6 +152,8 @@
   }
 
   .c-input-closebox {
+    display: flex;
+    align-items: center;
     width: $font-size-xl;
   }
 
@@ -166,13 +168,14 @@
     -webkit-user-select:auto;
     background: none;
     border: 0;
-    font: 16px/22px arial;
+    font: 0.16rem/0.22rem arial;
     outline:none;
     padding: 1px 0;
     padding-right: 0.06rem;
     width: 100%;
   }
   .c-input.can-clear{
+    
     .c-input-closebox{
       display: none;
     }
