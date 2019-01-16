@@ -113,17 +113,19 @@ export default {
 
 
 .c-btn.c-btn-hover.c-btn-on{
-  background-color: $c-primary-on;
-  border-color: $c-primary-on;
+  background-color: $c-primary;
+  border-color: $c-primary;
 }
 
-.c-btn.c-btn-on{
-  color: $white;
-  background-color: $c-primary-on;
-  border-color: $c-primary-on;
-
+.c-btn{
   &.c-btn-disabled {
     opacity: .6;
   }
+  &.c-btn-on{
+    color: $white;
+    background: $c-primary;
+    border-color: $c-primary;
+  }
 }
+
 </style>

@@ -4,9 +4,9 @@ $grid-size: 0.26rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
 /* 主题色 */
-$main-color: $theme-59b8fc;
-$c-primary: $theme-59b8fc;
-$c-primary-on: $theme-59b8fc;
+$main-color: $theme-45a3f1;
+$c-primary: $theme-45a3f1;
+$c-primary-on: $theme-45a3f1;
 
 /********************  length  ********************/
 $l-radius: 3px;
@@ -44,12 +44,12 @@ $orange: #f76b46;
 
 /********************  dayspicker  ********************/
 
-$dayspicker-item-width: 0.54rem;
-$dayspicker-item-height: 0.26rem;
+$dayspicker-item-width: 0.6rem;
+$dayspicker-item-height: 0.28rem;
 $dayspicker-item-radius: 4px;
 $dayspicker-padding-y: 0.12rem;
 
-$t-dayspicker-font-size: $font-size-sm;
+$t-dayspicker-font-size: $font-size-base;
 $t-dayspicker-defcolor: $gray-light;
 $t-dayspicker-lightcolor: $blue;
 

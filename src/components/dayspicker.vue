@@ -202,7 +202,7 @@
       border-color: $t-dayspicker-defcolor;
       color: $t-dayspicker-defcolor;
       box-sizing: border-box;
-      margin-left:0.1rem;
+      margin-left:0.06rem;
       float:left;
       padding: 0;
       width: $dayspicker-item-width;
@@ -213,7 +213,6 @@
         height: $dayspicker-item-height;
         border-radius: $dayspicker-item-radius;
       }
-
       &.c-btn-on{
         color: $c-primary;
         border-color: $c-primary;
@@ -222,17 +221,18 @@
     }
   }
   .c-dayspicker-quick{
-    padding:$dayspicker-padding-y 0;
+    padding: 0.16rem 0;
     overflow:hidden;
-    margin-left: -0.1rem;
+    margin-left: -0.04rem;
+    margin-top: -3.325%;
   }
   .c-dayspicker-body{
-    padding:0 0 $dayspicker-padding-y 0;
+    padding:0.08rem 0 0.12rem 0;
     overflow:hidden;
-    margin-left: -0.1rem;
+    margin-left: -0.04rem;
 
     .c-btn{
-      margin-top:$dayspicker-padding-y;
+      margin-top:0.16rem;
     }
   }
   .c-dayspicker-line {

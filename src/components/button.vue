@@ -181,9 +181,9 @@ export default {
 
 .c-btn-radius-circle {
   border-radius: 999rem;
-  padding-top: .08rem;
-  padding-bottom: 0.08rem;
-  min-width: 0.9rem;
+  /* padding-top: .08rem; */
+  /* padding-bottom: 0.08rem; */
+  /* min-width: 0.9rem; */
 }
 
 .c-btn-content {
