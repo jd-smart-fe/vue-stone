@@ -1,6 +1,6 @@
 <template>
   <div class="c-picker">
-    <div class="c-picker-columns" :style="{height: `${itemHeight * (offsetLine + offsetLine + 1)}px`}">
+    <div class="c-picker-columns" :style="{height: `${itemHeight * (offsetLine + offsetLine + 1)}rem`}">
       <div :style="wrapperStyle">
         <ul
           @touchstart="onTouchStart"
@@ -8,19 +8,19 @@
           @touchend="onTouchEnd"
           @touchcancel="onTouchEnd"
         >
-          <li v-for="index in offsetLine" :key="index" :style="{height: `${itemHeight}px`}"></li>
+          <li v-for="index in offsetLine" :key="index" :style="{height: `${itemHeight}rem`}"></li>
           <li
-          :style="{height: `${itemHeight}px`, lineHeight: `${itemHeight}px`}"
+          :style="{height: `${itemHeight}rem`, lineHeight: `${itemHeight}rem`}"
           v-for="(item, index) in innerItems.displayValues"
           :key="index + offsetLine + 1"
           :class="[disableds.indexOf(index) >= 0 ? 'c-picker-disabled' : '']"
           >{{item}}</li>
-          <li v-for="index in offsetLine" :key="innerItems.displayValues.length + offsetLine + index" :style="{height: `${itemHeight}px`}"></li>
+          <li v-for="index in offsetLine" :key="innerItems.displayValues.length + offsetLine + index" :style="{height: `${itemHeight}rem`}"></li>
         </ul>
 
       </div>
-      <div class="c-picker-mask-top" :style="{height: `${itemHeight * offsetLine}px`}"></div>
-      <div class="c-picker-mask-bottom" :style="{height: `${itemHeight * offsetLine}px`}"></div>
+      <div class="c-picker-mask-top" :style="{height: `${itemHeight * offsetLine}rem`}"></div>
+      <div class="c-picker-mask-bottom" :style="{height: `${itemHeight * offsetLine}rem`}"></div>
   </div>
   </div>
 
@@ -29,8 +29,8 @@
 <script>
 
 const DURATION = 200;
-const ITEM_HEIGHT = 30;
-const OFFSET_LINE = 3;
+const ITEM_HEIGHT = 0.6;
+const OFFSET_LINE = 2;
 const uuid = () => {
   const s = [];
   const hexDigits = '0123456789abcdef';
@@ -83,8 +83,8 @@ export default {
     wrapperStyle() {
       return {
         transition: `${this.duration}ms`,
-        transform: `translate3d(0, ${this.offset}px, 0)`,
-        lineHeight: `${this.itemHeight}'px'`,
+        transform: `translate3d(0, ${this.offset}rem, 0)`,
+        lineHeight: `${this.itemHeight}'rem'`,
       };
     },
     innerItems() {
@@ -117,7 +117,7 @@ export default {
       this.duration = 0;
     },
     onTouchMove(event) {
-      const deltaY = event.touches[0].clientY - this.startY;
+      const deltaY = (event.touches[0].clientY - this.startY) / 100;
       this.offset = this.range(
         this.startOffset + deltaY,
         -(this.count * this.itemHeight),
@@ -202,9 +202,9 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  /* height: calc(calc(40px) * 2 - 1px); */
+  /* height: calc(calc(40rem) * 2 - 1rem); */
   background-color: rgba(255, 255, 255, 0.6);
-  border-bottom: 1px solid #ccc;
+  border-bottom: .01rem solid #ccc;
   pointer-events: none;
 }
 .c-picker-mask-bottom {
@@ -213,7 +213,7 @@ export default {
   left: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.6);
-  border-top: 1px solid #ccc;
+  border-top: .01rem solid #ccc;
   pointer-events: none;
 }
 .c-picker-disabled {
