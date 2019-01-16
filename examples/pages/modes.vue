@@ -24,7 +24,8 @@
           v-model="gridActiveId"
           ref="modes"
           more="更多设置"
-          :numberal="4"
+          :numberal="3"
+          :iconup = "true"
           :items="gridData4"
         ></v-modes>
 
@@ -92,24 +93,24 @@
 
         gridData4: [{
           text: '智能模式',
-          icon: 'mode-smart',
+          icon: 'icon-safe-socket',
           id: 1,
           disabled: true,
         }, {
           text: '速冷模式',
-          icon: 'mode-cool',
+          icon: 'icon-mode-cool',
           id: 2,
         }, {
           text: '速冻模式',
-          icon: 'mode-freeze',
+          icon: 'icon-mode-freeze',
           id: 3,
         }, {
           text: '假日模式',
-          icon: 'mode-holiday',
+          icon: 'icon-mode-holiday',
           id: 4,
         }, {
           text: '智能模式',
-          icon: 'mode-smart',
+          icon: 'icon-memory-socket',
           id: 5,
         }, {
           text: '速冷模式',

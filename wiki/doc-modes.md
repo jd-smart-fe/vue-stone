@@ -16,6 +16,8 @@ v-model |  number  |  -1  |  当前激活的按钮id
 numberal |  number | 4  |  每行显示的按钮数量，可为 2，3，4
 more  |  String  |  '' |  展开面板按钮上的提示文案
 items | Array |  必传参数 | 配置每个按钮，下面会详细介绍
+iconup | Boolean |  false | 配置icon与text布局默认false,为row布局 反之column布局
+
 
 注：
 ```js

@@ -23,6 +23,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-memory-socket:before {
+  content: "\e93e";
+}
+.icon-safe-socket:before {
+  content: "\e93f";
+}
+.icon-auto-socket:before {
+  content: "\e940";
+}
 .icon-large-volume:before {
   content: "\e93a";
 }
@@ -44,10 +53,6 @@
 }
 .icon-range-large:before {
   content: "\e937";
-}
-.icon-mode-auto:before {
-  content: "\e92b";
-  color: #fff;
 }
 .icon-mode-dry:before {
   content: "\e930";
@@ -214,10 +219,4 @@
 }
 .icon-mode-freeze:before {
   content: "\e915";
-}
-.icon-checkbox-checked:before {
-  content: "\ea52";
-}
-.icon-checkbox-unchecked:before {
-  content: "\ea53";
 }

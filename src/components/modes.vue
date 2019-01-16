@@ -2,7 +2,7 @@
 
   <div class="c-mode-container">
 
-    <div :class="['c-mode', `c-mode-${numberal}`]" >
+    <div :class="['c-mode', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}`]" >
 
       <div
         v-for="(item) in defaultItems"
@@ -19,7 +19,7 @@
     <template v-if="!!extraItems.length">
       <transition name="fade">
         <div v-show="extraShow"
-          :class="['c-mode', 'c-mode-more', `c-mode-${numberal}`]" >
+          :class="['c-mode', 'c-mode-more', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}` ]" >
           <div
             v-for="(item) in extraItems"
             :key="item.id"
@@ -51,7 +51,6 @@
   export default {
     name: 'v-modes',
     props: {
-
       value: {
         type: Number,
         required: false,
@@ -64,6 +63,10 @@
       numberal: {
         type: Number,
         default: 4,     // 2, 3
+      },
+      iconup: {
+        type: Boolean,
+        default: false,     // 2, 3
       },
       more: {
         type: String,
@@ -150,7 +153,40 @@
     }
   }
 
+.c-mode-iconup-4 {
+    .c-mode-item {
+      flex-direction: column;
+      width: calc(100% / 4);
+      height: calc($grid-size * 3);
+    }
+    .c-mode-item-icon {
+      margin-bottom: 0.1rem;
+    }
+    .c-mode-item:nth-child(4n + 1) {
+      border-left-width: 0;
+    }
+  }
+
+
   @for $i from 2 to 3 {
+    .c-mode-iconup-$i {
+      .c-mode-item {
+        flex-direction: column;
+        width: calc(100% / $i);
+        height: calc($grid-size * 3);
+        &:nth-child($(i)n+1) {
+          border-left-width: 0;
+        }
+      }
+      .c-mode-item-icon {
+        margin: 0.1rem 0.1rem 0.12rem 0.1rem;
+        /* margin-right: 0.1rem; */
+      }
+    }
+  }
+
+
+   @for $i from 2 to 3 {
     .c-mode-$i {
       .c-mode-item {
         width: calc(100% / $i);
