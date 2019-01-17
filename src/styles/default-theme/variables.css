@@ -120,10 +120,12 @@ $c-checkboard-icon-size: 0.14rem;
 
 $c-checkboard-icon-size-round: 0.18rem;
 $c-checkboard-icon-height-round: 0.18rem;
+$c-checkboard-icon-width-round: 0.18rem;
 $c-checkboard-icon-size-round: 0.18rem;
 
 $c-checkboard-icon-size-square: 0.18rem;
 $c-checkboard-icon-height-square: 0.18rem;
+$c-checkboard-icon-width-square: 0.18rem;
 $c-checkboard-icon-size-square: 0.18rem;
 
 /************************  modal   ************************/
