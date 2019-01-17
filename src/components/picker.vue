@@ -29,7 +29,7 @@
 <script>
 
 const DURATION = 200;
-const ITEM_HEIGHT = 0.6;
+const ITEM_HEIGHT = 0.45;
 const OFFSET_LINE = 2;
 const uuid = () => {
   const s = [];
