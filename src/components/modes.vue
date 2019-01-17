@@ -165,6 +165,9 @@
     .c-mode-item:nth-child(4n + 1) {
       border-left-width: 0;
     }
+    .c-mode-item:last-child {
+      border-right: 1px solid $gray-lightest;
+    }
   }
 
 
