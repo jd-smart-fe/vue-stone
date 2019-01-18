@@ -2,13 +2,25 @@
 
   <div class="c-mode-container">
 
-    <div :class="['c-mode', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}`]" >
+    <div v-if="single" :class="['c-mode', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}`]" >
 
       <div
         v-for="(item) in defaultItems"
         :key="item.id"
         :class="['c-mode-item', {
           'c-mode-item-active': value == item.id,
+        },{'c-mode-item-disabled': item.disabled}]"
+        @click="handle(item)">
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
+        <span class="c-mode-item-text">{{item.text}}</span>
+      </div>
+    </div>
+    <div v-else  :class="['c-mode', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}`]" >
+      <div
+        v-for="(item) in defaultItems"
+        :key="item.id"
+        :class="['c-mode-item', {
+          'c-mode-item-active': item.active,
         },{'c-mode-item-disabled': item.disabled}]"
         @click="handle(item)">
         <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
@@ -56,6 +68,11 @@
         required: false,
         default: -1,
       },
+      types: {
+        type: String,
+        required: false,
+        default: 'Single',
+      },
       items: {
         type: Array,
         required: true,
@@ -77,10 +94,16 @@
     data() {
       return {
         extraShow: false,
+        actionItems: false,
       };
     },
-
+    created() {
+      console.log(this.types);
+    },
     computed: {
+      single() {
+        return this.types === 'Single';
+      },
       total() {
         return this.items.length;
       },
@@ -93,14 +116,15 @@
     },
 
     methods: {
-
       handle(item) {
         if (item.disabled) {
           return false;
         }
         const val = item.id;
+        item.active = !item.active;
         this.$emit('input', val);
         this.$emit('change', val, item);
+        this.$emit('activechange', val, item);
         return true;
       },
     },

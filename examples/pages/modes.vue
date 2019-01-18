@@ -15,17 +15,24 @@
       </div>
       <div slot="body" class="c-panel-body u-without-padding">
 
-        <!--  <v-modes v-model="gridActiveId" ref="modes"
+         <!-- <v-modes v-model="gridActiveId" ref="modes"
           :numberal="2" more="更多设置" :items="gridData2"
         ></v-modes>
         <div class="space"></div> -->
 
-        <v-modes
+          <!-- <v-modes
+          ref="modes"
+          :numberal="3"
+          :iconup = "true"
+          :items="gridData5"
+          :types = "typemode"
+        ></v-modes> -->
+
+         <v-modes
           v-model="gridActiveId"
           ref="modes"
           more="更多设置"
           :numberal="3"
-          :iconup = "true"
           :items="gridData4"
         ></v-modes>
 
@@ -42,9 +49,9 @@
 
   export default {
     name: 'Modes',
-
     data() {
       return {
+        typemode: 'M',
         gridActiveId: 2,
         gridData2: [{
           text: '修改Wifi密码',
@@ -64,7 +71,24 @@
           icon: 'mode-freeze',
           id: 4,
         }],
-
+        gridData5: [{
+          id: 0,
+          text: '修改Wifi密码',
+          active: true,
+          disabled: true,
+        }, {
+          text: '黑名单管理',
+          active: true,
+          id: 1,
+        }, {
+          text: '修改Wifi密码',
+          active: true,
+          id: 2,
+        }, {
+          text: '黑名单管理',
+          active: false,
+          id: 3,
+        }],
         gridData3: [{
           text: '标准加热',
           icon: 'icon-mode-holiday',
@@ -133,6 +157,11 @@
       this.$refs.modes.$on('change', (state) => {
         console.log(`设备当前所选模式id: ${state}`);
       });
+      this.$refs.modes.$on('activechange', (state, item) => {
+        console.log(`设备当前所选模式id: ${state}`);
+        console.log(`设备当前所选模式id: ${item}`);
+      });
+
     },
 
     methods: {
