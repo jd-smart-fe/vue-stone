@@ -223,7 +223,7 @@ export default {
         &:after {
           content: "\ea53";
           font-size: $c-checkboard-icon-size-square;
-          width: $c-checkboard-icon-width;
+          width: $c-checkboard-icon-width-square;
           height: $c-checkboard-icon-height-square;
           line-height: $c-checkboard-icon-height-square;
         }
