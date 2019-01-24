@@ -72,6 +72,11 @@
         <v-icon name='icon-checkbox-checked'></v-icon>
         <v-icon name='icon-checkbox-unchecked'></v-icon>
         <v-icon name='icon-mode-auto'></v-icon>
+        <v-icon name='icon-sleep_kt'></v-icon>
+        <v-icon name='icon-auto_kongtiao'></v-icon>
+        <v-icon name='icon-code-wind'></v-icon>
+        <v-icon name='icon-ordinary'></v-icon>
+        <v-icon name='icon-soft'></v-icon>
       </div>
     </v-panel>
   </div>

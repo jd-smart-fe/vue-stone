@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/fonts/iconfont.ttf?p2cjtz') format('truetype'),
-    url('../styles/fonts/fonts/iconfont.woff?p2cjtz') format('woff'),
-    url('../styles/fonts/fonts/iconfont.svg?p2cjtz#iconfont') format('svg');
+    url('../styles/fonts/fonts/iconfont.ttf?mvr7ah') format('truetype'),
+    url('../styles/fonts/fonts/iconfont.woff?mvr7ah') format('woff'),
+    url('../styles/fonts/fonts/iconfont.svg?mvr7ah#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +23,21 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-sleep_kt:before {
+  content: "\e943";
+}
+.icon-auto_kongtiao:before {
+  content: "\e944";
+}
+.icon-code-wind:before {
+  content: "\e92b";
+}
+.icon-ordinary:before {
+  content: "\e941";
+}
+.icon-soft:before {
+  content: "\e942";
+}
 .icon-memory-socket:before {
   content: "\e93e";
 }
@@ -219,4 +234,10 @@
 }
 .icon-mode-freeze:before {
   content: "\e915";
+}
+.icon-checkbox-checked:before {
+  content: "\ea52";
+}
+.icon-checkbox-unchecked:before {
+  content: "\ea53";
 }
