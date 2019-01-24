@@ -7,9 +7,9 @@
 
       <div slot="body" class="c-panel-body">
         <v-icon name="icon-large-volume"></v-icon>
-        <v-icon name='icon-large-volume'></v-icon>
         <v-icon name='icon-small-volume'></v-icon>
         <v-icon name='icon-mode-sleep'></v-icon>
+        <v-icon name='icon-automatic'></v-icon>
         <v-icon name='icon-mode-automatic'></v-icon>
         <v-icon name='icon-more'></v-icon>
         <v-icon name='icon-range-small'></v-icon>
@@ -71,12 +71,37 @@
         <v-icon name='icon-mode-freeze'></v-icon>
         <v-icon name='icon-checkbox-checked'></v-icon>
         <v-icon name='icon-checkbox-unchecked'></v-icon>
-        <v-icon name='icon-mode-auto'></v-icon>
-        <v-icon name='icon-sleep_kt'></v-icon>
-        <v-icon name='icon-auto_kongtiao'></v-icon>
         <v-icon name='icon-code-wind'></v-icon>
         <v-icon name='icon-ordinary'></v-icon>
         <v-icon name='icon-soft'></v-icon>
+        <v-icon name='icon-alert'></v-icon>
+        <v-icon name='icon-light-low'></v-icon>
+        <v-icon name='icon-light-high'></v-icon>
+        <v-icon name='icon-romance'></v-icon>
+        <v-icon name='icon-rest'></v-icon>
+        <v-icon name='icon-read'></v-icon>
+        <v-icon name='icon-film'></v-icon>
+        <v-icon name='icon-defined'></v-icon>
+        <v-icon name='icon-air-supply'></v-icon>
+        <v-icon name='icon-wet'></v-icon>
+        <v-icon name='icon-super-strong'></v-icon>
+        <v-icon name='icon-power-saving'></v-icon>
+        <v-icon name='icon-health'></v-icon>
+        <v-icon name='icon-cooling'></v-icon>
+        <v-icon name='icon-airchange'></v-icon>
+        <v-icon name='icon-smart'></v-icon>
+        <v-icon name='icon-heating'></v-icon>
+        <v-icon name='icon-planning'></v-icon>
+        <v-icon name='icon-fixed-point'></v-icon>
+        <v-icon name='icon-arch'></v-icon>
+        <v-icon name='icon-strong'></v-icon>
+        <v-icon name='icon-focus'></v-icon>
+        <v-icon name='icon-sleep'></v-icon>
+        <v-icon name='icon-mode-sleep'></v-icon>
+        <v-icon name='icon-auto'></v-icon>
+        <v-icon name='icon-mode-auto'></v-icon>
+        <v-icon name='icon-memory'></v-icon>
+        <v-icon name='icon-safe'></v-icon>
       </div>
     </v-panel>
   </div>

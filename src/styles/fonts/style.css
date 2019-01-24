@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'iconfont';
   src:
-    url('../styles/fonts/fonts/iconfont.ttf?mvr7ah') format('truetype'),
-    url('../styles/fonts/fonts/iconfont.woff?mvr7ah') format('woff'),
-    url('../styles/fonts/fonts/iconfont.svg?mvr7ah#iconfont') format('svg');
+    url('../styles/fonts/fonts/iconfont.ttf?h3klnm') format('truetype'),
+    url('../styles/fonts/fonts/iconfont.woff?h3klnm') format('woff'),
+    url('../styles/fonts/fonts/iconfont.svg?h3klnm#iconfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,10 +23,88 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-alert:before {
+  content: "\e945";
+}
+.icon-light-low:before {
+  content: "\e946";
+}
+.icon-light-high:before {
+  content: "\e947";
+}
+.icon-romance:before {
+  content: "\e948";
+}
+.icon-rest:before {
+  content: "\e949";
+}
+.icon-read:before {
+  content: "\e94a";
+}
+.icon-film:before {
+  content: "\e94b";
+}
+.icon-defined:before {
+  content: "\e94c";
+}
+.icon-air-supply:before {
+  content: "\e94d";
+}
+.icon-wet:before {
+  content: "\e94e";
+}
+.icon-super-strong:before {
+  content: "\e94f";
+}
+.icon-power-saving:before {
+  content: "\e950";
+}
+.icon-health:before {
+  content: "\e951";
+}
+.icon-cooling:before {
+  content: "\e952";
+}
+.icon-airchange:before {
+  content: "\e953";
+}
+.icon-smart:before {
+  content: "\e954";
+}
+.icon-heating:before {
+  content: "\e955";
+}
+.icon-planning:before {
+  content: "\e956";
+}
+.icon-fixed-point:before {
+  content: "\e957";
+}
+.icon-arch:before {
+  content: "\e958";
+}
+.icon-strong:before {
+  content: "\e959";
+}
+.icon-focus:before {
+  content: "\e95a";
+}
 .icon-sleep_kt:before {
   content: "\e943";
 }
-.icon-auto_kongtiao:before {
+.icon-sleep:before {
+  content: "\e943";
+}
+.icon-memory-socket:before {
+  content: "\e93e";
+}
+.icon-safe-socket:before {
+  content: "\e93f";
+}
+.icon-auto-socket:before {
+  content: "\e940";
+}
+.icon-auto:before {
   content: "\e944";
 }
 .icon-code-wind:before {
@@ -38,13 +116,13 @@
 .icon-soft:before {
   content: "\e942";
 }
-.icon-memory-socket:before {
+.icon-memory:before {
   content: "\e93e";
 }
-.icon-safe-socket:before {
+.icon-safe:before {
   content: "\e93f";
 }
-.icon-auto-socket:before {
+.icon-mode-auto:before {
   content: "\e940";
 }
 .icon-large-volume:before {
