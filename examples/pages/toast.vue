@@ -56,7 +56,7 @@ export default {
     },
 
     showLoading() {
-      this.$loading.show({ mask: true, text: '正在控制', pos: 'center', duration: 5000 });
+      this.$loading.show({ mask: true, text: '正在控制' });
 
     },
 
