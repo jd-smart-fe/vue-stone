@@ -66,7 +66,7 @@ process.on('message', async (val) => {
       await generateThemeConfigFile(targetObj.variables, vueStonePath);
     }
   } else {
-    console.log('false');
+    // console.log('false');
   }
   process.exit();
 });
@@ -114,6 +114,7 @@ const replaceThemeColor = async (vueStonePath, absolutePath) => {
     }
 
   }
+  return false;
 }
 const generateThemeConfigFile = async (obj, vueStonePath) => {
   const themeConfigPath = path.join(vueStonePath, 'config', 'theme.js');
