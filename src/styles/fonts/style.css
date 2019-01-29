@@ -134,6 +134,9 @@
 .icon-mode-sleep:before {
   content: "\e93c";
 }
+.icon-automatic:before {
+  content: "\e93d";
+}
 .icon-mode-automatic:before {
   content: "\e93d";
 }
