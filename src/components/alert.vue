@@ -88,7 +88,7 @@ export default {
         }
 
         if (!buttonNoChange) {
-          this.button = button;
+          this.button = [button];
         }
 
         this.shown = true;

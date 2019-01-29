@@ -9,7 +9,7 @@
   <div>
     <v-mask :value="mask" :cls="cls"></v-mask>
     <div
-      :class="['c-loading', pos]" v-show="loadingShown">
+      class="c-loading center" v-show="loadingShown">
       <div class="c-iconloading"> </div>
       <span class="c-iconloading-text">
         {{text}}
@@ -29,8 +29,8 @@ export default {
       mask: false,
       loadingShown: false,
       text: '加载中',
-      pos: 'center',
-      duration: 3000, // 持续时间
+      // pos: 'center',
+      // duration: 3000, // 持续时间
       cls: 'c-bgc',
     };
   },
@@ -54,17 +54,17 @@ export default {
 
       this.mask = option.mask || this.mask;
       this.text = option.text || this.text;
-      this.pos = option.pos || this.pos;
-      this.duration = option.duration || this.duration;
+      // this.pos = option.pos || this.pos;
+      // this.duration = option.duration || this.duration;
 
       if (!this.inited) {
         this.init();
       }
       this.loadingShown = true;
 
-      setTimeout(() => {
-        this.$loading.hide();
-      }, this.duration);
+      // setTimeout(() => {
+      //   this.$loading.hide();
+      // }, this.duration);
     },
 
     /**
@@ -138,12 +138,12 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
 }
-.bottom{
+/* .bottom{
  left: 50%;
  margin-left: -20%;
  bottom: 10px;
-}
-.top{
+} */
+/* .top{
   left: 50%;
   margin-left: -20%;
   top: 10px;
@@ -162,5 +162,5 @@ export default {
       font-size: 20px;
     }
   }
-}
+} */
 </style>
