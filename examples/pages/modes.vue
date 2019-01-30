@@ -20,21 +20,21 @@
         ></v-modes>
         <div class="space"></div> -->
 
-          <!-- <v-modes
+          <v-modes
           ref="modes"
           :numberal="3"
-          :iconup = "true"
           :items="gridData5"
-          :types = "typemode"
-        ></v-modes> -->
+          :type = "typemode"
+        ></v-modes>
 
-         <v-modes
+         <!-- <v-modes
           v-model="gridActiveId"
           ref="modes"
+          :iconPosition="iconPosition"
           more="更多设置"
-          :numberal="3"
+          :numberal="4"
           :items="gridData4"
-        ></v-modes>
+        ></v-modes> -->
 
         <!--
         <v-modes v-model="gridActiveId" ref="modes"
@@ -52,6 +52,7 @@
     data() {
       return {
         typemode: 'M',
+        iconPosition: '123',
         gridActiveId: 2,
         gridData2: [{
           text: '修改Wifi密码',
@@ -124,10 +125,12 @@
           text: '速冷模式',
           icon: 'icon-mode-cool',
           id: 2,
+          active: true,
         }, {
           text: '速冻模式',
           icon: 'icon-mode-freeze',
           id: 3,
+          active: true,
         }, {
           text: '假日模式',
           icon: 'icon-mode-holiday',
@@ -148,7 +151,7 @@
           text: '假日模式',
           icon: 'mode-holiday',
           id: 8,
-          disabled: true,
+          disabled: false,
         }],
       };
     },

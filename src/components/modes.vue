@@ -1,9 +1,7 @@
 <template>
 
   <div class="c-mode-container">
-
-    <div v-if="single" :class="['c-mode', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}`]" >
-
+    <div v-if="single" :class="['c-mode', `c-mode-${position}-${numberal}`]" >
       <div
         v-for="(item) in defaultItems"
         :key="item.id"
@@ -11,11 +9,12 @@
           'c-mode-item-active': value == item.id,
         },{'c-mode-item-disabled': item.disabled}]"
         @click="handle(item)">
-        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon && (position === 'top' || position === 'left') "></span>
         <span class="c-mode-item-text">{{item.text}}</span>
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon && (position === 'right' || position === 'bottom')  "></span>
       </div>
     </div>
-    <div v-else  :class="['c-mode', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}`]" >
+    <div v-else  :class="['c-mode', `c-mode-${position}-${numberal}`]" >
       <div
         v-for="(item) in defaultItems"
         :key="item.id"
@@ -23,15 +22,16 @@
           'c-mode-item-active': item.active,
         },{'c-mode-item-disabled': item.disabled}]"
         @click="handle(item)">
-        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon"></span>
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon && (position === 'top' || position === 'left') "></span>
         <span class="c-mode-item-text">{{item.text}}</span>
+        <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon && (position === 'right' || position === 'bottom')  "></span>
       </div>
     </div>
 
     <template v-if="!!extraItems.length">
       <transition name="fade">
         <div v-show="extraShow"
-          :class="['c-mode', 'c-mode-more', iconup ? `c-mode-iconup-${numberal}` : `c-mode-${numberal}` ]" >
+          :class="['c-mode', 'c-mode-more', `c-mode-${position}-${numberal}` ]" >
           <div
             v-for="(item) in extraItems"
             :key="item.id"
@@ -39,9 +39,9 @@
               'c-mode-item-active': value == item.id,
             },{'c-mode-item-disabled': item.disabled}]"
             @click="handle(item)">
-            <span v-if="item.icon"
-              :class="['c-mode-item-icon', item.icon]"></span>
+            <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon && (position === 'top' || position === 'left') "></span>
             <span class="c-mode-item-text">{{item.text}}</span>
+            <span :class="['c-mode-item-icon', item.icon]" v-if="item.icon && (position === 'right' || position === 'bottom')  "></span>
           </div>
         </div>
       </transition>
@@ -68,7 +68,7 @@
         required: false,
         default: -1,
       },
-      types: {
+      type: {
         type: String,
         required: false,
         default: 'Single',
@@ -81,9 +81,9 @@
         type: Number,
         default: 4,     // 2, 3
       },
-      iconup: {
-        type: Boolean,
-        default: false,     // 2, 3
+      iconPosition: {
+        type: String,
+        default: 'left',     // 2, 3
       },
       more: {
         type: String,
@@ -98,11 +98,11 @@
       };
     },
     created() {
-      console.log(this.types);
+      console.log(this.type);
     },
     computed: {
       single() {
-        return this.types === 'Single';
+        return this.type === 'Single';
       },
       total() {
         return this.items.length;
@@ -113,8 +113,16 @@
       extraItems() {
         return this.items.slice(this.numberal);
       },
+      position() {
+        let str = 'left';
+        if (this.iconPosition !== 'top' && this.iconPosition !== 'left' && this.iconPosition !== 'right' && this.iconPosition !== 'bottom') {
+          str = 'left';
+        } else {
+          str = this.iconPosition;
+        }
+        return str;
+      },
     },
-
     methods: {
       handle(item) {
         if (item.disabled) {
@@ -124,7 +132,6 @@
         item.active = !item.active;
         this.$emit('input', val);
         this.$emit('change', val, item);
-        this.$emit('activechange', val, item);
         return true;
       },
     },
@@ -142,8 +149,6 @@
     display: flex;
     flex-wrap: wrap;
   }
-
-
   .c-mode-item {
     box-sizing: border-box;
     font-size: $font-size-sm;
@@ -152,39 +157,24 @@
     align-items: center;
     justify-content: center;
 
-    @mixin transition background-color;
+    /* @mixin transition background-color; */
 
     border-left: 1px solid $gray-lightest;
     border-bottom: 1px solid $gray-lightest;
   }
 
-
   .c-mode-item-icon {
     font-size: $font-size-xl;
   }
 
-  .c-mode-4 {
+  .c-mode-top-4 {
     .c-mode-item {
       flex-direction: column;
       width: calc(100% / 4);
       height: calc($grid-size * 3);
     }
     .c-mode-item-icon {
-      margin-bottom: 0.1rem;
-    }
-    .c-mode-item:nth-child(4n + 1) {
-      border-left-width: 0;
-    }
-  }
-
-.c-mode-iconup-4 {
-    .c-mode-item {
-      flex-direction: column;
-      width: calc(100% / 4);
-      height: calc($grid-size * 3);
-    }
-    .c-mode-item-icon {
-      margin-bottom: 0.1rem;
+      margin-bottom: 0.15rem;
     }
     .c-mode-item:nth-child(4n + 1) {
       border-left-width: 0;
@@ -194,9 +184,8 @@
     }
   }
 
-
   @for $i from 2 to 3 {
-    .c-mode-iconup-$i {
+    .c-mode-top-$i {
       .c-mode-item {
         flex-direction: column;
         width: calc(100% / $i);
@@ -206,15 +195,109 @@
         }
       }
       .c-mode-item-icon {
-        margin: 0.1rem 0.1rem 0.12rem 0.1rem;
-        /* margin-right: 0.1rem; */
+        margin-bottom: 0.15rem;
       }
+      .c-mode-item:last-child {
+      border-right: 1px solid $gray-lightest;
+      }
+    }
+  }
+
+  .c-mode-right-4 {
+    .c-mode-item {
+      width: calc(100% / 4);
+      height: calc($grid-size * 2);
+    }
+    .c-mode-item-icon {
+      margin-bottom: 0.02rem;
+      margin-left: 0.02rem;
+    }
+    .c-mode-item:nth-child(4n + 1) {
+      border-left-width: 0;
+    }
+    .c-mode-item:last-child {
+      border-right: 1px solid $gray-lightest;
+    }
+  }
+
+  @for $i from 2 to 3 {
+    .c-mode-right-$i {
+      .c-mode-item {
+        width: calc(100% / $i);
+        height: calc($grid-size * 2);
+        &:nth-child($(i)n+1) {
+          border-left-width: 0;
+        }
+      }
+      .c-mode-item-icon {
+         margin-bottom: 0.02rem;
+         margin-left: 0.05rem;
+      }
+      .c-mode-item:last-child {
+        border-right: 1px solid $gray-lightest;
+      }
+    }
+  }
+
+   .c-mode-bottom-4 {
+    .c-mode-item {
+      flex-direction: column;
+      width: calc(100% / 4);
+      height: calc($grid-size * 3);
+    }
+    .c-mode-item-icon {
+      margin-top: 0.15rem;
+    }
+    .c-mode-item:nth-child(4n + 1) {
+      border-left-width: 0;
+    }
+    .c-mode-item:last-child {
+        border-right: 1px solid $gray-lightest;
     }
   }
 
 
    @for $i from 2 to 3 {
-    .c-mode-$i {
+    .c-mode-bottom-$i {
+      .c-mode-item {
+        flex-direction: column;
+        width: calc(100% / $i);
+        height: calc($grid-size * 3);
+        &:nth-child($(i)n+1) {
+          border-left-width: 0;
+        }
+      }
+      .c-mode-item-icon {
+        margin-top: 0.15rem;
+      }
+      .c-mode-item:last-child {
+        border-right: 1px solid $gray-lightest;
+      }
+    }
+
+  }
+
+
+  .c-mode-left-4 {
+    .c-mode-item {
+      width: calc(100% / 4);
+      height: calc($grid-size * 2);
+    }
+    .c-mode-item-icon {
+      margin-right: 0.05rem;
+      margin-bottom: 0.03rem;
+    }
+    .c-mode-item:nth-child(4n + 1) {
+      border-left-width: 0;
+    }
+    .c-mode-item:last-child {
+        border-right: 1px solid $gray-lightest;
+    }
+  }
+
+
+   @for $i from 2 to 3 {
+    .c-mode-left-$i {
       .c-mode-item {
         width: calc(100% / $i);
         height: calc($grid-size * 2);
@@ -224,6 +307,10 @@
       }
       .c-mode-item-icon {
         margin-right: 0.05rem;
+        margin-bottom: 0.03rem;
+      }
+      .c-mode-item:last-child {
+        border-right: 1px solid $gray-lightest;
       }
     }
   }
