@@ -130,3 +130,8 @@ $c-checkboard-icon-size-square: 0.18rem;
 
 /************************  modal   ************************/
 $c-dialog-title: #333;
+
+/* 组件当中使用主题色 */
+.c-theme-color {
+  color: $theme-27c88d;
+}
