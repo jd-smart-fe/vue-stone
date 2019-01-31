@@ -19,22 +19,20 @@
           :numberal="2" more="更多设置" :items="gridData2"
         ></v-modes>
         <div class="space"></div> -->
-
-          <v-modes
+          <!-- <v-modes
           ref="modes"
           :numberal="3"
           :items="gridData5"
           :type = "typemode"
-        ></v-modes>
+        ></v-modes> -->
 
-         <!-- <v-modes
+         <v-modes
           v-model="gridActiveId"
           ref="modes"
-          :iconPosition="iconPosition"
           more="更多设置"
           :numberal="4"
           :items="gridData4"
-        ></v-modes> -->
+        ></v-modes>
 
         <!--
         <v-modes v-model="gridActiveId" ref="modes"

@@ -83,7 +83,7 @@
       },
       iconPosition: {
         type: String,
-        default: 'left',     // 2, 3
+        default: 'top',     // 2, 3
       },
       more: {
         type: String,
@@ -114,9 +114,9 @@
         return this.items.slice(this.numberal);
       },
       position() {
-        let str = 'left';
+        let str = 'top';
         if (this.iconPosition !== 'top' && this.iconPosition !== 'left' && this.iconPosition !== 'right' && this.iconPosition !== 'bottom') {
-          str = 'left';
+          str = 'top';
         } else {
           str = this.iconPosition;
         }
