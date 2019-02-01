@@ -1,5 +1,4 @@
 <template>
-
   <div class="c-panel">
     <slot name="header">
       <div class="c-panel-header" v-if="title">
@@ -46,7 +45,8 @@
     border-color: #eee;
     border-radius: $l-radius;
     box-sizing: border-box;
-
+    border-radius: 0.06rem;
+    overflow: hidden;
     &:not(:first-child) {
       margin-top: 10px;
     }
