@@ -1,7 +1,7 @@
 <template>
   <div>
     <tmpl-back></tmpl-back>
-    <v-timepicker></v-timepicker>
+    <v-timepicker :rotate_effect="true"></v-timepicker>
   </div>
 </template>
 <script>

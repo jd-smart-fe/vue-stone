@@ -29,7 +29,7 @@
 <script>
 
 const DURATION = 200;
-const ITEM_HEIGHT = 0.45;
+const ITEM_HEIGHT = 0.5;
 const OFFSET_LINE = 2;
 const uuid = () => {
   const s = [];
@@ -189,13 +189,14 @@ export default {
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
   text-align: center;
-  .c-picker-columns ul {
-     list-style: none;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-
-  }
+  
+}
+.c-picker-columns ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-size: 0.16rem;
 }
 .c-picker-mask-top {
   position: absolute;
@@ -204,7 +205,7 @@ export default {
   width: 100%;
   /* height: calc(calc(40rem) * 2 - 1rem); */
   background-color: rgba(255, 255, 255, 0.6);
-  border-bottom: .01rem solid #ccc;
+  border-bottom: .01rem solid #EAEAEA;
   pointer-events: none;
 }
 .c-picker-mask-bottom {
@@ -213,7 +214,7 @@ export default {
   left: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.6);
-  border-top: .01rem solid #ccc;
+  border-top: .01rem solid #EAEAEA;
   pointer-events: none;
 }
 .c-picker-disabled {
