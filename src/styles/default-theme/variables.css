@@ -1,20 +1,30 @@
-$grid-size: 0.26rem;    /* 12 grid */
+@import './themes.css';
+
+$grid-size: 0.3rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
-$main-color: #59B8FC;
+/* 主题色 */
+$main-color: $theme-45a3f1;
+$c-primary: $theme-45a3f1;
+$c-primary-on: $theme-45a3f1;
 
-$c-primary: #59B8FC;
-$c-primary-on: #2c99e6;
 /********************  length  ********************/
 $l-radius: 3px;
 
 /********************  font size  ********************/
-$font-size-xs:   10px;
+/* $font-size-xs:   10px;
 $font-size-sm:   12px;
 $font-size-base: 14px;
 $font-size-lg:   16px;
 $font-size-xl:   18px;
-$font-size-32:   32px;
+$font-size-32:   32px; */
+
+$font-size-xs:   0.1rem;
+$font-size-sm:   0.12rem;
+$font-size-base: 0.14rem;
+$font-size-lg:   0.16rem;
+$font-size-xl:   0.18rem;
+$font-size-32:   0.32rem;
 
 
 /********************  color  ********************/
@@ -22,7 +32,7 @@ $gray-dark: #333;
 $gray: #666;
 $gray-light: #999;
 $gray-lighter: #ccc;
-$gray-lightest: #eee;
+$gray-lightest: #eaeaea;
 $white: #fff;
 $blue: #59B8FC;
 $orange: #f76b46;
@@ -34,12 +44,12 @@ $orange: #f76b46;
 
 /********************  dayspicker  ********************/
 
-$dayspicker-item-width: 0.54rem;
-$dayspicker-item-height: 0.26rem;
+$dayspicker-item-width: 0.6rem;
+$dayspicker-item-height: 0.28rem;
 $dayspicker-item-radius: 4px;
 $dayspicker-padding-y: 0.12rem;
 
-$t-dayspicker-font-size: $font-size-sm;
+$t-dayspicker-font-size: $font-size-base;
 $t-dayspicker-defcolor: $gray-light;
 $t-dayspicker-lightcolor: $blue;
 
@@ -59,24 +69,25 @@ $t-range-lightcolor: $c-primary;
 
 /************************  switch   ************************/
 
-$switch-width: 0.58rem;
-$switch-height: 0.28rem;
-$switch-background-color-off: #d5d5d5;
+$switch-width: .60rem;
+$switch-height: .32rem;
+$switch-background-color-off: $theme-d5d5d5;
 $switch-background-color-on: $c-primary;
 
-$switch-btn-width: .22rem;
-$switch-btn-height: .22rem;
+$switch-btn-width: .26rem;
+$switch-btn-height: .26rem;
 $switch-btn-background-color: #fff;
 
-$switch-transform-x-off: .04rem;
-$switch-transform-x-on: 0.32rem;
+$switch-transform-x-off: .03rem;
+$switch-transform-x-on: .31rem;
 
 /************************  power   ************************/
-$power-width: 0.45rem;
-$power-height: 0.45rem;
+$power-width: 0.4rem;
+$power-height: 0.4rem;
 
 $t-power-offcolor: #fff;
 $t-power-oncolor: $c-primary;
+$t-power-disabled: #efefef;
 
 /************************  button  ************************/
 $btn-padding-sm: 0.06rem 0.08rem;
@@ -90,7 +101,7 @@ $btn-padding-lg: 0.14rem 0.26rem;
 $btn-fontsize-lg: $font-size-lg;
 
 $btn-icon-only-width-lg: 0.52rem;
-$btn-icon-only-width-base: 0.36rem;
+$btn-icon-only-width-base: 0.4rem;
 $btn-icon-only-width-sm: 0.24rem;
 
 $btn-disabled: #efefef;
@@ -107,5 +118,20 @@ $c-checkboard-icon-width: 0.1rem;
 $c-checkboard-icon-height: 0.1rem;
 $c-checkboard-icon-size: 0.14rem;
 
+$c-checkboard-icon-size-round: 0.18rem;
+$c-checkboard-icon-height-round: 0.18rem;
+$c-checkboard-icon-width-round: 0.18rem;
+$c-checkboard-icon-size-round: 0.18rem;
+
+$c-checkboard-icon-size-square: 0.18rem;
+$c-checkboard-icon-height-square: 0.18rem;
+$c-checkboard-icon-width-square: 0.18rem;
+$c-checkboard-icon-size-square: 0.18rem;
+
 /************************  modal   ************************/
 $c-dialog-title: #333;
+
+/* 组件当中使用主题色 */
+.c-theme-color {
+  color: $theme-9777fa;
+}

@@ -1,10 +1,16 @@
 <template lang="html">
-  <v-button :size="size" :icon='icon' :radius='radius' :disabled='disabled' :htmlType='htmlType'
-    :class="[
-      insideValue ? 'c-btn-on' : ''
-    ]"
-    @touchend.native="handleTouchend">
-    <slot></slot></v-button>
+  <v-button
+    :size="size"
+    :icon='icon'
+    :radius='radius'
+    :disabled='disabled'
+    :htmlType='htmlType'
+    :class="[insideValue ? 'c-btn-on' : '']"
+    @touchend.native="handleTouchend"
+    :style="{'border-color': borderColor && !insideValue ? borderColor: ''}"
+  >
+    <slot></slot>
+  </v-button>
 </template>
 
 <script>
@@ -51,6 +57,12 @@ export default {
     syncHold: {
       type: Boolean,
       default: false,
+    },
+    // 给添加一个borderColor, 进行颜色配置;
+    borderColor: {
+      type: String,
+      required: false,
+      default: '',
     },
   },
 
@@ -101,15 +113,19 @@ export default {
 
 
 .c-btn.c-btn-hover.c-btn-on{
-  background-color: $c-primary-on;
+  background-color: $c-primary;
+  border-color: $c-primary;
 }
 
-.c-btn.c-btn-on{
-  color: $white;
-  background-color: $blue;
-
+.c-btn{
   &.c-btn-disabled {
     opacity: .6;
   }
+  &.c-btn-on{
+    color: $white;
+    background: $c-primary;
+    border-color: $c-primary;
+  }
 }
+
 </style>

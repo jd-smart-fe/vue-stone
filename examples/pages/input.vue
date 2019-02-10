@@ -9,12 +9,33 @@
       </div>
     </div>
     <v-panel>
+      <div slot="header" class="c-panel-header ">
+        <div class="c-panel-title">没有border的默认情况</div>
+      </div>
       <div slot="body" class="c-panel-body">
-        <v-input ref="input" v-model="message" placeholder="未输入时提示内容"></v-input>
+        <v-input
+          ref="input"
+          v-model="message"
+          placeholder="未输入时提示内容"
+          htmlName="message"
+        ></v-input>
+      </div>
+    </v-panel>
+    <v-panel>
+      <div slot="header" class="c-panel-header ">
+        <div class="c-panel-title">有border的情况</div>
+      </div>
+      <div slot="body" class="c-panel-body">
+        <v-input
+          ref="input"
+          v-model="message1"
+          placeholder="未输入时提示内容"
+          hasB
+        ></v-input>
       </div>
     </v-panel>
 
-    <v-panel>
+    <!-- <v-panel>
       <div slot="header" class="c-panel-header">
         单选
       </div>
@@ -34,9 +55,9 @@
           </div>
         </v-checkboard>
       </div>
-    </v-panel>
+    </v-panel> -->
 
-    <v-panel>
+    <!-- <v-panel>
       <div slot="header" class="c-panel-header">
         复选
       </div>
@@ -56,7 +77,7 @@
           </div>
         </v-checkboard>
       </div>
-    </v-panel>
+    </v-panel> -->
 
   </div>
 </template>
@@ -69,6 +90,7 @@
     data() {
       return {
         message: '',
+        message1: '',
         value: 'item1',
         multipleValue: ['item1', 'item2'],
       };

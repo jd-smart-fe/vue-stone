@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="c-checkboard">
+  <div :class="['c-checkboard', iconType]">
     <slot name="item" class="c-checkboard-active"></slot>
     <input type="hidden" :name="htmlName" :value="value" />
   </div>
@@ -8,7 +8,6 @@
 <script>
 export default {
   name: 'v-checkboard',
-
   data() {
     return {
       items: null,
@@ -21,16 +20,20 @@ export default {
       required: false,
       default: 0,
     },
-
     multi: {
       type: Boolean,
       required: false,
       default: false,
     },
-
     htmlName: {
       type: String,
+      required: false,
       default: '',
+    },
+    iconType: {
+      type: String,
+      required: false,
+      default: 'hook',
     },
   },
 
@@ -171,19 +174,25 @@ export default {
     padding: $c-checkboard-item-padding;
   }
 
-  > div[checked="true"] {
-    /*background-color: red;*/
+  > div + div{
+    border-top: 1px solid $gray-lightest;
+  }
 
-    &:after {
+  .c-checkboard-hover {
+    opacity: .8;
+  }
+
+  &{
+    >div{
+     &:after {
       /* icon-select */
-      content: "\e901";
       font-family: 'iconfont' !important;
       speak: none;
       font-style: normal;
       font-weight: normal;
       font-variant: normal;
       text-transform: none;
-      line-height: 1;
+      color: $c-primary;
 
       /* Better Font Rendering =========== */
       -webkit-font-smoothing: antialiased;
@@ -194,21 +203,51 @@ export default {
       top: 0;
       bottom: 0;
       margin: auto;
-      font-size: $c-checkboard-icon-size;
-      width: $c-checkboard-icon-width;
-      height: $c-checkboard-icon-height;
-
       transition: .2s linear all;
+     }
+
+    }
+    &.hook{
+      >div{
+        &[checked="true"]:after{
+          content: "\e901";
+          font-size: $c-checkboard-icon-size;
+          width: $c-checkboard-icon-width;
+          height: $c-checkboard-icon-height;
+          line-height: $c-checkboard-icon-height;
+        }
+      }
+    }
+    &.squ{
+      >div{
+        &:after {
+          content: "\ea53";
+          font-size: $c-checkboard-icon-size-square;
+          width: $c-checkboard-icon-width-square;
+          height: $c-checkboard-icon-height-square;
+          line-height: $c-checkboard-icon-height-square;
+        }
+        &[checked="true"]:after{
+        content: "\ea52";
+        }
+      }
+    }
+    &.round{
+      >div{
+        &:after {
+          content: "\e916";
+          font-size: $c-checkboard-icon-size-round;
+          width: $c-checkboard-icon-width;
+          height: $c-checkboard-icon-height-round;
+          line-height: $c-checkboard-icon-height-square;
+        }
+        &[checked="true"]:after{
+        content: "\e917";
+        }
+      }
     }
   }
 
-  > div + div{
-    border-top: 1px solid $gray-lightest;
-  }
-
-  .c-checkboard-hover {
-    opacity: .8;
-  }
 }
 
 

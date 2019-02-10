@@ -9,6 +9,7 @@
               radius ? 'c-btn-radius-' + radius: '',
               full ? 'c-btn-full' : '',
             ]"
+    :style="{'border-color': borderColor? borderColor: ''}"
     :type="htmlType"
     @touchstart="touchstartHandle"
     @touchend="touchendHandle"
@@ -63,6 +64,12 @@ export default {
       type: String,
       default: 'button',
     },
+    // 给添加一个borderColor, 进行颜色配置;
+    borderColor: {
+      type: String,
+      required: false,
+      default: '',
+    },
   },
 
   mounted() {
@@ -109,7 +116,6 @@ export default {
   padding: $btn-padding-base;
 
   @mixin border;
-  border-color: $c-primary;
   border-color: $c-primary;
   border-radius: $btn-radius-sm;
 
@@ -175,6 +181,9 @@ export default {
 
 .c-btn-radius-circle {
   border-radius: 999rem;
+  /* padding-top: .08rem; */
+  /* padding-bottom: 0.08rem; */
+  /* min-width: 0.9rem; */
 }
 
 .c-btn-content {
@@ -204,7 +213,6 @@ export default {
 
   padding: 0;
   border-radius: 9999px;
-
   width: $btn-icon-only-width-base;
   height: $btn-icon-only-width-base;
   font-size: .16rem;

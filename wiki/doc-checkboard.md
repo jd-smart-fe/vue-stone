@@ -56,8 +56,28 @@ data() {
 
 ## Options
 
-属性名   |    类型   |     默认值     |     说明
-----    | ----    | ----    | ----    |
-v-model | Number, String 或 Array | 必需属性 | 该值双向绑定了当前激活的选项的 data-value 的值。当该组件为复选模式时，请传入一组由选项 data-value 值组成的数据。
-multi | Boolean | false | 值为 true 是为复选，反之为单选。
-htmlName | String | "" | input原生name值
+| 属性名 | 类型 | 默认值 | 说明 |
+| ---- | ---- | ---- | ---- |
+| v-model | Number, String 或 Array | 必需属性 | 该值双向绑定了当前激活的选项的 data-value 的值。当该组件为复选模式时，请传入一组由选项 data-value 值组成的数据。|
+| multi | Boolean | false | 值为 true 是为复选，反之为单选。|
+| htmlName | String | "" | input原生name值 |
+| iconType | String | "hook" | 有三种样式，'hook': 对勾; 'round': 圆形'; 'squ': 方形 |
+
+## Events
+| 事件名称 | 说明 | 参数 |
+| --- | --- | --- |
+| input | 当切换选项的时候 | value |
+| change | 当切换选项的时候 | value |
+
+```html
+<v-checkboard v-model="value" :multi="true" ref="box">
+  <div slot="item" data-value="realValue">
+    this is display value
+  </div>
+</v-checkboard>
+```
+```js
+this.$refs.box.$on('input', value => {
+  console.log(value);
+})
+```

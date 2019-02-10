@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-action-box :value="insideValue" ref="box">
+  <v-action-box v-model="insideValue" ref="box" :mask="mask" :maskCloseable="maskCloseable">
     <div class="c-action-sheet-warpper">
       <div
       v-for="(item, index) in items"
@@ -38,7 +38,7 @@ export default {
 
   data() {
     return {
-      mask_shown: this.value,
+      // mask_shown: this.value,
       insideValue: this.value,
     };
   },
@@ -72,6 +72,17 @@ export default {
         }];
       },
     },
+
+    mask: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
+    maskCloseable: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   watch: {
@@ -82,15 +93,15 @@ export default {
     insideValue(val) {
       this.$emit('input', val);
 
-      if (val) {
-        this.mask_shown = true;
+      // if (val) {
+      //   this.mask_shown = true;
 
-      } else {
-        // 300ms 是为了能够触发mask消失时的过渡动画
-        setTimeout(() => {
-          this.mask_shown = false;
-        }, 300);
-      }
+      // } else {
+      //   // 300ms 是为了能够触发mask消失时的过渡动画
+      //   setTimeout(() => {
+      //     this.mask_shown = false;
+      //   }, 300);
+      // }
     },
   },
 
@@ -118,40 +129,34 @@ export default {
 
 <style lang="css">
   .c-action{
-    position: fixed;
+    /* position: fixed;
     top: 100%;
     left: 0;
     right: 0;
     margin: auto;
-
     text-align: center;
-    font-size: 18px;
-
     width: 100%;
-
     z-index: 101;
-
     transition: transform .3s ease-out;
 
     &.c-action-active{
       transform: translate(0, -100%);
-    }
+    } */
 
     .c-action-sheet-warpper{
       background: #fff;
-      border-radius: 4px;
+      border-radius: .04rem;
       margin: 0 .05rem;
-      margin-bottom: 12px;
+      margin-bottom: .05rem;
 
       > div{
-        padding: 12px;
+        padding: .21rem;
       }
     }
 
     .c-action-sheet-item{
-
       + .c-action-sheet-item{
-        border-top: 1px solid #999;
+        border-top: 1px solid #eaeaea;
       }
     }
   }

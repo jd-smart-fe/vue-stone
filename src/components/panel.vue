@@ -1,7 +1,13 @@
 <template>
-
   <div class="c-panel">
-    <slot name="header"></slot>
+    <slot name="header">
+      <div class="c-panel-header" v-if="title">
+        <div class="c-panel-title">{{title}}
+          <div class="c-panel-description" v-if="description">{{description}}</div>
+        </div>
+        <span class="c-panel-status">{{status}}</span>
+      </div>
+    </slot>
     <slot name="body"></slot>
     <slot name="footer"></slot>
   </div>
@@ -11,6 +17,11 @@
 
   export default {
     name: 'v-panel',
+    props: {
+      title: String,
+      description: String,
+      status: String,
+    },
   };
 </script>
 
@@ -19,8 +30,8 @@
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  $fullwidth: 97.5%;
-  $padding: 3.75%;
+  $fullwidth: 96.8%;
+  $padding: 3.325%;
   $desc-padding: 2.5%;
   $prefix: .c-panel;
 
@@ -34,7 +45,8 @@
     border-color: #eee;
     border-radius: $l-radius;
     box-sizing: border-box;
-
+    border-radius: 0.06rem;
+    overflow: hidden;
     &:not(:first-child) {
       margin-top: 10px;
     }
@@ -79,5 +91,9 @@
 
   $(prefix)-title {
     font-weight: 500;
+  }
+
+  $(prefix)-status {
+    color: red;
   }
 </style>

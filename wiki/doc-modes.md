@@ -1,5 +1,5 @@
 # Modes
-
+卡片样式选择设备模式
 ## Release Notes
 
 - v0.5.1: 修改 icon 属性的入参，现在需要传入完整的 icon 样式类名。
@@ -16,6 +16,9 @@ v-model |  number  |  -1  |  当前激活的按钮id
 numberal |  number | 4  |  每行显示的按钮数量，可为 2，3，4
 more  |  String  |  '' |  展开面板按钮上的提示文案
 items | Array |  必传参数 | 配置每个按钮，下面会详细介绍
+iconPosition | String |  'top' | 可传属性值为‘top’、'right'、'bottom'、'left'，表示icon在文字的不同位置。
+type  | Sting | 'Single' | 默认表示模式选项互斥显示|
+
 
 注：
 ```js
@@ -23,6 +26,7 @@ items: [{
     text: '标准加热',   // 按钮文案
     icon: 'v-icon-mode-holiday',    // 按钮图标   需引入组件图标库
     id: 1,    // 按钮唯一 id
+    disabled: true // 是否禁用当前模式，默认不禁用
   }, {
     text: '快速加热',   // 按钮文案
     icon: 'v-icon-mode-holiday',   // 按钮图标     需引入组件图标库

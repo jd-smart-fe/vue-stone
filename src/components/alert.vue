@@ -1,5 +1,7 @@
 <template>
-  <v-dialog ref="dialog" v-model="shown" :title="title" :desc="desc" :buttons="button"></v-dialog>
+  <v-dialog ref="dialog" v-model="shown" :title="title" :desc="desc" :buttons="button"
+  :maskCloseable="maskCloseable"
+  @maskclick="closeAlert"></v-dialog>
 </template>
 
 
@@ -19,6 +21,12 @@ export default {
       promise: [],
     };
   },
+  props: {
+    maskCloseable: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   watch: {
     shown(val) {
@@ -35,7 +43,11 @@ export default {
     hide() {
       this.shown = false;
     },
-
+    closeAlert() {
+      if (this.maskCloseable) {
+        this.shown = false;
+      }
+    },
     show(options) {
       this.init();
 
@@ -56,6 +68,10 @@ export default {
         this.title = options.title;
         this.desc = options.desc;
 
+        if (Object.prototype.hasOwnProperty.call(options, 'maskCloseable')) {
+          this.maskCloseable = options.maskCloseable;
+        }
+
         const button = {};
         let buttonNoChange = true;
 
@@ -72,7 +88,7 @@ export default {
         }
 
         if (!buttonNoChange) {
-          this.button = button;
+          this.button = [button];
         }
 
         this.shown = true;

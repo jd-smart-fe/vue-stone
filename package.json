@@ -1,6 +1,6 @@
 {
   "name": "vue-stone",
-  "version": "0.6.2",
+  "version": "0.6.4",
   "description": "vue component",
   "author": "zhengyuelin zhengyuelin@jd.com pspgbhu<brotherchun001@gmail.com>",
   "main": "dist/vue-stone.js",
@@ -31,7 +31,9 @@
   },
   "dependencies": {
     "core-js": "^2.4.1",
-    "vue": "^2.3.4"
+    "vue": "^2.3.4",
+    "@antv/f2": "^3.2.2",
+    "dayjs": "^1.7.5"
   },
   "peerDependencies": {
     "vue": "2.x"
@@ -61,6 +63,7 @@
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "fs-extra": "^7.0.1",
     "function-bind": "^1.0.2",
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",

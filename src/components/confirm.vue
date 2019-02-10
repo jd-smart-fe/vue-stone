@@ -1,5 +1,11 @@
 <template>
-  <v-dialog ref="dialog" v-model="shown" :title="title" :desc="desc" :buttons="button"></v-dialog>
+  <v-dialog
+    ref="dialog"
+    v-model="shown"
+    :title="title"
+    :desc="desc"
+    :buttons="button"
+  ></v-dialog>
 </template>
 
 <script>
@@ -62,6 +68,10 @@ export default {
       }
       this.inited = true;
       document.body.appendChild(this.$el);
+    },
+    destroy() {
+      document.body.removeChild(this.$el);
+      this.inited = false;
     },
   },
 };

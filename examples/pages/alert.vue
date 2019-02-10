@@ -15,7 +15,6 @@
         <v-button @click.native="confirmClick">Show</v-button>
       </div>
     </v-panel>
-
   </div>
 </template>
 <script>
@@ -26,7 +25,7 @@ export default {
       alert: {
         title: '弹窗标题',
         desc: '弹窗内容，告知当前状态、信息和解决方法，描述文字尽量控制在三行内。',
-        // desc: '弹窗内容',
+        maskCloseable: true,
       },
     };
   },
@@ -63,4 +62,3 @@ export default {
   },
 };
 </script>
-

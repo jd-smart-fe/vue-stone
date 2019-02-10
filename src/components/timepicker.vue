@@ -184,6 +184,7 @@ export default {
       width: 100%;
       transform: translateY( -50%);
       height: 30px;
+      font-size: $fontSize;
       /* text-align: right; */
       .c-timepicker-unit-hour{
         position: relative;
@@ -192,6 +193,7 @@ export default {
         top:0;
         width: 50%;
         height: 30px;
+        font-size: $fontSize;
         .text{
           display: inline-block;
           position: absolute;
@@ -208,6 +210,7 @@ export default {
         top:0;
         width: 50%;
         height: 30px;
+        font-size: $fontSize;
         .text{
           display: inline-block;
           position: absolute;

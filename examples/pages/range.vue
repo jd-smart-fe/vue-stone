@@ -11,11 +11,11 @@
     <v-panel>
       <div slot="header" class="c-panel-header row-1 u-cross-center">range - noStep : dots is objects</div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-range slot="main" ref="range" v-model="range_data_value" :min="range_data.min" :max="range_data.max" :tooltip="range_data.tooltip" :is_step="range_data.isStep" :dots="range_data.dots">
+        <v-range slot="main" ref="range" v-model="range_data_value" :min="range_data.min" :max="range_data.max" :tooltip="range_data.tooltip" :is-step="range_data.isStep" :dots="range_data.dots">
         </v-range>
       </div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">
-        <v-range slot="main" ref="rangeNumber" v-model="range_data_number_value" :min="range_data_number.min" :max="range_data_number.max" :tooltip="range_data_number.tooltip" :is_step="range_data_number.isStep" :dots="range_data_number.dots">
+        <v-range slot="main" ref="rangeNumber" v-model="range_data_number_value" :min="range_data_number.min" :max="range_data_number.max" :tooltip="range_data_number.tooltip" :is-step="range_data_number.isStep" :dots="range_data_number.dots">
         </v-range>
       </div>
       <div slot="body" class="c-panel-body row-3 u-cross-center">

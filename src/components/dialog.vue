@@ -72,7 +72,7 @@ export default {
     buttons: {
       type: Array,
       default() {
-        return [{ text: '确定', color: '#59B8FC' }];
+        return [{ text: '确定' }];
       },
     },
     // title color
@@ -127,9 +127,10 @@ export default {
   methods: {
     buttonClick(index) {
       this.$emit(`button${this.transNumber(index)}`);
-      this.insideValue = false;
+      if (!this.preventClose) {
+        this.insideValue = false;
+      }
     },
-
     maskClick() {
       this.$emit('maskclick');
     },
