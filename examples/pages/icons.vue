@@ -9,7 +9,7 @@
         <v-icon name="icon-large-volume"></v-icon>
         <v-icon name='icon-small-volume'></v-icon>
         <v-icon name='icon-mode-sleep'></v-icon>
-        <v-icon name='icon-automatic'></v-icon>
+        <v-icon name='icon-automoatic'></v-icon>
         <v-icon name='icon-mode-automatic'></v-icon>
         <v-icon name='icon-more'></v-icon>
         <v-icon name='icon-range-small'></v-icon>
@@ -17,7 +17,6 @@
         <v-icon name='icon-mode-dry'></v-icon>
         <v-icon name='icon-cross'></v-icon>
         <v-icon name='icon-select'></v-icon>
-        <v-icon name='icon-automoatic'></v-icon>
         <v-icon name='icon-border'></v-icon>
         <v-icon name='icon-mopping'></v-icon>
         <v-icon name='icon-rechang'></v-icon>
@@ -124,13 +123,13 @@
 
 <style>
 
-  .c-panel-body {
-    .icon {
-      margin-right: 10px;
-      margin-left: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      display: inline-block;
-    }
+.c-panel-body {
+  .icon {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
   }
+}
 </style>
