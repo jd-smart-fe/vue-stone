@@ -52,7 +52,7 @@ title |  String  |  '提示' |  设置弹窗标题
 desc | String | 无 | 设置弹窗内容
 tcolor | String | '#333' | 设置标题颜色
 dcolor | String | '#999' | 设置内容颜色
-buttons | Array | [{ text: '确定' }] | 设置按钮文字及颜色
+button | Array | [{ text: '确定' }] | 设置按钮文字及颜色
 preventClose | Boolean | false | 值为true时，点击按钮后不会自动关闭弹窗
 
 **备注：**
@@ -60,7 +60,7 @@ buttons 属性：
 
 ```js
 // 数组每一项对应一个按钮，最多可配置五个按钮
-buttons: [{
+button: [{
     text: '确定',      // 按钮文本
     color: '#666',    // 按钮颜色 默认 '#59B8FC'
   },{
