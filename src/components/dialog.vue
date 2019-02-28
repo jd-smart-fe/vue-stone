@@ -155,9 +155,10 @@ export default {
 @import '../styles/mixins.css';
 
 .c-dialog {
+
+  width: 3.15rem;
+  border-radius: 0.03rem;
   box-sizing: border-box;
-  width: 2.62rem;
-  border-radius: 0.02rem;
 
   background-color: $white;
   font-size: .14rem;
@@ -172,13 +173,20 @@ export default {
   .c-dialog-title {
     font-weight: normal;
     text-align: center;
-    color: $c-dialog-title;
-
+    color: #333;
+    font-size: .16rem;
     padding: 0.2rem 0;
     margin: 0;
 
     &.c-dialog-only-title{
       padding: 0.3rem 0;
+      box-sizing: border-box;
+      min-height: 1.375rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .15rem;
+      color: #333;
     }
   }
 
@@ -187,8 +195,10 @@ export default {
     display: flex;
     align-item: center;
     justify-content: center;
-    padding: 0.1rem 0.25rem 0.3rem;;
-
+    padding: 0.1rem 0.25rem 0.3rem;
+    font-size: .14rem;
+    color: #9b999b;
+    line-height: .2rem;
     > p {
       flex: none;
       display: inline;
@@ -200,13 +210,13 @@ export default {
   }
 
   .c-dialog-footer > .c-dialog-buttons {
-    line-height: 0.40rem;
+    line-height: 0.50rem;
 
-    border-top: 1px $gray-lighter solid;
+    border-top: 1px #eaeaea solid;
 
     display: flex;
     width: 100%;
-    height: 0.40rem;
+    height: 0.50rem;
 
     > a {
       flex: 1;
@@ -217,9 +227,6 @@ export default {
       color: $c-primary;
     }
 
-    a + a {
-      border-left: 1px $gray-lighter solid;
-    }
   }
 
   .hairlines .c-dialog-footer > .c-dialog-buttons {

@@ -1,11 +1,13 @@
 <template>
-  <v-dialog
-    ref="dialog"
-    v-model="shown"
-    :title="title"
-    :desc="desc"
-    :buttons="button"
-  ></v-dialog>
+  <div class="c-confirm">
+    <v-dialog
+      ref="dialog"
+      v-model="shown"
+      :title="title"
+      :desc="desc"
+      :buttons="button"
+    ></v-dialog>
+  </div>
 </template>
 
 <script>
@@ -76,3 +78,9 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.c-confirm{
+
+}
+</style>
