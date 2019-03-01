@@ -6,6 +6,7 @@
       <div slot="header" class="c-panel-header row-1 u-cross-center">Icons set</div>
 
       <div slot="body" class="c-panel-body">
+        <v-icon name="icon-weiboshajun"></v-icon>
         <v-icon name="icon-large-volume"></v-icon>
         <v-icon name='icon-small-volume'></v-icon>
         <v-icon name='icon-mode-sleep'></v-icon>

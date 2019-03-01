@@ -2,7 +2,7 @@
  * @Description: 主题色
  * @Author: shilili1
  * @Date: 2019-01-04 16:58:58
- * @LastEditTime: 2019-01-16 19:40:02
+ * @LastEditTime: 2019-03-01 11:42:08
  * @LastEditors: Please set LastEditors
  */
 
@@ -63,3 +63,7 @@ $theme-fb7f4a: #FB7F4A;
 
 /* 取暖器主题色 */
 $theme-3ae1ff: #3AE1FF;;
+/* 微波炉 */
+$theme-fa7b53: #fa7b53;
+/* 加湿器 */
+$theme-4281f3: #4281f3;

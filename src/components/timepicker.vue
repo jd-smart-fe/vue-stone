@@ -59,7 +59,6 @@ export default {
       chooseMinActive: this.min,
     };
   },
-
   computed: {
     _items() {
       const arr = [{
@@ -73,6 +72,22 @@ export default {
       }];
 
       return arr;
+    },
+  },
+  watch: {
+    hour: {
+      handler(val) {
+        this.chooseHour = val;
+        this.chooseHourActive = val;
+      },
+      deep: true,
+    },
+    min: {
+      handler(val) {
+        this.chooseMin = val;
+        this.chooseMinActive = val;
+      },
+      deep: true,
     },
   },
 

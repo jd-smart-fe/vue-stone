@@ -44,7 +44,7 @@ export default {
         //  { text: '是', callback: this.yesFon.bind(this) },
         // ],
         title: '是否删除该定时任务',
-        desc: self.error_text,
+        // desc: '是否删除该定时任务',
       }).then(() => {
         // this.onFon();
       }).catch(() => {
