@@ -2,8 +2,8 @@
  * @Description: 主题色
  * @Author: shilili1
  * @Date: 2019-01-04 16:58:58
- * @LastEditTime: 2019-03-25 14:17:11
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2019-09-05 15:20:30
+ * @LastEditors: sueRimn
  */
 
  /* 定义主题色 */
@@ -67,3 +67,6 @@ $theme-27c88d: #27c88d;
 $theme-f95763: #f95763;
 /* 电热水器 */
 $theme-ee6a4e: #ee6a4e;
+
+/* 定义新规范的主题色 */
+$theme-491dd2: #491DD2;

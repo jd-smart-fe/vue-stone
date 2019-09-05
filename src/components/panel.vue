@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion:
+ * @Author: shilili1
+ * @Date: 2019-02-24 11:56:17
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2019-09-05 15:24:05
+ -->
 <template>
   <div class="c-panel">
     <slot name="header">
@@ -30,8 +37,8 @@
   @import '../styles/default-theme/variables.css';
   @import '../styles/mixins.css';
 
-  $fullwidth: 96.8%;
-  $padding: 3.325%;
+  $fullwidth: 91.46%;
+  $padding: 0.16rem;
   $desc-padding: 2.5%;
   $prefix: .c-panel;
 
