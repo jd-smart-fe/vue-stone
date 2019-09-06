@@ -92,7 +92,7 @@ $t-power-disabled: #efefef;
 /************************  button  ************************/
 $btn-padding-sm: 0.06rem 0.08rem;
 $btn-fontsize-sm: $font-size-sm;
-$btn-radius-sm: 0.05rem;
+$btn-radius-sm: 0.06rem;
 
 $btn-padding-base: 0.1rem 0.16rem;
 $btn-fontsize-base: $font-size-base;
