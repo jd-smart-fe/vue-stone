@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion:
+ * @Author: shilili1
+ * @Date: 2018-11-13 14:49:59
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2019-09-06 11:20:56
+ -->
 <template>
 
 	<div :class="['c-switch',
@@ -13,7 +20,6 @@
 
   export default {
     name: 'v-switch',
-
     data() {
       return {
         insideValue: this.value,
@@ -23,7 +29,6 @@
     },
 
     props: {
-
       value: {
         type: Boolean,
         default: false,

@@ -3,7 +3,7 @@
  * @Author: shilili1
  * @Date: 2019-02-24 11:56:17
  * @LastEditors: sueRimn
- * @LastEditTime: 2019-09-05 15:54:13
+ * @LastEditTime: 2019-09-05 16:21:09
  -->
 <template>
   <div class="c-panel">
@@ -41,6 +41,8 @@
   $padding: 0.1rem 0.16rem;
   $desc-padding: 2.5%;
   $prefix: .c-panel;
+  $bg-color: #f5f6fe;
+  $border-color: #eaeaea;
 
   $prefix {
     width: $fullwidth;
@@ -48,9 +50,8 @@
     font-size: $font-size-lg;
     @mixin border;
     @mixin box-shadow;
-    background: #fff;
-    border-color: #eee;
-    border-radius: $l-radius;
+    background:$bg-color ;
+    border-color: $border-color;
     box-sizing: border-box;
     border-radius: 0.06rem;
     overflow: hidden;
@@ -71,11 +72,11 @@
   }
 
   $(prefix)-header {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $border-color;
   }
 
   $(prefix)-footer {
-    border-top: 1px solid #eee;
+    border-top: 1px solid $border-color;
   }
 
   $(prefix)-extra {
@@ -97,7 +98,9 @@
   }
 
   $(prefix)-title {
-    font-weight: 500;
+    font-weight: 400;
+    font-size: .16rem;
+    color: #000;
   }
 
   $(prefix)-status {

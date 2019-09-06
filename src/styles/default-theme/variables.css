@@ -71,7 +71,7 @@ $t-range-lightcolor: $c-primary;
 
 $switch-width: .60rem;
 $switch-height: .32rem;
-$switch-background-color-off: $theme-d5d5d5;
+$switch-background-color-off: #e2e2e2;;
 $switch-background-color-on: $c-primary;
 
 $switch-btn-width: .26rem;
