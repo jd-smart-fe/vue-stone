@@ -58,7 +58,7 @@ $t-dayspicker-lightcolor: $blue;
 /********************  range  ********************/
 $range-padding-y: 0.16rem;
 $range-slide-height: 2px;
-$range-slide-button-size: 24px;
+$range-slide-button-size: 22px;
 $range-padding-x: calc($range-slide-button-size/2);
 $range-slide-button-border: 2px;
 $range-slide-stepdot-size: 4px;

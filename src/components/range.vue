@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion:
+ * @Author: shilili1
+ * @Date: 2019-02-24 11:56:17
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2019-09-09 11:11:42
+ -->
 <template>
   <div :class="['c-range', disabled ? 'c-range-disabled' : '']">
     <!-- <input type="text"
@@ -10,8 +17,6 @@
       @touchend="endHandle_"
       @touchcancel="endHandle_"
     >
-
-
       <div class="c-range-slider-line">
         <div class="c-range-slider-process" ref="range-process"
          :style="{width : processPercent + '%'}" >
@@ -444,10 +449,8 @@
     width:100%;
     padding:0 $range-padding-x;
     box-sizing: border-box;
-
     &.c-range-disabled {
       pointer-events: none;
-
       .c-range-slider-process{
         /*background-color: $t-range-defcolor;*/
       }
@@ -554,8 +557,9 @@
       transform: translateX(-50%);
       height: $range-slide-dot-size;
       line-height: $range-slide-dot-size;
-      font-size: $font-size-base;
+      font-size: .12rem;
       white-space: nowrap;
+      color: #999;
       &:first-child{
         transform: translateX(-$range-padding-x);
       }
