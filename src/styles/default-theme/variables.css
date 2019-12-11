@@ -4,9 +4,9 @@ $grid-size: 0.3rem;    /* 12 grid */
 $main-width: 3.12rem;   /* 0.26 * 12 */
 
 /* 主题色 */
-$main-color: $theme-491dd2;
-$c-primary: $theme-491dd2;
-$c-primary-on: $theme-491dd2;
+$main-color: $theme-fa7b53;
+$c-primary: $theme-fa7b53;
+$c-primary-on: $theme-fa7b53;
 
 /********************  length  ********************/
 $l-radius: 3px;
@@ -133,5 +133,5 @@ $c-dialog-title: #333;
 
 /* 组件当中使用主题色 */
 .c-theme-color {
-  color: $theme-491dd2;
+  color: $theme-fa7b53;
 }

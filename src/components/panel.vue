@@ -2,8 +2,8 @@
  * @Descripttion:
  * @Author: shilili1
  * @Date: 2019-02-24 11:56:17
- * @LastEditors: sueRimn
- * @LastEditTime: 2019-09-05 16:21:09
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2019-12-11 16:56:42
  -->
 <template>
   <div class="c-panel">
@@ -41,7 +41,7 @@
   $padding: 0.1rem 0.16rem;
   $desc-padding: 2.5%;
   $prefix: .c-panel;
-  $bg-color: #f5f6fe;
+  $bg-color: #fff;
   $border-color: #eaeaea;
 
   $prefix {
