@@ -100,7 +100,7 @@
   $(prefix)-title {
     font-weight: 400;
     font-size: .16rem;
-    color: #000;
+    color: #
   }
 
   $(prefix)-status {

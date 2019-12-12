@@ -156,7 +156,7 @@ export default {
 
 .c-dialog {
 
-  width: 3.15rem;
+  width: 2.7rem;
   border-radius: 0.03rem;
   box-sizing: border-box;
 
@@ -175,8 +175,8 @@ export default {
     text-align: center;
     color: #333;
     font-size: .16rem;
-    padding: 0.2rem 0;
-    margin: 0;
+    margin: .25rem 0 .18rem;
+
 
     &.c-dialog-only-title{
       padding: 0.3rem 0;
@@ -195,7 +195,8 @@ export default {
     display: flex;
     align-item: center;
     justify-content: center;
-    padding: 0.1rem 0.25rem 0.3rem;
+    padding: 0 0.25rem;
+    margin: 0.18rem 0 0.28rem;
     font-size: .14rem;
     color: #9b999b;
     line-height: .2rem;
