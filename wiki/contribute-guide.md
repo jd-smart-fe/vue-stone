@@ -19,3 +19,20 @@
 ```
 $ git commit -m "feat: add a new feature in button component"
 ```
+## 组件贡献注意事项
+
+仿照已有组件创建对应的组件和页面，并完善好文档
+
+### 页面位置 examples -> pages -> ···
+
+  - 在 examples -> pages -> App.vue 添加入口
+  - 在 examples -> pages -> index.js 注册路由
+  - 在 libs -> initializer.js 添加组件
+
+### 组件位置 src -> components -> ···
+
+  - 组件内注意指定好 name: v-···， `eg: v-panel`
+
+### 更新 github 预览页面
+
+  - 把最新的代码合并到分支 gh-pages 上，推到远端库

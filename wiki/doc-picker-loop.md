@@ -4,7 +4,8 @@
 
 `v-picker-loop`
 
-## 6.x
+## Opttions
+
 属性名   |    类型    |    默认值    |   说明
 ----    | ----      | ----        | ----    |
 type | String | line | line-不循环，circle-循环。
@@ -19,3 +20,15 @@ input | 滚动完成后会触发此事件 | 当前被激活选项所组成的选
 
 ---
 
+## 版本支持
+
+| browser       | version       |
+| ------------- |:-------------:|
+| IE            | >11           |
+| Edg           | >=16          |
+| Firefox       | >=57          |
+| chrome        | >=47          |
+| safari        | >=11          |
+| iOS Safari    | >=9.3         |
+| Chrome for Android    | >=62  |
+| Samsung Internet    | >=6.2   |
