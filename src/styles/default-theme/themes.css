@@ -2,7 +2,7 @@
  * @Description: 主题色
  * @Author: shilili1
  * @Date: 2019-01-04 16:58:58
- * @LastEditTime: 2019-01-16 19:40:02
+ * @LastEditTime: 2019-03-25 14:17:11
  * @LastEditors: Please set LastEditors
  */
 
@@ -57,3 +57,13 @@ $theme-45a3f1: #45a3f1;
 /* 智能灯主题色 */
 $theme-9777fa: #9777fa;
 $theme-03bcee: #03bcee;
+/* 微波炉 */
+$theme-fa7b53: #fa7b53;
+/* 加湿器 */
+$theme-4281f3: #4281f3;
+/* 风扇 */
+$theme-27c88d: #27c88d;
+/* 电烤箱 */
+$theme-f95763: #f95763;
+/* 电热水器 */
+$theme-ee6a4e: #ee6a4e;

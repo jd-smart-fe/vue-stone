@@ -35,6 +35,8 @@ const list = [{
 }, {
   name: 'counter',
 }, {
+  name: 'picker-loop',
+}, {
   name: 'picker',
 }, {
   name: 'timepicker',

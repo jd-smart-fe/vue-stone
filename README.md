@@ -88,6 +88,7 @@ vue-stone 组件库提供了下述组件，每个组件都带有详细的文档�
 - [Mask](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-mask.md)
 - [Modes](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-modes.md)
 - [Panel](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-panel.md)
+- [Picker-loop](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-picker-loop.md)
 - [Picker](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-picker.md)
 - [Range](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-range.md)
 - [Slide](https://github.com/JD-Smart-FE/vue-stone/blob/master/wiki/doc-slide.md)
