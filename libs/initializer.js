@@ -14,6 +14,7 @@ module.exports = {
     'counter',
     'modes',
     'mask',
+    'picker-loop',
     'picker',
     'checkboard',
     'action-sheet',

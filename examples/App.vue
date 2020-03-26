@@ -61,6 +61,10 @@
         <div > Range </div>
         <span class='icon v-icon-pull-right'></span>
       </div>
+      <div slot="body" class="c-panel-body u-cross-center" @click="go('picker-loop')">
+        <div > Picker Loop </div>
+        <span class='icon v-icon-pull-right'></span>
+      </div>
       <div slot="body" class="c-panel-body u-cross-center" @click="go('picker')">
         <div > Picker </div>
         <span class='icon v-icon-pull-right'></span>
