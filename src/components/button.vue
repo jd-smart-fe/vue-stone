@@ -210,13 +210,13 @@ export default {
 }
 
 .c-btn-icon-only {
-
   padding: 0;
   border-radius: 9999px;
   width: $btn-icon-only-width-base;
   height: $btn-icon-only-width-base;
   font-size: .16rem;
   vertical-align: top;
+  align-items:center;
 
   &.c-btn-small {
     width: $btn-icon-only-width-sm;
