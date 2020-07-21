@@ -1,7 +1,7 @@
-@import './themes.css';
+@import "./themes.css";
 
-$grid-size: 0.3rem;    /* 12 grid */
-$main-width: 3.12rem;   /* 0.26 * 12 */
+$grid-size: 0.3rem; /* 12 grid */
+$main-width: 3.12rem; /* 0.26 * 12 */
 
 /* 主题色 */
 $main-color: $theme-45a3f1;
@@ -19,13 +19,12 @@ $font-size-lg:   16px;
 $font-size-xl:   18px;
 $font-size-32:   32px; */
 
-$font-size-xs:   0.1rem;
-$font-size-sm:   0.12rem;
+$font-size-xs: 0.1rem;
+$font-size-sm: 0.12rem;
 $font-size-base: 0.14rem;
-$font-size-lg:   0.16rem;
-$font-size-xl:   0.18rem;
-$font-size-32:   0.32rem;
-
+$font-size-lg: 0.16rem;
+$font-size-xl: 0.18rem;
+$font-size-32: 0.32rem;
 
 /********************  color  ********************/
 $gray-dark: #333;
@@ -34,13 +33,12 @@ $gray-light: #999;
 $gray-lighter: #ccc;
 $gray-lightest: #eaeaea;
 $white: #fff;
-$blue: #59B8FC;
+$blue: #59b8fc;
 $orange: #f76b46;
-
 
 /********************  component theme  ********************/
 
-
+$t-disabled: #efefef;
 
 /********************  dayspicker  ********************/
 
@@ -52,8 +50,6 @@ $dayspicker-padding-y: 0.12rem;
 $t-dayspicker-font-size: $font-size-base;
 $t-dayspicker-defcolor: $gray-light;
 $t-dayspicker-lightcolor: $blue;
-
-
 
 /********************  range  ********************/
 $range-padding-y: 0.16rem;
@@ -69,17 +65,17 @@ $t-range-lightcolor: $c-primary;
 
 /************************  switch   ************************/
 
-$switch-width: .60rem;
-$switch-height: .32rem;
+$switch-width: 0.6rem;
+$switch-height: 0.32rem;
 $switch-background-color-off: $theme-d5d5d5;
 $switch-background-color-on: $c-primary;
 
-$switch-btn-width: .26rem;
-$switch-btn-height: .26rem;
+$switch-btn-width: 0.26rem;
+$switch-btn-height: 0.26rem;
 $switch-btn-background-color: #fff;
 
-$switch-transform-x-off: .03rem;
-$switch-transform-x-on: .31rem;
+$switch-transform-x-off: 0.03rem;
+$switch-transform-x-on: 0.31rem;
 
 /************************  power   ************************/
 $power-width: 0.4rem;
@@ -110,7 +106,6 @@ $btn-hover: #efefef; /* 按钮按下底色 */
 /************************  counter  ************************/
 $counter-width: 1.03rem;
 $counter-height: 0.35rem;
-
 
 /************************  checkboard  ************************/
 $c-checkboard-item-padding: 0.12rem 0;

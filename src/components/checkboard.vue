@@ -1,7 +1,7 @@
 <template lang="html">
   <div :class="['c-checkboard', iconType]">
     <slot name="item" class="c-checkboard-active"></slot>
-    <input type="hidden" :name="htmlName" :value="value" />
+    <input type="hidden" :name="htmlName" :value="value" :disabled="disabled" />
   </div>
 </template>
 
@@ -35,6 +35,16 @@ export default {
       required: false,
       default: 'hook',
     },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    maxCheckNum: {
+      type: Number,
+      required: false,
+      default: false,
+    },
   },
 
   watch: {
@@ -44,6 +54,14 @@ export default {
       } else {
         this.handleSingle(val, oldval);
       }
+    },
+  },
+  computed: {
+    reachLimit() {
+      if (this.items.length <= this.maxCheckNum) {
+        return false;
+      }
+      return this.value.length >= this.maxCheckNum;
     },
   },
 
@@ -105,6 +123,7 @@ export default {
 
     // 多选
     emitMultiple(val) {
+      if (this.disabled) return;
       const copyValue = this.value.concat();
       let index = -1;
 
@@ -116,7 +135,7 @@ export default {
 
       if (index !== -1) {
         copyValue.splice(index, 1);
-      } else {
+      } else if (!this.reachLimit) {
         copyValue.push(val);
       }
 
@@ -125,11 +144,13 @@ export default {
 
     // 单选
     emitSingle(val) {
+      if (this.disabled) return;
       this.updateView(val);
     },
 
     // watch value 单选
     handleSingle(val, oldval) {
+      if (this.disabled) return;
       this.items.forEach(item => {
         const datasetValue = item.elm.dataset.value;
 
@@ -145,6 +166,7 @@ export default {
 
     // watch value 多选
     handleMultiple(val) {
+      if (this.disabled) return;
       this.items.forEach(item => {
         const datasetValue = item.elm.dataset.value;
 
@@ -205,7 +227,6 @@ export default {
       margin: auto;
       transition: .2s linear all;
      }
-
     }
     &.hook{
       >div{
@@ -247,7 +268,17 @@ export default {
       }
     }
   }
-
+  &[disabled="disabled"]{
+    >div{
+      color: $t-disabled;
+      &:after {
+        color: $t-disabled;
+      }
+    }
+    >div&[checked="true"]{
+      color: $c-primary;
+    }
+  }
 }
 
 
