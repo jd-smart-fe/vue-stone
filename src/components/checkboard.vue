@@ -206,6 +206,12 @@ export default {
 
   &{
     >div{
+      &[disabled='disabled'] {
+        color: $t-disabled;
+      }
+      &[disabled='disabled']:after {
+        color: $t-disabled;
+      }
      &:after {
       /* icon-select */
       font-family: 'iconfont' !important;
@@ -263,20 +269,10 @@ export default {
           line-height: $c-checkboard-icon-height-square;
         }
         &[checked="true"]:after{
-        content: "\e917";
+          content: "\e969";
+          right: -1px;
         }
       }
-    }
-  }
-  &[disabled="disabled"]{
-    >div{
-      color: $t-disabled;
-      &:after {
-        color: $t-disabled;
-      }
-    }
-    >div&[checked="true"]{
-      color: $c-primary;
     }
   }
 }

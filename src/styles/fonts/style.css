@@ -1,17 +1,18 @@
 @font-face {
-  font-family: 'iconfont';
-  src:
-    url('../styles/fonts/fonts/iconfont.ttf?efwc1o') format('truetype'),
-    url('../styles/fonts/fonts/iconfont.woff?efwc1o') format('woff'),
-    url('../styles/fonts/fonts/iconfont.svg?efwc1o#iconfont') format('svg');
+  font-family: "iconfont";
+  src: url("../styles/fonts/fonts/iconfont.ttf?jt1etw") format("truetype"),
+    url("../styles/fonts/fonts/iconfont.woff?jt1etw") format("woff"),
+    url("../styles/fonts/fonts/iconfont.svg?jt1etw#iconfont") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'iconfont' !important;
-  speak: none;
+  font-family: "iconfont" !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -23,6 +24,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-checked-bold:before {
+  content: "\e968";
+  color: #4b8bee;
+}
+.icon-checked:before {
+  content: "\e969";
+}
 .icon-weiboshajun:before {
   content: "\e95b";
 }
