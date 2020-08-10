@@ -269,8 +269,7 @@ export default {
           line-height: $c-checkboard-icon-height-square;
         }
         &[checked="true"]:after{
-          content: "\e969";
-          right: -1px;
+          content: "\e968";
         }
       }
     }
